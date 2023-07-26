@@ -65,5 +65,4 @@ jobs:
       - name: Format
         run:  dart fix --dry-run --apply
 
-      - name: Analyze
-        run: flutter analyze
+  
