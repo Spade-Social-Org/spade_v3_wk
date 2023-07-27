@@ -40,13 +40,12 @@ class AddLocationScreen extends StatelessWidget {
               height: 40,
             ),
             const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Icon(Icons.location_on_outlined),
                 Text(
-                  "Select your current location:",
-                  style: TextStyle(fontSize: 18),
+                  "Country",
+                  style: TextStyle(fontSize: 16),
                 ),
                 Text(
                   "Cameroon",
