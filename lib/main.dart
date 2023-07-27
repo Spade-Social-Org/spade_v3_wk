@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Common/routes/route_generator.dart';
+// import 'Common/routes/route_generator.dart';
 import 'Common/size_config/size_config.dart';
 import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 
