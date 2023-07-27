@@ -58,29 +58,33 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(Icons.location_on_outlined),
-                const Text(
-                  "Country",
-                  style: TextStyle(fontSize: 16),
-                ),
-                DropdownButtonFormField(
-                  value: selectedValue,
-                  items: dropdownItems,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedValue = newValue!;
-                    });
-                  },
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(width: 2),
-                      borderRadius: BorderRadius.circular(20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Country",
+                      style: TextStyle(fontSize: 16),
                     ),
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(width: 2),
-                      borderRadius: BorderRadius.circular(20),
+                    DropdownButtonFormField(
+                      value: selectedValue,
+                      items: dropdownItems,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedValue = newValue!;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(width: 2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(width: 2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 )
               ],
             ),
