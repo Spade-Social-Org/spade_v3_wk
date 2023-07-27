@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class CustomerNavigationBar extends StatefulWidget {
-  const CustomerNavigationBar({
+class JHCustomerNavigationBar extends StatefulWidget {
+  const JHCustomerNavigationBar({
     Key? key,
     required this.selectedPageIndex,
     required this.onIconTap,
@@ -13,10 +13,10 @@ class CustomerNavigationBar extends StatefulWidget {
   final Function onIconTap;
 
   @override
-  State<CustomerNavigationBar> createState() => _CustomerNavigationBarState();
+  State<JHCustomerNavigationBar> createState() => _JHCustomerNavigationBarState();
 }
 
-class _CustomerNavigationBarState extends State<CustomerNavigationBar> {
+class _JHCustomerNavigationBarState extends State<JHCustomerNavigationBar> {
   final double _iconSize = 30;
   bool _isSecondChildVisible = false;
   bool _isAnalogDragged = false;

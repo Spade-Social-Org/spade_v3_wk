@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class PolygonIcon extends StatelessWidget {
+class JHPolygonIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(

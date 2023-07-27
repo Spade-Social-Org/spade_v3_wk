@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MatchWidget extends StatelessWidget {
-  const MatchWidget({
+class JHMatchWidget extends StatelessWidget {
+  const JHMatchWidget({
     super.key,
   });
 

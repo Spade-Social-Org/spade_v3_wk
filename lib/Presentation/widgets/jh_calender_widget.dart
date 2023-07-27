@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class CalenderWidget extends StatefulWidget {
-  const CalenderWidget({super.key});
+class JHCalenderWidget extends StatefulWidget {
+  const JHCalenderWidget({super.key});
 
   @override
-  State<CalenderWidget> createState() => _CalenderWidgetState();
+  State<JHCalenderWidget> createState() => _JHCalenderWidgetState();
 }
 
-class _CalenderWidgetState extends State<CalenderWidget> {
+class _JHCalenderWidgetState extends State<JHCalenderWidget> {
   DateTime today = DateTime.now();
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/calender_widget.dart';
+import '../../widgets/jh_calender_widget.dart';
 
 class EventPlaningScreen extends StatelessWidget {
   const EventPlaningScreen({super.key});
@@ -33,7 +33,7 @@ class EventPlaningScreen extends StatelessWidget {
                 )
               ]),
             ),
-            const CalenderWidget(),
+            const JHCalenderWidget(),
             const Padding(
               padding: EdgeInsets.only(left: 18),
               child: Text(
