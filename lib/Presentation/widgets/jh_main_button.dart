@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 
-class MainButton extends StatelessWidget {
+class JHMainButton extends StatelessWidget {
   final String title;
   final Color color;
   final Function onPressed;
-  const MainButton({
+  const JHMainButton({
     super.key, required this.title, required this.color, required this.onPressed,
   });
 
