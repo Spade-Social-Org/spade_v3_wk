@@ -2,8 +2,24 @@ import 'package:flutter/material.dart';
 
 import 'add_religion_screen.dart';
 
-class AddLocationScreen extends StatelessWidget {
+class AddLocationScreen extends StatefulWidget {
   const AddLocationScreen({super.key});
+
+  @override
+  State<AddLocationScreen> createState() => _AddLocationScreenState();
+}
+
+class _AddLocationScreenState extends State<AddLocationScreen> {
+  String selectedValue = "USA";
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(value: "USA", child: Text("USA")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
+    ];
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +55,32 @@ class AddLocationScreen extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.location_on_outlined),
-                Text(
+                const Icon(Icons.location_on_outlined),
+                const Text(
                   "Country",
                   style: TextStyle(fontSize: 16),
                 ),
-                Text(
-                  "Cameroon",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                DropdownButtonFormField(
+                  value: selectedValue,
+                  items: dropdownItems,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedValue = newValue!;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(width: 2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(width: 2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 )
               ],
             ),
