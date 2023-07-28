@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_email_screen.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/add_location_screen.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/txt_form_field.dart';
 
-class InputPhoneNumberScreen extends StatefulWidget {
-  const InputPhoneNumberScreen({super.key});
+class VerificationPage extends StatefulWidget {
+  const VerificationPage({super.key});
 
   @override
-  State<InputPhoneNumberScreen> createState() => _InputPhoneNumberScreenState();
+  State<VerificationPage> createState() => _VerificationPageState();
 }
 
-class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
+class _VerificationPageState extends State<VerificationPage> {
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,18 +33,35 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
             SizedBox(
               height: 40.height(),
             ),
-            const Center(
-                child: FormTitle(formTitle: "What's your phone number")),
+            const Center(child: FormTitle(formTitle: "What's your email?")),
             SizedBox(
-              height: 40.height(),
+              height: 60.height(),
             ),
-            FormLabel(formLabel: "Mobile Number"),
-            SizedBox(
-              height: 8.height(),
-            ),
-            TxtFormField(
-              controller: controller,
-              hintText: 'Enter your mobile number',
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Enter the OTP sent to your email",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                ),
+                SizedBox(
+                  height: 30.height(),
+                ),
+                Text.rich(
+                  TextSpan(children: [
+                    TextSpan(
+                      text: "Don't receive code? ",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    TextSpan(
+                      text: "Re-send",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                    ),
+                  ]),
+                ),
+              ],
             ),
             const Spacer(),
             Padding(
@@ -67,7 +81,7 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                           context,
                           MaterialPageRoute(
                               builder: ((context) =>
-                                  const InputEmailScreen())));
+                                  const AddLocationScreen())));
                     }),
               ),
             ),

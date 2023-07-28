@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_email_screen.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_phone_number_screen.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/txt_form_field.dart';
 
-class InputPhoneNumberScreen extends StatefulWidget {
-  const InputPhoneNumberScreen({super.key});
+class InputPassword extends StatefulWidget {
+  const InputPassword({super.key});
 
   @override
-  State<InputPhoneNumberScreen> createState() => _InputPhoneNumberScreenState();
+  State<InputPassword> createState() => _InputPasswordState();
 }
 
-class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
+class _InputPasswordState extends State<InputPassword> {
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -37,17 +37,28 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
               height: 40.height(),
             ),
             const Center(
-                child: FormTitle(formTitle: "What's your phone number")),
+                child: FormTitle(formTitle: "Please create a password")),
             SizedBox(
               height: 40.height(),
             ),
-            FormLabel(formLabel: "Mobile Number"),
+            FormLabel(formLabel: "Password"),
             SizedBox(
               height: 8.height(),
             ),
             TxtFormField(
               controller: controller,
-              hintText: 'Enter your mobile number',
+              hintText: 'Password',
+            ),
+            SizedBox(
+              height: 15.height(),
+            ),
+            FormLabel(formLabel: "Confirm Password"),
+            SizedBox(
+              height: 8.height(),
+            ),
+            TxtFormField(
+              controller: controller,
+              hintText: 'Confirm Password',
             ),
             const Spacer(),
             Padding(
@@ -66,8 +77,7 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) =>
-                                  const InputEmailScreen())));
+                              builder: ((context) => const InputPhoneNumberScreen())));
                     }),
               ),
             ),
