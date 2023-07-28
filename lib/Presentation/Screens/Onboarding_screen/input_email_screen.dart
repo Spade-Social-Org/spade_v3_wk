@@ -19,6 +19,7 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -31,50 +32,52 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(18),
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: [
-            SizedBox(
-              height: 40.height(),
-            ),
-            const Center(child: FormTitle(formTitle: "What's your email?")),
-            SizedBox(
-              height: 40.height(),
-            ),
-            FormLabel(formLabel: "Email"),
-            SizedBox(
-              height: 8.height(),
-            ),
-            TxtFormField(
-              controller: controller,
-              hintText: 'Enter your email',
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    color: Colors.black,
-                    child: const Text(
-                      "Next",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  const VerificationPage())));
-                    }),
+        child: Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              SizedBox(
+                height: 40.height(),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-          ],
+              const Center(child: FormTitle(formTitle: "What's your email?")),
+              SizedBox(
+                height: 40.height(),
+              ),
+              FormLabel(formLabel: "Email"),
+              SizedBox(
+                height: 8.height(),
+              ),
+              TxtFormField(
+                controller: controller,
+                hintText: 'Enter your email',
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.black,
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    const VerificationPage())));
+                      }),
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+            ],
+          ),
         ),
       ),
     );

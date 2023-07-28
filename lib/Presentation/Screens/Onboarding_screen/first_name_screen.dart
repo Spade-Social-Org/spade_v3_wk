@@ -19,6 +19,7 @@ class _InputNameScreenState extends State<InputNameScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -31,49 +32,51 @@ class _InputNameScreenState extends State<InputNameScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(18),
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: [
-            SizedBox(
-              height: 40.height(),
-            ),
-            const Center(child: FormTitle(formTitle: "Whats your name?")),
-            SizedBox(
-              height: 40.height(),
-            ),
-            FormLabel(formLabel: "First Name"),
-            SizedBox(
-              height: 8.height(),
-            ),
-            TxtFormField(
-              controller: controller,
-              hintText: 'Enter your first name',
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    color: Colors.black,
-                    child: const Text(
-                      "Next",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const InputPassword())));
-                    }),
+        child: Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              SizedBox(
+                height: 40.height(),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-          ],
+              const Center(child: FormTitle(formTitle: "Whats your name?")),
+              SizedBox(
+                height: 40.height(),
+              ),
+              FormLabel(formLabel: "First Name"),
+              SizedBox(
+                height: 8.height(),
+              ),
+              TxtFormField(
+                controller: controller,
+                hintText: 'Enter your first name',
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.black,
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => const InputPassword())));
+                      }),
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+            ],
+          ),
         ),
       ),
     );

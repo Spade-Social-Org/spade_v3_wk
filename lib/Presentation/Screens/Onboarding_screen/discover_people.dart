@@ -14,6 +14,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -25,33 +26,35 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
             )),
         title: FormTitle(formTitle: "Discover people with similar interests!"),
       ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MaterialButton(
-                  height: 50,
-                  minWidth: double.infinity,
-                  color: Colors.black,
-                  child: const Text(
-                    "Next",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const DiscoverDetails())));
-                  }),
+      body: Expanded(
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
+                    height: 50,
+                    minWidth: double.infinity,
+                    color: Colors.black,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const DiscoverDetails())));
+                    }),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
       ),
     );
   }
