@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-
-import 'add_religion_screen.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/discover_people.dart';
 
 class AddLocationScreen extends StatefulWidget {
   const AddLocationScreen({super.key});
@@ -26,30 +25,29 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
             const SizedBox(
               height: 40,
             ),
             const Center(
                 child: Text(
-              "Where do you live ?",
+              "Where do you live?",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             )),
             Center(child: Image.asset("assets/images/location2.png")),
@@ -218,12 +216,12 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => AddReligionScreen())));
+                              builder: ((context) => DiscoverPeople())));
                     }),
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
           ],
         ),

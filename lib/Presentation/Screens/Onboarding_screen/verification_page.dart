@@ -16,6 +16,7 @@ class _VerificationPageState extends State<VerificationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -86,7 +87,7 @@ class _VerificationPageState extends State<VerificationPage> {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
           ],
         ),

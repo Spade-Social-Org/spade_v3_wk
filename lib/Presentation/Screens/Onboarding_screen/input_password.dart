@@ -19,6 +19,7 @@ class _InputPasswordState extends State<InputPassword> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

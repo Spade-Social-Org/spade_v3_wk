@@ -19,6 +19,7 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

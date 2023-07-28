@@ -19,6 +19,7 @@ class _InputNameScreenState extends State<InputNameScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
