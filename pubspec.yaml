@@ -62,7 +62,7 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
-    sdk: flutte
+    sdk: flutter
   flutter_native_splash:
   flutter_lints: ^2.0.0
 
