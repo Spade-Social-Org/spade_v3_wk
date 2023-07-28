@@ -30,7 +30,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
     Navigator.pop(context); // Dismiss the dialog
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const Navigationcontianer()),
+      MaterialPageRoute(builder: (context) => const NavigationContainer()),
     );
   });
 }

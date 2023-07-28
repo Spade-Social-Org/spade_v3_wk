@@ -1,25 +1,22 @@
-import'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../Buttom_nav/navigation_container.dart';
-import 'looking_for_build_women_screen.dart';
-
 
 class LookingForBuildMenScreen extends StatefulWidget {
   const LookingForBuildMenScreen({super.key});
 
   @override
-  State<LookingForBuildMenScreen> createState() => _LookingForBuildMenScreenState();
+  State<LookingForBuildMenScreen> createState() =>
+      _LookingForBuildMenScreenState();
 }
 
 class _LookingForBuildMenScreenState extends State<LookingForBuildMenScreen> {
-
- String? _selectedType;
+  String? _selectedType;
 
   void _selectType(String type) {
     setState(() {
       _selectedType = type;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +176,8 @@ class _LookingForBuildMenScreenState extends State<LookingForBuildMenScreen> {
                       children: [
                         SizedBox(
                             height: 80,
-                            child: Image.asset("assets/images/freepik--character-2--inject-310.png")),
+                            child: Image.asset(
+                                "assets/images/freepik--character-2--inject-310.png")),
                         const Text("Brawny")
                       ]),
                 ),
@@ -206,7 +204,8 @@ class _LookingForBuildMenScreenState extends State<LookingForBuildMenScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const Navigationcontianer())));
+                            builder: ((context) =>
+                                const NavigationContainer())));
                   }),
             ),
           ),

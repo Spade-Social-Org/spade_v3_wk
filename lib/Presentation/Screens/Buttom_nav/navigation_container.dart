@@ -5,15 +5,14 @@ import '../Home/home_screen.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
-
-class Navigationcontianer extends StatefulWidget {
-  const Navigationcontianer({super.key});
+class NavigationContainer extends StatefulWidget {
+  const NavigationContainer({super.key});
 
   @override
-  State<Navigationcontianer> createState() => _NavigationcontianerState();
+  State<NavigationContainer> createState() => _NavigationContainerState();
 }
 
-class _NavigationcontianerState extends State<Navigationcontianer> {
+class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
 
   static final List<Widget> _appPages = [
@@ -56,7 +55,7 @@ class _NavigationcontianerState extends State<Navigationcontianer> {
           unselectedItemColor: Colors.grey, // Set the color of unselected items
           selectedLabelStyle: const TextStyle(
             fontWeight:
-            FontWeight.bold, // Set the font weight of the selected label
+                FontWeight.bold, // Set the font weight of the selected label
           ),
 
           items: [
