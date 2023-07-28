@@ -9,21 +9,16 @@ class CustomColors {
   static Color indigoLigt = Color(0xFF9fa8da);
   static Color indigoLiht = Color(0xFF9fa8da);
   static Color indigoLght = Color(0xFF9fa8da);
-
 }
 
-
-
 class AppTheme {
-
   static TextStyle h1Style =
-  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+      const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
   static TextStyle h2Style = const TextStyle(fontSize: 22);
   static TextStyle h3Style = const TextStyle(fontSize: 20);
   static TextStyle h4Style = const TextStyle(fontSize: 18);
   static TextStyle h5Style = const TextStyle(fontSize: 16);
   static TextStyle h6Style = const TextStyle(fontSize: 14);
-
 }
 
 extension PaddingHelper on Widget {
@@ -78,31 +73,29 @@ class TextStyles {
   static TextStyle get titleSize15 =>
       title.copyWith(fontWeight: FontWeight.w500, fontSize: 15);
   static TextStyle get titleNormal => title.copyWith(
-    fontWeight: FontWeight.w500,
-    fontSize: FontSizes.titleSmall,
-  );
+        fontWeight: FontWeight.w500,
+        fontSize: FontSizes.titleSmall,
+      );
   static TextStyle get titleMedium =>
       titleM.copyWith(fontWeight: FontWeight.w300);
   static TextStyle get h1Style =>
       TextStyle(fontSize: FontSizes.sizeXXl, fontWeight: FontWeight.bold);
   static TextStyle get h2Style => TextStyle(
-    fontSize: FontSizes.sizeXl,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  );
+        fontSize: FontSizes.sizeXl,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      );
   static TextStyle get h3Large => TextStyle(
-    fontSize: FontSizes.Large,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  );
+        fontSize: FontSizes.Large,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      );
   static TextStyle get headTitleColored => TextStyle(
-    fontSize: FontSizes.sizeXl,
-    fontWeight: FontWeight.bold,
-    color: Colors.blueAccent,
-  );
+        fontSize: FontSizes.sizeXl,
+        fontWeight: FontWeight.bold,
+        color: Colors.blueAccent,
+      );
   static TextStyle get body =>
       TextStyle(fontSize: FontSizes.body, fontWeight: FontWeight.w300);
   static TextStyle get bodySm => body.copyWith(fontSize: FontSizes.bodySm);
 }
-
-
