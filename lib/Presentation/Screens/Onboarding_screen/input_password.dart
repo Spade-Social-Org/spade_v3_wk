@@ -36,59 +36,60 @@ class _InputPasswordState extends State<InputPassword> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
+              SizedBox(
+                height: 40.height(),
+              ),
+              const Center(
+                  child: FormTitle(formTitle: "Please create a password")),
+              SizedBox(
+                height: 80.height(),
+              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  FormLabel(formLabel: "Password"),
                   SizedBox(
-                    height: 40.height(),
+                    height: 8.height(),
                   ),
-                  const Center(
-                      child: FormTitle(formTitle: "Please create a password")),
+                  TxtFormField(
+                    controller: controller,
+                    hintText: 'Password',
+                  ),
                   SizedBox(
-                    height: 40.height(),
+                    height: 15.height(),
                   ),
-                  Column(
-                    children: [
-                      FormLabel(formLabel: "Password"),
-                      SizedBox(
-                        height: 8.height(),
-                      ),
-                      TxtFormField(
-                        controller: controller,
-                        hintText: 'Password',
-                      ),
-                      SizedBox(
-                        height: 15.height(),
-                      ),
-                      FormLabel(formLabel: "Confirm Password"),
-                      SizedBox(
-                        height: 8.height(),
-                      ),
-                      TxtFormField(
-                        controller: controller,
-                        hintText: 'Confirm Password',
-                      ),
-                    ],
+                  FormLabel(formLabel: "Confirm Password"),
+                  SizedBox(
+                    height: 8.height(),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: MaterialButton(
-                        height: 50,
-                        minWidth: double.infinity,
-                        color: Colors.black,
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const InputPhoneNumberScreen())));
-                        }),
+                  TxtFormField(
+                    controller: controller,
+                    hintText: 'Confirm Password',
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 80.height(),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
+                    height: 50,
+                    minWidth: double.infinity,
+                    color: Colors.black,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  const InputPhoneNumberScreen())));
+                    }),
+              ),
+              SizedBox(
+                height: 50.height(),
               ),
             ],
           ),

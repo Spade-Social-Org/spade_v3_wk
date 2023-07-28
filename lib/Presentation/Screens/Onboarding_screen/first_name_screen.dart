@@ -36,47 +36,47 @@ class _InputNameScreenState extends State<InputNameScreen> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
+              SizedBox(
+                height: 40.height(),
+              ),
+              const Center(child: FormTitle(formTitle: "Whats your name?")),
+              SizedBox(
+                height: 80.height(),
+              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  FormLabel(formLabel: "First Name"),
                   SizedBox(
-                    height: 40.height(),
+                    height: 8.height(),
                   ),
-                  const Center(child: FormTitle(formTitle: "Whats your name?")),
-                  SizedBox(
-                    height: 40.height(),
-                  ),
-                  Column(
-                    children: [
-                      FormLabel(formLabel: "First Name"),
-                      SizedBox(
-                        height: 8.height(),
-                      ),
-                      TxtFormField(
-                        controller: controller,
-                        hintText: 'Enter your first name',
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: MaterialButton(
-                        height: 50,
-                        minWidth: double.infinity,
-                        color: Colors.black,
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => const InputPassword())));
-                        }),
+                  TxtFormField(
+                    controller: controller,
+                    hintText: 'Enter your first name',
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 80.height(),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
+                    height: 50,
+                    minWidth: double.infinity,
+                    color: Colors.black,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const InputPassword())));
+                    }),
+              ),
+              SizedBox(
+                height: 50.height(),
               ),
             ],
           ),

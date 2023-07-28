@@ -36,48 +36,49 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
+              SizedBox(
+                height: 40.height(),
+              ),
+              const Center(
+                  child: FormTitle(formTitle: "What's your phone number")),
+              SizedBox(
+                height: 80.height(),
+              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  FormLabel(formLabel: "Mobile Number"),
                   SizedBox(
-                    height: 40.height(),
+                    height: 8.height(),
                   ),
-                  const Center(
-                      child: FormTitle(formTitle: "What's your phone number")),
-                  SizedBox(
-                    height: 40.height(),
-                  ),
-                  Column(
-                    children: [
-                      FormLabel(formLabel: "Mobile Number"),
-                      SizedBox(
-                        height: 8.height(),
-                      ),
-                      TxtFormField(
-                        controller: controller,
-                        hintText: 'Enter your mobile number',
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: MaterialButton(
-                        height: 50,
-                        minWidth: double.infinity,
-                        color: Colors.black,
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const InputEmailScreen())));
-                        }),
+                  TxtFormField(
+                    controller: controller,
+                    hintText: 'Enter your mobile number',
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 80.height(),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
+                    height: 50,
+                    minWidth: double.infinity,
+                    color: Colors.black,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  const InputEmailScreen())));
+                    }),
+              ),
+              SizedBox(
+                height: 50.height(),
               ),
             ],
           ),

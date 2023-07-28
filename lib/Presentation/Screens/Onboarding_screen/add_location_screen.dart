@@ -11,15 +11,15 @@ class AddLocationScreen extends StatefulWidget {
 
 class _AddLocationScreenState extends State<AddLocationScreen> {
   String selectedValue = "USA";
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "USA", child: Text("USA")),
-      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      const DropdownMenuItem(value: "England", child: Text("England")),
-    ].toList();
-    return menuItems;
-  }
+  // List<DropdownMenuItem<String>> get dropdownItems {
+  //   List<DropdownMenuItem<String>> menuItems = [
+  //     const DropdownMenuItem(value: "USA", child: Text("USA")),
+  //     const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+  //     const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+  //     const DropdownMenuItem(value: "England", child: Text("England")),
+  //   ].toList();
+  //   return menuItems;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,16 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                       Expanded(
                         child: DropdownButtonFormField(
                           value: selectedValue,
-                          items: dropdownItems,
+                          items: [
+                            const DropdownMenuItem(
+                                value: "USA", child: Text("USA")),
+                            const DropdownMenuItem(
+                                value: "Canada", child: Text("Canada")),
+                            const DropdownMenuItem(
+                                value: "Brazil", child: Text("Brazil")),
+                            const DropdownMenuItem(
+                                value: "England", child: Text("England")),
+                          ],
                           onChanged: (String? newValue) {
                             setState(() {
                               selectedValue = newValue!;
@@ -105,7 +114,16 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                       Expanded(
                         child: DropdownButtonFormField(
                           value: selectedValue,
-                          items: dropdownItems,
+                          items: [
+                            const DropdownMenuItem(
+                                value: "USA", child: Text("USA")),
+                            const DropdownMenuItem(
+                                value: "Canada", child: Text("Canada")),
+                            const DropdownMenuItem(
+                                value: "Brazil", child: Text("Brazil")),
+                            const DropdownMenuItem(
+                                value: "England", child: Text("England")),
+                          ],
                           onChanged: (String? newValue) {
                             setState(() {
                               selectedValue = newValue!;
@@ -145,7 +163,16 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                       Expanded(
                         child: DropdownButtonFormField(
                           value: selectedValue,
-                          items: dropdownItems,
+                          items: [
+                            const DropdownMenuItem(
+                                value: "USA", child: Text("USA")),
+                            const DropdownMenuItem(
+                                value: "Canada", child: Text("Canada")),
+                            const DropdownMenuItem(
+                                value: "Brazil", child: Text("Brazil")),
+                            const DropdownMenuItem(
+                                value: "England", child: Text("England")),
+                          ],
                           onChanged: (String? newValue) {
                             setState(() {
                               selectedValue = newValue!;

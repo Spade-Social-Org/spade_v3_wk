@@ -33,63 +33,62 @@ class _VerificationPageState extends State<VerificationPage> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
+              SizedBox(
+                height: 40.height(),
+              ),
+              const Center(child: FormTitle(formTitle: "What's your email?")),
+              SizedBox(
+                height: 80.height(),
+              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 40.height(),
+                  Text(
+                    "Enter the OTP sent to your email",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                   ),
-                  const Center(
-                      child: FormTitle(formTitle: "What's your email?")),
                   SizedBox(
-                    height: 60.height(),
+                    height: 30.height(),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Enter the OTP sent to your email",
+                  Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                        text: "Don't receive code? ",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      TextSpan(
+                        text: "Re-send",
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
+                            fontWeight: FontWeight.w500, fontSize: 14),
                       ),
-                      SizedBox(
-                        height: 30.height(),
-                      ),
-                      Text.rich(
-                        TextSpan(children: [
-                          TextSpan(
-                            text: "Don't receive code? ",
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          TextSpan(
-                            text: "Re-send",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14),
-                          ),
-                        ]),
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: MaterialButton(
-                        height: 50,
-                        minWidth: double.infinity,
-                        color: Colors.black,
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const AddLocationScreen())));
-                        }),
+                    ]),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 80.height(),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
+                    height: 50,
+                    minWidth: double.infinity,
+                    color: Colors.black,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  const AddLocationScreen())));
+                    }),
+              ),
+              SizedBox(
+                height: 50.height(),
               ),
             ],
           ),
