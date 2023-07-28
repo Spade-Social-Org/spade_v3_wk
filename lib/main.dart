@@ -25,4 +25,4 @@ class MyApp extends StatelessWidget {
         //onUnknownRoute: RouteGenerator.unKnownRoute,
         home: const LoginOrSignupScreen());
   }
-}        
+}
