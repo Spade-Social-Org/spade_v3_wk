@@ -6,7 +6,8 @@ class TxtFormField extends StatefulWidget {
   final TextEditingController controller;
   const TxtFormField({
     Key? key,
-    required this.hintText, required this.controller,
+    required this.hintText,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -18,8 +19,11 @@ class _TxtFormFieldState extends State<TxtFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      style: TextStyle(fontSize: 16),
+      cursorColor: Colors.black,
       decoration: InputDecoration(
         hintText: widget.hintText,
+        hintStyle: TextStyle(fontSize: 16),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(width: 1),
           borderRadius: BorderRadius.circular(10),

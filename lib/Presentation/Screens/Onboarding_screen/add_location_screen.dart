@@ -17,7 +17,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
       const DropdownMenuItem(value: "Canada", child: Text("Canada")),
       const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
       const DropdownMenuItem(value: "England", child: Text("England")),
-    ];
+    ].toList();
     return menuItems;
   }
 
