@@ -25,15 +25,15 @@ class _TxtFormFieldState extends State<TxtFormField> {
         hintText: widget.hintText,
         hintStyle: TextStyle(fontSize: 16),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1),
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
           borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1),
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
           borderRadius: BorderRadius.circular(10),
         ),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1),
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
           borderRadius: BorderRadius.circular(10),
         ),
       ),

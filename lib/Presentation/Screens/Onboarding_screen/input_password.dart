@@ -13,7 +13,7 @@ class InputPassword extends StatefulWidget {
 }
 
 class _InputPasswordState extends State<InputPassword> {
-  final controller = TextEditingController();
+   final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,20 +31,17 @@ class _InputPasswordState extends State<InputPassword> {
             )),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              SizedBox(
-                height: 40.height(),
-              ),
-              const Center(
-                  child: FormTitle(formTitle: "Please create a password")),
-              SizedBox(
-                height: 80.height(),
-              ),
-              Column(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child:  Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Center(child: FormTitle(formTitle: "Please create a password")),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FormLabel(formLabel: "Password"),
                   SizedBox(
@@ -67,32 +64,28 @@ class _InputPasswordState extends State<InputPassword> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 80.height(),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    color: Colors.black,
-                    child: const Text(
-                      "Next",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                   SizedBox(
+                      height: 90,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  const InputPhoneNumberScreen())));
-                    }),
-              ),
-              SizedBox(
-                height: 50.height(),
-              ),
-            ],
-          ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.black,
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => const InputPhoneNumberScreen())));
+                      }),
+                ),
+              ],
+            ),
         ),
       ),
     );

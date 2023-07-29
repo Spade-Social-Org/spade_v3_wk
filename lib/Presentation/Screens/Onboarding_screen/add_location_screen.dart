@@ -40,9 +40,11 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const SizedBox(
                 height: 40,
@@ -52,7 +54,14 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                 "Where do you live?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
-              Center(child: Image.asset("assets/images/location2.png")),
+              const SizedBox(
+                height: 30,
+              ),
+              Center(
+                  child: Image.asset(
+                "assets/images/location2.png",
+                height: 50,
+              )),
               const SizedBox(
                 height: 40,
               ),
@@ -229,25 +238,22 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
               const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: MaterialButton(
-                      height: 50,
-                      minWidth: double.infinity,
-                      color: Colors.black,
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => DiscoverPeople())));
-                      }),
-                ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
+                    height: 50,
+                    minWidth: double.infinity,
+                    color: Colors.black,
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => DiscoverPeople())));
+                    }),
               ),
               const SizedBox(
                 height: 30,

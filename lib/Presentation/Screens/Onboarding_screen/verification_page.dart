@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/add_location_screen.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
 
@@ -28,18 +27,17 @@ class _VerificationPageState extends State<VerificationPage> {
             )),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                height: 40.height(),
-              ),
-              const Center(child: FormTitle(formTitle: "What's your email?")),
-              SizedBox(
-                height: 80.height(),
-              ),
+              Center(child: FormTitle(formTitle: "Verification Code")),
+                  SizedBox(
+                    height: 20,
+                  ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,7 +47,7 @@ class _VerificationPageState extends State<VerificationPage> {
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                   SizedBox(
-                    height: 30.height(),
+                    height: 60,
                   ),
                   Text.rich(
                     TextSpan(children: [
@@ -60,14 +58,14 @@ class _VerificationPageState extends State<VerificationPage> {
                       TextSpan(
                         text: "Re-send",
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 14),
+                            fontWeight: FontWeight.w600, fontSize: 14),
                       ),
                     ]),
                   ),
                 ],
               ),
               SizedBox(
-                height: 80.height(),
+                height: 90,
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -86,9 +84,6 @@ class _VerificationPageState extends State<VerificationPage> {
                               builder: ((context) =>
                                   const AddLocationScreen())));
                     }),
-              ),
-              SizedBox(
-                height: 50.height(),
               ),
             ],
           ),

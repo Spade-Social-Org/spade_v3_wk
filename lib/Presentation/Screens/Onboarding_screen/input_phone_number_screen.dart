@@ -13,9 +13,9 @@ class InputPhoneNumberScreen extends StatefulWidget {
 }
 
 class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,20 +31,16 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
             )),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                height: 40.height(),
-              ),
-              const Center(
-                  child: FormTitle(formTitle: "What's your phone number")),
-              SizedBox(
-                height: 80.height(),
-              ),
+              Center(child: FormTitle(formTitle: "Whats your phone number?")),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FormLabel(formLabel: "Mobile Number"),
                   SizedBox(
@@ -57,7 +53,7 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                 ],
               ),
               SizedBox(
-                height: 80.height(),
+                height: 90,
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -76,9 +72,6 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                               builder: ((context) =>
                                   const InputEmailScreen())));
                     }),
-              ),
-              SizedBox(
-                height: 50.height(),
               ),
             ],
           ),
