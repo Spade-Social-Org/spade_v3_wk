@@ -64,7 +64,7 @@ class FontSizes {
   static double get titleM => 18 * scale;
   static double get sizeXXl => 28 * scale;
   static double get sizeXl => 17 * scale;
-  static double get Large => 23 * scale;
+  static double get large => 23 * scale;
 }
 
 class TextStyles {
@@ -86,7 +86,7 @@ class TextStyles {
         color: Colors.black,
       );
   static TextStyle get h3Large => TextStyle(
-        fontSize: FontSizes.Large,
+        fontSize: FontSizes.large,
         fontWeight: FontWeight.bold,
         color: Colors.black,
       );
