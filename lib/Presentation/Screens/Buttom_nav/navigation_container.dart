@@ -18,7 +18,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
   static final List<Widget> _appPages = [
     const HomeScreen(),
     const MessageScreen(),
-    DiscoverScreen(),
+    const DiscoveryScreen(),
     // const CustomDiscover(),
     const MapScreen(),
     const MoreScreen(),
