@@ -10,7 +10,9 @@ class AddLocationScreen extends StatefulWidget {
 }
 
 class _AddLocationScreenState extends State<AddLocationScreen> {
-  String selectedValue = "USA";
+  String countrySelectedValue = "USA";
+ String stateSelectedValue = "USA";
+ String citySelectedValue = "USA";
   // List<DropdownMenuItem<String>> get dropdownItems {
   //   List<DropdownMenuItem<String>> menuItems = [
   //     const DropdownMenuItem(value: "USA", child: Text("USA")),
@@ -44,42 +46,38 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
           height: double.infinity,
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(
-                height: 40,
-              ),
               const Center(
                   child: Text(
                 "Where do you live?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
+
+              Container(
+                  height: 250,
+                  child: Image.asset("assets/images/location2.png")),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
-              Center(
-                  child: Image.asset(
-                "assets/images/location2.png",
-                height: 50,
-              )),
-              const SizedBox(
-                height: 40,
-              ),
-              //Country and State Row
+
+//Country and State Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   //country
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Country",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Expanded(
-                        child: DropdownButtonFormField(
-                          value: selectedValue,
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Country",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        DropdownButtonFormField(
+                          value: countrySelectedValue,
+			style: TextStyle(fontSize: 16),
                           items: [
                             const DropdownMenuItem(
                                 value: "USA", child: Text("USA")),
@@ -92,37 +90,41 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                           ],
                           onChanged: (String? newValue) {
                             setState(() {
-                              selectedValue = newValue!;
+                              countrySelectedValue = newValue!;
                             });
                           },
                           decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
+               focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+			  enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             border: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ), // end of country
-                  SizedBox(
-                    width: 18.width(),
-                  ),
+
                   //State
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "State",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Expanded(
-                        child: DropdownButtonFormField(
-                          value: selectedValue,
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "State",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        DropdownButtonFormField(
+                          value: stateSelectedValue, 
+			  style: TextStyle(fontSize: 16),
                           items: [
                             const DropdownMenuItem(
                                 value: "USA", child: Text("USA")),
@@ -135,43 +137,47 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                           ],
                           onChanged: (String? newValue) {
                             setState(() {
-                              selectedValue = newValue!;
+                              stateSelectedValue = newValue!;
                             });
                           },
                           decoration: InputDecoration(
+		        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             border: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ), // end of State
                 ],
               ), // end of country and state Row
-              SizedBox(
-                height: 20.height(),
-              ),
-              //city and postal_code Row
+
+//City and PostalCode
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  //city
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "City",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Expanded(
-                        child: DropdownButtonFormField(
-                          value: selectedValue,
+                  //country
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "City",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        DropdownButtonFormField(
+                          value: citySelectedValue,
+			style: TextStyle(fontSize: 16),
                           items: [
                             const DropdownMenuItem(
                                 value: "USA", child: Text("USA")),
@@ -184,60 +190,64 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                           ],
                           onChanged: (String? newValue) {
                             setState(() {
-                              selectedValue = newValue!;
+                              citySelectedValue = newValue!;
                             });
                           },
                           decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
+               focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+			  enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             border: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ), // end of city
-                  const SizedBox(
-                    width: 18,
-                  ),
-                  //postal_code
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Postal Code",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "1111",
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 2),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+
+                  //Postal Code
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "State",
+                          style: TextStyle(fontSize: 16),
                         ),
-                      ),
-                    ],
+                       TextFormField(
+      style: TextStyle(fontSize: 16),
+      cursorColor: Colors.black,
+      decoration: InputDecoration(
+        hintText: "1111",
+        hintStyle: TextStyle(fontSize: 16),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1, color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    )
+                      ],
+                    ),
                   ), // end of postal_code
                 ],
-              ), // end of city and postal_code Row
-              const SizedBox(
-                height: 30,
-              ),
+              ), // end of city and portal_code
+
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: MaterialButton(
@@ -254,9 +264,6 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                           MaterialPageRoute(
                               builder: ((context) => DiscoverPeople())));
                     }),
-              ),
-              const SizedBox(
-                height: 30,
               ),
             ],
           ),
