@@ -12,9 +12,9 @@ class DiscoverPeople extends StatefulWidget {
 
 class _DiscoverPeopleState extends State<DiscoverPeople> {
   bool isSingleSwitched = false;
-    bool isRedSwitched = false;
-      bool isLongSwitched = false;
-        bool isFriendSwitched = false;
+  bool isRedSwitched = false;
+  bool isLongSwitched = false;
+  bool isFriendSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +29,13 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
-        title: FormTitle(formTitle: "Discover people with similar interests!"),
+        title: Text(
+          "Discover people with similar interests!",
+          style: TextStyle(fontSize: 18, color: Colors.black),
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
         child: Container(
           width: double.infinity,
           height: double.infinity,
@@ -48,7 +51,8 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                       DiscoverImage(
                         color: Color.fromARGB(255, 9, 65, 11),
                         image: 'assets/images/Group 949.png',
-                        imageDesc: 'Single and searching for a casual relationship',
+                        imageDesc:
+                            'Single and searching for a casual relationship',
                         imageTile: 'Single',
                         isSwitched: isSingleSwitched,
                         onchange: (bool) {
@@ -59,7 +63,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                       ),
                       DiscoverImage(
                         color: Color.fromARGB(255, 146, 2, 2),
-                        image: 'assets/images/Group 949.png',
+                        image: 'assets/images/Online dating-cuate 1.png',
                         imageDesc: 'Find friends with benefits or hookups',
                         imageTile: 'Red Light District',
                         isSwitched: isRedSwitched,
@@ -72,15 +76,16 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                     ],
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       DiscoverImage(
                         color: Color.fromARGB(255, 29, 29, 29),
-                        image: 'assets/images/Group 949.png',
-                        imageDesc: 'look for a long term or serious relationship',
+                        image: 'assets/images/Couple-cuate (1) 1.png',
+                        imageDesc:
+                            'look for a long term or serious relationship',
                         imageTile: 'Long Term',
                         isSwitched: isLongSwitched,
                         onchange: (bool) {
@@ -91,8 +96,9 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                       ),
                       DiscoverImage(
                         color: Color.fromARGB(255, 255, 208, 0),
-                        image: 'assets/images/Group 949.png',
-                        imageDesc: 'Explore friends and connect with new people',
+                        image: 'assets/images/Group discussion-cuate 1.png',
+                        imageDesc:
+                            'Explore friends and connect with new people',
                         imageTile: 'Friend Group',
                         isSwitched: isFriendSwitched,
                         onchange: (bool) {
@@ -105,6 +111,9 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                   ),
                 ],
               ),
+    SizedBox(
+                    height: 20,
+                  ), 
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: MaterialButton(

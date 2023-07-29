@@ -26,16 +26,18 @@ class _DiscoverImageState extends State<DiscoverImage> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 7,
       color: Colors.white,
       child: Container(
-        padding: const EdgeInsets.all(10),
-        width: MediaQuery.of(context).size.width*0.43,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        width: MediaQuery.of(context).size.width * 0.43,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               widget.image,
-              height: 40,
+              height: 80,
             ),
             SizedBox(
               height: 10,
@@ -50,6 +52,7 @@ class _DiscoverImageState extends State<DiscoverImage> {
             Text(
               widget.imageDesc,
               style: TextStyle(fontSize: 12),
+              textAlign: TextAlign.center,
             ),
             Switch(
               activeColor: widget.color,
