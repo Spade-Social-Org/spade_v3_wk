@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import '../Buttom_nav/navigation_container.dart';
 import '../Onboarding_screen/hello_screen.dart';
 
 class LoginOrSignupScreen extends StatefulWidget {
-  const LoginOrSignupScreen({super.key});
+
+  const LoginOrSignupScreen({super.key, });
 
   @override
   State<LoginOrSignupScreen> createState() => _LoginOrSignupScreenState();
@@ -26,7 +28,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
       Navigator.pop(context);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const NavigationContainer()),
+        MaterialPageRoute(builder: (context) =>  NavigationContainer()),
       );
     });
   }
@@ -59,7 +61,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HelloScreen())));
+                            builder: ((context) =>  HelloScreen())));
                   }),
             ),
             const SizedBox(

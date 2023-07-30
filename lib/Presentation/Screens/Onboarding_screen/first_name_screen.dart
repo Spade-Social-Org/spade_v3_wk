@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'input_phone_number_screen.dart';
 
 class InputNameScreen extends StatelessWidget {
-  const InputNameScreen({super.key});
+
+  const InputNameScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class InputNameScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const InputPhoneNumberScreen())));
+                            builder: ((context) =>  InputPhoneNumberScreen())));
                   }),
               ),
          ),

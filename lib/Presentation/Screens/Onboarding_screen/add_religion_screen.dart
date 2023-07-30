@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
+import 'package:geolocator/geolocator.dart';
 import 'input_birthday_screen.dart';
 
 class AddReligionScreen extends StatelessWidget {
-  AddReligionScreen({Key? key});
+
+  AddReligionScreen({Key? key, });
 
   final List<String> religions = [
     "Islam",
@@ -112,7 +113,7 @@ class AddReligionScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const InputBirthdayScreen()),
+                        builder: ((context) =>  InputBirthdayScreen()),
                       ),
                     );
                   },

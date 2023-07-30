@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'add_location_screen.dart';
 
 class InputEmailScreen extends StatelessWidget {
-  const InputEmailScreen({super.key});
+
+  const InputEmailScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class InputEmailScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const AddLocationScreen())));
+                            builder: ((context) =>  AddLocationScreen())));
                   }),
               ),
           ),

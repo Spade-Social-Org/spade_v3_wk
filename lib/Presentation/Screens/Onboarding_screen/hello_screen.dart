@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'first_name_screen.dart';
 
 class HelloScreen extends StatelessWidget {
-  const HelloScreen({super.key});
+
+  const HelloScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class HelloScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => const InputNameScreen())));
+                              builder: ((context) =>  InputNameScreen())));
                     }),
                 ),
               ),

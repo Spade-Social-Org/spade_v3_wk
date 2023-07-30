@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../Data/Service/geo_locator.dart';
 import '../Chats/message_screen.dart';
 import '../Discover/discover.dart';
 import '../Home/home_screen.dart';
@@ -6,7 +9,7 @@ import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
 class NavigationContainer extends StatefulWidget {
-  const NavigationContainer({super.key});
+  const NavigationContainer({Key? key}) : super(key: key);
 
   @override
   State<NavigationContainer> createState() => _NavigationContainerState();
@@ -14,15 +17,6 @@ class NavigationContainer extends StatefulWidget {
 
 class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
-
-  static final List<Widget> _appPages = [
-    const HomeScreen(),
-    const MessageScreen(),
-    DiscoverScreen(),
-    // const CustomDiscover(),
-    const MapScreen(),
-    const MoreScreen(),
-  ];
 
   void _onIconTapped(int index) {
     setState(() {
@@ -32,13 +26,20 @@ class _NavigationContainerState extends State<NavigationContainer> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _appPages = [
+      const HomeScreen(),
+      const MessageScreen(),
+      const DiscoverScreen(),
+      const GoogleMapScreen(),
+      const MoreScreen(),
+    ];
+
     return Scaffold(
       body: Center(
         child: _appPages[_selectedPageIndex],
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
-        // margin: EdgeInsets.fromLTRB(0, 10,0,0),
         padding: EdgeInsets.only(top: 10),
         child: BottomNavigationBar(
           useLegacyColorScheme: true,
@@ -51,13 +52,11 @@ class _NavigationContainerState extends State<NavigationContainer> {
           },
           backgroundColor: Colors.black,
           elevation: 8,
-          selectedItemColor: Colors.white, // Set the color of the selected item
-          unselectedItemColor: Colors.grey, // Set the color of unselected items
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
           selectedLabelStyle: const TextStyle(
-            fontWeight:
-                FontWeight.bold, // Set the font weight of the selected label
+            fontWeight: FontWeight.bold,
           ),
-
           items: [
             BottomNavigationBarItem(
               icon: Image.asset(

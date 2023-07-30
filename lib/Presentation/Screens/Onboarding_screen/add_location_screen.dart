@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'add_religion_screen.dart';
 
 class AddLocationScreen extends StatelessWidget {
-  const AddLocationScreen({super.key});
+
+  const AddLocationScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {

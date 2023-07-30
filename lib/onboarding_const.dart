@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 import 'Presentation/widgets/jh_onboarding_content.dart';
 
 class Onbording extends StatefulWidget {
+
   @override
   _OnbordingState createState() => _OnbordingState();
 }

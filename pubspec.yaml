@@ -47,6 +47,8 @@ dependencies:
   swipe_to: ^1.0.2
   gestures: ^1.0.0
   carousel_slider: ^4.0.0
+  shared_preferences: ^2.2.0
+  flutter_image_compress: ^2.0.4
   # flutter_svg: ^0.19.1
   flutter_svg: ^0.23.0+1
   swipe_cards: ^2.0.0+1
@@ -54,9 +56,11 @@ dependencies:
   expendable_fab: ^0.0.3
   # PACKAGES FOR STATE MANAGEMENT
   equatable: ^2.0.5
+  provider: ^6.0.5
   #Google map packages
   google_maps_flutter: ^2.3.1
   geolocator: ^9.0.2
+  geocoding: ^2.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
