@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/discover_people.dart';
 
 class AddLocationScreen extends StatefulWidget {

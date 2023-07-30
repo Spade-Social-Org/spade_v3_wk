@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/discover_details.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/discover_image.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding_questions/question1.dart';
 
 class DiscoverPeople extends StatefulWidget {
   const DiscoverPeople({super.key});
@@ -128,7 +127,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => const DiscoverDetails())));
+                              builder: ((context) => const Question1())));
                     }),
               ),
               const SizedBox(
