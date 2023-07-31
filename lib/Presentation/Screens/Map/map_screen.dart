@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/jh_custom_marker.dart';
+import '../../widgets/jh_map_style.dart';
 import '../Global/global.dart';
 
 class GoogleMapScreen extends StatefulWidget {
@@ -16,6 +18,9 @@ class GoogleMapScreen extends StatefulWidget {
 }
 
 class _GoogleMapState extends State<GoogleMapScreen> {
+  String mapTheme = '';
+  final Completer<GoogleMapController> _controller = Completer();
+
   late GoogleMapController? mapController;
   TextEditingController _searchController = TextEditingController();
 
@@ -28,6 +33,9 @@ class _GoogleMapState extends State<GoogleMapScreen> {
   @override
   void initState() {
     super.initState();
+    DefaultAssetBundle.of(context).loadString('assets/maptheme/retro.json').then((value) {
+      mapTheme = value;
+    });
     _loadInitialPosition();
     _getCurrentLocation();
   }
@@ -42,7 +50,6 @@ class _GoogleMapState extends State<GoogleMapScreen> {
         _initialPosition = LatLng(cachedLatitude, cachedLongitude);
       });
     }
-
     _getCurrentLocation();
   }
 
@@ -140,6 +147,7 @@ class _GoogleMapState extends State<GoogleMapScreen> {
         children: [
           GoogleMap(
             onMapCreated: (controller) {
+              controller.setMapStyle(mapTheme);
               mapController = controller;
             },
             markers: _markers.values.toSet(),
@@ -223,13 +231,13 @@ class _GoogleMapState extends State<GoogleMapScreen> {
     var customMarkerIcon = CustomMarkerIcon(
       size: 85,
       imagePath: 'assets/images/Ellipse 365.png',
-      backgroundColor: Colors.grey.withOpacity(0.5), color: Colors.lightGreenAccent,
+      backgroundColor: Colors.grey.withOpacity(0.5),
+      color: Colors.lightGreenAccent,
     );
     var marker = Marker(
       markerId: MarkerId(id),
       position: location,
-      infoWindow:
-          const InfoWindow(title: 'Mr Josh', snippet: 'Hello friend'),
+      infoWindow: const InfoWindow(title: 'Mr Josh', snippet: 'Hello friend'),
       icon: await customMarkerIcon.createMarkerIcon(),
     );
     _markers[id] = marker;
