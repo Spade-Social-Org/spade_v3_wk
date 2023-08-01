@@ -7,11 +7,9 @@ class CustomMarkerIcon {
   final double size;
   final String imagePath;
   final Color backgroundColor;
-  final Color color;
 
   CustomMarkerIcon({
     required this.size,
-    required this.color,
     required this.imagePath,
     required this.backgroundColor,
   });
@@ -19,10 +17,8 @@ class CustomMarkerIcon {
   Future<BitmapDescriptor> createMarkerIcon() async {
     final PictureRecorder pictureRecorder = PictureRecorder();
     final Canvas canvas = Canvas(pictureRecorder);
-    final Paint paint = Paint()..color = color;
     final double radius = size / 2.0;
 
-    canvas.drawCircle(Offset(radius, radius), radius * 1.2, paint);
 
     final ByteData data = await rootBundle.load(imagePath);
     final Uint8List byteList = data.buffer.asUint8List();

@@ -17,7 +17,8 @@ class GoogleMapScreen extends StatefulWidget {
   State<GoogleMapScreen> createState() => _GoogleMapState();
 }
 
-class _GoogleMapState extends State<GoogleMapScreen> {
+class _GoogleMapState extends State<GoogleMapScreen>
+    with SingleTickerProviderStateMixin {
   String mapTheme = '';
   final Completer<GoogleMapController> _controller = Completer();
 
@@ -33,11 +34,20 @@ class _GoogleMapState extends State<GoogleMapScreen> {
   @override
   void initState() {
     super.initState();
-    DefaultAssetBundle.of(context).loadString('assets/maptheme/retro.json').then((value) {
+
+    ///Load map theme
+    DefaultAssetBundle.of(context)
+        .loadString('assets/maptheme/nighttheme.json')
+        .then((value) {
       mapTheme = value;
     });
     _loadInitialPosition();
     _getCurrentLocation();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Future<void> _loadInitialPosition() async {
@@ -101,10 +111,10 @@ class _GoogleMapState extends State<GoogleMapScreen> {
         _searchController.text = userAddress;
         loadingLocation = false;
       });
-
+      double markerOffset = 0.0002;
       addMarker(
         'USER',
-        LatLng(position.latitude, position.longitude),
+        LatLng(position.latitude + markerOffset, position.longitude),
       );
     } on PlatformException catch (e) {
       /// Handle errors that might occur when fetching the current location
@@ -146,6 +156,7 @@ class _GoogleMapState extends State<GoogleMapScreen> {
       body: Stack(
         children: [
           GoogleMap(
+            circles: _circle,
             onMapCreated: (controller) {
               controller.setMapStyle(mapTheme);
               mapController = controller;
@@ -171,10 +182,10 @@ class _GoogleMapState extends State<GoogleMapScreen> {
                   ),
                 );
               },
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 backgroundColor: Colors.black,
-                radius: 40,
-                child: Icon(Icons.home_work_outlined),
+                radius: 30,
+                child: Image.asset('assets/images/places.png'),
               ),
             ),
           ),
@@ -190,15 +201,15 @@ class _GoogleMapState extends State<GoogleMapScreen> {
                   ),
                 );
               },
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 backgroundColor: Colors.black,
-                radius: 40,
-                child: Icon(Icons.home_work_outlined),
+                radius: 30,
+                child: Image.asset('assets/images/people.png'),
               ),
             ),
           ),
           Positioned(
-            top: 40,
+            top: 64 * 2,
             left: 20,
             right: 20,
             child: Row(
@@ -208,7 +219,16 @@ class _GoogleMapState extends State<GoogleMapScreen> {
                     controller: _searchController,
                     decoration: InputDecoration(
                       hintText: "Search location",
-                      border: OutlineInputBorder(),
+                      fillColor: Colors.grey.withOpacity(0.8),
+                      contentPadding: EdgeInsets.symmetric(vertical: 12),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Colors.white,
+                          width: 2.0,
+                        ),
+                      ),
                       suffixIcon: IconButton(
                         icon: Icon(Icons.search),
                         onPressed: _searchLocation,
@@ -227,12 +247,30 @@ class _GoogleMapState extends State<GoogleMapScreen> {
     );
   }
 
+  Set<Circle> _circle = {};
+
+  void _addCircle() {
+    if (_initialPosition != null) {
+      _circle.add(
+        Circle(
+          circleId: CircleId('circle_1'),
+          center:
+              LatLng(_initialPosition!.latitude, _initialPosition!.longitude),
+          radius: 900,
+          fillColor: Colors.grey.withOpacity(0.5),
+          strokeWidth: 4,
+          strokeColor: Colors.grey,
+        ),
+      );
+      setState(() {});
+    }
+  }
+
   addMarker(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 85,
       imagePath: 'assets/images/Ellipse 365.png',
       backgroundColor: Colors.grey.withOpacity(0.5),
-      color: Colors.lightGreenAccent,
     );
     var marker = Marker(
       markerId: MarkerId(id),
@@ -241,6 +279,7 @@ class _GoogleMapState extends State<GoogleMapScreen> {
       icon: await customMarkerIcon.createMarkerIcon(),
     );
     _markers[id] = marker;
+    _addCircle();
     setState(() {});
   }
 }
