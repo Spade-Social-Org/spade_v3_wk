@@ -361,7 +361,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
 
   addMarker(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
-      size: 85,
+      size: 120,
       imagePath: 'assets/images/Ellipse 365.png',
       backgroundColor: Colors.grey.withOpacity(0.5),
     );
