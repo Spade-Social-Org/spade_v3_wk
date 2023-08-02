@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
-
 import 'input_body_build_women_screen.dart';
 
 

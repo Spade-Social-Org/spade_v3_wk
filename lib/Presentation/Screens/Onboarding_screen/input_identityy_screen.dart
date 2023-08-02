@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
 import 'height_selection_screen_men.dart';
 import 'height_selection_screen_women.dart';
 import 'looking_for_build_men_screen.dart';

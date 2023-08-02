@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
 import '../../widgets/jh_logger.dart';
-import '../../widgets/jh_map_style.dart';
 import '../Global/global.dart';
 
 class GoogleMapScreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class GoogleMapScreen extends StatefulWidget {
 class _GoogleMapState extends State<GoogleMapScreen>
     with SingleTickerProviderStateMixin {
   String mapTheme = '';
-  final Completer<GoogleMapController> _controller = Completer();
 
   late GoogleMapController? mapController;
   TextEditingController _searchController = TextEditingController();
@@ -184,6 +182,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).size.height;
+    MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
@@ -348,19 +348,17 @@ class _GoogleMapState extends State<GoogleMapScreen>
   Set<Circle> _circle = {};
 
   void _addCircle(Position position) {
-    if (position != null) {
-      _circle.add(
-        Circle(
-          circleId: CircleId('circle_1'),
-          center: LatLng(position.latitude, position.longitude),
-          radius: 900,
-          fillColor: Colors.grey.withOpacity(0.5),
-          strokeWidth: 2,
-          strokeColor: Colors.green,
-        ),
-      );
-      setState(() {});
-    }
+    _circle.add(
+      Circle(
+        circleId: CircleId('circle_1'),
+        center: LatLng(position.latitude, position.longitude),
+        radius: 900,
+        fillColor: Colors.grey.withOpacity(0.5),
+        strokeWidth: 2,
+        strokeColor: Colors.green,
+      ),
+    );
+    setState(() {});
   }
 
   addMarker(String id, LatLng location) async {

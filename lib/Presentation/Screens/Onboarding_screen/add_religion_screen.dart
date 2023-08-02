@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:geolocator/geolocator.dart';
 import 'input_birthday_screen.dart';
 
 class AddReligionScreen extends StatelessWidget {
-
-  AddReligionScreen({Key? key, });
+  AddReligionScreen({
+    Key? key,
+  });
 
   final List<String> religions = [
     "Islam",
@@ -58,44 +58,45 @@ class AddReligionScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Expanded(flex: 100,
-              child: Container(
-                child: MasonryGridView.builder(
-                  itemCount: religions.length,
-                  gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                   itemBuilder: ((context, index) {
-                     return Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Container(
-                        height: 70,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+            Expanded(
+                flex: 100,
+                child: Container(
+                  child: MasonryGridView.builder(
+                      itemCount: religions.length,
+                      gridDelegate:
+                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3),
+                      itemBuilder: ((context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 70,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 3,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  spreadRadius: 2.0,
+                                  color: Colors.black12,
+                                  blurRadius: 3,
+                                  offset: Offset(0.0, 4.0),
+                                )
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Center(
+                              child: Text(
+                                religions[index],
+                                style: const TextStyle(fontSize: 15),
+                              ),
+                            ),
                           ),
-                          boxShadow: const [
-                            BoxShadow(
-                              spreadRadius: 2.0,
-                              color: Colors.black12,
-                              blurRadius: 3,
-                              offset: Offset(0.0, 4.0),
-                            )
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Center(
-                          child: Text(
-                            religions[index],
-                            style: const TextStyle(fontSize: 15),
-                          ),
-                        ),
-                                     ),
-                     );
-                   })),
-              )
-            ),
+                        );
+                      })),
+                )),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(18.0),
@@ -113,7 +114,7 @@ class AddReligionScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) =>  InputBirthdayScreen()),
+                        builder: ((context) => InputBirthdayScreen()),
                       ),
                     );
                   },
@@ -129,9 +130,3 @@ class AddReligionScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
 import '../Buttom_nav/navigation_container.dart';
 import 'hello_screen.dart';
 

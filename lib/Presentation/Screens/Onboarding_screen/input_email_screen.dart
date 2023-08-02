@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
 import 'add_location_screen.dart';
 
 class InputEmailScreen extends StatelessWidget {

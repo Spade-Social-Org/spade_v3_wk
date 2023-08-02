@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import '../Buttom_nav/navigation_container.dart';
 import '../Onboarding_screen/hello_screen.dart';
 

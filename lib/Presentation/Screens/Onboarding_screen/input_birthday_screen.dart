@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
 import 'input_identityy_screen.dart';
 
 class InputBirthdayScreen extends StatelessWidget {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-
 import 'first_name_screen.dart';
 
 class HelloScreen extends StatelessWidget {
