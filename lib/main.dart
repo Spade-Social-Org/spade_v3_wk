@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'Common/routes/route_generator.dart';
+import 'package:spade_v4/Presentation/Screens/Home/home_screen_ui.dart';
 import 'Common/size_config/size_config.dart';
-import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 
 //import 'package:spade/onbording.dart';
 
@@ -25,6 +23,6 @@ class MyApp extends StatelessWidget {
         navigatorKey: kNavigatorKey,
        // onGenerateRoute: RouteGenerator.onGenerateRoute,
         //onUnknownRoute: RouteGenerator.unKnownRoute,
-        home: const LoginOrSignupScreen());
+        home: const HomeScreenUi(),);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Chats/message_screen.dart';
 import '../Discover/discover.dart';
-import '../Home/home_screen.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
@@ -17,7 +16,7 @@ class _NavigationcontianerState extends State<Navigationcontianer> {
   int _selectedPageIndex = 0;
 
   static final List<Widget> _appPages = [
-    const HomeScreen(),
+    //const HomeScreen(),
     const MessageScreen(),
     DiscoverScreen(),
     // const CustomDiscover(),
