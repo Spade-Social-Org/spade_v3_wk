@@ -7,6 +7,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
+import '../../widgets/jh_logger.dart';
 import '../../widgets/jh_map_style.dart';
 import '../Global/global.dart';
 
@@ -45,7 +46,10 @@ class _GoogleMapState extends State<GoogleMapScreen>
       mapTheme = value;
     });
     _loadInitialPosition();
+    logger.d('initial position detected');
     _getCurrentLocation();
+    logger.d('current location detected');
+
   }
 
   @override
@@ -146,7 +150,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
       });
     } on PlatformException catch (e) {
       /// Handle errors that might occur when fetching the current location
-      print("Error: ${e.message}");
+      logger.e("Error: ${e.message}");
       setState(() {
         loadingLocation = false;
       });
@@ -174,7 +178,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
         });
       }
     } catch (e) {
-      print("Error searching location: $e");
+      logger.d("Error searching location: $e");
     }
   }
 
@@ -208,7 +212,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
           ),
           if (loadingLocation)
             const Center(
-              child: LoadingSpinner(),
+              child: JHLoadingSpinner(),
             ),
           Positioned(
             left: 20,

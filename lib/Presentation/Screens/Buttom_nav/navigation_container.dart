@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../../Data/Service/geo_locator.dart';
 import '../Chats/message_screen.dart';
 import '../Discover/discover.dart';
 import '../Home/home_screen.dart';
