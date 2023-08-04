@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:like_button/like_button.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 
 import '../../../Data/Models/post.dart';
 import '../../Screens/Chats/chat_screen.dart';
 import '../../Screens/Chats/message_screen.dart';
+import '../../logic_holder/bloc/heart_bloc/heart_bloc.dart';
+import '../../logic_holder/bloc/heart_bloc/heart_bloc_event.dart';
+import '../../logic_holder/bloc/heart_bloc/heart_bloc_state.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({super.key, required this.post});
@@ -93,23 +97,32 @@ class PostCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 18.width()),
             child: Row(
               children: [
-                LikeButton(
-                  bubblesColor: const BubblesColor(
-                      dotPrimaryColor: Colors.red,
-                      dotSecondaryColor: Colors.purple),
-                  circleColor:
-                      const CircleColor(start: Colors.yellow, end: Colors.blue),
-                  likeBuilder: (bool isLiked) {
-                    return Icon(
-                      //Icons.favorite_border_sharp,
-                      post.isLiked
-                          ? Icons.favorite_border_outlined
-                          : Icons.favorite_border,
-                      color: isLiked ? Colors.red : Colors.grey,
-                      size: 21,
+                BlocBuilder<HeartIconBloc, HeartIconState>(
+                  builder: (context, state) {
+                    return LikeButton(
+                      isLiked: state.isFilled,
+                      size: 26.0,
+                      circleColor:
+                          const CircleColor(start: Colors.red, end: Colors.red),
+                      bubblesColor: const BubblesColor(
+                        dotPrimaryColor: Colors.red,
+                        dotSecondaryColor: Colors.red,
+                      ),
+                      likeBuilder: (bool isLiked) {
+                        return Icon(
+                          isLiked ? Icons.favorite : Icons.favorite_border,
+                          color: isLiked ? Colors.red : Colors.grey,
+                          size: 21,
+                        );
+                      },
+                      onTap: (isLiked) {
+                        BlocProvider.of<HeartIconBloc>(context)
+                            .add(ToggleHeartIconEvent());
+                        return Future.value(!isLiked);
+                      },
+                      animationDuration: const Duration(milliseconds: 1000),
                     );
                   },
-                  animationDuration: const Duration(milliseconds: 1000),
                 ),
                 SizedBox(
                   width: 11.53.width(),
