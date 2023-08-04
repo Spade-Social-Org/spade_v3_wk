@@ -11,7 +11,7 @@ class FormTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       formTitle,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
     );
   }
 }

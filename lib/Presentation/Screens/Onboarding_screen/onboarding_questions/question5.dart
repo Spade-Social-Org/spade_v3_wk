@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/question_progress.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding_questions/religion_question.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/questions_enum.dart';
 
 class Question5 extends StatefulWidget {
@@ -217,7 +218,7 @@ class _Question5State extends State<Question5> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: ((context) => const Question5())));
+                                builder: ((context) => const ReligionQuestion())));
                       }),
                 ),
               ],

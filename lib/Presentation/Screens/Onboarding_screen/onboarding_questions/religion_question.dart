@@ -1,22 +1,25 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/question_progress.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/questions_enum.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding_questions/birthday.dart';
 
-class Question5 extends StatefulWidget {
-  const Question5({super.key});
+class ReligionQuestion extends StatefulWidget {
+  const ReligionQuestion({super.key});
 
   @override
-  State<Question5> createState() => _Question5State();
+  State<ReligionQuestion> createState() => _ReligionQuestionState();
 }
 
-class _Question5State extends State<Question5> {
-  Question3Enum _question5 = Question3Enum.strongly_agree;
-  bool _q1 = true;
-  bool _q2 = false;
-  bool _q3 = false;
-  bool _q4 = false;
-  bool _q5 = false;
+class _ReligionQuestionState extends State<ReligionQuestion> {
+  bool christian = false;
+  bool hindi = false;
+  bool sikhism = false;
+  bool folkReligion = false;
+  bool juda = false;
+  bool budda = false;
+  bool irreligion = false;
+  bool atheist = false;
+  bool islam = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,18 +38,16 @@ class _Question5State extends State<Question5> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.fromLTRB(18, 15, 18, 25),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            QProgess(
-              index: 5,
-            ),
             SizedBox(
               height: 25,
             ),
-            FormTitle(
-                formTitle: "What’s your religion?"),
+            Center(
+              child: FormTitle(formTitle: "What’s your religion?"),
+            ),
             SizedBox(
               height: 25,
             ),
@@ -56,7 +57,362 @@ class _Question5State extends State<Question5> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              christian = true;
+                              hindi = false;
+                              sikhism = false;
+                              folkReligion = false;
+                              juda = false;
+                              budda = false;
+                              irreligion = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: !christian
+                                        ? Colors.white
+                                        : Colors.black),
+                                child: Text(
+                                  "Christianity",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: christian
+                                          ? Colors.white
+                                          : Colors.black),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              hindi = true;
+                              christian = false;
+                              sikhism = false;
+                              folkReligion = false;
+                              juda = false;
+                              budda = false;
+                              irreligion = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        !hindi ? Colors.white : Colors.black),
+                                child: Text(
+                                  "Hinduism",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color:
+                                          hindi ? Colors.white : Colors.black),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              sikhism = true;
+                              hindi = false;
+                              christian = false;
+                              folkReligion = false;
+                              juda = false;
+                              budda = false;
+                              irreligion = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        !sikhism ? Colors.white : Colors.black),
+                                child: Text(
+                                  "Sikhisim",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: sikhism
+                                          ? Colors.white
+                                          : Colors.black),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              folkReligion = true;
+                              sikhism = false;
+                              hindi = false;
+                              christian = false;
+                              juda = false;
+                              budda = false;
+                              irreligion = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                              elevation: 5,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: !folkReligion
+                                        ? Colors.white
+                                        : Colors.black),
+                                child: Text(
+                                  "Folk Religon",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: folkReligion
+                                          ? Colors.white
+                                          : Colors.black),
+                                ),
+                              )),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              juda = true;
+                              folkReligion = false;
+                              sikhism = false;
+                              hindi = false;
+                              christian = false;
+                              budda = false;
+                              irreligion = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: !juda ? Colors.white : Colors.black),
+                                child: Text(
+                                  "Judaism",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color:
+                                          juda ? Colors.white : Colors.black),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              budda = true;
+                              juda = false;
+                              folkReligion = false;
+                              sikhism = false;
+                              hindi = false;
+                              christian = false;
+                              irreligion = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        !budda ? Colors.white : Colors.black),
+                                child: Text(
+                                  "Buddhism",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color:
+                                          budda ? Colors.white : Colors.black),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              irreligion = true;
+                              budda = false;
+                              juda = false;
+                              folkReligion = false;
+                              sikhism = false;
+                              hindi = false;
+                              christian = false;
+                              atheist = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: !irreligion
+                                        ? Colors.white
+                                        : Colors.black),
+                                child: Text(
+                                  "Irreligion",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: irreligion
+                                          ? Colors.white
+                                          : Colors.black),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              atheist = true;
+                              irreligion = false;
+                              budda = false;
+                              juda = false;
+                              folkReligion = false;
+                              sikhism = false;
+                              hindi = false;
+                              christian = false;
+                              islam = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        !atheist ? Colors.white : Colors.black),
+                                child: Text(
+                                  "Atheist",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: atheist
+                                          ? Colors.white
+                                          : Colors.black),
+                                )),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              islam = true;
+                              atheist = false;
+                              irreligion = false;
+                              budda = false;
+                              juda = false;
+                              folkReligion = false;
+                              sikhism = false;
+                              hindi = false;
+                              christian = false;
+                            });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        !islam ? Colors.white : Colors.black),
+                                child: Text(
+                                  "Islam",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color:
+                                          islam ? Colors.white : Colors.black),
+                                )),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -76,7 +432,8 @@ class _Question5State extends State<Question5> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: ((context) => const Question5())));
+                                builder: ((context) =>
+                                    const BirthdayQuestion())));
                       }),
                 ),
               ],
