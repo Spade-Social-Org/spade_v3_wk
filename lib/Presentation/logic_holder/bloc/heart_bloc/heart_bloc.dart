@@ -4,12 +4,19 @@ import 'heart_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HeartIconBloc extends Bloc<HeartIconEvent, HeartIconState> {
-  HeartIconBloc() : super(HeartIconState(isFilled: false));
+  HeartIconBloc() : super(const HeartIconState(isFilled: false)) {
+    on<HeartIconEvent>((event, emit) async* {
+        if (event is ToggleHeartIconEvent) {
+      yield state.copyWith(isFilled: !state.isFilled);
+    }
+    }   
+    );
+  }
 
-  @override
+  /* @override
   Stream<HeartIconState> mapEventToState(HeartIconEvent event) async* {
     if (event is ToggleHeartIconEvent) {
       yield state.copyWith(isFilled: !state.isFilled);
     }
-  }
+  }*/
 }
