@@ -12,11 +12,4 @@ class HeartIconBloc extends Bloc<HeartIconEvent, HeartIconState> {
     }   
     );
   }
-
-  /* @override
-  Stream<HeartIconState> mapEventToState(HeartIconEvent event) async* {
-    if (event is ToggleHeartIconEvent) {
-      yield state.copyWith(isFilled: !state.isFilled);
-    }
-  }*/
 }
