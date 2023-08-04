@@ -25,10 +25,10 @@ class JHCompatibilityWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 16,),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children:const [
+              children:[
                 Text(
                   "Compatibility",
                   style: TextStyle(

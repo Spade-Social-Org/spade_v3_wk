@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../widgets/jh_logger.dart';
 import '../Buttom_nav/navigation_container.dart';
 import '../Onboarding_screen/hello_screen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 
 class LoginOrSignupScreen extends StatefulWidget {
 
@@ -11,6 +14,19 @@ class LoginOrSignupScreen extends StatefulWidget {
 }
 
 class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    await Future.delayed(const Duration(seconds: 1));
+    logger.d('Let\'s go!! we are here');
+    FlutterNativeSplash.remove();
+  }
+
+
   _loaderOn() {
     showDialog(
       context: context,

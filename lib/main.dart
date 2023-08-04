@@ -4,12 +4,14 @@ import 'Common/routes/route_generator.dart';
 import 'Common/size_config/size_config.dart';
 import 'Data/Service/geo_locator.dart';
 import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 //import 'package:spade/onbording.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     MultiProvider(
       providers: [
