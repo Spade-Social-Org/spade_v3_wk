@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding_questions/do_you_drink.dart';
 
-class FreeTime extends StatefulWidget {
-  const FreeTime({super.key});
+class DoYouDrink extends StatefulWidget {
+  const DoYouDrink({super.key});
 
   @override
-  State<FreeTime> createState() => _FreeTimeState();
+  State<DoYouDrink> createState() => _DoYouDrinkState();
 }
 
-class _FreeTimeState extends State<FreeTime> {
+class _DoYouDrinkState extends State<DoYouDrink> {
   bool morning = false;
   bool noon = false;
   bool night = false;
@@ -29,7 +28,7 @@ class _FreeTimeState extends State<FreeTime> {
             color: Colors.black,
           ),
         ),
-        title: FormTitle(formTitle: "When are you most free?"),
+        title: FormTitle(formTitle: "Do you drink?"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
@@ -66,10 +65,10 @@ class _FreeTimeState extends State<FreeTime> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset(
-                              "assets/images/morning.png",
+                              "assets/images/yes.png",
                               height: 80,
                             ),
-                            Text("Morning"),
+                            Text("Yes"),
                           ],
                         ),
                       ),
@@ -95,10 +94,10 @@ class _FreeTimeState extends State<FreeTime> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset(
-                              "assets/images/afternoon.png",
+                              "assets/images/no.png",
                               height: 80,
                             ),
-                            Text("Noon"),
+                            Text("No"),
                           ],
                         ),
                       ),
@@ -124,10 +123,10 @@ class _FreeTimeState extends State<FreeTime> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset(
-                              "assets/images/evening.png",
+                              "assets/images/other.png",
                               height: 100,
                             ),
-                            Text("night"),
+                            Text("Maybe"),
                           ],
                         ),
                       ),
