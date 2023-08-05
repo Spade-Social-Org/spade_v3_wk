@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding_questions/question6.dart';
 
 class DoYouDrink extends StatefulWidget {
   const DoYouDrink({super.key});
@@ -148,7 +149,7 @@ class _DoYouDrinkState extends State<DoYouDrink> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => const DoYouDrink())));
+                              builder: ((context) => const Question6())));
                     }),
               ),
             ],
