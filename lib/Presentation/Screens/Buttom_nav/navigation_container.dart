@@ -15,14 +15,14 @@ class NavigationContainer extends StatefulWidget {
 class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
 
-  static final List<Widget> _appPages = [
-    const HomeScreen(),
-    const MessageScreen(),
-    const DiscoveryScreen(),
-    // const CustomDiscover(),
-    const MapScreen(),
-    const MoreScreen(),
-  ];
+  // static final List<Widget> _appPages = [
+  //   const HomeScreen(),
+  //   const MessageScreen(),
+  //   const DiscoveryScreen(),
+  //   // const CustomDiscover(),
+  //   const MapScreen(),
+  //   const MoreScreen(),
+  // ];
 
   void _onIconTapped(int index) {
     setState(() {
