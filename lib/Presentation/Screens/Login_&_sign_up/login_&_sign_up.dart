@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../page_view.dart';
 import '../../widgets/jh_logger.dart';
 import '../Buttom_nav/navigation_container.dart';
 import '../Onboarding_screen/hello_screen.dart';
@@ -43,7 +44,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
       Navigator.pop(context);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) =>  NavigationContainer()),
+        MaterialPageRoute(builder: (context) =>  SwipeScreens()),
       );
     });
   }
