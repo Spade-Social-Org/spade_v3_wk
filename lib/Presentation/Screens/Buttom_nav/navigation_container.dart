@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../Chats/message_screen.dart';
 import '../Discover/discover.dart';
 import '../Home/home_screen.dart';
-import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
 class NavigationContainer extends StatefulWidget {
@@ -23,6 +22,11 @@ class _NavigationContainerState extends State<NavigationContainer> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _appPages = [
+      const HomeScreen(),
+      const MessageScreen(),
+      const MoreScreen(),
+    ];
     return Scaffold(
       body: Center(
         child: _appPages[_selectedPageIndex],
