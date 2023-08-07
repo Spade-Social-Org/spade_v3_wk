@@ -44,7 +44,7 @@ class Story extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 21.width(),
       ),
-      child: Container(
+      child: SizedBox(
         child: Column(
           children: [
             Stack(

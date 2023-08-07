@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spade_v4/Data/repository/camera_repository.dart';
 
 // Camera BLoc event
-enum CameraEvent { capturePhoto, captureVideo, switchCamera, pickImage }
+enum CameraEvent { capturePhoto, captureVideo, switchCamera, pickImage, initializeCamera }
 
 // Camera BLoc state
 abstract class CameraState {}
@@ -46,9 +46,15 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
           final imageFile = await cameraRepository.pickImageFromGallery();
           yield CameraCompletedState(imageFile);
           break;
+          case CameraEvent.initializeCamera:
+          
+          break;
       }
     });
   }
+
+
+  CameraController get cameraController => cameraController;
 
   void disposeCamera() {}
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spade_v4/Common/managers/barrel_manager.dart';
+import 'package:spade_v4/Presentation/Screens/camera_screen/camera_screen.dart';
 
 import '../../Common/managers/font_style_manager/font_style_manager.dart.dart';
 
@@ -28,6 +29,12 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
           width: 231.width(),
         ),
         GestureDetector(
+            onTap: () {
+              () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => const CameraView())));
+              };
+            },
             child: Icon(Icons.camera_alt_outlined,
                 size: 20, color: ColorManager.grey)),
         SizedBox(width: 8.68.width()),
