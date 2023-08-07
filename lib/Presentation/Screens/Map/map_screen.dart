@@ -65,7 +65,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
     _getCurrentLocation();
   }
 
-
   void _toggleLocation() {
     setState(() {
       isLocationEnabled = !isLocationEnabled;
@@ -199,7 +198,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
                 isLocationEnabled = true;
               });
             },
-
             markers: _markers.values.toSet(),
             initialCameraPosition: _initialPosition != null
                 ? CameraPosition(target: _initialPosition!, zoom: 14)
