@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import '../Chats/message_screen.dart';
 import '../Discover/discover.dart';
 import '../Home/home_screen.dart';
-import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
 class NavigationContainer extends StatefulWidget {
-  const NavigationContainer({Key? key}) : super(key: key);
+  const NavigationContainer({super.key});
 
   @override
   State<NavigationContainer> createState() => _NavigationContainerState();
@@ -26,17 +25,15 @@ class _NavigationContainerState extends State<NavigationContainer> {
     final List<Widget> _appPages = [
       const HomeScreen(),
       const MessageScreen(),
-      const DiscoverScreen(),
-      const GoogleMapScreen(),
       const MoreScreen(),
     ];
-
     return Scaffold(
       body: Center(
         child: _appPages[_selectedPageIndex],
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
+        // margin: EdgeInsets.fromLTRB(0, 10,0,0),
         padding: EdgeInsets.only(top: 10),
         child: BottomNavigationBar(
           useLegacyColorScheme: true,
@@ -49,11 +46,13 @@ class _NavigationContainerState extends State<NavigationContainer> {
           },
           backgroundColor: Colors.black,
           elevation: 8,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.white, // Set the color of the selected item
+          unselectedItemColor: Colors.grey, // Set the color of unselected items
           selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight:
+                FontWeight.bold, // Set the font weight of the selected label
           ),
+
           items: [
             BottomNavigationBarItem(
               icon: Image.asset(
