@@ -7,7 +7,10 @@ class RouteGenerator {
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.login:
-        return MaterialPageRoute(builder: (context) => const LoginOrSignupScreen(key: ValueKey(Routes.login)), settings: settings);
+        return MaterialPageRoute(
+            builder: (context) =>
+                const LoginOrSignupScreen(key: ValueKey(Routes.login)),
+            settings: settings);
       default:
         return null;
     }

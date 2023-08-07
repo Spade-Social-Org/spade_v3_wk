@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'input_phone_number_screen.dart';
 
 class InputNameScreen extends StatelessWidget {
-  const InputNameScreen({super.key});
+  const InputNameScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,9 @@ class InputNameScreen extends StatelessWidget {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
-                    },
+                  },
                   child: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
@@ -48,23 +49,26 @@ class InputNameScreen extends StatelessWidget {
             ),
           ),
           const Spacer(),
-         Padding(
-           padding: const EdgeInsets.all(18.0),
-           child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: MaterialButton(
                   height: 50,
                   minWidth: double.infinity,
                   color: Colors.black,
-                  child: const Text("Next",style: TextStyle(color: Colors.white,fontSize: 20),),
-                  onPressed: (){
+                  child: const Text(
+                    "Next",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const InputPhoneNumberScreen())));
+                            builder: ((context) => InputPhoneNumberScreen())));
                   }),
-              ),
-         ),
+            ),
+          ),
           const SizedBox(
             height: 50,
           ),
