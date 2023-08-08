@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Spade',
         theme: ThemeData(),
-        // home: Onbording()
+        // home: Onbording(),
         //initialRoute: Routes.getStarted,
 
         navigatorKey: kNavigatorKey,
