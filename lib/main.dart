@@ -42,9 +42,9 @@ class MyApp extends StatelessWidget {
       // home: Onbording()
       //initialRoute: Routes.getStarted,
 
-      navigatorKey: kNavigatorKey,
-      onGenerateRoute: RouteGenerator.onGenerateRoute,
-      onUnknownRoute: RouteGenerator.unKnownRoute,
+      // navigatorKey: kNavigatorKey,
+      // onGenerateRoute: RouteGenerator.onGenerateRoute,
+      // onUnknownRoute: RouteGenerator.unKnownRoute,
       home: FutureBuilder(
         future: geoService.getInitialLocation(),
         builder: (context, _) => HomeScreenUi(),

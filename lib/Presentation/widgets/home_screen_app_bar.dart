@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 
 import 'package:spade_v4/Common/managers/barrel_manager.dart';
+import 'package:spade_v4/Data/data_source/remote_data_sorce/api2.dart';
 
 
 import '../../Common/managers/font_style_manager/font_style_manager.dart.dart';
@@ -17,6 +18,9 @@ class HomeScreenAppBar extends StatefulWidget {
 }
 
 class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
+
+
+  
   List<File> _selectedFiles = [];
 
   void _selectMedia() async {
@@ -27,6 +31,11 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
         _selectedFiles.add(File(pickedMedia.path));
       });
     }
+  }
+
+  createPost()async {
+final payload = FormData.fromMap({"description":"" "is_story": false, "files": [for (var item in _selectedFiles) await MultipartFile.fromFile(item.path)]});
+   await ApiService.createPost(payload);
   }
 
   @override
