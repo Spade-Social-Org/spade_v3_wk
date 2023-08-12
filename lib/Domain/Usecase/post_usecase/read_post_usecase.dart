@@ -1,7 +1,8 @@
 
 
 import '../../Entities/post_entities/post_entities.dart';
-import '../../repositories/repository.dart';
+import '../../Repository/repository.dart';
+
 
 class ReadPostUseCase {
   final DatabaseRepository repository;

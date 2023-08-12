@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/calender_widget.dart';
+import '../../widgets/jh_calender_widget.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({super.key});
@@ -50,10 +50,10 @@ class _CalenderScreenState extends State<CalenderScreen> {
                         thickness: 10,
                         color: Colors.white,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
+                      const Padding(
+                        padding: EdgeInsets.all(18.0),
                         child: Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.arrow_back_ios,
                               color: Colors.white,
@@ -71,7 +71,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                           ],
                         ),
                       ),
-                      const CalenderWidget(),
+                      const JHCalenderWidget(),
                       Padding(
                           padding: const EdgeInsets.only(left: 90, right: 90),
                           child: ClipRRect(
@@ -90,11 +90,11 @@ class _CalenderScreenState extends State<CalenderScreen> {
                                 height: 50,
                                 child: const Center(
                                     child: Text(
-                                      "Next",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    )),
+                                  "Next",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                )),
                               ),
                             ),
                           ))
@@ -109,5 +109,3 @@ class _CalenderScreenState extends State<CalenderScreen> {
     );
   }
 }
-
-

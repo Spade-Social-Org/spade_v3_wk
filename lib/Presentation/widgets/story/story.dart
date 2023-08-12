@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
 import '../../../Data/Models/story/story.dart';
 

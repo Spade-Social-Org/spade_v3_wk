@@ -1,6 +1,8 @@
 
 import 'package:spade_v4/Domain/Entities/stories_entities/story_entities.dart';
-import '../../repositories/repository.dart';
+
+import '../../Repository/repository.dart';
+
 
 class CreateStoriesUseCase {
   final DatabaseRepository repository;

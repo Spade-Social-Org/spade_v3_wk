@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:spade_v4/Common/managers/barrel_manager.dart';
-import 'package:spade_v4/Presentation/Screens/camera_screen/camera_screen.dart';
+
 
 import '../../Common/managers/font_style_manager/font_style_manager.dart.dart';
 
@@ -14,6 +17,18 @@ class HomeScreenAppBar extends StatefulWidget {
 }
 
 class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
+  List<File> _selectedFiles = [];
+
+  void _selectMedia() async {
+    final pickedMedia = await ImagePicker().pickVideo(source: ImageSource.gallery);
+
+    if (pickedMedia != null) {
+      setState(() {
+        _selectedFiles.add(File(pickedMedia.path));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,10 +45,7 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
         ),
         GestureDetector(
             onTap: () {
-              () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const CameraView())));
-              };
+              _selectMedia();
             },
             child: Icon(Icons.camera_alt_outlined,
                 size: 20, color: ColorManager.grey)),

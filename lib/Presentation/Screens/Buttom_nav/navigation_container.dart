@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:spade_v4/Presentation/Screens/Home/home_screen_ui.dart';
 import '../Chats/message_screen.dart';
-import '../Discover/discover.dart';
+
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
-
-class Navigationcontianer extends StatefulWidget {
-  const Navigationcontianer({super.key});
+class NavigationContainer extends StatefulWidget {
+  const NavigationContainer({super.key});
 
   @override
-  State<Navigationcontianer> createState() => _NavigationcontianerState();
+  State<NavigationContainer> createState() => _NavigationContainerState();
 }
 
-class _NavigationcontianerState extends State<Navigationcontianer> {
+class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
-
-  static final List<Widget> _appPages = [
-    //const HomeScreen(),
-    const MessageScreen(),
-    DiscoverScreen(),
-    // const CustomDiscover(),
-    const MapScreen(),
-    const MoreScreen(),
-  ];
 
   void _onIconTapped(int index) {
     setState(() {
@@ -32,6 +23,12 @@ class _NavigationcontianerState extends State<Navigationcontianer> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _appPages = [
+      const HomeScreenUi(),
+      const MessageScreen(),
+      const GoogleMapScreen(),
+      const MoreScreen(),
+    ];
     return Scaffold(
       body: Center(
         child: _appPages[_selectedPageIndex],
@@ -55,7 +52,7 @@ class _NavigationcontianerState extends State<Navigationcontianer> {
           unselectedItemColor: Colors.grey, // Set the color of unselected items
           selectedLabelStyle: const TextStyle(
             fontWeight:
-            FontWeight.bold, // Set the font weight of the selected label
+                FontWeight.bold, // Set the font weight of the selected label
           ),
 
           items: [

@@ -1,4 +1,4 @@
-import 'package:story_view/story_view.dart';
+
 
 class StoryViewData {
   final int id;

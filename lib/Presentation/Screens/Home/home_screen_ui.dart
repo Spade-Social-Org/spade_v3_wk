@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Data/mock_data/mock.dart';
+
 import 'package:spade_v4/Presentation/widgets/home_screen_app_bar.dart';
 
 import '../../../Data/Models/story/story.dart';

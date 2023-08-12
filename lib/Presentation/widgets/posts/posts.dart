@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Common/size_config/size_config.dart';
 import 'package:spade_v4/Presentation/widgets/posts/add_post_card.dart';
 
-import '../../../Data/Models/post.dart';
-import '../../../Data/mock_data/mock.dart';
+import '../../../Data/data_source/local_data_source/mock_data/mock.dart';
+
+
 
 class PostUi extends StatefulWidget {
   const PostUi({super.key});

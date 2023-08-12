@@ -8,22 +8,17 @@ class CustomColors {
   static Color indigoLigh = Color(0xFF9fa8da);
   static Color indigoLigt = Color(0xFF9fa8da);
   static Color indigoLiht = Color(0xFF9fa8da);
-  static Color indigoLght = Color(0xFF9fa8da);
-
+  static Color black = Colors.black;
 }
 
-
-
 class AppTheme {
-
   static TextStyle h1Style =
-  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+      const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
   static TextStyle h2Style = const TextStyle(fontSize: 22);
   static TextStyle h3Style = const TextStyle(fontSize: 20);
   static TextStyle h4Style = const TextStyle(fontSize: 18);
   static TextStyle h5Style = const TextStyle(fontSize: 16);
   static TextStyle h6Style = const TextStyle(fontSize: 14);
-
 }
 
 extension PaddingHelper on Widget {
@@ -78,31 +73,49 @@ class TextStyles {
   static TextStyle get titleSize15 =>
       title.copyWith(fontWeight: FontWeight.w500, fontSize: 15);
   static TextStyle get titleNormal => title.copyWith(
-    fontWeight: FontWeight.w500,
-    fontSize: FontSizes.titleSmall,
-  );
+        fontWeight: FontWeight.w500,
+        fontSize: FontSizes.titleSmall,
+      );
   static TextStyle get titleMedium =>
       titleM.copyWith(fontWeight: FontWeight.w300);
   static TextStyle get h1Style =>
       TextStyle(fontSize: FontSizes.sizeXXl, fontWeight: FontWeight.bold);
   static TextStyle get h2Style => TextStyle(
-    fontSize: FontSizes.sizeXl,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  );
+        fontSize: FontSizes.sizeXl,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      );
   static TextStyle get h3Large => TextStyle(
-    fontSize: FontSizes.Large,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  );
+        fontSize: FontSizes.Large,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      );
   static TextStyle get headTitleColored => TextStyle(
-    fontSize: FontSizes.sizeXl,
-    fontWeight: FontWeight.bold,
-    color: Colors.blueAccent,
-  );
+        fontSize: FontSizes.sizeXl,
+        fontWeight: FontWeight.bold,
+        color: Colors.blueAccent,
+      );
   static TextStyle get body =>
       TextStyle(fontSize: FontSizes.body, fontWeight: FontWeight.w300);
   static TextStyle get bodySm => body.copyWith(fontSize: FontSizes.bodySm);
 }
 
+class FontWeightManager {
+  static const FontWeight light = FontWeight.w300;
+  static const FontWeight regular = FontWeight.w400;
+  static const FontWeight medium = FontWeight.w500;
+  static const FontWeight semiBold = FontWeight.w600;
+  static const FontWeight bold = FontWeight.w700;
+}
 
+class FontSize {
+  static const double s12 = 12.0;
+  static const double s14 = 14.0;
+  static const double s16 = 16.0;
+  static const double s17 = 17.0;
+  static const double s18 = 18.0;
+  static const double s20 = 20.0;
+  static const double s22 = 22.0;
+  static const double s26 = 26.0;
+  static const double s28 = 28.0;
+}
