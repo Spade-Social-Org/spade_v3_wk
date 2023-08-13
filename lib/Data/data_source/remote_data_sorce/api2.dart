@@ -7,9 +7,9 @@ class ApiService {
     final _dio = Dio();
     _dio.options = BaseOptions(
         baseUrl: "https://spade-social.onrender.com",
-        connectTimeout: const Duration(seconds: 5),
-        receiveTimeout: const Duration(seconds: 5),
-        sendTimeout: const Duration(seconds: 5),
+        connectTimeout: const Duration(seconds: 40),
+        receiveTimeout: const Duration(seconds: 40),
+        sendTimeout: const Duration(seconds: 40),
         headers: {"Authorization":""},
         );
     // _dio.interceptors.add(
@@ -29,16 +29,16 @@ class ApiService {
   }
 
 
-  Future<dynamic> _get(String path){
+ static Future<dynamic> _get(String path){
     return _init().get(path);
 }
 
 
-  Future<dynamic> _post(String path, FormData payload){
+  static Future<dynamic> _post(String path, FormData payload){
     return _init().post(path, data: payload);
 }
 
-Future<dynamic> createPost(FormData payload) async{
+static Future<dynamic> createPost(FormData payload) async{
     final response = await _post("/api/v1/posts", payload);
     return response.data;
     

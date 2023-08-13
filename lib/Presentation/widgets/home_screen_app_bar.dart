@@ -6,9 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 
 import 'package:spade_v4/Common/managers/barrel_manager.dart';
+import 'package:spade_v4/Data/Models/posts/post_model.dart';
 import 'package:spade_v4/Data/data_source/remote_data_sorce/api2.dart';
 
 import '../../Common/managers/font_style_manager/font_style_manager.dart.dart';
+import '../../Data/Models/post.dart';
+import '../../Data/mock_data/mock.dart';
 
 class HomeScreenAppBar extends StatefulWidget {
   const HomeScreenAppBar({super.key});
@@ -18,8 +21,6 @@ class HomeScreenAppBar extends StatefulWidget {
 }
 
 class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
-  final List<File> _selectedFiles = [];
-
   void _selectMedia() async {
     final pickedMedia =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -28,29 +29,19 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
     //   setState(() {
     //     _selectedFiles.add(File(pickedMedia.path));
     //   });
-      
+
     // }
-     if (pickedMedia != null) {
+    if (pickedMedia != null) {
       // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ImageDisplayScreen(image: File(pickedMedia.path)),
+          builder: (context) =>
+              ImageDisplayScreen(image: File(pickedMedia.path)),
         ),
       );
     }
   }
-
-  // createPost() async {
-  //   final payload = FormData.fromMap({
-  //     "description": "",
-  //     "is_story": false,
-  //     "files": [
-  //       for (var item in _selectedFiles) await MultipartFile.fromFile(item.path)
-  //     ]
-  //   });
-  //   await ApiService.createPost(payload);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -86,12 +77,29 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
   }
 }
 
-
-
-class ImageDisplayScreen extends StatelessWidget {
+class ImageDisplayScreen extends StatefulWidget {
   final File? image;
 
   const ImageDisplayScreen({super.key, required this.image});
+
+  @override
+  State<ImageDisplayScreen> createState() => _ImageDisplayScreenState();
+}
+
+class _ImageDisplayScreenState extends State<ImageDisplayScreen> {
+  final List<File> _selectedFiles = [];
+
+  createPost() async {
+    final payload = FormData.fromMap({
+      "description": "",
+      "is_story": false,
+      "files": [
+        for (var item in _selectedFiles) await MultipartFile.fromFile(item.path)
+      ]
+    });
+    await ApiService.createPost(payload);
+    // posts.add(PostModel.fromJson(data))
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,17 +108,15 @@ class ImageDisplayScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.file(
-            image!,
+            widget.image!,
             fit: BoxFit.cover,
           ),
           Positioned(
             bottom: 20.0,
             left: 20.0,
             child: IconButton(
-              icon: const Icon(Icons.exit_to_app, color: Colors.white,),
-              onPressed: () {
-                Navigator.pop(context); // Pop the screen to go back
-              },
+              icon: const Icon(Icons.exit_to_app, color: Colors.white),
+              onPressed: Navigator.of(context).pop,
             ),
           ),
           Positioned(
@@ -118,9 +124,7 @@ class ImageDisplayScreen extends StatelessWidget {
             right: 20.0,
             child: IconButton(
               icon: const Icon(Icons.send, color: Colors.white),
-              onPressed: () {
-                // Implement the send functionality here
-              },
+              onPressed: createPost,
             ),
           ),
         ],
