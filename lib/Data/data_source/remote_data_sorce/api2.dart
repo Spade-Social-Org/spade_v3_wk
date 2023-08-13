@@ -41,5 +41,6 @@ class ApiService {
 Future<dynamic> createPost(FormData payload) async{
     final response = await _post("/api/v1/posts", payload);
     return response.data;
+    
 }
 }
