@@ -1,19 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
+
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_phone_number_screen.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/txt_form_field.dart';
 
 class InputPassword extends StatefulWidget {
-  const InputPassword({super.key});
+  final String name;
+  const InputPassword({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
 
   @override
   State<InputPassword> createState() => _InputPasswordState();
 }
 
 class _InputPasswordState extends State<InputPassword> {
-   final controller = TextEditingController();
+  final pwController = TextEditingController();
+  final cnPwController = TextEditingController();
+  GlobalKey<FormState> _form = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,57 +44,157 @@ class _InputPasswordState extends State<InputPassword> {
         child: Container(
           height: double.infinity,
           width: double.infinity,
-          child:  Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Form(
+            key: _form,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Center(child: FormTitle(formTitle: "Please create a password")),
-
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FormLabel(formLabel: "Password"),
-                  SizedBox(
-                    height: 8.height(),
-                  ),
-                  TxtFormField(
-                    controller: controller,
-                    hintText: 'Password',
-                  ),
-                  SizedBox(
-                    height: 15.height(),
-                  ),
-                  FormLabel(formLabel: "Confirm Password"),
-                  SizedBox(
-                    height: 8.height(),
-                  ),
-                  TxtFormField(
-                    controller: controller,
-                    hintText: 'Confirm Password',
-                  ),
-                ],
-              ),
-                   SizedBox(
-                      height: 90,
+                  children: [
+                    FormLabel(formLabel: "Password"),
+                    SizedBox(
+                      height: 8.height(),
                     ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: MaterialButton(
-                      height: 50,
-                      minWidth: double.infinity,
-                      color: Colors.black,
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                    TextFormField(
+                      controller: pwController,
+                      style: TextStyle(fontSize: 14),
+                      cursorColor: Colors.black,
+                      validator: ValidationBuilder()
+                          .minLength(5)
+                          .maxLength(50)
+                          .build(),
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        hintText: "Enter Password",
+                        hintStyle: TextStyle(fontSize: 14),
+                        errorStyle: TextStyle(color: Colors.black),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const InputPhoneNumberScreen())));
-                      }),
+                    ),
+                    SizedBox(
+                      height: 15.height(),
+                    ),
+                    FormLabel(formLabel: "Confirm Password"),
+                    SizedBox(
+                      height: 8.height(),
+                    ),
+                    TextFormField(
+                      controller: cnPwController,
+                      style: TextStyle(fontSize: 14),
+                      cursorColor: Colors.black,
+                      validator: ValidationBuilder()
+                          .minLength(5)
+                          .maxLength(50)
+                          .build(),
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        hintText: "Confirm Password",
+                        hintStyle: TextStyle(fontSize: 14),
+                        errorStyle: TextStyle(color: Colors.black),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+                SizedBox(
+                  height: 90,
+                ),
+                Builder(builder: (context) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: MaterialButton(
+                        height: 50,
+                        minWidth: double.infinity,
+                        color: Colors.black,
+                        child: const Text(
+                          "Next",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () async {
+                          if (_form.currentState!.validate()) {
+                            if (pwController.text == cnPwController.text) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          InputPhoneNumberScreen(
+                                              name: widget.name,
+                                              password: pwController.text))));
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Colors.black,
+                                content: Text(
+                                  "Password doesn't match",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                action: SnackBarAction(
+                                  label: 'Ok',
+                                  onPressed: () {
+                                //    Navigator.pop(context);
+                                  },
+                                ),
+                              ));
+                            }
+                          }
+                        }),
+                  );
+                }),
               ],
             ),
+          ),
         ),
       ),
     );

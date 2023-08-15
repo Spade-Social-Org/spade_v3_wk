@@ -62,6 +62,7 @@ dependencies:
   form_validator: ^2.1.1
   http: ^1.1.0
   dio: ^5.3.2
+  csc_picker: ^0.2.7
 
 dev_dependencies:
   flutter_test:
