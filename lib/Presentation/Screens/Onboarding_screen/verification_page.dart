@@ -180,7 +180,7 @@ class _VerificationPageState extends State<VerificationPage> {
                               child: Expanded(
                                 child: TextField(
                                   style: TextStyle(
-                                        color: Colors.black, fontSize: 20.0),
+                                      color: Colors.black, fontSize: 20.0),
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: thirdController,

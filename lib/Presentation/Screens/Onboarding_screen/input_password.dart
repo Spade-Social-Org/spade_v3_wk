@@ -58,6 +58,7 @@ class _InputPasswordState extends State<InputPassword> {
                       height: 8.height(),
                     ),
                     TextFormField(
+                      obscureText: true,
                       controller: pwController,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
@@ -106,6 +107,7 @@ class _InputPasswordState extends State<InputPassword> {
                       height: 8.height(),
                     ),
                     TextFormField(
+                      obscureText: true,
                       controller: cnPwController,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
@@ -183,7 +185,7 @@ class _InputPasswordState extends State<InputPassword> {
                                 action: SnackBarAction(
                                   label: 'Ok',
                                   onPressed: () {
-                                //    Navigator.pop(context);
+                                    //    Navigator.pop(context);
                                   },
                                 ),
                               ));
