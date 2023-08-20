@@ -15,8 +15,13 @@ class _VerificationPageState extends State<VerificationPage> {
   final secondController = TextEditingController();
   final thirdController = TextEditingController();
   final forthController = TextEditingController();
+  final fifthController = TextEditingController();
+  final sixthController = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
+  bool loader = false;
   final dio = Dio();
+
+  String validate = "";
 
   Future postData(String val) async {
     try {
@@ -34,11 +39,11 @@ class _VerificationPageState extends State<VerificationPage> {
       barrierDismissible: false,
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         content: Container(
           height: 60,
           alignment: Alignment.center,
-          color: Colors.transparent,
+          color: Colors.white,
           padding: EdgeInsets.all(10),
           child: CircularProgressIndicator(
             color: Colors.black,
@@ -50,292 +55,408 @@ class _VerificationPageState extends State<VerificationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            )),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Center(child: FormTitle(formTitle: "Verification Code")),
-              SizedBox(
-                height: 20,
+    return loader
+        ? Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(
+                color: Colors.black,
               ),
-              Form(
-                key: _form,
+            ),
+          )
+        : Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                  )),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+              child: Container(
+                height: double.infinity,
+                width: double.infinity,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Enter the OTP sent to your email",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    Center(child: FormTitle(formTitle: "Verification Code")),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Form(
+                      key: _form,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Enter the OTP sent to your email",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 16),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Card(
+                                elevation: 3,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: TextFormField(
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      if (value.length == 1) {
+                                        FocusScope.of(context).nextFocus();
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15.0),
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    controller: firstController,
+                                    maxLength: 1,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      counterText: "",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Card(
+                                elevation: 3,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: TextFormField(
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      if (value.length == 1) {
+                                        FocusScope.of(context).nextFocus();
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15.0),
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    controller: secondController,
+                                    maxLength: 1,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      counterText: "",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Card(
+                                elevation: 3,
+                                color: Colors.white,
+                                child: SizedBox(
+                                 height: 35,
+                                  width: 35,
+                                  child: TextFormField(
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      if (value.length == 1) {
+                                        FocusScope.of(context).nextFocus();
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15.0),
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    controller: thirdController,
+                                    maxLength: 1,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      counterText: "",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Card(
+                                elevation: 3,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: TextFormField(
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      if (value.length == 1) {
+                                        FocusScope.of(context).nextFocus();
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15.0),
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    controller: forthController,
+                                    maxLength: 1,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      counterText: "",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Card(
+                                elevation: 3,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: TextFormField(
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      if (value.length == 1) {
+                                        FocusScope.of(context).nextFocus();
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15.0),
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    controller: fifthController,
+                                    maxLength: 1,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      counterText: "",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Card(
+                                elevation: 3,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: TextFormField(
+                                    autofocus: true,
+                                    onChanged: (value) {
+                                      if (value.length == 1) {
+                                        FocusScope.of(context).nextFocus();
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15.0),
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    controller: sixthController,
+                                    maxLength: 1,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      counterText: "",
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          validate.isNotEmpty
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    validate,
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.red),
+                                  ),
+                                )
+                              : const SizedBox(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text.rich(
+                            TextSpan(children: [
+                              TextSpan(
+                                text: "Don't receive code? ",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              TextSpan(
+                                text: "Re-send",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 14),
+                              ),
+                            ]),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 64.0,
-                          width: 56.0,
-                          child: Card(
-                            elevation: 4,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                              child: Expanded(
-                                child: TextField(
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: firstController,
-                                  maxLength: 1,
-                                  cursorColor: Theme.of(context).primaryColor,
-                                  decoration: InputDecoration(
-                                    hintText: "*",
-                                    hintStyle: TextStyle(
-                                        color: Colors.black, fontSize: 20.0),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                  ),
-                                ),
-                              ),
+                    Builder(builder: (context) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: MaterialButton(
+                            height: 50,
+                            minWidth: double.infinity,
+                            color: Colors.black,
+                            child: const Text(
+                              "Next",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          height: 64.0,
-                          width: 56.0,
-                          child: Card(
-                            elevation: 4,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                              child: Expanded(
-                                child: TextField(
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: secondController,
-                                  maxLength: 1,
-                                  cursorColor: Theme.of(context).primaryColor,
-                                  decoration: InputDecoration(
-                                    hintText: "*",
-                                    hintStyle: TextStyle(
-                                        color: Colors.black, fontSize: 20.0),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          height: 64.0,
-                          width: 56.0,
-                          child: Card(
-                            elevation: 4,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Expanded(
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20.0),
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: thirdController,
-                                  maxLength: 1,
-                                  cursorColor: Theme.of(context).primaryColor,
-                                  decoration: InputDecoration(
-                                    hintText: "*",
-                                    hintStyle: TextStyle(
-                                        color: Colors.black, fontSize: 20.0),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          height: 64.0,
-                          width: 56.0,
-                          child: Card(
-                            elevation: 4,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                              child: Expanded(
-                                child: TextField(
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: forthController,
-                                  maxLength: 1,
-                                  cursorColor: Theme.of(context).primaryColor,
-                                  decoration: InputDecoration(
-                                    hintText: "*",
-                                    hintStyle: TextStyle(
-                                        color: Colors.black, fontSize: 20.0),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text.rich(
-                      TextSpan(children: [
-                        TextSpan(
-                          text: "Don't receive code? ",
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        TextSpan(
-                          text: "Re-send",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 14),
-                        ),
-                      ]),
-                    ),
+                            onPressed: () async {
+                              var val = firstController.text +
+                                  secondController.text +
+                                  thirdController.text +
+                                  forthController.text +
+                                  fifthController.text +
+                                  sixthController.text;
+
+                              if (firstController.text.isNotEmpty &&
+                                  secondController.text.isNotEmpty &&
+                                  thirdController.text.isNotEmpty &&
+                                  forthController.text.isNotEmpty &&
+                                  fifthController.text.isNotEmpty &&
+                                  sixthController.text.isNotEmpty) {
+                                _showDialogLoader();
+                                await postData(val).then((value) {
+                                  if (value == true) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                const NavigationContainer())));
+                                  } else {
+                                     Navigator.pop(context);
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      backgroundColor: Colors.black,
+                                      content: Text(
+                                        value,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      action: SnackBarAction(
+                                        label: 'Ok',
+                                        onPressed: () {},
+                                      ),
+                                    ));
+                                  }
+                                });
+                              } else {
+                               
+                                setState(() {
+                                       validate = "Please Enter OTP";
+                                    });
+                               // ScaffoldMessenger.of(context)
+                               //     .showSnackBar(SnackBar(
+                               //   backgroundColor: Colors.black,
+                              //    content: Text(
+                               //     "Please Enter OTP",
+                                //    style: TextStyle(color: Colors.white),
+                                //  ),
+                                 // action: SnackBarAction(
+                                //    label: 'Ok',
+                                //    onPressed: () {},
+                                //  ),
+                               // ));
+                              }
+                            }),
+                      );
+                    }),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Builder(builder: (context) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: MaterialButton(
-                      height: 50,
-                      minWidth: double.infinity,
-                      color: Colors.black,
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      onPressed: () async {
-                        var val = firstController.text +
-                            secondController.text +
-                            thirdController.text +
-                            forthController.text;
-                        if (firstController.text.isNotEmpty &&
-                            secondController.text.isNotEmpty &&
-                            thirdController.text.isNotEmpty &&
-                            forthController.text.isNotEmpty) {
-                          _showDialogLoader();
-                          await postData(val).then((value) {
-                            if (value == true) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) =>
-                                          const NavigationContainer())));
-                            } else {
-                              Navigator.pop(context);
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                backgroundColor: Colors.black,
-                                content: Text(
-                                  value,
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                action: SnackBarAction(
-                                  label: 'Ok',
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ));
-                            }
-                          });
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor: Colors.black,
-                            content: Text(
-                              "Please Enter OTP",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            action: SnackBarAction(
-                              label: 'Ok',
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ));
-                        }
-                      }),
-                );
-              }),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }

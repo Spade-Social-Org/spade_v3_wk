@@ -61,11 +61,11 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
       barrierDismissible: false,
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         content: Container(
           height: 60,
           alignment: Alignment.center,
-          color: Colors.transparent,
+          color: Colors.white,
           padding: EdgeInsets.all(10),
           child: CircularProgressIndicator(
             color: Colors.black,
@@ -197,7 +197,7 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
                           }
                         }),
                   );
-                }),
+                })
               ],
             ),
           ),

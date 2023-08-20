@@ -55,7 +55,7 @@ class _InputNameScreenState extends State<InputNameScreen> {
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
                       validator: ValidationBuilder()
-                          .minLength(5)
+                          .minLength(3)
                           .maxLength(50)
                           .build(),
                       decoration: InputDecoration(
