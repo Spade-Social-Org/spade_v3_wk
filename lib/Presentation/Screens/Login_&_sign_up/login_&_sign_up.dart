@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Buttom_nav/navigation_container.dart';
+import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
 import '../Onboarding_screen/hello_screen.dart';
 
 class LoginOrSignupScreen extends StatefulWidget {
@@ -10,26 +10,26 @@ class LoginOrSignupScreen extends StatefulWidget {
 }
 
 class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
-  _loaderOn() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext dialogContext) {
-        return Container(
-          color: Colors.white,
-          child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
-        );
-      },
-    );
+  // _loaderOn() {
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (BuildContext dialogContext) {
+  //       return Container(
+  //         color: Colors.white,
+  //         child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
+  //       );
+  //     },
+  //   );
 
-    Future.delayed(const Duration(seconds: 4), () {
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const NavigationContainer()),
-      );
-    });
-  }
+  //   Future.delayed(const Duration(seconds: 4), () {
+  //     Navigator.pop(context);
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const NavigationContainer()),
+  //     );
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,11 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
               child: Center(
                 child: GestureDetector(
                   onTap: () {
-                    _loaderOn();
+                    // _loaderOn();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const InputEmail())));
                   },
                   child: Container(
                     height: 47.59,

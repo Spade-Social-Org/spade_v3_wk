@@ -53,6 +53,19 @@ class _VerificationPageState extends State<VerificationPage> {
     );
   }
 
+  _loaderOn() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return Container(
+          color: Colors.white,
+          child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return loader
@@ -190,7 +203,7 @@ class _VerificationPageState extends State<VerificationPage> {
                                 elevation: 3,
                                 color: Colors.white,
                                 child: SizedBox(
-                                 height: 35,
+                                  height: 35,
                                   width: 35,
                                   child: TextFormField(
                                     autofocus: true,
@@ -408,7 +421,7 @@ class _VerificationPageState extends State<VerificationPage> {
                                   forthController.text.isNotEmpty &&
                                   fifthController.text.isNotEmpty &&
                                   sixthController.text.isNotEmpty) {
-                                _showDialogLoader();
+                                _loaderOn();
                                 await postData(val).then((value) {
                                   if (value == true) {
                                     Navigator.push(
@@ -417,7 +430,7 @@ class _VerificationPageState extends State<VerificationPage> {
                                             builder: ((context) =>
                                                 const NavigationContainer())));
                                   } else {
-                                     Navigator.pop(context);
+                                    Navigator.pop(context);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                       backgroundColor: Colors.black,
@@ -433,22 +446,21 @@ class _VerificationPageState extends State<VerificationPage> {
                                   }
                                 });
                               } else {
-                               
                                 setState(() {
-                                       validate = "Please Enter OTP";
-                                    });
-                               // ScaffoldMessenger.of(context)
-                               //     .showSnackBar(SnackBar(
-                               //   backgroundColor: Colors.black,
-                              //    content: Text(
-                               //     "Please Enter OTP",
+                                  validate = "Please Enter OTP";
+                                });
+                                // ScaffoldMessenger.of(context)
+                                //     .showSnackBar(SnackBar(
+                                //   backgroundColor: Colors.black,
+                                //    content: Text(
+                                //     "Please Enter OTP",
                                 //    style: TextStyle(color: Colors.white),
                                 //  ),
-                                 // action: SnackBarAction(
+                                // action: SnackBarAction(
                                 //    label: 'Ok',
                                 //    onPressed: () {},
                                 //  ),
-                               // ));
+                                // ));
                               }
                             }),
                       );
