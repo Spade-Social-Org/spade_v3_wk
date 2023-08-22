@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../cards.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
 import '../Global/global.dart';
@@ -36,7 +37,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
   @override
   void initState() {
     super.initState();
-
+    //connect();
     ///Load map theme
     DefaultAssetBundle.of(context)
         .loadString('assets/maptheme/nighttheme.json')
@@ -51,6 +52,21 @@ class _GoogleMapState extends State<GoogleMapScreen>
   void dispose() {
     super.dispose();
   }
+
+  // void connect() {
+  //   IO.Socket socket = IO.io(
+  //     'http://localhost:3000/',
+  //     IO.OptionBuilder()
+  //         .setTransports(['websocket'])
+  //         .setExtraHeaders({'Authorization': 'Bearer $token'})
+  //         .build(),
+  //   );
+  //   socket.connect();
+  //   socket.on('event', (data) => print(data));
+  //   socket.onDisconnect(() => print('disconnect'));
+  //   socket.on('fromServer', () => print());
+  //   print(socket.connected);
+  // }
 
   Future<void> _loadInitialPosition() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -73,6 +89,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     if (isLocationEnabled) {
       _getCurrentLocation();
     } else {
+
       _initialPosition = null;
     }
   }
@@ -199,6 +216,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
               });
             },
             markers: _markers.values.toSet(),
+
             initialCameraPosition: _initialPosition != null
                 ? CameraPosition(target: _initialPosition!, zoom: 14)
                 : CameraPosition(target: LatLng(0, 0), zoom: 14),
@@ -215,7 +233,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const GlobalScreen(),
+                    builder: (context) =>  MyHomePages(),
                   ),
                 );
               },
