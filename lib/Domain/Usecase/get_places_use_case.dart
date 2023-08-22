@@ -8,8 +8,10 @@ class GetPlaces {
 
   GetPlaces(this.repository);
 
-  Future<GetPlacesResult> call(String placeType, LatLng location, {String? nextPageToken}) async {
-    final places = await repository.getPlaces(placeType, location, nextPageToken: nextPageToken);
+  Future<GetPlacesResult> call(String placeType, LatLng location,
+      {String? nextPageToken}) async {
+    final places = await repository.getPlaces(placeType, location,
+        nextPageToken: nextPageToken);
     return GetPlacesResult(places, nextPageToken);
   }
 }

@@ -38,7 +38,7 @@ class _OnbordingState extends State<Onbording> {
                       ),
                       Text(
                         contents[i].title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
@@ -47,7 +47,7 @@ class _OnbordingState extends State<Onbording> {
                       Text(
                         contents[i].discription,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.grey,
                         ),
@@ -69,7 +69,7 @@ class _OnbordingState extends State<Onbording> {
           ),
           Container(
             height: 60,
-            margin: EdgeInsets.all(40),
+            margin: const EdgeInsets.all(40),
             width: double.infinity,
             child: TextButton(
                 onPressed: () {
@@ -77,7 +77,7 @@ class _OnbordingState extends State<Onbording> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => LoginOrSignupScreen(),
+                        builder: (_) => const LoginOrSignupScreen(),
                       ),
                     );
                   }
@@ -88,7 +88,7 @@ class _OnbordingState extends State<Onbording> {
                 },
                 child: Text(
                   currentIndex == contents.length - 1 ? "Continue" : "Next",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                   // backgroundColor: Theme.of(context).primaryColor,
