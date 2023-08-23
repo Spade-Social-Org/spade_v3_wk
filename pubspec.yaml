@@ -75,12 +75,14 @@ dependencies:
   emoji_picker_flutter: ^1.6.1
   giphy_get:
   uuid: ^3.0.7
+  flutter_card_swiper: ^6.0.0
   get_it: ^7.6.0
   #<<<service>>>#
   http: ^1.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:
@@ -111,6 +113,7 @@ flutter:
      - assets/maptheme/aubergine.json
      - assets/maptheme/retro.json
      - assets/maptheme/nightthemelabel.json
+     - assets/discover/data.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
