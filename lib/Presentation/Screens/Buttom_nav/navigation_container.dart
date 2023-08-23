@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:spade_v4/Data/Service/discover_service.dart';
+import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
 import '../Chats/message_screen.dart';
 import '../Home/home_screen.dart';

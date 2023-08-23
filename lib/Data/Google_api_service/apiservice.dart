@@ -2,15 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../Presentation/widgets/jh_logger.dart';
-
+import '../../utils.dart';
 
 class GooglePlacesApi {
-  final String apiKey = 'AIzaSyAEDjuhnjffdsW-OnGg2MvdD31M8IQZf7A';
+  final String apiKey = ApiKey;
   final http.Client httpClient;
 
   GooglePlacesApi({required this.httpClient});
 
-  Future<Map<String, dynamic>> fetchPlaces(String placeType, LatLng location, {String? pageToken}) async {
+  Future<Map<String, dynamic>> fetchPlaces(String placeType, LatLng location,
+      {String? pageToken}) async {
     var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
         'location=${location.latitude},${location.longitude}&radius=50000&type=$placeType&key=$apiKey';
     if (pageToken != null) {

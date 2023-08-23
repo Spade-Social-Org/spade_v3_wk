@@ -2,7 +2,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spade_v4/Data/Service/discover_service.dart';
+import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'Common/routes/route_generator.dart';
 import 'Common/size_config/size_config.dart';
 import 'Data/Service/geo_locator.dart';
