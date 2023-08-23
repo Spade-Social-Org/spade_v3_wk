@@ -5,7 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../cards.dart';
+// import '../../cards.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
 import '../Global/global.dart';
@@ -229,14 +229,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
             left: 20,
             bottom: 20,
             child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  MyHomePages(),
-                  ),
-                );
-              },
+
               child: CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: 30,

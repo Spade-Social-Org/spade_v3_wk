@@ -1,24 +1,14 @@
-import 'package:rxdart/rxdart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
-class DiscoverService {
-  final SharedPreferences _sharedPrefs;
-  final BehaviorSubject<String> _prefsChangeSubject = BehaviorSubject<String>();
+class DiscoverService extends ChangeNotifier{
+  String _selectedIndex = 'all';
 
-  Stream<String> get prefsChangeStream => _prefsChangeSubject.stream;
+  get selectedIndex => _selectedIndex;
 
-  DiscoverService(this._sharedPrefs);
-
-  String getString(String key) {
-    return _sharedPrefs.getString(key) ?? '';
-  }
-
-  Future<void> setString(String key, String value) async {
-    await _sharedPrefs.setString(key, value);
-    _prefsChangeSubject.add(key);
-  }
-
-  void dispose() {
-    _prefsChangeSubject.close();
+  void updateIndex(String newIndex) {
+    _selectedIndex = newIndex;
+    notifyListeners();
   }
 }
