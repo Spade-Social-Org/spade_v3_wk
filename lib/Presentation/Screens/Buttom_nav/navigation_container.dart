@@ -176,6 +176,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           left: 0,
                           child: GestureDetector(
                             onTap: (()=>{
+
                               bottomNavigationProvider.updateIndex('red'),
                             _zoneClick(1)
 

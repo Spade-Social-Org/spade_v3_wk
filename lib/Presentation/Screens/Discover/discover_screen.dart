@@ -102,7 +102,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1598.png",
             "20",
-            'United State',
+            'United State 🇺🇸',
             "100",
           ),
           Discover_Model(
@@ -110,21 +110,21 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1597.png",
             "20",
-            'United State',
+            'United State  🇺🇸',
             "80",
           ),
           Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
+              "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "50"),
           Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State', "45"),
+              "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "45"),
           Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
+              "assets/images/Rectangle 1598.png", "20", 'United State  🇺🇸', "60"),
           Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
+              "assets/images/Rectangle 1597.png", "20", 'United State  🇺🇸', "55"),
           Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
+              "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "90"),
           Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State', "60"),
+              "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "60"),
         ];
         break;
       case 'red':
@@ -289,36 +289,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
     }
   }
 
-  //  List<Discover_Model> persons = [
-  //   Discover_Model(
-  //     "Jane",
-  //     Color.fromARGB(255, 37, 140, 42),
-  //     "assets/images/Rectangle 1598.png",
-  //     "20",
-  //     'United State',
-  //     "100",
-  //   ),
-  //   Discover_Model(
-  //     "Paul",
-  //     Color.fromARGB(255, 37, 140, 42),
-  //     "assets/images/Rectangle 1597.png",
-  //     "20",
-  //     'United State',
-  //     "80",
-  //   ),
-  //   Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-  //       "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-  //   Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-  //       "assets/images/Screenshot.png", "20", 'United State', "45"),
-  //   Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
-  //       "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-  //   Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
-  //       "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-  //   Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-  //       "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-  //   Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-  //       "assets/images/Screenshot.png", "20", 'United State', "60"),
-  // ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -374,7 +345,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
               title: Text(
-                'Discover $myZone',
+                'Discover',
                 // style: ,
               ),
               centerTitle: true,
