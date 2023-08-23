@@ -5,9 +5,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import '../../cards.dart';
+import 'package:spade_v4/Presentation/widgets/places_items.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
+import '../../widgets/jh_logger.dart';
+import '../../widgets/jh_search_bar.dart';
 import '../Global/global.dart';
 
 class GoogleMapScreen extends StatefulWidget {
@@ -20,7 +22,6 @@ class GoogleMapScreen extends StatefulWidget {
 class _GoogleMapState extends State<GoogleMapScreen>
     with SingleTickerProviderStateMixin {
   String mapTheme = '';
-  final Completer<GoogleMapController> _controller = Completer();
 
   late GoogleMapController? mapController;
   TextEditingController _searchController = TextEditingController();
@@ -89,7 +90,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
     if (isLocationEnabled) {
       _getCurrentLocation();
     } else {
-
       _initialPosition = null;
     }
   }
@@ -161,7 +161,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
       });
     } on PlatformException catch (e) {
       /// Handle errors that might occur when fetching the current location
-      print("Error: ${e.message}");
+      logger.e("Error: ${e.message}");
       setState(() {
         loadingLocation = false;
       });
@@ -216,7 +216,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
               });
             },
             markers: _markers.values.toSet(),
-
             initialCameraPosition: _initialPosition != null
                 ? CameraPosition(target: _initialPosition!, zoom: 14)
                 : CameraPosition(target: LatLng(0, 0), zoom: 14),
@@ -229,7 +228,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
             left: 20,
             bottom: 20,
             child: GestureDetector(
-
+              onTap: _showBottomSheet,
               child: CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: 30,
@@ -275,7 +274,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                         fontWeight: FontWeight.bold,
                       ),
                       fillColor: Colors.grey.withOpacity(0.8),
-                      contentPadding: EdgeInsets.symmetric(vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -328,22 +327,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
               ),
             ),
           ),
-          // Positioned(
-          //   top: 36,
-          //   left: 16,
-          //   child: Switch(
-          //     value: trafficEnabled,
-          //     onChanged: (value) {
-          //       setState(() {
-          //         trafficEnabled = value;
-          //       });
-          //     },
-          //     activeColor: Colors.green,
-          //     activeTrackColor: Colors.lightGreen,
-          //     inactiveThumbColor: Colors.grey,
-          //     inactiveTrackColor: Colors.grey.withOpacity(0.5),
-          //   ),
-          // ),
         ],
       ),
     );
@@ -355,7 +338,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     if (position != null) {
       _circle.add(
         Circle(
-          circleId: CircleId('circle_1'),
+          circleId: const CircleId('circle_1'),
           center: LatLng(position.latitude, position.longitude),
           radius: 900,
           fillColor: Colors.grey.withOpacity(0.5),
@@ -381,5 +364,152 @@ class _GoogleMapState extends State<GoogleMapScreen>
     );
     _markers[id] = marker;
     setState(() {});
+  }
+
+  void _showBottomSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.4,
+          minChildSize: 0.1,
+          builder: (BuildContext context, ScrollController) => ListView(
+            controller: ScrollController,
+            children: [
+              const JHSearchField(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 30,
+                    ),
+                    const Spacer(),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //          OpenNowScreen()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
+                                  color: Colors.white38,
+                                  borderRadius: BorderRadius.circular(20)),
+                              height: 30,
+                              width: 60,
+                              child:
+                                  Image.asset("assets/images/Vector (2).png"),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
+                                color: Colors.white38,
+                                borderRadius: BorderRadius.circular(20)),
+                            height: 30,
+                            width: 60,
+                            child: const Icon(
+                              Icons.favorite_border,
+                              color: Colors.white,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             CalenderScreen()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
+                                  color: Colors.white38,
+                                  borderRadius: BorderRadius.circular(20)),
+                              height: 30,
+                              width: 60,
+                              child: const Icon(
+                                Icons.calendar_month_outlined,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
+                                color: Colors.white38,
+                                borderRadius: BorderRadius.circular(20)),
+                            height: 30,
+                            width: 60,
+                            child: const Icon(
+                              Icons.bookmark_border_rounded,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: images.length, // Replace with your data
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Container(
+                                color: Colors.white,
+                                height: 90,
+                                width: 100,
+                                child: Image.asset(
+                                  images[index], // Replace with your image
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              title[index], // Replace with your text
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:spade_v4/Data/Models/discover.dart';
-import 'package:spade_v4/Data/Service/discover_service.dart';
+import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/widgets/jh_compatibility_widget.dart';
 import 'package:spade_v4/Presentation/widgets/jh_match_widget.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
