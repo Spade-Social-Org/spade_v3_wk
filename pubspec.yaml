@@ -94,6 +94,8 @@ dev_dependencies:
 flutter_native_splash:
   image: assets/images/onbaording.png
   color: "#121212"
+  # color: "#ffffff"
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
