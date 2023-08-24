@@ -26,17 +26,16 @@ class _NavigationContainerState extends State<NavigationContainer> {
     });
   }
 
-  void _zoneClick(int index){
-    if(card_click == index){
+  void _zoneClick(int index) {
+    if (card_click == index) {
       setState(() {
         card_click = 0;
       });
-    }else{
+    } else {
       setState(() {
         card_click = index;
       });
     }
-
   }
 
   @override
@@ -73,33 +72,25 @@ class _NavigationContainerState extends State<NavigationContainer> {
               type: BottomNavigationBarType.fixed,
               currentIndex: _selectedPageIndex,
               onTap: (index) {
-
-
-                if(_selectedPageIndex == 2 && index == 2){
+                if (_selectedPageIndex == 2 && index == 2) {
                   setState(() {
                     _showOption = true;
                     _selectedPageIndex = index;
-
                   });
-                }else{
+                } else {
                   setState(() {
                     _selectedPageIndex = index;
                     _showOption = false;
                   });
                 }
-
               },
               backgroundColor: Colors.black,
               elevation: 8,
-              selectedItemColor:
-              Colors.white, // Set the color of the selected item
-              unselectedItemColor:
-              Colors.grey, // Set the color of unselected items
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.grey,
               selectedLabelStyle: TextStyle(
-                fontWeight:
-                FontWeight.bold, // Set the font weight of the selected label
+                fontWeight: FontWeight.bold,
               ),
-
               items: [
                 BottomNavigationBarItem(
                   icon: Image.asset(
@@ -119,11 +110,11 @@ class _NavigationContainerState extends State<NavigationContainer> {
                   ),
                   label: "",
                 ),
-
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    _showOption ? 'assets/images/bottom_nav.png' :(
-                        _selectedPageIndex == 2
+                    _showOption
+                        ? 'assets/images/bottom_nav.png'
+                        : (_selectedPageIndex == 2
                             ? "assets/images/Group 554 (1).png"
                             : "assets/images/Group 554.png"),
                     width: 24,
@@ -162,10 +153,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                   decoration: const BoxDecoration(
                     // color: Colors.grey,
                     image: DecorationImage(
-                        image: AssetImage("assets/images/bottom_nav.png")
-                    ),
-
-                    // Half the height to make it elliptical
+                        image: AssetImage("assets/images/bottom_nav.png")),
                   ),
                   padding: EdgeInsets.all(8.0),
                   child: Stack(
@@ -175,94 +163,82 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           top: card_click == 1 ? 1 : 12,
                           left: 0,
                           child: GestureDetector(
-                            onTap: (()=>{
-
-                              bottomNavigationProvider.updateIndex('red'),
-                            _zoneClick(1)
-
-                            }),
+                            onTap: (() => {
+                                  bottomNavigationProvider.updateIndex('red'),
+                                  _zoneClick(1)
+                                }),
                             child: Transform.rotate(
                               angle: -0.5,
                               child: Container(
                                 height: card_click == 1 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.red,
-
                               ),
                             ),
-                          )
-                      ),
+                          )),
                       Positioned(
                           left: 22.0,
                           top: card_click == 2 ? -5.0 : 5.0,
                           child: GestureDetector(
-                            onTap: (()=>{
-                              bottomNavigationProvider.updateIndex('green'),
-                              _zoneClick(2)
-
-                            }),
+                            onTap: (() => {
+                                  bottomNavigationProvider.updateIndex('green'),
+                                  _zoneClick(2)
+                                }),
                             child: Transform.rotate(
                               angle: -0.2,
                               child: Container(
-                                height: card_click == 2 ? 35.0 :20.0,
+                                height: card_click == 2 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.green.shade900,
-
                               ),
                             ),
-                          )
-                      ),
+                          )),
                       Positioned(
                           left: 45.0,
                           top: card_click == 3 ? -5.0 : 5.0,
                           child: GestureDetector(
-                            onTap: (()=>{
-
-                              bottomNavigationProvider.updateIndex('yellow'),
-                              _zoneClick(3)
-                            }),
+                            onTap: (() => {
+                                  bottomNavigationProvider
+                                      .updateIndex('yellow'),
+                                  _zoneClick(3)
+                                }),
                             child: Transform.rotate(
                               angle: 0.2,
                               child: Container(
                                 height: card_click == 3 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.yellow,
-
                               ),
                             ),
-                          )
-                      ),
+                          )),
                       Positioned(
                           left: 67.0,
                           top: card_click == 4 ? 0.0 : 12.0,
                           child: GestureDetector(
-                            onTap: (()=>{
-                              bottomNavigationProvider.updateIndex('grey'),
-                              _zoneClick(4)
-                            }),
+                            onTap: (() => {
+                                  bottomNavigationProvider.updateIndex('grey'),
+                                  _zoneClick(4)
+                                }),
                             child: Transform.rotate(
                               angle: 0.5,
                               child: Container(
                                 height: card_click == 4 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.grey,
-
                               ),
                             ),
-                          )
-                      ),
+                          )),
                       Positioned(
                           left: 35.0,
                           top: 40.0,
                           child: GestureDetector(
-                            onTap: (()=>{
-                              if(_showOption){
-                                setState(()=>{
-                                  _showOption = !_showOption
-                                })
-                              }
-
-                            }),
+                            onTap: (() => {
+                                  if (_showOption)
+                                    {
+                                      setState(
+                                          () => {_showOption = !_showOption})
+                                    }
+                                }),
                             child: Transform.rotate(
                               angle: 0.0,
                               child: Container(
@@ -271,13 +247,10 @@ class _NavigationContainerState extends State<NavigationContainer> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.grey,
-
                                 ),
-
                               ),
                             ),
-                          )
-                      ),
+                          )),
                     ],
                   ),
                 ),
