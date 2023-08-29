@@ -11,3 +11,11 @@ List<String> title = [
   "Activities",
   "Hotel",
 ];
+
+List<String> text = [
+  "Favourite",
+  "Restaurant",
+  "Coffee",
+];
+
+

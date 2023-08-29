@@ -7,22 +7,41 @@ class JHSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-      child: GestureDetector(
-        child: Container(
-          height: 50,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              color: Colors.white24, borderRadius: BorderRadius.circular(30)),
-          child: const TextField(
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Search for places",
-                hintStyle: TextStyle(color: Colors.white60, fontSize: 20),
-                suffixIcon: Icon(Icons.search),
-                suffixIconColor: Colors.white60),
+      child: TextField(
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+          hintText: "Search for Places",
+          hintStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          fillColor: Colors.grey.withOpacity(0.8),
+          contentPadding: const EdgeInsets.symmetric(vertical: 12),
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+              color: Colors.white,
+              width: 2.0,
+            ),
+          ),
+          suffixIcon: IconButton(
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+              weight: 30,
+              size: 30,
+            ),
+            onPressed: () {},
           ),
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

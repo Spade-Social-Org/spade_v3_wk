@@ -48,7 +48,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
       const MoreScreen(),
     ];
     SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
     );
     final bottomNavigationProvider = Provider.of<DiscoverService>(context);
@@ -56,9 +56,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: customStatusBarStyle,
       child: Scaffold(
-        body: Center(
-          child: _appPages[_selectedPageIndex],
-        ),
+        body: _appPages[_selectedPageIndex],
         bottomNavigationBar: Stack(
           alignment: Alignment.center,
           children: [
