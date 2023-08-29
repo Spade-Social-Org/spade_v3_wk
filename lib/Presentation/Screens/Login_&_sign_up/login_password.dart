@@ -7,6 +7,7 @@ import 'package:spade_v4/Common/extensions/size_config_extension/size_config_ext
 import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
 
 class LoginPassword extends StatefulWidget {
   final String email;
@@ -38,24 +39,24 @@ class _LoginPasswordState extends State<LoginPassword> {
     }
   }
 
-  Future<void> _showDialogLoader() {
-    return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.white,
-        content: Container(
-          height: 60,
-          alignment: Alignment.center,
-          color: Colors.white,
-          padding: EdgeInsets.all(10),
-          child: CircularProgressIndicator(
-            color: Colors.black,
-          ),
-        ),
-      ),
-    );
-  }
+  // Future<void> _showDialogLoader() {
+  //   return showDialog(
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (ctx) => AlertDialog(
+  //       backgroundColor: Colors.white,
+  //       content: Container(
+  //         height: 60,
+  //         alignment: Alignment.center,
+  //         color: Colors.white,
+  //         padding: EdgeInsets.all(10),
+  //         child: CircularProgressIndicator(
+  //           color: Colors.black,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   _loaderOn() {
     showDialog(
@@ -167,6 +168,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                             _loaderOn();
                             await postData(pwController.text).then((value) {
                               if (value == true) {
+                                SaveUserToken.saveLoginValue(value);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

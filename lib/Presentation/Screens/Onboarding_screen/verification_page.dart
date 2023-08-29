@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
 
 class VerificationPage extends StatefulWidget {
   const VerificationPage({super.key});
@@ -34,24 +35,24 @@ class _VerificationPageState extends State<VerificationPage> {
     }
   }
 
-  Future<void> _showDialogLoader() {
-    return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.white,
-        content: Container(
-          height: 60,
-          alignment: Alignment.center,
-          color: Colors.white,
-          padding: EdgeInsets.all(10),
-          child: CircularProgressIndicator(
-            color: Colors.black,
-          ),
-        ),
-      ),
-    );
-  }
+  // Future<void> _showDialogLoader() {
+  //   return showDialog(
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (ctx) => AlertDialog(
+  //       backgroundColor: Colors.white,
+  //       content: Container(
+  //         height: 60,
+  //         alignment: Alignment.center,
+  //         color: Colors.white,
+  //         padding: EdgeInsets.all(10),
+  //         child: CircularProgressIndicator(
+  //           color: Colors.black,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   _loaderOn() {
     showDialog(
@@ -424,6 +425,7 @@ class _VerificationPageState extends State<VerificationPage> {
                                 _loaderOn();
                                 await postData(val).then((value) {
                                   if (value == true) {
+                                    SaveUserToken.saveLoginValue(value);
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
