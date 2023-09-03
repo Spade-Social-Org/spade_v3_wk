@@ -22,7 +22,6 @@ bool toggle = true;
 //       this.percentage);
 // }
 
-
 class DiscoveryScreen extends StatefulWidget {
   const DiscoveryScreen({super.key});
 
@@ -44,278 +43,317 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
   late List<Discover_Model> persons;
   String myZone = 'all';
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 350),
-      reverseDuration: const Duration(milliseconds: 275),
+  _loadGuide1() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return Container(
+          color: Colors.white,
+          child: Column(
+            children: [],
+          ),
+        );
+      },
     );
 
-    getDisc();
+    @override
+    void initState() {
+      super.initState();
+      _controller = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 350),
+        reverseDuration: const Duration(milliseconds: 275),
+      );
 
-    _controller.addListener(() {
-      setState(() {});
-    });
-  }
+      getDisc();
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  Alignment alignment = const Alignment(00, 00);
-  Alignment alignment1 = const Alignment(00, 00);
-  Alignment alignment2 = const Alignment(00, 00);
-  Alignment alignment3 = const Alignment(00, 00);
-  Alignment alignment4 = const Alignment(00, 00);
-  Alignment alignment5 = const Alignment(00, 00);
-  Alignment alignment6 = const Alignment(00, 00);
-
-  double size1 = 50;
-  double size2 = 50;
-  double size3 = 50;
-  double size4 = 50;
-  double size5 = 50;
-  double size6 = 50;
-
-  void expandedButton(int index) {
-    setState(() {
-      if (expandedButtonIndex == index) {
-        expandedButtonIndex = -1;
-      } else {
-        expandedButtonIndex = index;
-      }
-    });
-  }
-
-
-
-  void getDisc(){
-    switch(myZone){
-      case 'all':
-         persons = [
-          Discover_Model(
-            "Jane",
-            Color.fromARGB(255, 37, 140, 42),
-            "assets/images/Rectangle 1598.png",
-            "20",
-            'United State 🇺🇸',
-            "100",
-          ),
-          Discover_Model(
-            "Paul",
-            Color.fromARGB(255, 37, 140, 42),
-            "assets/images/Rectangle 1597.png",
-            "20",
-            'United State  🇺🇸',
-            "80",
-          ),
-          Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "50"),
-          Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "45"),
-          Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1598.png", "20", 'United State  🇺🇸', "60"),
-          Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1597.png", "20", 'United State  🇺🇸', "55"),
-          Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "90"),
-          Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "60"),
-        ];
-        break;
-      case 'red':
-         persons = [
-          Discover_Model(
-            "Jane",
-            Color.fromARGB(255, 148, 17, 8),
-            "assets/images/Rectangle 1598.png",
-            "20",
-            'United State',
-            "100",
-          ),
-          Discover_Model(
-            "Paul",
-            Color.fromARGB(255, 148, 17, 8),
-            "assets/images/Rectangle 1597.png",
-            "20",
-            'United State',
-            "80",
-          ),
-          Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Screenshot.png", "20", 'United State', "60"),
-        ];
-        break;
-      case 'yellow':
-        persons = [
-          Discover_Model(
-            "Jane",
-            Color.fromARGB(255, 204, 167, 1),
-            "assets/images/Rectangle 1598.png",
-            "20",
-            'United State',
-            "100",
-          ),
-          Discover_Model(
-            "Paul",
-            Color.fromARGB(255, 204, 167, 1),
-            "assets/images/Rectangle 1597.png",
-            "20",
-            'United State',
-            "80",
-          ),
-          Discover_Model("Mike", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John",Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State', "60"),
-        ];
-        break;
-      case 'green':
-         persons = [
-          Discover_Model(
-            "Jane",
-            Color.fromARGB(255, 37, 140, 42),
-            "assets/images/Rectangle 1598.png",
-            "20",
-            'United State',
-            "100",
-          ),
-          Discover_Model(
-            "Paul",
-            Color.fromARGB(255, 37, 140, 42),
-            "assets/images/Rectangle 1597.png",
-            "20",
-            'United State',
-            "80",
-          ),
-          Discover_Model("Mike", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Screenshot.png", "20", 'United State', "60"),
-        ];
-        break;
-      case 'grey':
-         persons = [
-          Discover_Model(
-            "Jane",
-            Color.fromARGB(255, 176, 176, 176),
-            "assets/images/Rectangle 1598.png",
-            "20",
-            'United State',
-            "100",
-          ),
-          Discover_Model(
-            "Paul",
-            Color.fromARGB(255, 176, 176, 176),
-            "assets/images/Rectangle 1597.png",
-            "20",
-            'United State',
-            "80",
-          ),
-          Discover_Model("Mike", Color.fromARGB(255, 176, 176, 176),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", Color.fromARGB(255, 176, 176, 176),
-              "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", Color.fromARGB(255, 176, 176, 176),
-              "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", Color.fromARGB(255, 176, 176, 176),
-              "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", Color.fromARGB(255, 176, 176, 176),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", Color.fromARGB(255, 176, 176, 176),
-              "assets/images/Screenshot.png", "20", 'United State', "60"),
-        ];
-        break;
-      default:
-         persons = [
-          Discover_Model(
-            "Jane",
-            Color.fromARGB(255, 37, 140, 42),
-            "assets/images/Rectangle 1598.png",
-            "20",
-            'United State',
-            "100",
-          ),
-          Discover_Model(
-            "Paul",
-            Color.fromARGB(255, 37, 140, 42),
-            "assets/images/Rectangle 1597.png",
-            "20",
-            'United State',
-            "80",
-          ),
-          Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
-              "assets/images/Screenshot.png", "20", 'United State', "60"),
-        ];
+      _controller.addListener(() {
+        setState(() {});
+      });
     }
-  }
 
+    @override
+    void dispose() {
+      controller.dispose();
+      super.dispose();
+    }
 
+    Alignment alignment = const Alignment(00, 00);
+    Alignment alignment1 = const Alignment(00, 00);
+    Alignment alignment2 = const Alignment(00, 00);
+    Alignment alignment3 = const Alignment(00, 00);
+    Alignment alignment4 = const Alignment(00, 00);
+    Alignment alignment5 = const Alignment(00, 00);
+    Alignment alignment6 = const Alignment(00, 00);
 
-  @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarBrightness: Brightness.dark,
-    );
+    double size1 = 50;
+    double size2 = 50;
+    double size3 = 50;
+    double size4 = 50;
+    double size5 = 50;
+    double size6 = 50;
 
-   final  bottomNavigationProvider = Provider.of<DiscoverService>(context);
+    void expandedButton(int index) {
+      setState(() {
+        if (expandedButtonIndex == index) {
+          expandedButtonIndex = -1;
+        } else {
+          expandedButtonIndex = index;
+        }
+      });
+    }
 
-   final actIndex = bottomNavigationProvider.selectedIndex;
-   if(actIndex != 'all'){
-     setState(() {
-       myZone = actIndex;
-     });
-     getDisc();
+    void getDisc() {
+      switch (myZone) {
+        case 'all':
+          persons = [
+            Discover_Model(
+              "Jane",
+              Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State 🇺🇸',
+              "100",
+            ),
+            Discover_Model(
+              "Paul",
+              Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State  🇺🇸',
+              "80",
+            ),
+            Discover_Model(
+                "Mike",
+                Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1595.png",
+                "20",
+                'United State  🇺🇸',
+                "50"),
+            Discover_Model(
+                "John",
+                Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Screenshot.png",
+                "20",
+                'United State  🇺🇸',
+                "45"),
+            Discover_Model(
+                "Jane",
+                Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1598.png",
+                "20",
+                'United State  🇺🇸',
+                "60"),
+            Discover_Model(
+                "Paul",
+                Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1597.png",
+                "20",
+                'United State  🇺🇸',
+                "55"),
+            Discover_Model(
+                "Mike",
+                Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1595.png",
+                "20",
+                'United State  🇺🇸',
+                "90"),
+            Discover_Model(
+                "John",
+                Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Screenshot.png",
+                "20",
+                'United State  🇺🇸',
+                "60"),
+          ];
+          break;
+        case 'red':
+          persons = [
+            Discover_Model(
+              "Jane",
+              Color.fromARGB(255, 148, 17, 8),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State',
+              "100",
+            ),
+            Discover_Model(
+              "Paul",
+              Color.fromARGB(255, 148, 17, 8),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State',
+              "80",
+            ),
+            Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
+            Discover_Model("John", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Screenshot.png", "20", 'United State', "45"),
+            Discover_Model("Jane", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
+            Discover_Model("Paul", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
+            Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
+            Discover_Model("John", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Screenshot.png", "20", 'United State', "60"),
+          ];
+          break;
+        case 'yellow':
+          persons = [
+            Discover_Model(
+              "Jane",
+              Color.fromARGB(255, 204, 167, 1),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State',
+              "100",
+            ),
+            Discover_Model(
+              "Paul",
+              Color.fromARGB(255, 204, 167, 1),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State',
+              "80",
+            ),
+            Discover_Model("Mike", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
+            Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Screenshot.png", "20", 'United State', "45"),
+            Discover_Model("Jane", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
+            Discover_Model("Paul", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
+            Discover_Model("Mike", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
+            Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Screenshot.png", "20", 'United State', "60"),
+          ];
+          break;
+        case 'green':
+          persons = [
+            Discover_Model(
+              "Jane",
+              Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State',
+              "100",
+            ),
+            Discover_Model(
+              "Paul",
+              Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State',
+              "80",
+            ),
+            Discover_Model("Mike", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
+            Discover_Model("John", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Screenshot.png", "20", 'United State', "45"),
+            Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
+            Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
+            Discover_Model("Mike", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
+            Discover_Model("John", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Screenshot.png", "20", 'United State', "60"),
+          ];
+          break;
+        case 'grey':
+          persons = [
+            Discover_Model(
+              "Jane",
+              Color.fromARGB(255, 176, 176, 176),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State',
+              "100",
+            ),
+            Discover_Model(
+              "Paul",
+              Color.fromARGB(255, 176, 176, 176),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State',
+              "80",
+            ),
+            Discover_Model("Mike", Color.fromARGB(255, 176, 176, 176),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
+            Discover_Model("John", Color.fromARGB(255, 176, 176, 176),
+                "assets/images/Screenshot.png", "20", 'United State', "45"),
+            Discover_Model("Jane", Color.fromARGB(255, 176, 176, 176),
+                "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
+            Discover_Model("Paul", Color.fromARGB(255, 176, 176, 176),
+                "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
+            Discover_Model("Mike", Color.fromARGB(255, 176, 176, 176),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
+            Discover_Model("John", Color.fromARGB(255, 176, 176, 176),
+                "assets/images/Screenshot.png", "20", 'United State', "60"),
+          ];
+          break;
+        default:
+          persons = [
+            Discover_Model(
+              "Jane",
+              Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State',
+              "100",
+            ),
+            Discover_Model(
+              "Paul",
+              Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State',
+              "80",
+            ),
+            Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
+            Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Screenshot.png", "20", 'United State', "45"),
+            Discover_Model("Jane", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
+            Discover_Model("Paul", Color.fromARGB(255, 37, 140, 42),
+                "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
+            Discover_Model("Mike", Color.fromARGB(255, 148, 17, 8),
+                "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
+            Discover_Model("John", Color.fromARGB(255, 204, 167, 1),
+                "assets/images/Screenshot.png", "20", 'United State', "60"),
+          ];
+      }
+    }
 
-   }else{
-     setState(() {
-       myZone = actIndex;
-     });
-     getDisc();
+    @override
+    Widget build(BuildContext context) {
+      double screenWidth = MediaQuery.of(context).size.width;
+      double screenHeight = MediaQuery.of(context).size.height;
+      SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarBrightness: Brightness.dark,
+      );
 
-   }
+      final bottomNavigationProvider = Provider.of<DiscoverService>(context);
+
+      final actIndex = bottomNavigationProvider.selectedIndex;
+      if (actIndex != 'all') {
+        setState(() {
+          myZone = actIndex;
+        });
+        getDisc();
+      } else {
+        setState(() {
+          myZone = actIndex;
+        });
+        getDisc();
+      }
+    }
 
     return Scaffold(
         backgroundColor: Colors.white,
