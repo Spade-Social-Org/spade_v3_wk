@@ -8,7 +8,7 @@ class CustomColors {
   static Color indigoLigh = Color(0xFF9fa8da);
   static Color indigoLigt = Color(0xFF9fa8da);
   static Color indigoLiht = Color(0xFF9fa8da);
-  static Color black = Colors.black;
+  static Color indigoLght = Color(0xFF9fa8da);
 }
 
 class AppTheme {
@@ -98,24 +98,4 @@ class TextStyles {
   static TextStyle get body =>
       TextStyle(fontSize: FontSizes.body, fontWeight: FontWeight.w300);
   static TextStyle get bodySm => body.copyWith(fontSize: FontSizes.bodySm);
-}
-
-class FontWeightManager {
-  static const FontWeight light = FontWeight.w300;
-  static const FontWeight regular = FontWeight.w400;
-  static const FontWeight medium = FontWeight.w500;
-  static const FontWeight semiBold = FontWeight.w600;
-  static const FontWeight bold = FontWeight.w700;
-}
-
-class FontSize {
-  static const double s12 = 12.0;
-  static const double s14 = 14.0;
-  static const double s16 = 16.0;
-  static const double s17 = 17.0;
-  static const double s18 = 18.0;
-  static const double s20 = 20.0;
-  static const double s22 = 22.0;
-  static const double s26 = 26.0;
-  static const double s28 = 28.0;
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:form_validator/form_validator.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_password.dart';
@@ -8,14 +7,6 @@ import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20wid
 
 class InputNameScreen extends StatefulWidget {
   const InputNameScreen({super.key});
-=======
-import 'input_phone_number_screen.dart';
-
-class InputNameScreen extends StatelessWidget {
-  const InputNameScreen({
-    super.key,
-  });
-
 
   @override
   State<InputNameScreen> createState() => _InputNameScreenState();
@@ -51,7 +42,6 @@ class _InputNameScreenState extends State<InputNameScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Center(child: FormTitle(formTitle: "Whats your name?")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,14 +95,6 @@ class _InputNameScreenState extends State<InputNameScreen> {
                 ),
                 SizedBox(
                   height: 90,
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
                 ),
                 Builder(builder: (context) {
                   return ClipRRect(
@@ -140,48 +122,6 @@ class _InputNameScreenState extends State<InputNameScreen> {
             ),
           ),
         ),
-          const SizedBox(
-            height: 40,
-          ),
-          const Center(
-              child: Text(
-            "What's your name?",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          )),
-          const Padding(
-            padding: EdgeInsets.only(left: 40, right: 40),
-            child: TextField(
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                hintText: "First name",
-              ),
-            ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MaterialButton(
-                  height: 50,
-                  minWidth: double.infinity,
-                  color: Colors.black,
-                  child: const Text(
-                    "Next",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => InputPhoneNumberScreen())));
-                  }),
-            ),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-        ],
       ),
     );
   }

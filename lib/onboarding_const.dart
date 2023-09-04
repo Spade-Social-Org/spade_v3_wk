@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 import 'Presentation/widgets/jh_onboarding_content.dart';
 
 class Onbording extends StatefulWidget {
-
   @override
   _OnbordingState createState() => _OnbordingState();
 }
@@ -38,7 +38,7 @@ class _OnbordingState extends State<Onbording> {
                       ),
                       Text(
                         contents[i].title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
@@ -47,7 +47,7 @@ class _OnbordingState extends State<Onbording> {
                       Text(
                         contents[i].discription,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey,
                         ),
@@ -69,7 +69,7 @@ class _OnbordingState extends State<Onbording> {
           ),
           Container(
             height: 60,
-            margin: const EdgeInsets.all(40),
+            margin: EdgeInsets.all(40),
             width: double.infinity,
             child: TextButton(
                 onPressed: () {
@@ -77,7 +77,7 @@ class _OnbordingState extends State<Onbording> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const LoginOrSignupScreen(),
+                        builder: (_) => LoginOrSignupScreen(),
                       ),
                     );
                   }
@@ -88,7 +88,7 @@ class _OnbordingState extends State<Onbording> {
                 },
                 child: Text(
                   currentIndex == contents.length - 1 ? "Continue" : "Next",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                   ),
                   // backgroundColor: Theme.of(context).primaryColor,

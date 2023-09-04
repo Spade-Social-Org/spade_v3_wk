@@ -11,55 +11,52 @@ class JHCompatibilityWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return Container(
-
-      decoration: BoxDecoration(
-          color: Colors.white,
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5.0,sigmaY: 5.0),
+      child: Container(
+        height: screenHeight * 0.56,
+        decoration: BoxDecoration(
           border: Border.all(
             color: Colors.grey,
+            width: 0.5,
           ),
-          // color: Colors.white.withOpacity(0.8),
-          borderRadius: BorderRadius.circular(20)),
-      height: screenHeight * 0.55,
-      width: screenWidth * 0.86,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 20,bottom: 60),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 16,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(width: 40,),
-                const Text('Compatibility', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.bold),),
-                // SizedBox(width: 60,),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black12,
-                    ),
-                    padding: EdgeInsets.all(8.0),
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.black,
-                      size: 16.0,
-                    ),
-                  ),
-                ),
+              children:const [
+                Text(
+                  "Compatibility",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold, fontSize: 24),
 
+                ),
+                // SizedBox(width: 20,),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 18,
+                  child: CircleAvatar(
+                      radius: 15,
+                      backgroundColor: Colors.white,
+                      child: Center(
+                          child: Text("X",style: TextStyle(color: Colors.grey,fontSize: 20),)
+                      )),
+                )
               ],
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 width: 200,
-                height: 130,
+                height: 150,
                 child: Image.asset(
-                  "assets/images/per-pie.png",
+                  'assets/images/per_pie.svg.png',
                   fit: BoxFit.contain,
                   alignment: Alignment.center,
                   // Replace with your SVG file path
@@ -72,10 +69,9 @@ class JHCompatibilityWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Colors.black12,
-
+                  color: Colors.white,
                   width: double.infinity,
-                  height: 35,
+                  height: 26,
                   child: Row(
                     children: [
                       Stack(
@@ -83,7 +79,7 @@ class JHCompatibilityWidget extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Container(
-                              height: 30,
+                              height: 26,
                               width: 190,
                               color: Colors.grey,
                               child: const Center(child: Text("Personality 90%")),
@@ -98,21 +94,21 @@ class JHCompatibilityWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 9,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left:30.0,right: 30),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Colors.black12,
+                  color: Colors.white,
                   width: double.infinity,
-                  height: 35,
+                  height: 26,
                   child: Row(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                          height: 30,
+                          height: 26,
                           width: 160,
                           color: const Color.fromARGB(255, 27, 81, 28),
                           child: const Center(child: Text("Attractivness 70%")),
@@ -125,21 +121,21 @@ class JHCompatibilityWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 9,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left:30.0,right: 30),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Colors.black12,
+                  color: Colors.white,
                   width: double.infinity,
-                  height: 35,
+                  height: 26,
                   child: Row(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                          height: 30,
+                          height: 26,
                           width: 130,
                           color: const Color.fromARGB(255, 101, 32, 15),
                           child: const Center(child: Text("Volumn 50%")),
@@ -152,21 +148,21 @@ class JHCompatibilityWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 9,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left:30.0,right: 30),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Colors.black12,
+                  color: Colors.white,
                   width: double.infinity,
-                  height: 35,
+                  height: 26,
                   child: Row(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                          height: 30,
+                          height: 26,
                           width: 110,
                           color: const Color.fromARGB(255, 193, 165, 5),
                           child: const Center(child: Text("Activities 40%")),
@@ -179,6 +175,7 @@ class JHCompatibilityWidget extends StatelessWidget {
                 ),
               ),
             ),
+
           ],
         ),
       ),

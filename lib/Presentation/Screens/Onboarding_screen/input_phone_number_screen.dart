@@ -23,11 +23,6 @@ class InputPhoneNumberScreen extends StatefulWidget {
 class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
   final controller = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
-import 'input_email_screen.dart';
-
-class InputPhoneNumberScreen extends StatelessWidget {
-
-  const InputPhoneNumberScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -136,43 +131,6 @@ class InputPhoneNumberScreen extends StatelessWidget {
             ),
           ),
         ),
-          const SizedBox(
-            height: 40,
-          ),
-          const Center(
-              child: Text(
-            "What's your phone number?",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          )),
-          const Padding(
-            padding: EdgeInsets.only(left: 40, right: 40),
-            child: TextField(
-              //add country code to the left side of the screen
-             
-            ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
-                  height: 50,
-                  minWidth: double.infinity,
-                  color: Colors.black,
-                  child: const Text("Next",style: TextStyle(color: Colors.white,fontSize: 20),),
-                  onPressed: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>  InputEmailScreen())));
-                  }),
-              ),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-        ],
       ),
     );
   }

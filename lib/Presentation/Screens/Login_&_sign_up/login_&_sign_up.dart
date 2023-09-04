@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
-import '../../../page_view.dart';
-import '../../widgets/jh_logger.dart';
 import '../Onboarding_screen/hello_screen.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 
 class LoginOrSignupScreen extends StatefulWidget {
-
-  const LoginOrSignupScreen({super.key, });
+  const LoginOrSignupScreen({super.key});
 
   @override
   State<LoginOrSignupScreen> createState() => _LoginOrSignupScreenState();
@@ -35,41 +30,6 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
   //     );
   //   });
   // }
-
-  @override
-  void initState() {
-    super.initState();
-    initialization();
-  }
-
-  void initialization() async {
-    await Future.delayed(const Duration(seconds: 1));
-    logger.d('Let\'s go!! we are here');
-    FlutterNativeSplash.remove();
-  }
-
-
-  _loaderOn() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext dialogContext) {
-        return Container(
-          color: Colors.white,
-          child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
-        );
-      },
-    );
-
-    Future.delayed(const Duration(seconds: 4), () {
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) =>  SwipeScreens()),
-      );
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +59,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>  HelloScreen())));
+                            builder: ((context) => const HelloScreen())));
                   }),
             ),
             const SizedBox(
