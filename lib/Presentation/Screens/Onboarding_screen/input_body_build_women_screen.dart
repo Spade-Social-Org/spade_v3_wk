@@ -1,11 +1,10 @@
 import'package:flutter/material.dart';
-
-import 'looking_for_build_men_screen.dart';
 import 'looking_for_screen.dart';
 
 
 class InputBodyBuildWomenScreen extends StatefulWidget {
-  const InputBodyBuildWomenScreen({super.key});
+
+  const InputBodyBuildWomenScreen({super.key, });
 
   @override
   State<InputBodyBuildWomenScreen> createState() => _InputBodyBuildWomenScreenState();
@@ -207,7 +206,7 @@ class _InputBodyBuildWomenScreenState extends State<InputBodyBuildWomenScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const WhatLookingForScreen())));
+                            builder: ((context) =>  WhatLookingForScreen())));
                   }),
             ),
           ),
