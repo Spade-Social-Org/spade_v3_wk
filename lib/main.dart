@@ -20,14 +20,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late bool isLogin;
+  bool isLogin = false;
 
   @override
   void initState() async {
     super.initState();
     await GetUserToken.getLoginValue().then((value) {
       if (value != null) {
-        isLogin = value;
+        setState((){
+          isLogin = value;
+          });   
       }
     });
   }
