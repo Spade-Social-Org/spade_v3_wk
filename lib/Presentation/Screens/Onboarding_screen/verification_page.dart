@@ -26,7 +26,7 @@ class _VerificationPageState extends State<VerificationPage> {
 
   Future postData(String val) async {
     try {
-      var url = 'https://spade-social.onrender.com/api/v1/auth/otp/verify';
+      var url = 'https://spade-backend-v3-production.up.railway.app/auth/otp/verify';
       var response = await dio.post(url, data: {"otp": val});
       print(response.statusCode);
       return true;

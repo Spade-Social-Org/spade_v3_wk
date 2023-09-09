@@ -27,7 +27,7 @@ class _LoginPasswordState extends State<LoginPassword> {
 
   Future postData(String password) async {
     try {
-      var url = 'https://spade-social.onrender.com/api/v1/auth/login';
+      var url = 'https://spade-backend-v3-production.up.railway.app/auth/login';
       var response = await dio.post(url, data: {
         "email": widget.email,
         "password": password,
