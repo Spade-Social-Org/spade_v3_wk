@@ -601,10 +601,15 @@ class _GoogleMapState extends State<GoogleMapScreen>
                   ),
                 ),
               ),
-              const Text(
-                'Burger joint',
-                style: TextStyle(
-                  color: Colors.white,
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Burger joint',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Row(
@@ -653,7 +658,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       const SizedBox(
                         width: 10,
                       ),
-                      Image.asset('assets/images/placeimage.png'),
+                      // Image.asset('assets/images/placeimage.png'),
                     ],
                   ),
                 ],
@@ -673,6 +678,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                             height: 90 * 10,
                             width: 120,
                             decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
                                 image: AssetImage(images[index]),
                                 fit: BoxFit.cover,
