@@ -1,17 +1,91 @@
+import 'dart:convert';
+import 'dart:developer';
 
+class StoryHome {
+  StoryHome(
+      {required this.uidStory,
+      required this.username,
+      required this.avatar,
+      required this.countStory});
 
-class StoryViewData {
-  final int id;
-  final String name;
-  final String imageFileName;
-  final bool isViewed;
-  final bool isLive;
+  String uidStory;
+  String username;
+  String avatar;
+  int countStory;
 
-  StoryViewData({
-    required this.id,
-    required this.name,
-    required this.imageFileName,
-    required this.isViewed,
-    required this.isLive,
+  factory StoryHome.fromJson(Map<String, dynamic> json) => StoryHome(
+        uidStory: json["uid_story"],
+        username: json["username"],
+        avatar: json["avatar"],
+        countStory: json["count_story"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "uid_story": uidStory,
+        "username": username,
+        "avatar": avatar,
+        "count_story": countStory
+      };
+}
+
+ResponseStoriesHome responseStoriesFromJson(String str) =>
+    ResponseStoriesHome.fromJson(json.decode(str));
+
+String responseStoriesToJson(ResponseStoriesHome data) =>
+    json.encode(data.toJson());
+
+class ResponseStoriesHome {
+  ResponseStoriesHome({
+    required this.resp,
+    required this.message,
+    required this.stories,
   });
+
+  bool resp;
+  String message;
+  List<StoryHome> stories;
+
+  factory ResponseStoriesHome.fromJson(Map<String, dynamic> json) =>
+      ResponseStoriesHome(
+        resp: json["resp"],
+        message: json["message"],
+        stories: List<StoryHome>.from(
+            json["stories"].map((x) => StoryHome.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "resp": resp,
+        "message": message,
+        "stories": List<dynamic>.from(stories.map((x) => x.toJson())),
+      };
+}
+
+class Storyy {
+   int id;
+
+  String posterImage;
+  String description;
+  List<String>? gallery;
+  // DateTime createAt;
+
+  Storyy({
+    required this.id,
+    required this.posterImage,
+    required this.gallery,
+    required this.description,
+    // required this.createAt,
+  });
+static Storyy fromJson(Map<String, dynamic> json) {
+  List<String> gallery = [];
+  if (json["gallery"] != null && json["gallery"] is List<dynamic>) {
+    gallery = List<String>.from(json["gallery"].map((x) => x as String));
+  }
+     int id = json['id'] ?? 0;
+    return Storyy(
+      id: id,
+      posterImage: json['poster_image']?? "",
+      description: json['description']?? "",
+      gallery: gallery,
+    );
+  }
 }

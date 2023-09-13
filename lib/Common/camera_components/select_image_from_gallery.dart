@@ -1,23 +1,23 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:spade_v4/Presentation/widgets/posts/image_%20filter_screen.dart';
+
 import '../image_properties.dart';
 import '../navigator.dart';
 import '../routes/routes.dart';
 
 class SelectImageFromGalleryButton extends StatelessWidget {
-  final String receiverId;
-
   const SelectImageFromGalleryButton({
     super.key,
-    required this.receiverId,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        selectImageFromGallery(context);
+        _selectMedia(context);
       },
       child: const CircleAvatar(
         radius: 30,
@@ -37,12 +37,26 @@ class SelectImageFromGalleryButton extends StatelessWidget {
       // ignore: use_build_context_synchronously
       navigateTo(
         context,
-        Routes.sendingImageViewRoute,
-        arguments: {
-          'path': image.path,
-          'uId': receiverId,
-        },
+        Routes.imageSendingScreen,
       );
     }
   }
 }
+
+void _selectMedia(context) async {
+  final pickedMedia =
+      await ImagePicker().pickImage(source: ImageSource.gallery);
+
+  if (pickedMedia != null) {
+    // ignore: use_build_context_synchronously
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SendImageScreen2(image: File(pickedMedia.path)),
+      ),
+    );
+  }
+}
+
+
+

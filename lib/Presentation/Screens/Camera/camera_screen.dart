@@ -66,8 +66,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SelectImageFromGalleryButton(
-                            receiverId: widget.receiverId),
+                        const SelectImageFromGalleryButton(),
                         GestureDetector(
                           onTap: () {
                             if (!isRecording) takePhoto(context);
@@ -118,7 +117,7 @@ class _CameraScreenState extends State<CameraScreen> {
             padding: EdgeInsets.only(top: 8, bottom: 8),
             child: Text(
               'Hold for video, tap for photo',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 10, color: Colors.white),
             ),
           ),
         ],
@@ -161,11 +160,15 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
-    if (!mounted) return;
-    navigateTo(context, Routes.sendingImageViewRoute, arguments: {
-      'path': file.path,
-      'uId': widget.receiverId,
-    });
+    if (file != null) {
+      navigateTo(
+        context,
+        Routes.imageSendingScreen2,
+        arguments: {'imageFile': file},
+      );
+    } else {
+      print('Failed to capture a photo.');
+    }
   }
 
   @override

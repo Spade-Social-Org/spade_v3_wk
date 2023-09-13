@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../extensions/color_extention/color_extension.dart';
 
-
-
 class ColorManager {
   static final white = HexColor.fromHex("#FFFFFF");
   static final grey = HexColor.fromHex("#8A8A8A");
+  static final black101 = HexColor.fromHex("#212223");
 
-  static final gradient1 = LinearGradient(
+  static const gradient1 = LinearGradient(
     begin: Alignment.topLeft,
     colors: [
       Color(0xFFD91A46),

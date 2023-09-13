@@ -1,120 +1,115 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:spade_v4/Presentation/widgets/story/view_story.dart';
 
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
-import '../../../Data/Models/story/story.dart';
+import '../../../Data/Models/story/story_view_model.dart';
+import '../../../Data/data_source/remote_data_sorce/api2.dart';
+import '../animated_route/animated_route.dart';
+import 'add_story.dart';
+import 'story_controller.dart';
 
 class StoryList extends StatelessWidget {
   const StoryList({
     Key? key,
-    required this.stories,
   }) : super(key: key);
 
-  final List<StoryData> stories;
+  // final Storyy story;
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+    future: ApiService.getAllStories(),
+    builder: (_, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (snapshot.hasError) {
+        return const Center(
+          child: Text(
+            'Poor internet connection',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      } else if (StoryController().allStorys!.isEmpty) {
+        return const Center(
+          child: Text(
+            'No story available',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      } else {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 79.height(),
+      height: 75.height(),
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: stories.length,
+          itemCount: StoryController().allStorys!.length,
           itemBuilder: (context, index) {
-            final story = stories[index];
-            return Story(story: story);
+            return InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 21.width(),
+                  ),
+                  child: Storys(story:StoryController().allStorys![index]),
+                ));
           }),
     );
   }
 }
+    );
+  }
+}
 
-class Story extends StatelessWidget {
-  const Story({
-    Key? key,
-    required this.story,
-  }) : super(key: key);
-
-  final StoryData story;
+class Storys extends StatelessWidget {
+  const Storys({
+    super.key, required this.story,
+  });
+    final Storyy story;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 21.width(),
-      ),
-      child: SizedBox(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                ProfileStoryNotViewed(story: story),
-              ],
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            routeFade(
+              page: const ViewStoryPage(),
             ),
-            SizedBox(
-              height: 4.height(),
+          ),
+          child: Container(
+            width: 46.width(),
+            height: 54.height(),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              border: Border.all(
+                color: Colors.green,
+                width: 2.5,
+              ),
             ),
-            Text(story.name, style: Inter.font400),
-          ],
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Image.network(
+                   story.posterImage,
+                  fit: BoxFit.cover,
+                )),
+          ),
         ),
-      ),
+        // SizedBox(
+        //   height: 4.height(),
+        // ),
+        //  Text(
+        //   story.posterName,
+        //   style: Inter.font00,
+        // ),
+      ],
     );
   }
 }
+    
 
-class ProfileStoryNotViewed extends StatelessWidget {
-  const ProfileStoryNotViewed({
-    Key? key,
-    required this.story,
-  }) : super(key: key);
-
-  final StoryData story;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 46.width(),
-      height: 54.height(),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          colors: [
-            Color(0xFFD91A46),
-            Color(0xFFFBAA47),
-            Color(0xFFA60F93),
-          ],
-        ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(width: 0.50)),
-        child: ProfileImage(story: story),
-      ),
-    );
-  }
-}
-
-class ProfileImage extends StatelessWidget {
-  const ProfileImage({
-    Key? key,
-    required this.story,
-  }) : super(key: key);
-
-  final StoryData story;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: Image.asset(
-        story.imageFileName,
-        fit: BoxFit.fill,
-      ),
-    );
-  }
-}
