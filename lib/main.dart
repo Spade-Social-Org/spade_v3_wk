@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-// import 'Common/routes/route_generator.dart';
 import 'Common/size_config/size_config.dart';
 import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 import 'Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
-
-//import 'package:spade/onbording.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,17 +17,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late bool isLogin;
+  bool isLogin = false;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
+    getvalue();
+  }
+
+  getvalue() async {
     await GetUserToken.getLoginValue().then((value) {
       if (value != null) {
-        isLogin = value;
+        setState(() {
+          isLogin = value;
+        });
       }
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

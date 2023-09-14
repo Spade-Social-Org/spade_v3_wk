@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -48,15 +50,17 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
         "city": widget.cityValue,
         "state": widget.stateValue,
         "postal_code": widget.postCode,
-      });
+      }).timeout(const Duration(seconds: 60));
       print(response.statusCode);
       return true;
+    } on TimeoutException {
+      return "Service unavailable!";
     } catch (e) {
       return e.toString();
     }
   }
 
-   _loaderOn() {
+  _loaderOn() {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -198,10 +202,8 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     action: SnackBarAction(
-                                      label: 'Ok',
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
+                                      label: 'Retry',
+                                      onPressed: () {},
                                     ),
                                   ));
                                 }

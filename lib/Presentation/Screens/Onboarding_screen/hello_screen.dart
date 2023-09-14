@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/verification_page.dart';
 import 'first_name_screen.dart';
 
 class HelloScreen extends StatelessWidget {
