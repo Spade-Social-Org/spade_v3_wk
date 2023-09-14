@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/question_progress.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/questions_enum.dart';
 
 class Question5 extends StatefulWidget {
   const Question5({super.key});
@@ -11,12 +10,6 @@ class Question5 extends StatefulWidget {
 }
 
 class _Question5State extends State<Question5> {
-  Question3Enum _question5 = Question3Enum.strongly_agree;
-  bool _q1 = true;
-  bool _q2 = false;
-  bool _q3 = false;
-  bool _q4 = false;
-  bool _q5 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

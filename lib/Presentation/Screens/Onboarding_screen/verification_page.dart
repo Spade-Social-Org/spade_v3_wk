@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
@@ -26,10 +28,14 @@ class _VerificationPageState extends State<VerificationPage> {
 
   Future postData(String val) async {
     try {
-      var url = 'https://spade-social.onrender.com/api/v1/auth/otp/verify';
-      var response = await dio.post(url, data: {"otp": val});
+      var url =
+          'https://spade-backend-v3-production.up.railway.app/api/v1/auth/otp/verify';
+      var response = await dio
+          .post(url, data: {"otp": val}).timeout(const Duration(seconds: 60));
       print(response.statusCode);
       return true;
+    } on TimeoutException {
+      return "Service unavailable!";
     } catch (e) {
       return e.toString();
     }
@@ -441,7 +447,7 @@ class _VerificationPageState extends State<VerificationPage> {
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       action: SnackBarAction(
-                                        label: 'Ok',
+                                        label: 'Retry',
                                         onPressed: () {},
                                       ),
                                     ));
