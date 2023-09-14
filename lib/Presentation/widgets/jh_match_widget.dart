@@ -340,6 +340,3 @@ class JHMatchWidget extends StatelessWidget {
     );
   }
 }
-
-
-
