@@ -18,8 +18,8 @@ class JHScheduleButton extends StatelessWidget {
         onPressed;
       },
       child: Container(
-          height: 25,
-          width: 50 * 2,
+          height: 40,
+          width: 60 * 2,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),

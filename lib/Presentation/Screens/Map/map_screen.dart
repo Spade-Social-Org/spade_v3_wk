@@ -201,6 +201,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
       body: Stack(
         children: [
           GoogleMap(
+            zoomControlsEnabled: true,
+            zoomGesturesEnabled: true,
             rotateGesturesEnabled: true,
             myLocationEnabled: isLocationEnabled,
             myLocationButtonEnabled: false,
@@ -228,7 +230,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
             ),
           Positioned(
             left: 20,
-            bottom: 20,
+            bottom: 50,
             child: GestureDetector(
               onTap: _showBottomSheet,
               child: CircleAvatar(
@@ -240,7 +242,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
           ),
           Positioned(
             right: 70,
-            bottom: 20,
+            bottom: 50,
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -402,6 +404,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
               Row(
                 children: [
                   const CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/Ellipse 378.png"),
                     radius: 30,
                   ),
                   const SizedBox(
@@ -484,6 +488,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,
+                    physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -558,6 +563,10 @@ class _GoogleMapState extends State<GoogleMapScreen>
                 ),
               ),
               const JHSearchField(),
+               CircleAvatar(
+                child: Image.asset("assets/images/Ellipse 378.png"),
+                 radius: 30,
+              ),
               Row(
                 children: [
                   for (int i = 0; i < 3; i++)
@@ -572,8 +581,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
                         width: 100,
                         child: Row(
                           children: [
-                            const Icon(
-                              Icons.bookmark_border_rounded,
+                             Icon(
+                              icons[i],
                               color: Colors.white,
                             ),
                             Text(
@@ -652,13 +661,13 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       ),
                       Image.asset('assets/images/arrowforward.png'),
                       const SizedBox(
-                        width: 10,
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/calendar.png'),
+                      const SizedBox(
+                        width: 5,
                       ),
                       Image.asset('assets/images/hearticon.png'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      // Image.asset('assets/images/placeimage.png'),
                     ],
                   ),
                 ],
@@ -667,7 +676,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
                 height: 250,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: images.length,
+                    itemCount: placeImages.length,
+                    physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -680,7 +690,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
-                                image: AssetImage(images[index]),
+                                image: AssetImage(placeImages[index]),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -688,7 +698,210 @@ class _GoogleMapState extends State<GoogleMapScreen>
                         ),
                       );
                     }),
-              )
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Ivy Restaurant',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Italian cusine',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          'Open now',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: CustomColors.greenPrimary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        '1.6 miles',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Row(
+                    children: [
+                      JHScheduleButton(
+                        title: 'Schedule',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset('assets/images/arrowforward.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/calendar.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/hearticon.png'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: placeImages.length,
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 90 * 10,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(placeImages[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 12,
+            ),
+            child: Text(
+              'Twisted Root Burger',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 12,
+            ),
+            child: Text(
+              'Burger joint',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Text(
+                      'Open now',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: CustomColors.greenPrimary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Text(
+                    '0.8 miles',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                width: 14,
+              ),
+              Row(
+                children: [
+                  JHScheduleButton(
+                    title: 'Schedule',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Image.asset('assets/images/arrowforward.png'),
+                   SizedBox(
+                    width: 5,
+                  ),
+                  Image.asset('assets/images/calendar.png'),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Image.asset('assets/images/hearticon.png'),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: placeImages.length,
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 90 * 10,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: AssetImage(placeImages[index]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),)
             ],
           ),
         );
