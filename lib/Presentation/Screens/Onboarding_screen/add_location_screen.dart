@@ -22,7 +22,7 @@ class AddLocationScreen extends StatefulWidget {
 class _AddLocationScreenState extends State<AddLocationScreen> {
   final controller = TextEditingController();
 
-  /// Variables to store country state city data in onChanged method.
+  // Variables to store country state city data in onChanged method.
   String countryValue = "";
   String stateValue = "";
   String cityValue = "";

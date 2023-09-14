@@ -10,27 +10,6 @@ class LoginOrSignupScreen extends StatefulWidget {
 }
 
 class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
-  // _loaderOn() {
-  //   showDialog(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (BuildContext dialogContext) {
-  //       return Container(
-  //         color: Colors.white,
-  //         child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
-  //       );
-  //     },
-  //   );
-
-  //   Future.delayed(const Duration(seconds: 4), () {
-  //     Navigator.pop(context);
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => const NavigationContainer()),
-  //     );
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +48,6 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
               child: Center(
                 child: GestureDetector(
                   onTap: () {
-                    // _loaderOn();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
