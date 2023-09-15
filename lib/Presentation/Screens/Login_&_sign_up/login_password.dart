@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -27,13 +29,16 @@ class _LoginPasswordState extends State<LoginPassword> {
 
   Future postData(String password) async {
     try {
-      var url = 'https://spade-social.onrender.com/api/v1/auth/login';
+      var url =
+          'https://spade-backend-v3-production.up.railway.app/api/v1/auth/login';
       var response = await dio.post(url, data: {
         "email": widget.email,
         "password": password,
-      });
+      }).timeout(const Duration(seconds: 60));
       print(response.statusCode);
       return true;
+    } on TimeoutException {
+      return "Service unavailable!";
     } catch (e) {
       return e.toString();
     }
@@ -184,7 +189,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   action: SnackBarAction(
-                                    label: 'Ok',
+                                    label: 'Retry',
                                     onPressed: () {},
                                   ),
                                 ));
