@@ -31,6 +31,9 @@ class _MyAppState extends State<MyApp> {
         setState(() {
           isLogin = value;
         });
+        setState((){
+          isLogin = value;
+          });   
       }
     });
   }
