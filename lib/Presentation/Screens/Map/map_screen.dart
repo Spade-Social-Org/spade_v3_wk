@@ -1,11 +1,15 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spade_v4/Presentation/widgets/places_items.dart';
+
 import '../../../Common/theme.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
@@ -384,8 +388,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
           expand: false,
           initialChildSize: 0.4,
           minChildSize: 0.1,
-          builder: (BuildContext context, ScrollController) => ListView(
-            controller: ScrollController,
+          builder: (BuildContext context, scrollController) => ListView(
+            controller: scrollController,
             children: [
               const SizedBox(
                 height: 2,
@@ -546,8 +550,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
           expand: false,
           initialChildSize: 0.4,
           minChildSize: 0.1,
-          builder: (BuildContext context, ScrollController) => ListView(
-            controller: ScrollController,
+          builder: (BuildContext context, scrollController) => ListView(
+            controller: scrollController,
             children: [
               const SizedBox(
                 height: 2,
@@ -563,9 +567,9 @@ class _GoogleMapState extends State<GoogleMapScreen>
                 ),
               ),
               const JHSearchField(),
-               CircleAvatar(
+              CircleAvatar(
                 child: Image.asset("assets/images/Ellipse 378.png"),
-                 radius: 30,
+                radius: 30,
               ),
               Row(
                 children: [
@@ -581,7 +585,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                         width: 100,
                         child: Row(
                           children: [
-                             Icon(
+                            Icon(
                               icons[i],
                               color: Colors.white,
                             ),
@@ -801,107 +805,108 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       );
                     }),
               ),
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 12,
-            ),
-            child: Text(
-              'Twisted Root Burger',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 12,
-            ),
-            child: Text(
-              'Burger joint',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: Text(
-                      'Open now',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: CustomColors.greenPrimary,
-                      ),
-                    ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Twisted Root Burger',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Text(
-                    '0.8 miles',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
+                ),
               ),
-              const SizedBox(
-                width: 14,
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Burger joint',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Row(
                 children: [
-                  JHScheduleButton(
-                    title: 'Schedule',
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Image.asset('assets/images/arrowforward.png'),
-                   SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset('assets/images/calendar.png'),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset('assets/images/hearticon.png'),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: placeImages.length,
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 90 * 10,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(placeImages[index]),
-                            fit: BoxFit.cover,
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          'Open now',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: CustomColors.greenPrimary,
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),)
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        '0.8 miles',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Row(
+                    children: [
+                      JHScheduleButton(
+                        title: 'Schedule',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset('assets/images/arrowforward.png'),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/calendar.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/hearticon.png'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: placeImages.length,
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 90 * 10,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(placeImages[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              )
             ],
           ),
         );

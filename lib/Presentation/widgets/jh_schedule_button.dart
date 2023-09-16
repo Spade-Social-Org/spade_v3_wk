@@ -14,8 +14,8 @@ class JHScheduleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        onPressed;
+      onTap: () async {
+        await onPressed();
       },
       child: Container(
           height: 40,

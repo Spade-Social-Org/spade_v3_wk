@@ -18,8 +18,9 @@ class NavigationContainer extends StatefulWidget {
 class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
   bool _showOption = false;
-  int card_click = 0;
+  int cardClick = 0;
 
+  // ignore: unused_element
   void _onIconTapped(int index) {
     setState(() {
       _selectedPageIndex = index;
@@ -27,13 +28,13 @@ class _NavigationContainerState extends State<NavigationContainer> {
   }
 
   void _zoneClick(int index) {
-    if (card_click == index) {
+    if (cardClick == index) {
       setState(() {
-        card_click = 0;
+        cardClick = 0;
       });
     } else {
       setState(() {
-        card_click = index;
+        cardClick = index;
       });
     }
   }
@@ -158,7 +159,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                     fit: StackFit.expand,
                     children: [
                       Positioned(
-                          top: card_click == 1 ? 1 : 12,
+                          top: cardClick == 1 ? 1 : 12,
                           left: 0,
                           child: GestureDetector(
                             onTap: (() => {
@@ -168,7 +169,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: -0.5,
                               child: Container(
-                                height: card_click == 1 ? 35.0 : 20.0,
+                                height: cardClick == 1 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.red,
                               ),
@@ -176,7 +177,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           )),
                       Positioned(
                           left: 22.0,
-                          top: card_click == 2 ? -5.0 : 5.0,
+                          top: cardClick == 2 ? -5.0 : 5.0,
                           child: GestureDetector(
                             onTap: (() => {
                                   bottomNavigationProvider.updateIndex('green'),
@@ -185,7 +186,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: -0.2,
                               child: Container(
-                                height: card_click == 2 ? 35.0 : 20.0,
+                                height: cardClick == 2 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.green.shade900,
                               ),
@@ -193,7 +194,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           )),
                       Positioned(
                           left: 45.0,
-                          top: card_click == 3 ? -5.0 : 5.0,
+                          top: cardClick == 3 ? -5.0 : 5.0,
                           child: GestureDetector(
                             onTap: (() => {
                                   bottomNavigationProvider
@@ -203,7 +204,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: 0.2,
                               child: Container(
-                                height: card_click == 3 ? 35.0 : 20.0,
+                                height: cardClick == 3 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.yellow,
                               ),
@@ -211,7 +212,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           )),
                       Positioned(
                           left: 67.0,
-                          top: card_click == 4 ? 0.0 : 12.0,
+                          top: cardClick == 4 ? 0.0 : 12.0,
                           child: GestureDetector(
                             onTap: (() => {
                                   bottomNavigationProvider.updateIndex('grey'),
@@ -220,7 +221,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: 0.5,
                               child: Container(
-                                height: card_click == 4 ? 35.0 : 20.0,
+                                height: cardClick == 4 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.grey,
                               ),
@@ -234,7 +235,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                                   if (_showOption)
                                     {
                                       setState(
-                                          () => {_showOption = !_showOption})
+                                          () => _showOption = !_showOption)
                                     }
                                 }),
                             child: Transform.rotate(

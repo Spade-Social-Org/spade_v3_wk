@@ -73,6 +73,7 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
     );
   }
 
+  // ignore: unused_element
   Future<void> _showDialogLoader() {
     return showDialog(
       barrierDismissible: false,

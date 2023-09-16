@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 class JHMainButton extends StatelessWidget {
   final String title;
   final Color color;
   final Function onPressed;
   const JHMainButton({
-    super.key, required this.title, required this.color, required this.onPressed,
+    super.key,
+    required this.title,
+    required this.color,
+    required this.onPressed,
   });
 
   @override
@@ -16,9 +18,9 @@ class JHMainButton extends StatelessWidget {
         height: 50,
         minWidth: double.infinity,
         onPressed: () {
-          onPressed;
+          onPressed();
         },
-        child:   Text(
+        child: Text(
           title,
           style: TextStyle(
             color: Colors.white,

@@ -19,6 +19,7 @@ class PlacesRepositoryImpl implements PlacesRepository {
           await api.fetchPlaces(placeType, location, pageToken: nextPageToken);
       logger.d('API Response Data: $data');
 
+      // ignore: unnecessary_null_comparison
       if (data != null && data.containsKey('results')) {
         final placesJson = data['results'] as List<dynamic>;
 
