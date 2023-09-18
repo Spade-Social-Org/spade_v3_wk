@@ -160,15 +160,11 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
-    if (file != null) {
-      navigateTo(
-        context,
-        Routes.imageSendingScreen2,
-        arguments: {'imageFile': file},
-      );
-    } else {
-      print('Failed to capture a photo.');
-    }
+    navigateTo(
+      context,
+      Routes.imageSendingScreen2,
+      arguments: {'imageFile': file},
+    );
   }
 
   @override

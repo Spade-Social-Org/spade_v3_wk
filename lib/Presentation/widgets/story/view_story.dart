@@ -2,44 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:like_button/like_button.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
+import 'package:spade_v4/Common/extensions/date_time/date_time.dart';
 
 import '../../../Common/managers/barrel_manager.dart';
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
+import '../../../Data/Models/story/story_view_model.dart';
 import '../../logic_holder/bloc/heart_bloc/heart_bloc.dart';
 import '../../logic_holder/bloc/heart_bloc/heart_bloc_event.dart';
 import '../../logic_holder/bloc/heart_bloc/heart_bloc_state.dart';
 import 'animated_line.dart';
 
 class ViewStoryPage extends StatefulWidget {
-  static const dummyImageUrls = [
-    {
-      'image': "assets/images/imagess/j.jpg",
-    },
-    {
-      'image': "assets/images/imagess/jj.jpg",
-    },
-    {
-      'image': "assets/images/imagess/jjj.jpg",
-    },
-    {
-      'image': "assets/images/imagess/j.jpg",
-    },
-    {
-      'image': "assets/images/imagess/jj.jpg",
-    },
-    {
-      'image': "assets/images/imagess/jjj.jpg",
-    },
-    {
-      'image': "assets/images/imagess/j.jpg",
-    },
-  ];
-
-  // final Storyy storry;
+  final Storyy storry;
 
   const ViewStoryPage({
     Key? key,
-    // required this.storry,
+    required this.storry,
   }) : super(key: key);
 
   @override
@@ -86,7 +64,7 @@ class _ViewStoryPageState extends State<ViewStoryPage>
   }
 
   void _nextStory() {
-    if (_currentStory < ViewStoryPage.dummyImageUrls.length - 1) {
+    if (_currentStory < widget.storry.gallery!.length - 1) {
       setState(() => _currentStory++);
 
       _pageController.nextPage(
@@ -104,6 +82,26 @@ class _ViewStoryPageState extends State<ViewStoryPage>
           curve: Curves.easeInOutQuint);
       _showStory();
     }
+  }
+
+  String date() {
+    final difference = DateTime.now().difference(widget.storry.createAt);
+
+    if (difference.inSeconds < 60) {
+      return "${difference.inSeconds} seconds ago";
+    } else if (difference.inMinutes < 60) {
+      return "${difference.inMinutes} minutes ago";
+    } else if (difference.inHours < 24) {
+      return "${difference.inHours} hours ago";
+    } else if (difference.inDays < 31) {
+      return "${difference.inDays} days ago";
+    } else if (difference.inWeeks() < 4) {
+      return "${difference.inWeeks()} weeks ago";
+    } else if (difference.inMonths() < 12) {
+      return "${difference.inMonths()} months ago";
+    }
+
+    return "error";
   }
 
   @override
@@ -126,10 +124,10 @@ class _ViewStoryPageState extends State<ViewStoryPage>
             child: PageView.builder(
               physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
-              itemCount: ViewStoryPage.dummyImageUrls.length,
+              itemCount: widget.storry.gallery!.length,
               itemBuilder: (context, index) {
-                return Image.asset(
-                  ViewStoryPage.dummyImageUrls[index]['image'] ?? '',
+                return Image.network(
+                  widget.storry.gallery![index],
                   fit: BoxFit.cover,
                 );
               },
@@ -141,7 +139,7 @@ class _ViewStoryPageState extends State<ViewStoryPage>
               const SizedBox(height: 30.0),
               Row(
                 children: List.generate(
-                  ViewStoryPage.dummyImageUrls.length,
+                  widget.storry.gallery!.length,
                   (index) => Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 7.0),
@@ -161,21 +159,33 @@ class _ViewStoryPageState extends State<ViewStoryPage>
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 18.width()),
-                    child: SizedBox(
-                      height: 46.height(),
-                      width: 46.width(),
-                      child: const CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.green,
-                        // backgroundImage: NetworkImage(
-                        //   widget.storry.posterImage,
-                        // ),
-                      ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 46.height(),
+                          width: 46.width(),
+                          child: CircleAvatar(
+                            radius: 20,
+                            backgroundImage: NetworkImage(
+                              widget.storry.posterImage,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5.height()),
+                        Text(
+                          date(),
+                          style: const TextStyle(
+                              fontSize: 10, color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                  Image.asset(
-                    "assets/images/img/cancel.png",
-                    color: Colors.white,
+                  InkWell(
+                    onTap: () => Navigator.pop(context),
+                    child: Image.asset(
+                      "assets/images/img/cancel.png",
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),

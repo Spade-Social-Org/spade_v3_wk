@@ -31,10 +31,10 @@ class _AddStoryMainState extends State<AddStoryMain> {
           child: Stack(
             children: [
               Container(
-                height: 54.height(),
+                height: 50.height(),
                 width: 46.width(),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
                   border: Border.all(
                     width: 2.5,
                     color: Colors.grey,

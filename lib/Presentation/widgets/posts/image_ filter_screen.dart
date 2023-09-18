@@ -367,27 +367,4 @@ class _SendImageScreen2State extends State<SendImageScreen2> {
       ),
     );
   }
-
-// Widget buildDot({int? index}) {
-//     return AnimatedContainer(
-//       duration: const Duration(milliseconds: 400),
-//       margin: EdgeInsets.only(right: 5.width()),
-//       height: 11.height(),
-//       width: 9.width(),
-//       decoration: BoxDecoration(
-//         color: currentPage == index ? Colors.green : Colors.white,
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//     );
-//   }
-
-//   Row buildDotRow() {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: List.generate(
-//         PostController().allPosts!.length,
-//         (index) => buildDot(index: index),
-//       ),
-//     );
-//   }
 }

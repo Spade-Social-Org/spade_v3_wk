@@ -1,73 +1,3 @@
-// import 'dart:developer';
-// import 'dart:io';
-
-// import 'package:dio/dio.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:spade_v4/Data/Models/posts/post_model.dart';
-
-// class ApiService {
-//   ApiService._();
-
-//   static Dio _init() {
-//     final _dio = Dio();
-//     _dio.options = BaseOptions(
-//       baseUrl: "https://spade-social.onrender.com",
-//       connectTimeout: const Duration(seconds: 40),
-//       receiveTimeout: const Duration(seconds: 40),
-//       sendTimeout: const Duration(seconds: 40),
-//       headers: {
-//         "accept": "*/*",
-//         "Content-Type": "multipart/form-data",
-//         "Authorization":
-//             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJpYXQiOjE2OTI0NTI2OTl9.asYxoX88DAVeT4-B0sZ23SUm0FCkCVEOCgKReHA5koY'
-//       },
-//     );
-//     return _dio;
-//   }
-
-//   static Future<dynamic> _get(String path) {
-//     return _init().get(path);
-//   }
-
-//   // static Future<dynamic> _post(String path, FormData payload) {
-//   //   return _init().post(path, data: payload);
-//   // }
-
-//   static Future<dynamic> _post(String path, FormData payload) async {
-//     try {
-//       final response = await _init().post(path, data: payload);
-
-//       if (response.statusCode == 200) {
-//         return response.data;
-//       } else {
-//         // Handle non-200 status codes here
-//         print("Request failed with status code ${response.statusCode}");
-//         return null;
-//       }
-//     } catch (error) {
-//       // Handle network errors here
-//       print("Network error: $error");
-//       return null;
-//     }
-//   }
-
-//   static Future<void> createPost3(File file) async {
-//     String fileName = file.path.split('/').last;
-//     FormData formData = FormData.fromMap({
-//       'description': 'smaple',
-//       'is_story': false,
-//       'files': await MultipartFile.fromFile(
-//         file.path,
-//         filename: fileName,
-//       ),
-//     });
-//     var response = await _post("/api/v1/posts", formData);
-//     log(response.toString());
-//     log(response.data.toString());
-//     // return response.data;
-//   }
-// }
-
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
@@ -77,7 +7,9 @@ import 'package:http_parser/http_parser.dart';
 import 'package:spade_v4/Data/Models/story/story_view_model.dart';
 import 'package:spade_v4/Presentation/widgets/story/story_controller.dart';
 
+import '../../../Presentation/widgets/posts/new_post_controller.dart';
 import '../../../Presentation/widgets/posts/post_controller.dart';
+import '../../../Presentation/widgets/story/new_story_controller.dart';
 import '../../Models/posts/post_model.dart';
 
 class ApiService {
@@ -96,7 +28,7 @@ class ApiService {
           "accept": "*/*",
           "Content-Type": "multipart/form-data",
           "Authorization":
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTk0NzQ0fQ.dJNUvrlt1iCIgcP0cSuCf9rJUsnrasAD-d6FPqEXa8I",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk1MDEwNDQ3fQ.stQATT8eecn4Xm4t6M89Hr9QrRt7oRs9Jj-DcSwf4Ow",
         });
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -134,14 +66,23 @@ class ApiService {
   }
 
   static Future<Response> createPost3(File file) async {
+    print('1');
+    if (file == null) {
+      print('2');
+      throw Exception('File cannot be null');
+    }
+    print('3');
     String fileName = file.path.split('/').last;
+    print('4');
     log(file.path);
+    print('5');
     FormData formData = FormData.fromMap({
       'description': 'sample1',
       'is_story': false,
       'files': MultipartFile.fromFileSync(file.path,
           filename: fileName, contentType: MediaType("image", "jpg")),
     });
+    print('6');
     return await _post("/api/v1/posts", formData);
   }
 
@@ -157,45 +98,137 @@ class ApiService {
     return await _post("/api/v1/posts", formData);
   }
 
+  static Future<void> createAndDisplayPost1(File file) async {
+    try {
+      print('error10');
+
+      Response response = await ApiService.createPost3(file);
+      print('error11');
+
+      if (response.statusCode == 200) {
+        print('error12');
+
+        final responseData = response.data;
+        print('error13');
+        if (responseData == null) {
+          print("$responseData");
+          print("Error creating post: Invalid response data");
+          return;
+        }
+        print("$responseData");
+        print('error14');
+        // Check if the responseData contains the expected fields
+
+        print("$responseData");
+        final newPost = NewPost.fromJson(responseData);
+        print("$responseData");
+        print('error17');
+        NewPostController().addPost = newPost;
+        print("$responseData");
+        print('error18');
+      } else {
+        print("${response.statusMessage}");
+      }
+    } catch (e) {
+      print("$e");
+    }
+  }
+
+  static Future<void> createAndDisplayStory(File file) async {
+    try {
+      print('error10');
+
+      Response response = await ApiService.createStory3(file);
+      print('error11');
+
+      if (response.statusCode == 200) {
+        print('error12');
+
+        final responseData = response.data;
+        print('error13');
+        print("$responseData");
+        if (responseData == null) {
+          print("$responseData");
+          return;
+        }
+        print("$responseData");
+        // Check if the responseData contains the expected fields
+        if (responseData.containsKey('id') &&
+            responseData.containsKey('created_at') &&
+            responseData.containsKey('description') &&
+            responseData.containsKey('gallery')) {
+          print("$responseData");
+          print('error14');
+
+          final newStory = NewStory.fromJson(responseData);
+          print("$responseData");
+          print('error17');
+          print("$responseData");
+          NewStoryController().addStory = newStory;
+          print("$responseData");
+          print('error18');
+        } else {
+          print("${response.statusMessage}");
+        }
+      }
+    } catch (e) {
+      print("$e");
+    }
+  }
+
   static Future<void> createAndDisplayPost(File file) async {
     try {
       print('error10');
       Response response = await ApiService.createPost3(file);
       print('error11');
+
       if (response.statusCode == 200) {
         print('error12');
-        Map<String, dynamic> responseData = response.data;
+
+        final responseData = response.data;
         print('error13');
-        Post post = Post.fromJson(responseData);
-        print('error14');
-        // addPost = post;
-        PostController().addPost = post;
-        print('error15');
+
+        if (responseData == null) {
+          print("$responseData");
+          print("Error creating post: Invalid response data");
+          return;
+        }
+
+        // Check if the responseData contains the expected fields
+        if (responseData.containsKey('id') &&
+            responseData.containsKey('created_at') &&
+            responseData.containsKey('description') &&
+            responseData.containsKey('gallery')) {
+          print("$responseData");
+          print('error14');
+
+          final newPost = NewPost.fromJson(responseData);
+          print('error17');
+          NewPostController().addPost = newPost;
+          print("$responseData");
+          print('error18');
+        } else {
+          print("$responseData");
+        }
       } else {
-        print("Error creating post: ${response.statusMessage}");
+        print("${response.statusMessage}");
       }
     } catch (e) {
-      print("Error creating post: $e");
+      print("$e");
     }
   }
 
-  static Future<void> getAllPost() async {
-    print('error');
+  static Future<List<Post>> getAllPost() async {
     try {
-      final response = await _get("/api/v1/posts/user/feeds?is_story=false");
-      print('error2');
+      final response = await _get(
+          "/api/v1/posts/user/feeds?is_story=false?");
       final List<dynamic> responseData = response.data["data"];
-      print('error3');
       final List<Post> posts =
           responseData.map((data) => Post.fromJson(data)).toList();
-      print('error4');
       log(posts.toString());
-      print('error5');
       final postController = PostController();
-      print('error6');
       postController.addPosts = posts;
-      print('error7');
-      return;
+      return posts;
     } catch (e) {
       throw Exception('Failed to load posts');
     }
