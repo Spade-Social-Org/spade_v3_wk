@@ -843,15 +843,14 @@ class JHCompatibilityWidget extends StatelessWidget {
                         // alignment: Alignment.center,
 
                         children: [
-                          const SizedBox(
-                            height: 40,
-                          ),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
                                 onTap: () {
                                   counterProvider.goBack();
+
                                 },
                                 child: const Padding(
                                     padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
@@ -868,7 +867,10 @@ class JHCompatibilityWidget extends StatelessWidget {
                               const Text(""),
                             ],
                           ),
-                          Image.asset("assets/images/analysis_options.png",height: screenHeight * 0.5, width: double.infinity,),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Container(child: Image.asset("assets/images/analysis_options.png",height: screenHeight * 0.5, width: double.infinity,)),
                           Positioned(
                             bottom: 0,
                             left: 0,

@@ -22,14 +22,21 @@ class DiscoverService extends ChangeNotifier{
   }
 
   void goBack() {
-    if(_cardType == 'holder' || _cardType == 'analysis'){
+    if(_cardType == 'holder'){
       _cardType = "default";
 
       notifyListeners();
 
-    } else{
-      _cardType = 'holder';
-      notifyListeners();
+    }else{
+      if( _cardType == 'analysis') {
+        _cardType = "default";
+
+        notifyListeners();
+      } else{
+        _cardType = 'holder';
+        notifyListeners();
+      }
+
 
     }
 
