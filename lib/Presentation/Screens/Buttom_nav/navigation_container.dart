@@ -30,10 +30,13 @@ class _NavigationContainerState extends State<NavigationContainer> {
     if(card_click == index){
       setState(() {
         card_click = 0;
+        _showOption = false;
       });
+
     }else{
       setState(() {
         card_click = index;
+        _showOption = false;
       });
     }
 

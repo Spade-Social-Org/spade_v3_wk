@@ -14,7 +14,7 @@ class ActivitiesWidget extends StatelessWidget {
     return Flexible(
       child: Container(
         // height: screenHeight * 0.8,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
           topLeft: Radius.circular(12.0),
       topRight: Radius.circular(12.0),
@@ -39,15 +39,15 @@ class ActivitiesWidget extends StatelessWidget {
                       height: 2.0,
                     ),
                   ),
-                  SizedBox(height: 25,),
+                  const SizedBox(height: 25,),
                   CustomCircularProgressBar(
                     width: 120.0, // Width of the circular progress bar
                     height: 120.0, // Height of the circular progress bar
                     progress: 0.5, // Progress value between 0.0 and 1.0
                     strokeWidth: 25.0, // Width of the progress bar line
-                    color: Color.fromRGBO(161,39,24, 1), value: 50, // Color of the progress bar
+                    color: const Color.fromRGBO(161,39,24, 1), value: 50, // Color of the progress bar
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   const Text(
                       'Physical attraction can play a significant role in sparking a deeper connection',
                     style: TextStyle(
@@ -62,7 +62,7 @@ class ActivitiesWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
 
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   const Text(
                     "Here's a breakdown of how your physical attraction can play a significant role in sparking a deeper connection:",
                     style: TextStyle(
@@ -82,14 +82,14 @@ class ActivitiesWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Flexible(
               child: Container(
                 // height: screenHeight * 0.36,
       width: screenWidth,
 
       decoration: const BoxDecoration(
-        color: Color.fromRGBO(78, 78, 78, 0.2),
+        color: Color.fromRGBO(161,39,24, 0.2),
       borderRadius: BorderRadius.only(
       topLeft: Radius.circular(12.0),
       topRight: Radius.circular(12.0),
@@ -101,16 +101,16 @@ class ActivitiesWidget extends StatelessWidget {
       ),),
                 child: Column(
                   children: [
-                    SizedBox(height: 12,),
+                    const SizedBox(height: 12,),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             width: 290,
-                            child:  Column(
+                            child:  const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -143,7 +143,7 @@ class ActivitiesWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '50%',
-                            backgroundColor: Color.fromRGBO(161,39,24, 1),
+                            backgroundColor: const Color.fromRGBO(161,39,24, 1),
                           ),
                         ],
                       ),
@@ -155,14 +155,14 @@ class ActivitiesWidget extends StatelessWidget {
                       endIndent: 10, // End indent (space after the line)
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             width: 290,
-                            child:  Column(
+                            child:  const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -195,26 +195,26 @@ class ActivitiesWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '55%',
-                            backgroundColor: Color.fromRGBO(161,39,24, 1),
+                            backgroundColor: const Color.fromRGBO(161,39,24, 1),
                           ),
                         ],
                       ),
                     ),
-                    Divider( // This creates a horizontal line
+                    const Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
                       endIndent: 10, // End indent (space after the line)
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             width: 290,
-                            child:  Column(
+                            child:  const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -247,26 +247,26 @@ class ActivitiesWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '30%',
-                            backgroundColor: Color.fromRGBO(161,39,24, 1),
+                            backgroundColor: const Color.fromRGBO(161,39,24, 1),
                           ),
                         ],
                       ),
                     ),
-                    Divider( // This creates a horizontal line
+                    const Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
                       endIndent: 10, // End indent (space after the line)
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             width: 290,
-                            child:  Column(
+                            child:  const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -299,12 +299,12 @@ class ActivitiesWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '95%',
-                            backgroundColor: Color.fromRGBO(161,39,24, 1),
+                            backgroundColor: const Color.fromRGBO(161,39,24, 1),
                           ),
                         ],
                       ),
                     ),
-                    Divider( // This creates a horizontal line
+                    const Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
@@ -359,7 +359,7 @@ class _CustomCircularProgressBarState extends State<CustomCircularProgressBar> {
             color: Colors.white.withOpacity(0.2), // Shadow color
             spreadRadius: 5, // Spread radius
             blurRadius: 10, // Blur radius
-            offset: Offset(10, 0), // Shadow offset
+            offset: const Offset(10, 0), // Shadow offset
           ),
         ],
       ),
@@ -414,7 +414,7 @@ class CircularProgressBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Color.fromRGBO(238,238, 238, 1) // Background color
+      ..color = const Color.fromRGBO(238,238, 238, 1) // Background color
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
@@ -464,7 +464,7 @@ class RoundedContainer extends StatelessWidget {
         Container(
           height: 40,
           width: 40,
-          padding: EdgeInsets.all(16.0), // Adjust the padding as needed
+          padding: const EdgeInsets.all(16.0), // Adjust the padding as needed
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(75.0), // Adjust the radius as needed
@@ -476,7 +476,7 @@ class RoundedContainer extends StatelessWidget {
           left: 10,
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white, // Text color
               fontSize: 12.0, // Font size
             ),
