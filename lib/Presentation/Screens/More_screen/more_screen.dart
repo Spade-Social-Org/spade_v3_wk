@@ -10,6 +10,11 @@ class MoreScreen extends StatefulWidget {
 class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+          child: Container(
+              child: Image.asset('assets/images/13315296_5206506 1.png'))),
+    );
   }
 }
