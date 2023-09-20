@@ -6,9 +6,11 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spade_v4/Presentation/widgets/places_items.dart';
+import '../../../Common/theme.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
 import '../../widgets/jh_logger.dart';
+import '../../widgets/jh_schedule_button.dart';
 import '../../widgets/jh_search_bar.dart';
 import '../Global/global.dart';
 
@@ -199,6 +201,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
       body: Stack(
         children: [
           GoogleMap(
+            zoomControlsEnabled: true,
+            zoomGesturesEnabled: true,
             rotateGesturesEnabled: true,
             myLocationEnabled: isLocationEnabled,
             myLocationButtonEnabled: false,
@@ -226,7 +230,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
             ),
           Positioned(
             left: 20,
-            bottom: 20,
+            bottom: 50,
             child: GestureDetector(
               onTap: _showBottomSheet,
               child: CircleAvatar(
@@ -238,7 +242,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
           ),
           Positioned(
             right: 70,
-            bottom: 20,
+            bottom: 50,
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -383,114 +387,129 @@ class _GoogleMapState extends State<GoogleMapScreen>
           builder: (BuildContext context, ScrollController) => ListView(
             controller: ScrollController,
             children: [
-              const JHSearchField(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 30,
-                    ),
-                    const Spacer(),
-                    ClipRRect(
+              const SizedBox(
+                height: 2,
+              ),
+              Center(
+                child: Container(
+                  width: 20 * 7,
+                  height: 6,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //          OpenNowScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.white, width: 2),
-                                  color: Colors.white38,
-                                  borderRadius: BorderRadius.circular(20)),
-                              height: 30,
-                              width: 60,
-                              child:
-                                  Image.asset("assets/images/Vector (2).png"),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.white, width: 2),
-                                color: Colors.white38,
-                                borderRadius: BorderRadius.circular(20)),
-                            height: 30,
-                            width: 60,
-                            child: const Icon(
-                              Icons.favorite_border,
-                              color: Colors.white,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             CalenderScreen()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.white, width: 2),
-                                  color: Colors.white38,
-                                  borderRadius: BorderRadius.circular(20)),
-                              height: 30,
-                              width: 60,
-                              child: const Icon(
-                                Icons.calendar_month_outlined,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.white, width: 2),
-                                color: Colors.white38,
-                                borderRadius: BorderRadius.circular(20)),
-                            height: 30,
-                            width: 60,
-                            child: const Icon(
-                              Icons.bookmark_border_rounded,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                      shape: BoxShape.rectangle),
                 ),
+              ),
+              const JHSearchField(),
+              Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/Ellipse 378.png"),
+                    radius: 30,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white, width: 2),
+                              color: Colors.white38,
+                              borderRadius: BorderRadius.circular(20)),
+                          height: 30,
+                          width: 60,
+                          child: Image.asset("assets/images/Vector (2).png"),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 2),
+                            color: Colors.white38,
+                            borderRadius: BorderRadius.circular(20)),
+                        height: 30,
+                        width: 60,
+                        child: const Icon(
+                          Icons.favorite_border,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             CalenderScreen()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white, width: 2),
+                              color: Colors.white38,
+                              borderRadius: BorderRadius.circular(20)),
+                          height: 30,
+                          width: 60,
+                          child: const Icon(
+                            Icons.calendar_month_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 2),
+                            color: Colors.white38,
+                            borderRadius: BorderRadius.circular(20)),
+                        height: 30,
+                        width: 60,
+                        child: const Icon(
+                          Icons.bookmark_border_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
               SizedBox(
                 height: 200,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: images.length, // Replace with your data
+                    itemCount: images.length,
+                    physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Container(
-                                color: Colors.white,
-                                height: 90,
-                                width: 100,
-                                child: Image.asset(
-                                  images[index], // Replace with your image
-                                  fit: BoxFit.fill,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                                _placeShowBottomSheet();
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Container(
+                                  color: Colors.white,
+                                  height: 90,
+                                  width: 100,
+                                  child: Image.asset(
+                                    images[index],
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -498,7 +517,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                               height: 5,
                             ),
                             Text(
-                              title[index], // Replace with your text
+                              title[index],
                               style: const TextStyle(color: Colors.white),
                             ),
                           ],
@@ -506,6 +525,383 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       );
                     }),
               )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _placeShowBottomSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.4,
+          minChildSize: 0.1,
+          builder: (BuildContext context, ScrollController) => ListView(
+            controller: ScrollController,
+            children: [
+              const SizedBox(
+                height: 2,
+              ),
+              Center(
+                child: Container(
+                  width: 20 * 7,
+                  height: 6,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.rectangle),
+                ),
+              ),
+              const JHSearchField(),
+               CircleAvatar(
+                child: Image.asset("assets/images/Ellipse 378.png"),
+                 radius: 30,
+              ),
+              Row(
+                children: [
+                  for (int i = 0; i < 3; i++)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 2),
+                            color: Colors.white38,
+                            borderRadius: BorderRadius.circular(20)),
+                        height: 40,
+                        width: 100,
+                        child: Row(
+                          children: [
+                             Icon(
+                              icons[i],
+                              color: Colors.white,
+                            ),
+                            Text(
+                              text[i].toString(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Twisted Root Burger',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Burger joint',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          'Open now',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: CustomColors.greenPrimary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        '0.8 miles',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Row(
+                    children: [
+                      JHScheduleButton(
+                        title: 'Schedule',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset('assets/images/arrowforward.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/calendar.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/hearticon.png'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: placeImages.length,
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 90 * 10,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(placeImages[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Ivy Restaurant',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Italian cusine',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          'Open now',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: CustomColors.greenPrimary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        '1.6 miles',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Row(
+                    children: [
+                      JHScheduleButton(
+                        title: 'Schedule',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset('assets/images/arrowforward.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/calendar.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/hearticon.png'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: placeImages.length,
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 90 * 10,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(placeImages[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 12,
+            ),
+            child: Text(
+              'Twisted Root Burger',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 12,
+            ),
+            child: Text(
+              'Burger joint',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Text(
+                      'Open now',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: CustomColors.greenPrimary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Text(
+                    '0.8 miles',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                width: 14,
+              ),
+              Row(
+                children: [
+                  JHScheduleButton(
+                    title: 'Schedule',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Image.asset('assets/images/arrowforward.png'),
+                   SizedBox(
+                    width: 5,
+                  ),
+                  Image.asset('assets/images/calendar.png'),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Image.asset('assets/images/hearticon.png'),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: placeImages.length,
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 90 * 10,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: AssetImage(placeImages[index]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),)
             ],
           ),
         );

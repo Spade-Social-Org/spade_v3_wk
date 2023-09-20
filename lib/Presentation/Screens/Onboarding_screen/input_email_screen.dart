@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'add_location_screen.dart';
 
 class InputEmailScreen extends StatelessWidget {
-
-  const InputEmailScreen({super.key, });
+  const InputEmailScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Padding(
@@ -19,9 +20,9 @@ class InputEmailScreen extends StatelessWidget {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
-                    },
+                  },
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
@@ -51,19 +52,22 @@ class InputEmailScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
+              borderRadius: BorderRadius.circular(20),
+              child: MaterialButton(
                   height: 50,
                   minWidth: double.infinity,
                   color: Colors.black,
-                  child: const Text("Next",style: TextStyle(color: Colors.white,fontSize: 20),),
-                  onPressed: (){
+                  child: const Text(
+                    "Next",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>  AddLocationScreen())));
+                            builder: ((context) => AddLocationScreen())));
                   }),
-              ),
+            ),
           ),
           const SizedBox(
             height: 50,
