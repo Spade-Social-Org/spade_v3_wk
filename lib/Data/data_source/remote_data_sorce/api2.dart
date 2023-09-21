@@ -100,40 +100,20 @@ class ApiService {
 
   static Future<void> createAndDisplayPost1(File file) async {
     try {
-      print('error10');
-
       Response response = await ApiService.createPost3(file);
-      print('error11');
-      print("result: $response");
-      if (response.statusCode == "SUCCESS") {
-        print("result Data: ${response.data}");
+      log("result: ${response.statusCode}");
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData =
+            response.data as Map<String, dynamic>;
+        final List<dynamic> jsonList = responseData['data'] as List<dynamic>;
+        log("result Data: $jsonList");
+        final newPost = NewPost.fromJson(responseData);
+        NewPostController().addPost = newPost;
+      } else {
+        log("${response.statusMessage}");
       }
-      // if (response.statusCode == 200) {
-      //   print('error12');
-
-      //   final responseData = response.data;
-      //   print('error13');
-      //   if (responseData == null) {
-      //     print("$responseData");
-      //     print("Error creating post: Invalid response data");
-      //     return;
-      //   }
-      //   print("$responseData");
-      //   print('error14');
-      //   // Check if the responseData contains the expected fields
-
-      //   print("$responseData");
-      //   final newPost = NewPost.fromJson(responseData);
-      //   print("$responseData");
-      //   print('error17');
-      //   NewPostController().addPost = newPost;
-      //   print("$responseData");
-      //   print('error18');
-      // } else {
-      //   print("${response.statusMessage}");
-      // }
     } catch (e) {
-      print("$e");
+      log("$e");
     }
   }
 
@@ -221,23 +201,15 @@ class ApiService {
     }
   }
 
-  static Future<List<Post>> getAllPost(int page) async {
-    print('f1');
+  static Future<List<Post>> getAllPost() async {
     try {
-      final response = await _get(
-          "/api/v1/posts/user/feeds?is_story=false&page=$page&perPage=2");
-      print('f2');
+      final response = await _get("/api/v1/posts/user/feeds?is_story=false");
       final List<dynamic> responseData = response.data["data"];
-      print('f3');
       final List<Post> posts =
           responseData.map((data) => Post.fromJson(data)).toList();
-      print('f4');
       log(posts.toString());
-      print('f5');
-      final postController = PostController();
-      print('f6');
-      postController.addPosts = posts;
-      print('f7');
+      final postBloc = PostBloc();
+      postBloc.addPosts(posts);
       return posts;
     } catch (e) {
       throw Exception('Failed to load posts');

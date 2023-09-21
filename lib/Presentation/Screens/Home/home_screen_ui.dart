@@ -94,8 +94,10 @@ import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:spade_v4/Data/data_source/remote_data_sorce/api2.dart';
 import 'package:spade_v4/Presentation/widgets/home_screen_app_bar.dart';
+import 'package:spade_v4/Presentation/widgets/posts/post_controller.dart';
 
 import '../../widgets/posts/posts.dart';
+import '../../widgets/story/story_controller.dart';
 import '../../widgets/story/story_mode.dart';
 
 class HomeScreenUi extends StatefulWidget {
@@ -107,13 +109,11 @@ class HomeScreenUi extends StatefulWidget {
 
 class _HomeScreenUiState extends State<HomeScreenUi> {
   Future<void> _loadResources(bool reload) async {
-    // PostController().allPosts;
-    // StoryController().allStorys;
+    PostBloc().allPostsStream;
+    StoryController().allStorys;
     // await getAllPost();
     await ApiService.getAllStories();
   }
-
-  
 
   @override
   void initState() {
@@ -126,29 +126,28 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        body:  RefreshIndicator(
-            onRefresh: () async {
-              await _loadResources(true);
-            },
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const HomeScreenAppBar(),
-                  SizedBox(height: 25.height()),
-                  ListView(
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    children: const [
-                      StoryMode(),
-                      SizedBox(height: 46),
-                      // PostUi(),
-                    ],
-                  ),
-                ],
-              ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await _loadResources(true);
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const HomeScreenAppBar(),
+                SizedBox(height: 25.height()),
+                ListView(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  children: const [
+                    StoryMode(),
+                    SizedBox(height: 46),
+                    PostUi(),
+                  ],
+                ),
+              ],
             ),
           ),
-        
+        ),
       ),
     );
   }
