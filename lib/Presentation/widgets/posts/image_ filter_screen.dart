@@ -22,14 +22,11 @@ class SendImageScreen2 extends StatefulWidget {
 final GlobalKey _globalKey = GlobalKey();
 final List<List<double>> filters = [
   noFilters,
-  sepium,
   greyScale,
-  sepia,
-  colorShift,
-  purple,
-  yellow,
-  blackAndhite,
-  coldLife
+  // juno,
+  // gaussianBlurMatrix,
+  // lofi,
+  // moon
 ];
 
 // Future<void> _cropImage(BuildContext context) async {
@@ -59,10 +56,9 @@ final List<List<double>> filters = [
 //     );
 // }
 
-
 // Future<void> _cropImage(BuildContext context) async {
 //   File? croppedImage = await ImageCropper().cropImage(
-//     sourcePath: widget.image!.path, 
+//     sourcePath: widget.image!.path,
 //     aspectRatioPresets: [
 //       CropAspectRatioPreset.square,
 //       CropAspectRatioPreset.ratio3x2,
@@ -87,7 +83,6 @@ final List<List<double>> filters = [
 //     ],
 //   );
 // }
-
 
 class _SendImageScreen2State extends State<SendImageScreen2> {
   @override
@@ -167,6 +162,8 @@ class _SendImageScreen2State extends State<SendImageScreen2> {
                     Image.asset(AssetManager.arrowIcon9, width: 30.width()),
                     SizedBox(height: 20.height()),
                     Image.asset(AssetManager.arrowIcon11, width: 30.width()),
+                    SizedBox(height: 20.height()),
+                    Image.asset(AssetManager.arrowIcon8, width: 30.width()),
                   ],
                 ),
               ),
@@ -227,13 +224,13 @@ class _SendImageScreen2State extends State<SendImageScreen2> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: 18.height(),
-                            left: 39.width(),
+                            left: 34.width(),
                             bottom: 19.height()),
                         child: GestureDetector(
                           onTap: () {},
                           child: Container(
-                            width: 70.width(),
-                            height: 27.height(),
+                            width: 76.width(),
+                            height: 31.height(),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               color: ColorManager.black101,
@@ -274,8 +271,8 @@ class _SendImageScreen2State extends State<SendImageScreen2> {
                         child: GestureDetector(
                           onTap: () {},
                           child: Container(
-                            width: 73.width(),
-                            height: 27.height(),
+                            width: 76.width(),
+                            height: 31.height(),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               color: ColorManager.black101,
@@ -307,7 +304,7 @@ class _SendImageScreen2State extends State<SendImageScreen2> {
                         ),
                       ),
                       SizedBox(
-                        width: 119.width(),
+                        width: 116.width(),
                       ),
                       Padding(
                         padding: EdgeInsets.only(

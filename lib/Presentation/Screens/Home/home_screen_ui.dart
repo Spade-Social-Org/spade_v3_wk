@@ -109,9 +109,11 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
   Future<void> _loadResources(bool reload) async {
     // PostController().allPosts;
     // StoryController().allStorys;
-    await ApiService.getAllPost();
+    // await getAllPost();
     await ApiService.getAllStories();
   }
+
+  
 
   @override
   void initState() {
@@ -124,28 +126,29 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        body: SingleChildScrollView(
-          child: RefreshIndicator(
+        body:  RefreshIndicator(
             onRefresh: () async {
               await _loadResources(true);
             },
-            child: Column(
-              children: [
-                const HomeScreenAppBar(),
-                SizedBox(height: 25.height()),
-                ListView(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  children: const [
-                    StoryMode(),
-                    SizedBox(height: 46),
-                    PostUi(),
-                  ],
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const HomeScreenAppBar(),
+                  SizedBox(height: 25.height()),
+                  ListView(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    children: const [
+                      StoryMode(),
+                      SizedBox(height: 46),
+                      // PostUi(),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        
       ),
     );
   }

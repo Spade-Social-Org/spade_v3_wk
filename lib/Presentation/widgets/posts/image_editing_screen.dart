@@ -72,7 +72,7 @@ class _SendImageScreenState extends State<SendImageScreen> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        width: 95.width(),
+                        width: 100.width(),
                         height: 38.height(),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -105,7 +105,7 @@ class _SendImageScreenState extends State<SendImageScreen> {
                     ),
                   ),
                   SizedBox(
-                    width: 202.width(),
+                    width: 195.width(),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -114,8 +114,8 @@ class _SendImageScreenState extends State<SendImageScreen> {
                         bottom: 15.height()),
                     child: GestureDetector(
                       onTap: () async {
-                        await ApiService.createPost3(widget.image!);
-                        // await ApiService.createAndDisplayPost(widget.image!);
+                        // await ApiService.createPost3(widget.image!);
+                        await ApiService.createAndDisplayPost1(widget.image!);
                       },
                       child: Container(
                         width: 95.width(),
