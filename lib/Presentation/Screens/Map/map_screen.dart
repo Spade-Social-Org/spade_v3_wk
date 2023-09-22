@@ -5,7 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spade_v4/Presentation/widgets/places_items.dart';
+import 'package:spade_v4/Presentation/widgets/jh_calendar.dart';
+import 'package:spade_v4/Presentation/widgets/jh_places_items.dart';
 import '../../../Common/theme.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
@@ -24,7 +25,7 @@ class GoogleMapScreen extends StatefulWidget {
 class _GoogleMapState extends State<GoogleMapScreen>
     with SingleTickerProviderStateMixin {
   String mapTheme = '';
-
+  int selectedContainerIndex = -1;
   late GoogleMapController? mapController;
   TextEditingController _searchController = TextEditingController();
 
@@ -201,15 +202,13 @@ class _GoogleMapState extends State<GoogleMapScreen>
       body: Stack(
         children: [
           GoogleMap(
-            zoomControlsEnabled: true,
             zoomGesturesEnabled: true,
-            rotateGesturesEnabled: true,
+            zoomControlsEnabled: false,
             myLocationEnabled: isLocationEnabled,
             myLocationButtonEnabled: false,
-            fortyFiveDegreeImageryEnabled: true,
-            trafficEnabled: trafficEnabled,
+            //trafficEnabled: trafficEnabled,
             circles: _circle,
-            polylines: polylines,
+            //polylines: polylines,
             onMapCreated: (controller) {
               controller.setMapStyle(mapTheme);
               mapController = controller;
@@ -245,12 +244,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
             bottom: 50,
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const GlobalScreen(),
-                  ),
-                );
+                _friendsList();
               },
               child: CircleAvatar(
                 backgroundColor: Colors.black,
@@ -373,7 +367,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
   void _showBottomSheet() {
     showModalBottomSheet<void>(
       context: context,
-      isScrollControlled: true,
+      //isScrollControlled: true,
       backgroundColor: Colors.black,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -382,8 +376,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
       builder: (BuildContext context) {
         return DraggableScrollableSheet(
           expand: false,
-          initialChildSize: 0.4,
-          minChildSize: 0.1,
+          initialChildSize: 0.6,
+          minChildSize: 0.2,
           builder: (BuildContext context, ScrollController) => ListView(
             controller: ScrollController,
             children: [
@@ -562,40 +556,97 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       shape: BoxShape.rectangle),
                 ),
               ),
-              const JHSearchField(),
-               CircleAvatar(
-                child: Image.asset("assets/images/Ellipse 378.png"),
-                 radius: 30,
-              ),
               Row(
                 children: [
-                  for (int i = 0; i < 3; i++)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white, width: 2),
-                            color: Colors.white38,
-                            borderRadius: BorderRadius.circular(20)),
-                        height: 40,
-                        width: 100,
-                        child: Row(
-                          children: [
-                             Icon(
-                              icons[i],
-                              color: Colors.white,
-                            ),
-                            Text(
-                              text[i].toString(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
+                  CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/Ellipse 378.png"),
+                    radius: 30,
+                  ),
+                  SizedBox(
+                    width: 4 * 4,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Search for Places",
+                        hintStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        fillColor: Colors.grey.withOpacity(0.8),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 12),
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(
+                            color: Colors.white,
+                            width: 2.0,
+                          ),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            weight: 30,
+                            size: 30,
+                          ),
+                          onPressed: () {},
                         ),
                       ),
+                      textAlign: TextAlign.center,
                     ),
+                  ),
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 2),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      ),
+                    ),
+                    for (int i = 0; i < 3; i++)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(20)),
+                          height: 30,
+                          width: 95,
+                          child: Row(
+                            children: [
+                              Icon(
+                                iconsRow[i],
+                                color: Colors.white,
+                              ),
+                              Text(
+                                text[i].toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.only(
@@ -663,7 +714,12 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       const SizedBox(
                         width: 5,
                       ),
-                      Image.asset('assets/images/calendar.png'),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            _calendarBottomSheet();
+                          },
+                          child: Image.asset('assets/images/calendar.png')),
                       const SizedBox(
                         width: 5,
                       ),
@@ -801,109 +857,249 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       );
                     }),
               ),
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 12,
-            ),
-            child: Text(
-              'Twisted Root Burger',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 12,
-            ),
-            child: Text(
-              'Burger joint',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: Text(
-                      'Open now',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: CustomColors.greenPrimary,
-                      ),
-                    ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Twisted Root Burger',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Text(
-                    '0.8 miles',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
+                ),
               ),
-              const SizedBox(
-                width: 14,
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 12,
+                ),
+                child: Text(
+                  'Burger joint',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Row(
                 children: [
-                  JHScheduleButton(
-                    title: 'Schedule',
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Image.asset('assets/images/arrowforward.png'),
-                   SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset('assets/images/calendar.png'),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset('assets/images/hearticon.png'),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: placeImages.length,
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 90 * 10,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(placeImages[index]),
-                            fit: BoxFit.cover,
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          'Open now',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: CustomColors.greenPrimary,
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),)
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        '0.8 miles',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Row(
+                    children: [
+                      JHScheduleButton(
+                        title: 'Schedule',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset('assets/images/arrowforward.png'),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                          onTap: _calendarBottomSheet,
+                          child: Image.asset('assets/images/calendar.png')),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Image.asset('assets/images/hearticon.png'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: placeImages.length,
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 90 * 10,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(placeImages[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              )
             ],
           ),
+        );
+      },
+    );
+  }
+
+  void _friendsList() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.6,
+          minChildSize: 0.1,
+          builder: (BuildContext context, ScrollController) => ListView(
+            controller: ScrollController,
+            children: [
+              const SizedBox(
+                height: 2,
+              ),
+              Center(
+                child: Container(
+                  width: 20 * 7,
+                  height: 6,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.rectangle),
+                ),
+              ),
+              JHSearchField(),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 900,
+                child: GridView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    // scrollDirection: Axis.horizontal,
+                    controller: ScrollController,
+                    itemCount: friend.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 5),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedContainerIndex = index;
+                          });
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: friend[index].color, width: 3),
+                                      borderRadius: BorderRadius.circular(40),
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                          image:
+                                              AssetImage(friend[index].images),
+                                          fit: BoxFit.cover)),
+                                  transform: (selectedContainerIndex == index)
+                                      ? Matrix4.diagonal3Values(1.5, 1.5, 1)
+                                      : Matrix4.identity(),
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius: BorderRadius.circular(40)),
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                if (selectedContainerIndex != index)
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.black38,
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                              ],
+                            )),
+                      );
+                    }),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _calendarBottomSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+            expand: false,
+            initialChildSize: 0.6,
+            minChildSize: 0.1,
+            builder: (BuildContext context, ScrollController) => ListView(
+                children: [
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Center(
+                    child: Container(
+                      width: 20 * 7,
+                      height: 6,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          shape: BoxShape.rectangle),
+                    ),
+                  ),
+                  JHCalenderWidget()
+                ]
+                )
         );
       },
     );
