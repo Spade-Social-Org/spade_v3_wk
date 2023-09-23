@@ -7,6 +7,7 @@ import '../Chats/message_screen.dart';
 import '../Home/home_screen.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class NavigationContainer extends StatefulWidget {
   const NavigationContainer({super.key});
@@ -39,6 +40,8 @@ class _NavigationContainerState extends State<NavigationContainer> {
     }
   }
 
+  DateTime timeBackPressed = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _appPages = [
@@ -54,7 +57,23 @@ class _NavigationContainerState extends State<NavigationContainer> {
     );
     final bottomNavigationProvider = Provider.of<DiscoverService>(context);
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
+    return  WillPopScope(
+      onWillPop: () async {
+        final differeance = DateTime.now().difference(timeBackPressed);
+        timeBackPressed = DateTime.now();
+        if (differeance >= Duration(seconds: 2)) {
+          final String msg = 'Press the back button to exit';
+          Fluttertoast.showToast(
+            msg: msg,
+          );
+          return false;
+        } else {
+          Fluttertoast.cancel();
+          SystemNavigator.pop();
+          return true;
+        }
+      },
+      child:  AnnotatedRegion<SystemUiOverlayStyle>(
       value: customStatusBarStyle,
       child: Scaffold(
         body: _appPages[_selectedPageIndex],
@@ -257,6 +276,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
           ],
         ),
       ),
+    ), 
     );
   }
 }

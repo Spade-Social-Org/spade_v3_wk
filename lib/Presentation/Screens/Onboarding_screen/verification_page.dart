@@ -41,24 +41,6 @@ class _VerificationPageState extends State<VerificationPage> {
     }
   }
 
-  // Future<void> _showDialogLoader() {
-  //   return showDialog(
-  //     barrierDismissible: false,
-  //     context: context,
-  //     builder: (ctx) => AlertDialog(
-  //       backgroundColor: Colors.white,
-  //       content: Container(
-  //         height: 60,
-  //         alignment: Alignment.center,
-  //         color: Colors.white,
-  //         padding: EdgeInsets.all(10),
-  //         child: CircularProgressIndicator(
-  //           color: Colors.black,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   _loaderOn() {
     showDialog(

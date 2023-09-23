@@ -19,41 +19,7 @@ class InputEmail extends StatefulWidget {
 class _InputEmailState extends State<InputEmail> {
   final controller = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
-  // final dio = Dio();
-
-  // Future postData(String password) async {
-  //   try {
-  //     var url = 'https://spade-social.onrender.com/api/v1/auth/login';
-  //     var response = await dio.post(url, data: {
-  //       "email": widget.email,
-  //       "password": password,
-
-  //     });
-  //     print(response.statusCode);
-  //     return true;
-  //   } catch (e) {
-  //     return e.toString();
-  //   }
-  // }
-
-  // Future<void> _showDialogLoader() {
-  //   return showDialog(
-  //     barrierDismissible: false,
-  //     context: context,
-  //     builder: (ctx) => AlertDialog(
-  //       backgroundColor: Colors.white,
-  //       content: Container(
-  //         height: 60,
-  //         alignment: Alignment.center,
-  //         color: Colors.white,
-  //         padding: EdgeInsets.all(10),
-  //         child: CircularProgressIndicator(
-  //           color: Colors.black,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  
 
   @override
   Widget build(BuildContext context) {

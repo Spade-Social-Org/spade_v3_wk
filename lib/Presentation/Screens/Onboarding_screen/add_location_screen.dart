@@ -22,7 +22,7 @@ class AddLocationScreen extends StatefulWidget {
 class _AddLocationScreenState extends State<AddLocationScreen> {
   final controller = TextEditingController();
 
-  // Variables to store country state city data in onChanged method.
+  /// Variables to store country state city data in onChanged method.
   String countryValue = "";
   String stateValue = "";
   String cityValue = "";
@@ -58,7 +58,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
               Container(
-                  height: 200,
+                  height: MediaQuery.of(context).size.width*0.4,
                   child: Image.asset("assets/images/location2.png")),
               const SizedBox(
                 height: 20,
@@ -144,7 +144,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 0,
               ),
               Builder(builder: (context) {
                 return ClipRRect(

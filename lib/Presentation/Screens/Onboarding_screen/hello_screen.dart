@@ -30,11 +30,15 @@ class HelloScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) =>
-                                    const InputNameScreen())));
+                         Navigator.push(
+                              context,
+                             MaterialPageRoute(
+                                builder: ((context) => const InputNameScreen())));
+                        // Navigator.push(
+                         //   context,
+                        //    MaterialPageRoute(
+                        //        builder: ((context) =>
+                          //          const VerificationPage())));
                       }),
                 ),
               ),

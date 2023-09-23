@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
@@ -23,6 +23,7 @@ class LoginPassword extends StatefulWidget {
 }
 
 class _LoginPasswordState extends State<LoginPassword> {
+  bool obscureText = true;
   final pwController = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
   final dio = Dio();
@@ -102,7 +103,8 @@ class _LoginPasswordState extends State<LoginPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: FormTitle(formTitle: "Please create a password")),
+                Center(
+                    child: FormTitle(formTitle: "Please enter your password")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -111,7 +113,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                       height: 8.height(),
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: obscureText,
                       controller: pwController,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
@@ -120,6 +122,22 @@ class _LoginPasswordState extends State<LoginPassword> {
                           .maxLength(50)
                           .build(),
                       decoration: InputDecoration(
+                        suffixIcon: Align(
+                          heightFactor: 1.0,
+                          widthFactor: 1.0,
+                          child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  obscureText = !obscureText;
+                                });
+                              },
+                              icon: Icon(
+                                !obscureText
+                                    ? CupertinoIcons.eye_slash_fill
+                                    : CupertinoIcons.eye_fill,
+                                color: Colors.grey,
+                              )),
+                        ),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                         hintText: "Enter Password",

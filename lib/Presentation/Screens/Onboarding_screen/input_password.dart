@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 
@@ -19,6 +20,8 @@ class InputPassword extends StatefulWidget {
 }
 
 class _InputPasswordState extends State<InputPassword> {
+  bool obscureText = true;
+  bool cnObscureText = true;
   final pwController = TextEditingController();
   final cnPwController = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
@@ -58,7 +61,7 @@ class _InputPasswordState extends State<InputPassword> {
                       height: 8.height(),
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: obscureText,
                       controller: pwController,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
@@ -67,6 +70,22 @@ class _InputPasswordState extends State<InputPassword> {
                           .maxLength(50)
                           .build(),
                       decoration: InputDecoration(
+                        suffixIcon: Align(
+                          heightFactor: 1.0,
+                          widthFactor: 1.0,
+                          child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  obscureText = !obscureText;
+                                });
+                              },
+                              icon: Icon(
+                                !obscureText
+                                    ? CupertinoIcons.eye_slash_fill
+                                    : CupertinoIcons.eye_fill,
+                                color: Colors.grey,
+                              )),
+                        ),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                         hintText: "Enter Password",
@@ -107,7 +126,7 @@ class _InputPasswordState extends State<InputPassword> {
                       height: 8.height(),
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: cnObscureText,
                       controller: cnPwController,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
@@ -116,6 +135,23 @@ class _InputPasswordState extends State<InputPassword> {
                           .maxLength(50)
                           .build(),
                       decoration: InputDecoration(
+                        suffixIcon: Align(
+                          heightFactor: 1.0,
+                          widthFactor: 1.0,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                cnObscureText = !cnObscureText;
+                              });
+                            },
+                            icon: Icon(
+                              !cnObscureText
+                                  ? CupertinoIcons.eye_slash_fill
+                                  : CupertinoIcons.eye_fill,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                         hintText: "Confirm Password",

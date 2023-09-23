@@ -40,7 +40,7 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
 
   Future postData(String email) async {
     try {
-      var url = 'https://spade-social.onrender.com/api/v1/auth/signup';
+      var url = 'https://spade-backend-v3-production.up.railway.app/api/v1/auth/signup';
       var response = await dio.post(url, data: {
         "email": email,
         "password": widget.password,
@@ -73,7 +73,6 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
     );
   }
 
-  // ignore: unused_element
   Future<void> _showDialogLoader() {
     return showDialog(
       barrierDismissible: false,
