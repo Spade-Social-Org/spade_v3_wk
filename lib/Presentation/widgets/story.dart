@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Presentation/widgets/story/view_story.dart';
 
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
 import '../../../Data/Models/story/story_view_model.dart';
 import '../../../Data/data_source/remote_data_sorce/api2.dart';
-import '../animated_route/animated_route.dart';
+import 'animated_route.dart';
 import 'story_controller.dart';
+import 'view_story.dart';
 
 class StoryList extends StatelessWidget {
   const StoryList({

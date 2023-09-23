@@ -6,7 +6,7 @@ import 'package:spade_v4/Presentation/Screens/Home/home_screen_ui.dart';
 
 import 'Common/size_config/size_config.dart';
 import 'Data/Service/geo_locator.dart';
-import 'Presentation/Screens/Camera/camera_screen.dart';
+import 'Presentation/Screens/Camera/camera_screen1.dart';
 import 'Presentation/logic_holder/bloc/heart_bloc/heart_bloc.dart';
 
 //import 'package:spade/onbording.dart';

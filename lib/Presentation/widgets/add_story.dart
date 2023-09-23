@@ -3,7 +3,7 @@ import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 
 import '../../../Common/managers/asset_manager/asset_manager.dart';
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
-import '../../Screens/Camera/camera_screen.dart';
+import '../Screens/Camera/camera_screen1.dart';
 
 class AddStoryMain extends StatefulWidget {
   const AddStoryMain({super.key});
@@ -34,7 +34,7 @@ class _AddStoryMainState extends State<AddStoryMain> {
                 height: 50.height(),
                 width: 46.width(),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
                   border: Border.all(
                     width: 2.5,
                     color: Colors.grey,

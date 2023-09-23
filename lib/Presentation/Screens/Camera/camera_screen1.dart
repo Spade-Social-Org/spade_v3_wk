@@ -1,8 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-
-import '../../../Common/camera_components/camera_appbar.dart';
-import '../../../Common/camera_components/select_image_from_gallery.dart';
+import '../../../Common/camera_components1/camera_appbar.dart';
+import '../../../Common/camera_components1/select_image_from_gallery.dart';
 import '../../../Common/navigator.dart';
 import '../../../Common/routes/routes.dart';
 

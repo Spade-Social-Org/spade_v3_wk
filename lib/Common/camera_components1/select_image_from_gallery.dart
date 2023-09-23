@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:spade_v4/Presentation/widgets/posts/image_%20filter_screen.dart';
 
+import '../../Presentation/widgets/image_ filter_screen.dart';
 import '../image_properties.dart';
 import '../navigator.dart';
 import '../routes/routes.dart';
@@ -57,6 +57,3 @@ void _selectMedia(context) async {
     );
   }
 }
-
-
-

@@ -5,7 +5,7 @@ import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:spade_v4/Common/managers/barrel_manager.dart';
 
 import '../../Common/managers/font_style_manager/font_style_manager.dart.dart';
-import '../Screens/Camera/camera_screen.dart';
+import '../Screens/Camera/camera_screen1.dart';
 import '../Screens/notworking/notworking.dart';
 
 class HomeScreenAppBar extends StatefulWidget {
@@ -88,21 +88,6 @@ class ImageDisplayScreen extends StatefulWidget {
 }
 
 class _ImageDisplayScreenState extends State<ImageDisplayScreen> {
-  // final List<File> _selectedFiles = [];
-
-  // createPost() async {
-  //   final payload = FormData.fromMap({
-  //     "description": "",
-  //     "is_story": false,
-  //     "files": [
-  //       for (var item in _selectedFiles) await MultipartFile.fromFile(item.path)
-  //     ]
-  //   });
-  //   await ApiService.createPost(payload);
-
-  //   // posts.add(PostModel.fromJson(data))
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,15 +106,6 @@ class _ImageDisplayScreenState extends State<ImageDisplayScreen> {
               onPressed: Navigator.of(context).pop,
             ),
           ),
-          // Positioned(
-          //   bottom: 20.0,
-          //   right: 20.0,
-          //   child:
-          //   IconButton(
-          //     icon: const Icon(Icons.send, color: Colors.white),
-          //     onPressed: postService.addNewPost(images),
-          //   ),
-          // ),
         ],
       ),
     );

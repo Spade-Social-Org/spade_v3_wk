@@ -7,9 +7,9 @@ import 'package:spade_v4/Common/extensions/date_time/date_time.dart';
 import '../../../Common/managers/barrel_manager.dart';
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
 import '../../../Data/Models/story/story_view_model.dart';
-import '../../logic_holder/bloc/heart_bloc/heart_bloc.dart';
-import '../../logic_holder/bloc/heart_bloc/heart_bloc_event.dart';
-import '../../logic_holder/bloc/heart_bloc/heart_bloc_state.dart';
+import '../logic_holder/bloc/heart_bloc/heart_bloc.dart';
+import '../logic_holder/bloc/heart_bloc/heart_bloc_event.dart';
+import '../logic_holder/bloc/heart_bloc/heart_bloc_state.dart';
 import 'animated_line.dart';
 
 class ViewStoryPage extends StatefulWidget {

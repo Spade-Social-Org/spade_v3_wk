@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Presentation/widgets/posts/image_%20filter_screen.dart';
 
-import '../../Presentation/Screens/Camera/camera_screen.dart';
+import '../../Presentation/Screens/Camera/camera_screen1.dart';
 import '../../Presentation/Screens/Camera/sending_image_preview.dart';
 import '../../Presentation/Screens/Camera/sending_video.dart';
-import '../../Presentation/widgets/posts/image_editing_screen.dart';
+import '../../Presentation/widgets/image_ filter_screen.dart';
+import '../../Presentation/widgets/image_editing_screen.dart';
 import 'routes.dart';
 
 class RouteGenerator {
@@ -45,8 +45,8 @@ class RouteGenerator {
             settings: settings);
       case Routes.imageSendingScreen2:
         return MaterialPageRoute(
-            builder: (context) =>
-                const SendImageScreen2(key: ValueKey(Routes.imageSendingScreen2)),
+            builder: (context) => const SendImageScreen2(
+                key: ValueKey(Routes.imageSendingScreen2)),
             settings: settings);
       default:
         return null;

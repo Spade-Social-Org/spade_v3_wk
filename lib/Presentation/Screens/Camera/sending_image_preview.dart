@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
-import '../../../Common/camera_components/image_top_view_icon.dart';
-import '../../../Common/camera_components/sending_image_video.dart';
+import '../../../Common/camera_components1/image_top_view_icon.dart';
+import '../../../Common/camera_components1/sending_image_video.dart';
 import '../../../Common/image_properties.dart';
 
 class SendingImageViewPage extends StatefulWidget {

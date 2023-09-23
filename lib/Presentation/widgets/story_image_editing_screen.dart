@@ -3,40 +3,22 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Presentation/widgets/posts/post_controller.dart';
 
 import '../../../Common/managers/asset_manager/asset_manager.dart';
 import '../../../Common/managers/color_manager/color_manager.dart';
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
 import '../../../Data/data_source/remote_data_sorce/api2.dart';
 
-class SendImageScreen extends StatefulWidget {
+class SendImageScreen1 extends StatefulWidget {
   final File? image;
 
-  const SendImageScreen({super.key, this.image});
+  const SendImageScreen1({super.key, this.image});
 
   @override
-  State<SendImageScreen> createState() => _SendImageScreenState();
+  State<SendImageScreen1> createState() => _SendImageScreen1State();
 }
 
-class _SendImageScreenState extends State<SendImageScreen> {
-  // List<File> selectedImages = [];
-
-  // Future<void> _uploadImages() async {
-  //   if (selectedImages! =) {
-  //     // Handle the case where no images are selected
-  //     return;
-  //   }
-
-  //   // Call the createPostWithImages function to upload the selected images
-  //   ApiService.createPostWithImages(selectedImages);
-
-  //   // Clear the selected images after uploading
-  //   setState(() {
-  //     selectedImages.clear();
-  //   });
-  // }
-
+class _SendImageScreen1State extends State<SendImageScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +54,7 @@ class _SendImageScreenState extends State<SendImageScreen> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        width: 100.width(),
+                        width: 95.width(),
                         height: 38.height(),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -105,7 +87,7 @@ class _SendImageScreenState extends State<SendImageScreen> {
                     ),
                   ),
                   SizedBox(
-                    width: 195.width(),
+                    width: 202.width(),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -114,8 +96,8 @@ class _SendImageScreenState extends State<SendImageScreen> {
                         bottom: 15.height()),
                     child: GestureDetector(
                       onTap: () async {
-                        // await ApiService.createPost3(widget.image!);
-                        await ApiService.createAndDisplayPost1(widget.image!);
+                        await ApiService.createStory3(widget.image!);
+                        // await ApiService.createAndDisplayPost(widget.image!);
                       },
                       child: Container(
                         width: 95.width(),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Presentation/widgets/story/add_story.dart';
-import 'package:spade_v4/Presentation/widgets/story/story.dart';
+
+import 'add_story.dart';
+import 'story.dart';
+
 
 class StoryMode extends StatefulWidget {
   const StoryMode({super.key});
