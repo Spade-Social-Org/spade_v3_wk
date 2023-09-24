@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
+import '../Camera/camera_screen.dart';
 import '../Chats/message_screen.dart';
 import '../Home/home_screen.dart';
 import '../Map/map_screen.dart';
@@ -17,13 +18,41 @@ class NavigationContainer extends StatefulWidget {
 
 class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
+  int _PageIndex = 0;
   bool _showOption = false;
   int card_click = 0;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _selectedPageIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onIconTapped(int index) {
     setState(() {
       _selectedPageIndex = index;
+      _PageIndex = index;
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     });
+  }
+
+  void _onPageChanged(int index) {
+    if (_PageIndex != index) {
+      setState(() {
+        _PageIndex = index;
+      });
+    }
   }
 
   void _zoneClick(int index) {
@@ -47,6 +76,10 @@ class _NavigationContainerState extends State<NavigationContainer> {
       const GoogleMapScreen(),
       const MoreScreen(),
     ];
+
+    final List<Widget> _appPage = [
+      CameraScreen(receiverId: ''),
+    ];
     SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
@@ -56,7 +89,16 @@ class _NavigationContainerState extends State<NavigationContainer> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: customStatusBarStyle,
       child: Scaffold(
-        body: _appPages[_selectedPageIndex],
+        body: _selectedPageIndex == 0 || _selectedPageIndex == 0
+            ? PageView(
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                children: [
+                  _appPages[0],
+                  _appPage[0],
+                ],
+              )
+            : _appPages[_selectedPageIndex],
         bottomNavigationBar: Stack(
           alignment: Alignment.center,
           children: [
@@ -70,17 +112,14 @@ class _NavigationContainerState extends State<NavigationContainer> {
               type: BottomNavigationBarType.fixed,
               currentIndex: _selectedPageIndex,
               onTap: (index) {
-                if (_selectedPageIndex == 2 && index == 2) {
-                  setState(() {
+                setState(() {
+                  if (_selectedPageIndex == 2 && index == 2) {
                     _showOption = true;
-                    _selectedPageIndex = index;
-                  });
-                } else {
-                  setState(() {
-                    _selectedPageIndex = index;
+                  } else {
                     _showOption = false;
-                  });
-                }
+                    _selectedPageIndex = index;
+                  }
+                });
               },
               backgroundColor: Colors.black,
               elevation: 8,
