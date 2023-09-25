@@ -152,9 +152,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onPressed: () async {
-                          if (_form.currentState!.validate()) {
-
-                          }
+                          if (_form.currentState!.validate()) {}
                         }),
                   );
                 }),
