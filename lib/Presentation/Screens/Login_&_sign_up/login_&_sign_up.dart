@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../../page_view.dart';
 import '../../widgets/jh_logger.dart';
 import '../Buttom_nav/navigation_container.dart';
 import '../Onboarding_screen/hello_screen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-
 class LoginOrSignupScreen extends StatefulWidget {
-
-  const LoginOrSignupScreen({super.key, });
+  const LoginOrSignupScreen({
+    super.key,
+  });
 
   @override
   State<LoginOrSignupScreen> createState() => _LoginOrSignupScreenState();
@@ -27,7 +26,6 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
     FlutterNativeSplash.remove();
   }
 
-
   _loaderOn() {
     showDialog(
       context: context,
@@ -44,7 +42,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
       Navigator.pop(context);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) =>  NavigationContainer()),
+        MaterialPageRoute(builder: (context) => NavigationContainer()),
       );
     });
   }
@@ -77,7 +75,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>  HelloScreen())));
+                            builder: ((context) => HelloScreen())));
                   }),
             ),
             const SizedBox(

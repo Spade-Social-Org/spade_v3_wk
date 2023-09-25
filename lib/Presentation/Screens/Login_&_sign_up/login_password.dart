@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
 
 class LoginPassword extends StatefulWidget {
   final String email;
