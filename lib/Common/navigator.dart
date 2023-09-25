@@ -1,17 +1,13 @@
+import 'package:app/Common/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
-void navigatePop(
-  BuildContext context,
-) {
-  Navigator.of(context).pop();
-}
+void navigatePop() => Navigator.of(kNavigatorKey.currentContext!).pop();
 
 void navigateAndRemove(
-  BuildContext context,
   String routeName, {
   Object? arguments,
 }) {
-  Navigator.of(context).pushNamedAndRemoveUntil(
+  Navigator.of(kNavigatorKey.currentContext!).pushNamedAndRemoveUntil(
     routeName,
     arguments: arguments,
     (route) => false,
@@ -19,23 +15,19 @@ void navigateAndRemove(
 }
 
 Future<dynamic> navigateTo(
-  BuildContext context,
   String routeName, {
   Object? arguments,
-}) {
-  return Navigator.of(context).pushNamed(
-    routeName,
-    arguments: arguments,
-  );
-}
+}) =>
+    Navigator.of(kNavigatorKey.currentContext!).pushNamed(
+      routeName,
+      arguments: arguments,
+    );
 
 void navigateAndReplace(
-  BuildContext context,
   String routeName, {
   Object? arguments,
-}) {
-  Navigator.of(context).pushReplacementNamed(
-    routeName,
-    arguments: arguments,
-  );
-}
+}) =>
+    Navigator.of(kNavigatorKey.currentContext!).pushReplacementNamed(
+      routeName,
+      arguments: arguments,
+    );

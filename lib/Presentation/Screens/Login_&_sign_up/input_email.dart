@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/login_password.dart';
-
+import 'package:app/Common/extensions/size_config_extension/size_config_extension.dart';
+import 'package:app/Presentation/Screens/Login_&_sign_up/login_password.dart';
 
 class InputEmail extends StatefulWidget {
   const InputEmail({
@@ -64,14 +63,14 @@ class _InputEmailState extends State<InputEmail> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Form(
@@ -87,14 +86,14 @@ class _InputEmailState extends State<InputEmail> {
                     ),
                     TextFormField(
                       controller: controller,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 20),
                         hintText: "Enter your email",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(fontSize: 14),
+                        errorStyle: const TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -124,7 +123,7 @@ class _InputEmailState extends State<InputEmail> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Builder(builder: (context) {

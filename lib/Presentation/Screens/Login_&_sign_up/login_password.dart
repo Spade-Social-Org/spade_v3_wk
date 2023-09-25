@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
+import 'package:app/Common/extensions/size_config_extension/size_config_extension.dart';
 
 class LoginPassword extends StatefulWidget {
   final String email;
@@ -153,9 +152,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onPressed: () async {
-                          if (_form.currentState!.validate()) {
-
-                          }
+                          if (_form.currentState!.validate()) {}
                         }),
                   );
                 }),

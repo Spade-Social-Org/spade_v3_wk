@@ -36,7 +36,6 @@ class SelectImageFromGalleryButton extends StatelessWidget {
     if (image != null) {
       // ignore: use_build_context_synchronously
       navigateTo(
-        context,
         Routes.sendingImageViewRoute,
         arguments: {
           'path': image.path,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Presentation/Screens/Camera/camera_screen.dart';
 import '../../Presentation/Screens/Camera/sending_image_preview.dart';
 import '../../Presentation/Screens/Camera/sending_video.dart';
-import '../../Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
+import '../../Presentation/Screens/Login_&_sign_up/landing_screen.dart';
 import 'routes.dart';
 
 class RouteGenerator {
@@ -12,7 +12,7 @@ class RouteGenerator {
       case Routes.login:
         return MaterialPageRoute(
             builder: (context) =>
-                const LoginOrSignupScreen(key: ValueKey(Routes.login)),
+                const LandingScreen(key: ValueKey(Routes.login)),
             settings: settings);
       case Routes.cameraRoute:
         final arguments = settings.arguments as Map<String, dynamic>;

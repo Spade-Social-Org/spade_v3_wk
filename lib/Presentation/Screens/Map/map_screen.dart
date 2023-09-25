@@ -5,8 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spade_v4/Presentation/widgets/jh_calendar.dart';
-import 'package:spade_v4/Presentation/widgets/jh_places_items.dart';
+import 'package:app/Presentation/widgets/jh_calendar.dart';
+import 'package:app/Presentation/widgets/jh_places_items.dart';
 import '../../../Common/theme.dart';
 import '../../widgets/jh_custom_marker.dart';
 import '../../widgets/jh_loader.dart';
@@ -1082,8 +1082,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
             expand: false,
             initialChildSize: 0.6,
             minChildSize: 0.1,
-            builder: (BuildContext context, ScrollController) => ListView(
-                children: [
+            builder: (BuildContext context, ScrollController) =>
+                ListView(children: [
                   const SizedBox(
                     height: 2,
                   ),
@@ -1098,9 +1098,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                     ),
                   ),
                   JHCalenderWidget()
-                ]
-                )
-        );
+                ]));
       },
     );
   }

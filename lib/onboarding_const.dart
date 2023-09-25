@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
+import 'Presentation/Screens/Login_&_sign_up/landing_screen.dart';
 import 'Presentation/widgets/jh_onboarding_content.dart';
 
 class Onbording extends StatefulWidget {
-
   @override
   _OnbordingState createState() => _OnbordingState();
 }
@@ -63,7 +62,7 @@ class _OnbordingState extends State<Onbording> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 contents.length,
-                    (index) => buildDot(index, context),
+                (index) => buildDot(index, context),
               ),
             ),
           ),
@@ -77,7 +76,7 @@ class _OnbordingState extends State<Onbording> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const LoginOrSignupScreen(),
+                        builder: (_) => const LandingScreen(),
                       ),
                     );
                   }

@@ -8,15 +8,13 @@ import 'Data/Models/discover_service.dart';
 import 'Data/Service/geo_locator.dart';
 import 'Presentation/Bloc/places_bloc.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
-import 'package:spade_v4/injection.dart' as di;
-import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:app/injection.dart' as di;
+import 'Presentation/Screens/Login_&_sign_up/landing_screen.dart';
 import 'injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  GeoLocatorService.getInitialLocation();
   cameras = await availableCameras();
   di.init();
   runApp(
@@ -28,33 +26,23 @@ Future<void> main() async {
           create: (context) => locator<PlacesBloc>(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-  });
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    final geoService = Provider.of<GeoLocatorService>(context, listen: false);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Spade',
       theme: ThemeData(),
-      // home: Onbording()
-      //initialRoute: Routes.getStarted,
       navigatorKey: kNavigatorKey,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
       onUnknownRoute: RouteGenerator.unKnownRoute,
-      home: FutureBuilder(
-        future: geoService.getInitialLocation(),
-        builder: (context, _) => LoginOrSignupScreen(),
-        //MyHomePages
-      ),
+      home: const LandingScreen(),
     );
   }
 }
