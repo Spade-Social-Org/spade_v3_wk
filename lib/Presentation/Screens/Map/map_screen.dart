@@ -1160,8 +1160,310 @@ class _GoogleMapState extends State<GoogleMapScreen>
                           shape: BoxShape.rectangle),
                     ),
                   ),
-                  JHCalenderWidget()
+                  const JHCalenderWidget(),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      _sheduleTime();
+                    },
+                    child: Container(
+                        height: 40,
+                        width: 60 * 3,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Next',
+                            style: TextStyle(
+                              color: CustomColors.black,
+                              fontSize: 15,
+                            ),
+                          ),
+                        )),
+                  ),
                 ]));
+      },
+    );
+  }
+
+  void _sheduleTime() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+            expand: false,
+            initialChildSize: 0.6,
+            minChildSize: 0.1,
+            builder: (BuildContext context, ScrollController) => ListView(
+                  controller: ScrollController,
+                  children: [
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Center(
+                      child: Container(
+                        width: 20 * 7,
+                        height: 6,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            shape: BoxShape.rectangle),
+                      ),
+                    ),
+                    const Divider(
+                      endIndent: 150,
+                      indent: 150,
+                      thickness: 10,
+                      color: Colors.white,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Text(
+                            "Twisted Root Burger co",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: scheduleNotice.length,
+                        itemBuilder: (BuildContext context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedItemIndex = index;
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0, right: 20.0, bottom: 10),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.white30,
+                                          border: Border.all(
+                                              width: 3,
+                                              color: selectedItemIndex == index
+                                                  ? Colors.white
+                                                  : Colors.transparent)),
+                                      height: 40,
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Row(children: [
+                                          Text(
+                                            scheduleTime[index],
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          ),
+                                          const SizedBox(width: 40),
+                                          Text(
+                                            scheduleNotice[index],
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          )
+                                        ]),
+                                      )),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 80, right: 80, bottom: 20),
+                      child: MaterialButton(
+                        height: 50,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        color: selectedItemIndex != -1
+                            ? Colors.white
+                            : Colors.white30,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          _inviteScreen();
+                        },
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                              color: selectedItemIndex != -1
+                                  ? Colors.black
+                                  : Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ));
+      },
+    );
+  }
+
+  void _inviteScreen() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.6,
+          minChildSize: 0.1,
+          builder: (BuildContext context, ScrollController) => ListView(
+            controller: ScrollController,
+            children: [
+              const SizedBox(
+                height: 2,
+              ),
+              Center(
+                child: Container(
+                  width: 20 * 7,
+                  height: 6,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.rectangle),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "Twisted Bugger co",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 300,
+                child: GridView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    // scrollDirection: Axis.horizontal,
+                    controller: ScrollController,
+                    itemCount: 15,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 5),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedContainerIndex = index;
+                          });
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: friend[index].color, width: 3),
+                                      borderRadius: BorderRadius.circular(40),
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                          image:
+                                              AssetImage(friend[index].images),
+                                          fit: BoxFit.cover)),
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius: BorderRadius.circular(40)),
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                if (selectedContainerIndex != index)
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.black38,
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                              ],
+                            )),
+                      );
+                    }),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 80, right: 80),
+                child: MaterialButton(
+                  height: 50,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _setDate();
+                  },
+                  child: const Text(
+                    "Invite",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
       },
     );
   }
@@ -1280,147 +1582,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
             ],
           ),
         );
-      },
-    );
-  }
-
-  void _sheduleTime() {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.black,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-        top: Radius.circular(30),
-      )),
-      builder: (BuildContext context) {
-        return DraggableScrollableSheet(
-            expand: false,
-            initialChildSize: 0.6,
-            minChildSize: 0.1,
-            builder: (BuildContext context, ScrollController) => ListView(
-                  controller: ScrollController,
-                  children: [
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Center(
-                      child: Container(
-                        width: 20 * 7,
-                        height: 6,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            shape: BoxShape.rectangle),
-                      ),
-                    ),
-                    const Divider(
-                      endIndent: 150,
-                      indent: 150,
-                      thickness: 10,
-                      color: Colors.white,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(18.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Text(
-                            "Twisted Root Burger co",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: scheduleNotice.length,
-                        itemBuilder: (BuildContext context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedItemIndex = index;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20.0, right: 20.0, bottom: 10),
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.white30,
-                                          border: Border.all(
-                                              width: 3,
-                                              color: selectedItemIndex == index
-                                                  ? Colors.white
-                                                  : Colors.transparent)),
-                                      height: 40,
-                                      width: double.infinity,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Row(children: [
-                                          Text(
-                                            scheduleTime[index],
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white),
-                                          ),
-                                          const SizedBox(width: 40),
-                                          Text(
-                                            scheduleNotice[index],
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white),
-                                          )
-                                        ]),
-                                      )),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 80, right: 80, bottom: 20),
-                      child: MaterialButton(
-                        height: 50,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        color: selectedItemIndex != -1
-                            ? Colors.white
-                            : Colors.white30,
-                        onPressed: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (context)=> const InviteScreen()));
-                        },
-                        child: Text(
-                          "Next",
-                          style: TextStyle(
-                              color: selectedItemIndex != -1
-                                  ? Colors.black
-                                  : Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ],
-                ));
       },
     );
   }
