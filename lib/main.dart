@@ -12,8 +12,6 @@ import 'package:spade_v4/injection.dart' as di;
 import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'injection.dart';
-import 'Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
-import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,34 +33,10 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
   });
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool isLogin = false;
-
-  @override
-  void initState() {
-    super.initState();
-    getvalue();
-  }
-
-  getvalue() async {
-    await GetUserToken.getLoginValue().then((value) {
-      if (value != null) {
-        setState(() {
-          isLogin = value;
-        });
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final geoService = Provider.of<GeoLocatorService>(context, listen: false);
@@ -78,8 +52,7 @@ class _MyAppState extends State<MyApp> {
       onUnknownRoute: RouteGenerator.unKnownRoute,
       home: FutureBuilder(
         future: geoService.getInitialLocation(),
-        builder: (context, _) =>
-            !isLogin ? LoginOrSignupScreen() : NavigationContainer(),
+        builder: (context, _) => LoginOrSignupScreen(),
         //MyHomePages
       ),
     );

@@ -1,11 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/login_password.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+
 
 class InputEmail extends StatefulWidget {
   const InputEmail({
@@ -81,11 +79,9 @@ class _InputEmailState extends State<InputEmail> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: FormTitle(formTitle: "Whats your email?")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormLabel(formLabel: "Email"),
                     SizedBox(
                       height: 8.height(),
                     ),
@@ -93,8 +89,6 @@ class _InputEmailState extends State<InputEmail> {
                       controller: controller,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
-                      validator:
-                          ValidationBuilder().email().maxLength(50).build(),
                       decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 20),

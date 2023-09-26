@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-
 import 'looking_for_build_men_screen.dart';
 import 'looking_for_build_women_screen.dart';
 
 class WhatLookingForScreen extends StatefulWidget {
-  const WhatLookingForScreen({super.key});
+
+  const WhatLookingForScreen({super.key, });
 
   @override
   State<WhatLookingForScreen> createState() => _WhatLookingForScreenState();
