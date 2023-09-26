@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../Buttom_nav/navigation_container.dart';
 import 'hello_screen.dart';
 
 
 
 class LoginOrSignupScreen extends StatefulWidget {
-
-  const LoginOrSignupScreen({super.key, });
+  const LoginOrSignupScreen({super.key});
 
   @override
   State<LoginOrSignupScreen> createState() => _LoginOrSignupScreenState();
@@ -30,7 +30,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
     Navigator.pop(context); // Dismiss the dialog
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) =>  NavigationContainer()),
+      MaterialPageRoute(builder: (context) => const NavigationContainer()),
     );
   });
 }
@@ -64,7 +64,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>  HelloScreen())));
+                            builder: ((context) => const HelloScreen())));
                   }),
             ),
             const SizedBox(

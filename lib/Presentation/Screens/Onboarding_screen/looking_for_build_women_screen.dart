@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import '../Buttom_nav/navigation_container.dart';
 
 class LookingForBuildWomenScreen extends StatefulWidget {
-
-  const LookingForBuildWomenScreen({super.key,});
+  const LookingForBuildWomenScreen({super.key});
 
   @override
   State<LookingForBuildWomenScreen> createState() => _LookingForBuildWomenScreenState();
@@ -205,7 +203,7 @@ class _LookingForBuildWomenScreenState extends State<LookingForBuildWomenScreen>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>  NavigationContainer())));
+                            builder: ((context) => const NavigationContainer())));
                   }),
             ),
           ),

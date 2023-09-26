@@ -1,81 +1,30 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
-
-import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
+import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_phone_number_screen.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
 
-class LoginPassword extends StatefulWidget {
-  final String email;
-  const LoginPassword({
+class InputPassword extends StatefulWidget {
+  final String name;
+  const InputPassword({
     Key? key,
-    required this.email,
+    required this.name,
   }) : super(key: key);
 
   @override
-  State<LoginPassword> createState() => _LoginPasswordState();
+  State<InputPassword> createState() => _InputPasswordState();
 }
 
-class _LoginPasswordState extends State<LoginPassword> {
+class _InputPasswordState extends State<InputPassword> {
   bool obscureText = true;
+  bool cnObscureText = true;
   final pwController = TextEditingController();
+  final cnPwController = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
-  final dio = Dio();
-
-  Future postData(String password) async {
-    try {
-      var url =
-          'https://spade-backend-v3-production.up.railway.app/api/v1/auth/login';
-      var response = await dio.post(url, data: {
-        "email": widget.email,
-        "password": password,
-      }).timeout(const Duration(seconds: 60));
-      print(response.statusCode);
-      return true;
-    } on TimeoutException {
-      return "Service unavailable!";
-    } catch (e) {
-      return e.toString();
-    }
-  }
-
-  // Future<void> _showDialogLoader() {
-  //   return showDialog(
-  //     barrierDismissible: false,
-  //     context: context,
-  //     builder: (ctx) => AlertDialog(
-  //       backgroundColor: Colors.white,
-  //       content: Container(
-  //         height: 60,
-  //         alignment: Alignment.center,
-  //         color: Colors.white,
-  //         padding: EdgeInsets.all(10),
-  //         child: CircularProgressIndicator(
-  //           color: Colors.black,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  _loaderOn() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext dialogContext) {
-        return Container(
-          color: Colors.white,
-          child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +52,7 @@ class _LoginPasswordState extends State<LoginPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(
-                    child: FormTitle(formTitle: "Please enter your password")),
+                Center(child: FormTitle(formTitle: "Please create a password")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -170,10 +118,76 @@ class _LoginPasswordState extends State<LoginPassword> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 15.height(),
+                    ),
+                    FormLabel(formLabel: "Confirm Password"),
+                    SizedBox(
+                      height: 8.height(),
+                    ),
+                    TextFormField(
+                      obscureText: cnObscureText,
+                      controller: cnPwController,
+                      style: TextStyle(fontSize: 14),
+                      cursorColor: Colors.black,
+                      validator: ValidationBuilder()
+                          .minLength(5)
+                          .maxLength(50)
+                          .build(),
+                      decoration: InputDecoration(
+                        suffixIcon: Align(
+                          heightFactor: 1.0,
+                          widthFactor: 1.0,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                cnObscureText = !cnObscureText;
+                              });
+                            },
+                            icon: Icon(
+                              !cnObscureText
+                                  ? CupertinoIcons.eye_slash_fill
+                                  : CupertinoIcons.eye_fill,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        hintText: "Confirm Password",
+                        hintStyle: TextStyle(fontSize: 14),
+                        errorStyle: TextStyle(color: Colors.black),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 90,
                 ),
                 Builder(builder: (context) {
                   return ClipRRect(
@@ -188,31 +202,30 @@ class _LoginPasswordState extends State<LoginPassword> {
                         ),
                         onPressed: () async {
                           if (_form.currentState!.validate()) {
-                            _loaderOn();
-                            await postData(pwController.text).then((value) {
-                              if (value == true) {
-                                SaveUserToken.saveLoginValue(value);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const NavigationContainer())));
-                              } else {
-                                Navigator.pop(context);
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  backgroundColor: Colors.black,
-                                  content: Text(
-                                    value,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  action: SnackBarAction(
-                                    label: 'Retry',
-                                    onPressed: () {},
-                                  ),
-                                ));
-                              }
-                            });
+                            if (pwController.text == cnPwController.text) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          InputPhoneNumberScreen(
+                                              name: widget.name,
+                                              password: pwController.text))));
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Colors.black,
+                                content: Text(
+                                  "Password doesn't match",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                action: SnackBarAction(
+                                  label: 'Ok',
+                                  onPressed: () {
+                                    //    Navigator.pop(context);
+                                  },
+                                ),
+                              ));
+                            }
                           }
                         }),
                   );
