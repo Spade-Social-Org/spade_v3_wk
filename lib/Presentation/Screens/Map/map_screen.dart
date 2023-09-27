@@ -136,6 +136,35 @@ class _GoogleMapState extends State<GoogleMapScreen>
         'USER',
         LatLng(position.latitude + markerOffset, position.longitude),
       );
+      addMarker(
+        'USER 2',
+        LatLng(5.973490, 6.862013),
+      );
+      addMarker(
+        'USER 3',
+        LatLng(5.952930, 6.848727),
+      );
+      addMarker(
+        'USER 4',
+        LatLng(5.9601322, 6.8475589),
+      );
+      addMarker(
+        'USER 5',
+        LatLng(5.972808, 6.837499),
+      );
+      addMarker(
+        'USER 6',
+        LatLng(5.9601322, 6.8475589),
+      );
+      addMarker(
+        'USER 7',
+        LatLng(5.961376, 6.834071),
+      );
+      addMarker(
+        'USER 8',
+        LatLng(5.993973, 6.862863),
+      );
+
       Polyline polyline = Polyline(
         polylineId: PolylineId('polyline_1'),
         color: Colors.blue,
@@ -213,7 +242,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
             ),
           Positioned(
             left: 20,
-            bottom: 50,
+            bottom: 40,
             child: GestureDetector(
               onTap: _showBottomSheet,
               child: CircleAvatar(
@@ -224,8 +253,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
             ),
           ),
           Positioned(
-            right: 70,
-            bottom: 50,
+            right: 20,
+            bottom: 40,
             child: GestureDetector(
               onTap: () {
                 _friendsList();
@@ -1160,31 +1189,32 @@ class _GoogleMapState extends State<GoogleMapScreen>
                           shape: BoxShape.rectangle),
                     ),
                   ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   const JHCalenderWidget(),
                   const SizedBox(
                     height: 5,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      _sheduleTime();
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 60 * 3,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                              color: CustomColors.black,
-                              fontSize: 15,
-                            ),
-                          ),
-                        )),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 80, right: 80),
+                    child: MaterialButton(
+                      height: 50,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: Colors.white,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        _sheduleTime();
+                      },
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                 ]));
       },
@@ -1221,12 +1251,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
                             shape: BoxShape.rectangle),
                       ),
                     ),
-                    const Divider(
-                      endIndent: 150,
-                      indent: 150,
-                      thickness: 10,
-                      color: Colors.white,
-                    ),
                     const Padding(
                       padding: EdgeInsets.all(18.0),
                       child: Row(
@@ -1243,7 +1267,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20),
+                                fontSize: 15),
                           ),
                         ],
                       ),
@@ -1498,12 +1522,15 @@ class _GoogleMapState extends State<GoogleMapScreen>
                       shape: BoxShape.rectangle),
                 ),
               ),
+              SizedBox(
+                height: 5,
+              ),
               const Center(
                   child: Text(
                 "The Date is set!",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold),
               )),
               SizedBox(
@@ -1521,7 +1548,8 @@ class _GoogleMapState extends State<GoogleMapScreen>
                             height: 250,
                             width: 150,
                             color: Colors.white,
-                            child: Image.asset("assets/iamges/Image 40.png"),
+                            child:
+                                Image.asset("assets/images/Rectangle 1595.png"),
                           ),
                         ),
                       ),
