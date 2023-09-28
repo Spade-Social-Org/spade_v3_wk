@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
+import '../Camera/camera_screen.dart';
 import '../Chats/message_screen.dart';
 import '../Home/home_screen.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class NavigationContainer extends StatefulWidget {
   const NavigationContainer({super.key});
@@ -18,29 +18,54 @@ class NavigationContainer extends StatefulWidget {
 
 class _NavigationContainerState extends State<NavigationContainer> {
   int _selectedPageIndex = 0;
+  int _PageIndex = 0;
   bool _showOption = false;
-  int cardClick = 0;
+  int card_click = 0;
+  late PageController _pageController;
 
-  // ignore: unused_element
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _selectedPageIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   void _onIconTapped(int index) {
     setState(() {
       _selectedPageIndex = index;
+      _PageIndex = index;
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     });
   }
 
-  void _zoneClick(int index) {
-    if (cardClick == index) {
+  void _onPageChanged(int index) {
+    if (_PageIndex != index) {
       setState(() {
-        cardClick = 0;
-      });
-    } else {
-      setState(() {
-        cardClick = index;
+        _PageIndex = index;
       });
     }
   }
 
-  DateTime timeBackPressed = DateTime.now();
+  void _zoneClick(int index) {
+    if (card_click == index) {
+      setState(() {
+        card_click = 0;
+      });
+    } else {
+      setState(() {
+        card_click = index;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,32 +76,29 @@ class _NavigationContainerState extends State<NavigationContainer> {
       const GoogleMapScreen(),
       const MoreScreen(),
     ];
+
+    final List<Widget> _appPage = [
+      CameraScreen(receiverId: ''),
+    ];
     SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
     );
     final bottomNavigationProvider = Provider.of<DiscoverService>(context);
 
-    return  WillPopScope(
-      onWillPop: () async {
-        final differeance = DateTime.now().difference(timeBackPressed);
-        timeBackPressed = DateTime.now();
-        if (differeance >= Duration(seconds: 2)) {
-          final String msg = 'Press the back button to exit';
-          Fluttertoast.showToast(
-            msg: msg,
-          );
-          return false;
-        } else {
-          Fluttertoast.cancel();
-          SystemNavigator.pop();
-          return true;
-        }
-      },
-      child:  AnnotatedRegion<SystemUiOverlayStyle>(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
       value: customStatusBarStyle,
       child: Scaffold(
-        body: _appPages[_selectedPageIndex],
+        body: _selectedPageIndex == 0 || _selectedPageIndex == 0
+            ? PageView(
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                children: [
+                  _appPages[0],
+                  _appPage[0],
+                ],
+              )
+            : _appPages[_selectedPageIndex],
         bottomNavigationBar: Stack(
           alignment: Alignment.center,
           children: [
@@ -90,17 +112,14 @@ class _NavigationContainerState extends State<NavigationContainer> {
               type: BottomNavigationBarType.fixed,
               currentIndex: _selectedPageIndex,
               onTap: (index) {
-                if (_selectedPageIndex == 2 && index == 2) {
-                  setState(() {
+                setState(() {
+                  if (_selectedPageIndex == 2 && index == 2) {
                     _showOption = true;
-                    _selectedPageIndex = index;
-                  });
-                } else {
-                  setState(() {
-                    _selectedPageIndex = index;
+                  } else {
                     _showOption = false;
-                  });
-                }
+                    _selectedPageIndex = index;
+                  }
+                });
               },
               backgroundColor: Colors.black,
               elevation: 8,
@@ -178,7 +197,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                     fit: StackFit.expand,
                     children: [
                       Positioned(
-                          top: cardClick == 1 ? 1 : 12,
+                          top: card_click == 1 ? 1 : 12,
                           left: 0,
                           child: GestureDetector(
                             onTap: (() => {
@@ -188,7 +207,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: -0.5,
                               child: Container(
-                                height: cardClick == 1 ? 35.0 : 20.0,
+                                height: card_click == 1 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.red,
                               ),
@@ -196,7 +215,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           )),
                       Positioned(
                           left: 22.0,
-                          top: cardClick == 2 ? -5.0 : 5.0,
+                          top: card_click == 2 ? -5.0 : 5.0,
                           child: GestureDetector(
                             onTap: (() => {
                                   bottomNavigationProvider.updateIndex('green'),
@@ -205,7 +224,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: -0.2,
                               child: Container(
-                                height: cardClick == 2 ? 35.0 : 20.0,
+                                height: card_click == 2 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.green.shade900,
                               ),
@@ -213,7 +232,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           )),
                       Positioned(
                           left: 45.0,
-                          top: cardClick == 3 ? -5.0 : 5.0,
+                          top: card_click == 3 ? -5.0 : 5.0,
                           child: GestureDetector(
                             onTap: (() => {
                                   bottomNavigationProvider
@@ -223,7 +242,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: 0.2,
                               child: Container(
-                                height: cardClick == 3 ? 35.0 : 20.0,
+                                height: card_click == 3 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.yellow,
                               ),
@@ -231,7 +250,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           )),
                       Positioned(
                           left: 67.0,
-                          top: cardClick == 4 ? 0.0 : 12.0,
+                          top: card_click == 4 ? 0.0 : 12.0,
                           child: GestureDetector(
                             onTap: (() => {
                                   bottomNavigationProvider.updateIndex('grey'),
@@ -240,7 +259,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                             child: Transform.rotate(
                               angle: 0.5,
                               child: Container(
-                                height: cardClick == 4 ? 35.0 : 20.0,
+                                height: card_click == 4 ? 35.0 : 20.0,
                                 width: 15.0,
                                 color: Colors.grey,
                               ),
@@ -254,7 +273,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                                   if (_showOption)
                                     {
                                       setState(
-                                          () => _showOption = !_showOption)
+                                          () => {_showOption = !_showOption})
                                     }
                                 }),
                             child: Transform.rotate(
@@ -276,7 +295,6 @@ class _NavigationContainerState extends State<NavigationContainer> {
           ],
         ),
       ),
-    ), 
     );
   }
 }
