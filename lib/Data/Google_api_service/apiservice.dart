@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../Presentation/widgets/jh_logger.dart';
 import '../../utils.dart';
+import 'package:http/http.dart' as http;
 
 class GooglePlacesApi {
   final String apiKey = ApiKey;

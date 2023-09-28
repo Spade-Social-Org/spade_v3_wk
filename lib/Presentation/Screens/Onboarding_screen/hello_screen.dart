@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'first_name_screen.dart';
 
 class HelloScreen extends StatelessWidget {
-
-  const HelloScreen({super.key, });
+  const HelloScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +22,24 @@ class HelloScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    color: Colors.black,
-                    child: const Text("Next",style: TextStyle(color: Colors.white,fontSize: 20),),
-                    onPressed: (){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>  InputNameScreen())));
-                    }),
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.black,
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                         Navigator.push(
+                              context,
+                             MaterialPageRoute(
+                                builder: ((context) => const InputNameScreen())));
+                        // Navigator.push(
+                         //   context,
+                        //    MaterialPageRoute(
+                        //        builder: ((context) =>
+                          //          const VerificationPage())));
+                      }),
                 ),
               ),
             ],
