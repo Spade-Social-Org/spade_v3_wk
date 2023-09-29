@@ -16,7 +16,7 @@ class HomeScreenUi extends StatefulWidget {
 
 class _HomeScreenUiState extends State<HomeScreenUi> {
   Future<void> _loadResources(bool reload) async {
-    PostBloc().allPostsStream;
+    PostBloc().loadedPosts;
     StoryBloc().allStorysStream;
   }
 

@@ -201,17 +201,29 @@ class ApiService {
     }
   }
 
-  static Future<List<Post>> getAllPost() async {
-    try {
-      final response = await _get("/api/v1/posts/user/feeds?is_story=false");
-      final List<dynamic> responseData = response.data["data"];
-      final List<Post> posts =
-          responseData.map((data) => Post.fromJson(data)).toList();
-      log(posts.toString());
-      final postBloc = PostBloc();
-      postBloc.addPosts(posts);
-      return posts;
-    } catch (e) {
+  // static Future<List<Post>> getAllPost() async {
+  //   try {
+  //     final response = await _get("/api/v1/posts/user/feeds?is_story=false");
+  //     final List<dynamic> responseData = response.data["data"];
+  //     final List<Post> posts =
+  //         responseData.map((data) => Post.fromJson(data)).toList();
+  //     log(posts.toString());
+  //     final postBloc = PostBloc();
+  //     postBloc.addPosts(posts);
+  //     return posts;
+  //   } catch (e) {
+  //     throw Exception('Failed to load posts');
+  //   }
+  // }
+
+  static Future<List<Post>> fetchPosts(int page, int limit) async {
+    final response = await _get('/posts?page=$page&limit=$limit');
+    print("$response");
+    if (response.statusCode == 200) {
+      
+      final List<dynamic> jsonList = response.data;
+      return jsonList.map((json) => Post.fromJson(json)).toList();
+    } else {
       throw Exception('Failed to load posts');
     }
   }

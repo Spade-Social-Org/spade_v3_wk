@@ -8,6 +8,7 @@ import 'Common/size_config/size_config.dart';
 import 'Data/Service/geo_locator.dart';
 import 'Presentation/Screens/Camera/camera_screen1.dart';
 import 'Presentation/logic_holder/bloc/heart_bloc/heart_bloc.dart';
+import 'Presentation/widgets/post_controller.dart';
 
 //import 'package:spade/onbording.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<HeartIconBloc>(create: (_) => HeartIconBloc()),
+          BlocProvider<PostBloc>(create: (context) => PostBloc()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
