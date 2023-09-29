@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
+import 'package:spade_v4/Data/Models/discover_service.dart';
 
 import 'Common/size_config/size_config.dart';
 import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
@@ -37,16 +40,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Spade',
-        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-        // home: Onbording()
-        //initialRoute: Routes.getStarted,
+    return ProviderScope(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Spade',
+          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+          // home: Onbording()
+          //initialRoute: Routes.getStarted,
 
-        navigatorKey: kNavigatorKey,
-        // onGenerateRoute: RouteGenerator.onGenerateRoute,
-        //onUnknownRoute: RouteGenerator.unKnownRoute,
-        home: isLogin ? const NavigationContainer() : const LandingScreen());
+          navigatorKey: kNavigatorKey,
+          // onGenerateRoute: RouteGenerator.onGenerateRoute,
+          //onUnknownRoute: RouteGenerator.unKnownRoute,
+          home: isLogin ? const NavigationContainer() : const LandingScreen()),
+    );
   }
 }

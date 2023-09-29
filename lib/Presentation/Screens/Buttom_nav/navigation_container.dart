@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
 import '../Camera/camera_screen.dart';
@@ -84,214 +84,216 @@ class _NavigationContainerState extends State<NavigationContainer> {
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
     );
-    final bottomNavigationProvider = Provider.of<DiscoverService>(context);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: customStatusBarStyle,
-      child: Scaffold(
-        body: _selectedPageIndex == 0 || _selectedPageIndex == 0
-            ? PageView(
-                controller: _pageController,
-                onPageChanged: _onPageChanged,
-                children: [
-                  _appPages[0],
-                  _appPage[0],
-                ],
-              )
-            : _appPages[_selectedPageIndex],
-        bottomNavigationBar: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: double.infinity,
-              height: 70.0,
-              color: Colors.black,
-            ),
-            BottomNavigationBar(
-              useLegacyColorScheme: true,
-              type: BottomNavigationBarType.fixed,
-              currentIndex: _selectedPageIndex,
-              onTap: (index) {
-                setState(() {
-                  if (_selectedPageIndex == 2 && index == 2) {
-                    _showOption = true;
-                  } else {
-                    _showOption = false;
-                    _selectedPageIndex = index;
-                  }
-                });
-              },
-              backgroundColor: Colors.black,
-              elevation: 8,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey,
-              selectedLabelStyle: TextStyle(
-                fontWeight: FontWeight.bold,
+      child: Consumer(builder: (context, ref, _) {
+        final provider = ref.watch(discoverService);
+        return Scaffold(
+          body: _selectedPageIndex == 0 || _selectedPageIndex == 0
+              ? PageView(
+                  controller: _pageController,
+                  onPageChanged: _onPageChanged,
+                  children: [
+                    _appPages[0],
+                    _appPage[0],
+                  ],
+                )
+              : _appPages[_selectedPageIndex],
+          bottomNavigationBar: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 70.0,
+                color: Colors.black,
               ),
-              items: [
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    _selectedPageIndex == 0
-                        ? "assets/images/Path 748.png"
-                        : "assets/images/Path 748 (1).png",
-                  ),
-                  label: "",
+              BottomNavigationBar(
+                useLegacyColorScheme: true,
+                type: BottomNavigationBarType.fixed,
+                currentIndex: _selectedPageIndex,
+                onTap: (index) {
+                  setState(() {
+                    if (_selectedPageIndex == 2 && index == 2) {
+                      _showOption = true;
+                    } else {
+                      _showOption = false;
+                      _selectedPageIndex = index;
+                    }
+                  });
+                },
+                backgroundColor: Colors.black,
+                elevation: 8,
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.grey,
+                selectedLabelStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    _selectedPageIndex == 1
-                        ? "assets/images/Group 555 (2).png"
-                        : "assets/images/Group 555.png",
-                    width: 24,
-                    height: 24,
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Image.asset(
+                      _selectedPageIndex == 0
+                          ? "assets/images/Path 748.png"
+                          : "assets/images/Path 748 (1).png",
+                    ),
+                    label: "",
                   ),
-                  label: "",
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    _showOption
-                        ? 'assets/images/bottom_nav.png'
-                        : (_selectedPageIndex == 2
-                            ? "assets/images/Group 554 (1).png"
-                            : "assets/images/Group 554.png"),
-                    width: 24,
-                    height: 24,
+                  BottomNavigationBarItem(
+                    icon: Image.asset(
+                      _selectedPageIndex == 1
+                          ? "assets/images/Group 555 (2).png"
+                          : "assets/images/Group 555.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                    label: "",
                   ),
-                  label: "",
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    _selectedPageIndex == 3
-                        ? "assets/images/global2.png"
-                        : "assets/images/global.png",
-                    width: 24,
-                    height: 24,
+                  BottomNavigationBarItem(
+                    icon: Image.asset(
+                      _showOption
+                          ? 'assets/images/bottom_nav.png'
+                          : (_selectedPageIndex == 2
+                              ? "assets/images/Group 554 (1).png"
+                              : "assets/images/Group 554.png"),
+                      width: 24,
+                      height: 24,
+                    ),
+                    label: "",
                   ),
-                  label: "",
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    _selectedPageIndex == 4
-                        ? "assets/images/Group 648.png"
-                        : "assets/images/Group 648.png",
-                    width: 24,
-                    height: 24,
+                  BottomNavigationBarItem(
+                    icon: Image.asset(
+                      _selectedPageIndex == 3
+                          ? "assets/images/global2.png"
+                          : "assets/images/global.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                    label: "",
                   ),
-                  label: "",
-                ),
-              ],
-            ),
-            if (_showOption)
-              Positioned(
-                bottom: 1.0,
-                child: Container(
-                  height: 75,
-                  width: 100,
-                  decoration: const BoxDecoration(
-                    // color: Colors.grey,
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/bottom_nav.png")),
+                  BottomNavigationBarItem(
+                    icon: Image.asset(
+                      _selectedPageIndex == 4
+                          ? "assets/images/Group 648.png"
+                          : "assets/images/Group 648.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                    label: "",
                   ),
-                  padding: EdgeInsets.all(8.0),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Positioned(
-                          top: card_click == 1 ? 1 : 12,
-                          left: 0,
-                          child: GestureDetector(
-                            onTap: (() => {
-                                  bottomNavigationProvider.updateIndex('red'),
-                                  _zoneClick(1)
-                                }),
-                            child: Transform.rotate(
-                              angle: -0.5,
-                              child: Container(
-                                height: card_click == 1 ? 35.0 : 20.0,
-                                width: 15.0,
-                                color: Colors.red,
+                ],
+              ),
+              if (_showOption)
+                Positioned(
+                  bottom: 1.0,
+                  child: Container(
+                    height: 75,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                      // color: Colors.grey,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/bottom_nav.png")),
+                    ),
+                    padding: EdgeInsets.all(8.0),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Positioned(
+                            top: card_click == 1 ? 1 : 12,
+                            left: 0,
+                            child: GestureDetector(
+                              onTap: (() =>
+                                  {provider.updateIndex('red'), _zoneClick(1)}),
+                              child: Transform.rotate(
+                                angle: -0.5,
+                                child: Container(
+                                  height: card_click == 1 ? 35.0 : 20.0,
+                                  width: 15.0,
+                                  color: Colors.red,
+                                ),
                               ),
-                            ),
-                          )),
-                      Positioned(
-                          left: 22.0,
-                          top: card_click == 2 ? -5.0 : 5.0,
-                          child: GestureDetector(
-                            onTap: (() => {
-                                  bottomNavigationProvider.updateIndex('green'),
-                                  _zoneClick(2)
-                                }),
-                            child: Transform.rotate(
-                              angle: -0.2,
-                              child: Container(
-                                height: card_click == 2 ? 35.0 : 20.0,
-                                width: 15.0,
-                                color: Colors.green.shade900,
+                            )),
+                        Positioned(
+                            left: 22.0,
+                            top: card_click == 2 ? -5.0 : 5.0,
+                            child: GestureDetector(
+                              onTap: (() => {
+                                    provider.updateIndex('green'),
+                                    _zoneClick(2)
+                                  }),
+                              child: Transform.rotate(
+                                angle: -0.2,
+                                child: Container(
+                                  height: card_click == 2 ? 35.0 : 20.0,
+                                  width: 15.0,
+                                  color: Colors.green.shade900,
+                                ),
                               ),
-                            ),
-                          )),
-                      Positioned(
-                          left: 45.0,
-                          top: card_click == 3 ? -5.0 : 5.0,
-                          child: GestureDetector(
-                            onTap: (() => {
-                                  bottomNavigationProvider
-                                      .updateIndex('yellow'),
-                                  _zoneClick(3)
-                                }),
-                            child: Transform.rotate(
-                              angle: 0.2,
-                              child: Container(
-                                height: card_click == 3 ? 35.0 : 20.0,
-                                width: 15.0,
-                                color: Colors.yellow,
+                            )),
+                        Positioned(
+                            left: 45.0,
+                            top: card_click == 3 ? -5.0 : 5.0,
+                            child: GestureDetector(
+                              onTap: (() => {
+                                    provider.updateIndex('yellow'),
+                                    _zoneClick(3)
+                                  }),
+                              child: Transform.rotate(
+                                angle: 0.2,
+                                child: Container(
+                                  height: card_click == 3 ? 35.0 : 20.0,
+                                  width: 15.0,
+                                  color: Colors.yellow,
+                                ),
                               ),
-                            ),
-                          )),
-                      Positioned(
-                          left: 67.0,
-                          top: card_click == 4 ? 0.0 : 12.0,
-                          child: GestureDetector(
-                            onTap: (() => {
-                                  bottomNavigationProvider.updateIndex('grey'),
-                                  _zoneClick(4)
-                                }),
-                            child: Transform.rotate(
-                              angle: 0.5,
-                              child: Container(
-                                height: card_click == 4 ? 35.0 : 20.0,
-                                width: 15.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          )),
-                      Positioned(
-                          left: 35.0,
-                          top: 40.0,
-                          child: GestureDetector(
-                            onTap: (() => {
-                                  if (_showOption)
-                                    {setState(() => _showOption = !_showOption)}
-                                }),
-                            child: Transform.rotate(
-                              angle: 0.0,
-                              child: Container(
-                                height: 15.0,
-                                width: 15.0,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
+                            )),
+                        Positioned(
+                            left: 67.0,
+                            top: card_click == 4 ? 0.0 : 12.0,
+                            child: GestureDetector(
+                              onTap: (() => {
+                                    provider.updateIndex('grey'),
+                                    _zoneClick(4)
+                                  }),
+                              child: Transform.rotate(
+                                angle: 0.5,
+                                child: Container(
+                                  height: card_click == 4 ? 35.0 : 20.0,
+                                  width: 15.0,
                                   color: Colors.grey,
                                 ),
                               ),
-                            ),
-                          )),
-                    ],
+                            )),
+                        Positioned(
+                            left: 35.0,
+                            top: 40.0,
+                            child: GestureDetector(
+                              onTap: (() => {
+                                    if (_showOption)
+                                      {
+                                        setState(
+                                            () => _showOption = !_showOption)
+                                      }
+                                  }),
+                              child: Transform.rotate(
+                                angle: 0.0,
+                                child: Container(
+                                  height: 15.0,
+                                  width: 15.0,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
