@@ -1,15 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Data/data_source/remote_data_sorce/api2.dart';
 import 'package:spade_v4/Presentation/widgets/home_screen_app_bar.dart';
 
 import '../../widgets/post_controller.dart';
 import '../../widgets/posts.dart';
 import '../../widgets/story_controller.dart';
 import '../../widgets/story_mode.dart';
-
 
 class HomeScreenUi extends StatefulWidget {
   const HomeScreenUi({Key? key}) : super(key: key);
@@ -21,9 +17,7 @@ class HomeScreenUi extends StatefulWidget {
 class _HomeScreenUiState extends State<HomeScreenUi> {
   Future<void> _loadResources(bool reload) async {
     PostBloc().allPostsStream;
-    StoryController().allStorys;
-    // await getAllPost();
-    await ApiService.getAllStories();
+    StoryBloc().allStorysStream;
   }
 
   @override

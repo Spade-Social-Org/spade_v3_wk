@@ -8,44 +8,66 @@ import 'animated_route.dart';
 import 'story_controller.dart';
 import 'view_story.dart';
 
-class StoryList extends StatelessWidget {
+class StoryList extends StatefulWidget {
   const StoryList({
     Key? key,
   }) : super(key: key);
 
-  // final Storyy story;
+  @override
+  State<StoryList> createState() => _StoryListState();
+}
+
+class _StoryListState extends State<StoryList> {
+
+final _storyBloc = StoryBloc(); 
+
+  @override
+  void initState() {
+    super.initState();
+    _loadStorys();
+  }
+
+  Future<void> _loadStorys() async {
+    try {
+      final storys = await ApiService.getAllStories();
+      _storyBloc.addStorys(storys);
+    } catch (error) {
+      print('Error loading posts: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: ApiService.getAllStories(),
-        builder: (_, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text(
-                'Poor internet connection',
-                style: TextStyle(color: Colors.white),
-              ),
-            );
-          } else if (StoryController().allStorys!.isEmpty) {
-            return const Center(
-              child: Text(
-                'No story available',
-                style: TextStyle(color: Colors.white),
-              ),
-            );
+    return StreamBuilder<List<Storyy>>(
+      stream: _storyBloc.allStorysStream, 
+      builder: (_, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return const Center(
+            child: Text(
+              'Poor internet connection',
+              style: TextStyle(color: Colors.white),
+            ),
+          );
+        } else if (snapshot.data == null || snapshot.data!.isEmpty) {
+          return const Center(
+            child: Text(
+              'No posts available',
+              style: TextStyle(color: Colors.white),
+            ),
+          );
           } else {
+            final story = snapshot.data;
             return SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 75.height(),
               child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  itemCount: StoryController().allStorys!.length,
+                  itemCount: story!.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                         splashColor: Colors.transparent,
@@ -55,7 +77,7 @@ class StoryList extends StatelessWidget {
                             left: 21.width(),
                           ),
                           child: Storys(
-                              story: StoryController().allStorys![index]),
+                              story: story[index]),
                         ));
                   }),
             );

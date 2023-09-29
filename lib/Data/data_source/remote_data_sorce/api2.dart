@@ -28,7 +28,7 @@ class ApiService {
           "accept": "*/*",
           "Content-Type": "multipart/form-data",
           "Authorization":
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk1MDEwNDQ3fQ.stQATT8eecn4Xm4t6M89Hr9QrRt7oRs9Jj-DcSwf4Ow",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk1NzQ5NjE1fQ.SDWv5C12WfkANKIo7UU_yvlLoAlBH-sY5k2itCyNsCI",
         });
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -216,16 +216,16 @@ class ApiService {
     }
   }
 
-  static Future<void> getAllStories() async {
+  static Future<List<Storyy>> getAllStories() async {
     try {
       final response = await _get("/api/v1/posts/user/feeds?is_story=true");
       final List<dynamic> responseData = response.data["data"];
       final List<Storyy> storyy =
           responseData.map((data) => Storyy.fromJson(data)).toList();
       log(storyy.toString());
-      final storyController = StoryController();
-      storyController.addStorys = storyy;
-      return;
+      final storyBloc = StoryBloc();
+      storyBloc.addStorys(storyy);
+      return storyy;
     } catch (e) {
       throw Exception('Failed to load posts');
     }
