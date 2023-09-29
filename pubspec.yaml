@@ -1,4 +1,4 @@
-name: app
+name: spade_v4
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -20,7 +20,7 @@ dependencies:
   custom_radio_grouped_button: ^2.2.0
   percent_indicator: ^4.2.3
   flutter_speed_dial: ^6.2.0
-  flutter_tinder_swipe: ^0.0.4
+  # flutter_tinder_swipe: ^0.0.4
   flutter_svg_icons: ^0.0.1+3
   flutter_staggered_grid_view: ^0.6.2
   # stacked_list_carousel: ^1.0.0
@@ -29,8 +29,6 @@ dependencies:
   swipe_to: ^1.0.2
   gestures: ^1.0.0
   carousel_slider: ^4.0.0
-  shared_preferences: ^2.2.0
-  flutter_image_compress: ^2.0.4
   # flutter_svg: ^0.19.1
   flutter_svg: ^0.23.0+1
   swipe_cards: ^2.0.0+1
@@ -62,12 +60,15 @@ dependencies:
   flutter_card_swiper: ^6.0.0
   hexagon: ^0.2.0
   get_it: ^7.6.0
+  form_validator: ^2.1.1
+  dio: ^5.3.3
   #<<<service>>>#
   http: ^1.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   rxdart: ^0.27.7
   flutter_native_splash:
+  csc_picker: ^0.2.7
 
 
 dev_dependencies:
@@ -78,7 +79,9 @@ dev_dependencies:
 
 flutter_native_splash:
   image: assets/images/onbaording.png
-  color: "#121212"
+  color: "#f9f9f9"
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 
 flutter:
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/Common/extensions/barrel_extensions.dart';
+import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 
 class FriendsScreen extends StatefulWidget {
   const FriendsScreen({Key? key}) : super(key: key);

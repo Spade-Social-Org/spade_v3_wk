@@ -1,4 +1,4 @@
-import 'package:app/Presentation/Screens/messages/single/single_message.dart';
+import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
 import 'package:flutter/material.dart';
 import 'package:hexagon/hexagon.dart';
 

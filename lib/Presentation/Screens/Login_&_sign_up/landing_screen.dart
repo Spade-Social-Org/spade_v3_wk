@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../swipe_screen.dart';
+import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
+import 'package:spade_v4/swipe_screen.dart';
 import '../Onboarding_screen/hello_screen.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -68,7 +69,11 @@ class LandingScreen extends StatelessWidget {
               child: Center(
                 child: GestureDetector(
                   onTap: () {
-                    _loaderOn();
+                    // _loaderOn();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const InputEmail())));
                   },
                   child: Container(
                     height: 47.59,

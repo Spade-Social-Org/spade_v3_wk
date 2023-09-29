@@ -1,4 +1,4 @@
-import 'package:app/Common/size_config/size_config.dart';
+import 'package:spade_v4/Common/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
 void navigatePop() => Navigator.of(kNavigatorKey.currentContext!).pop();

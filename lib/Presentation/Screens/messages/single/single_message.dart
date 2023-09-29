@@ -1,5 +1,5 @@
-import 'package:app/Presentation/Screens/messages/single/message_textfield.dart';
-import 'package:app/Presentation/Screens/messages/widget/custom_iconbutton.dart';
+import 'package:spade_v4/Presentation/Screens/messages/single/message_textfield.dart';
+import 'package:spade_v4/Presentation/Screens/messages/widget/custom_iconbutton.dart';
 import 'package:flutter/material.dart';
 
 class SingleMessage extends StatefulWidget {
