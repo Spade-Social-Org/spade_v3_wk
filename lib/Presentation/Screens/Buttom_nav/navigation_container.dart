@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:app/Data/Models/discover_service.dart';
 import 'package:app/Presentation/Screens/Discover/discover_screen.dart';
-import '../Chats/message_screen.dart';
 import '../Home/home_screen.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
+import '../messages/message_screen.dart';
 
 class NavigationContainer extends StatefulWidget {
   const NavigationContainer({super.key});

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Spade',
-      theme: ThemeData(),
+      theme: ThemeData(useMaterial3: true),
       navigatorKey: kNavigatorKey,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
       onUnknownRoute: RouteGenerator.unKnownRoute,
