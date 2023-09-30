@@ -42,7 +42,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
   int expandedButtonIndex = -1;
   // List<dynamic> jsonData = [];
   //  List persons = [];
-  late List<Discover_Model> persons;
+  late List<DiscoverModel> persons;
   String myZone = 'all';
 
   @override
@@ -110,7 +110,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
     switch(myZone){
       case 'all':
          persons = [
-          Discover_Model(
+          DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1598.png",
@@ -118,7 +118,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State 🇺🇸',
             "100",
           ),
-          Discover_Model(
+          DiscoverModel(
             "Paul",
             const Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1597.png",
@@ -126,23 +126,23 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State  🇺🇸',
             "80",
           ),
-          Discover_Model("Mike", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "50"),
-          Discover_Model("John", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "45"),
-          Discover_Model("Jane", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Jane", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1598.png", "20", 'United State  🇺🇸', "60"),
-          Discover_Model("Paul", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Paul", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1597.png", "20", 'United State  🇺🇸', "55"),
-          Discover_Model("Mike", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "90"),
-          Discover_Model("John", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "60"),
         ];
         break;
       case 'red':
          persons = [
-          Discover_Model(
+          DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 148, 17, 8),
             "assets/images/Rectangle 1598.png",
@@ -150,7 +150,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "100",
           ),
-          Discover_Model(
+          DiscoverModel(
             "Paul",
             const Color.fromARGB(255, 148, 17, 8),
             "assets/images/Rectangle 1597.png",
@@ -158,23 +158,23 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "80",
           ),
-          Discover_Model("Mike", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("John", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Jane", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Paul", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("John", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Screenshot.png", "20", 'United State', "60"),
         ];
         break;
       case 'yellow':
         persons = [
-          Discover_Model(
+          DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 204, 167, 1),
             "assets/images/Rectangle 1598.png",
@@ -182,7 +182,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "100",
           ),
-          Discover_Model(
+          DiscoverModel(
             "Paul",
             const Color.fromARGB(255, 204, 167, 1),
             "assets/images/Rectangle 1597.png",
@@ -190,23 +190,23 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "80",
           ),
-          Discover_Model("Mike", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("Mike", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John",const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John",const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("Jane", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("Paul", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("Mike", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State', "60"),
         ];
         break;
       case 'green':
          persons = [
-          Discover_Model(
+          DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1598.png",
@@ -214,7 +214,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "100",
           ),
-          Discover_Model(
+          DiscoverModel(
             "Paul",
             const Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1597.png",
@@ -222,23 +222,23 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "80",
           ),
-          Discover_Model("Mike", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Mike", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("John", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Jane", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Paul", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Mike", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("John", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Screenshot.png", "20", 'United State', "60"),
         ];
         break;
       case 'grey':
          persons = [
-          Discover_Model(
+          DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 176, 176, 176),
             "assets/images/Rectangle 1598.png",
@@ -246,7 +246,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "100",
           ),
-          Discover_Model(
+          DiscoverModel(
             "Paul",
             const Color.fromARGB(255, 176, 176, 176),
             "assets/images/Rectangle 1597.png",
@@ -254,23 +254,23 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "80",
           ),
-          Discover_Model("Mike", const Color.fromARGB(255, 176, 176, 176),
+          DiscoverModel("Mike", const Color.fromARGB(255, 176, 176, 176),
               "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", const Color.fromARGB(255, 176, 176, 176),
+          DiscoverModel("John", const Color.fromARGB(255, 176, 176, 176),
               "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", const Color.fromARGB(255, 176, 176, 176),
+          DiscoverModel("Jane", const Color.fromARGB(255, 176, 176, 176),
               "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", const Color.fromARGB(255, 176, 176, 176),
+          DiscoverModel("Paul", const Color.fromARGB(255, 176, 176, 176),
               "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", const Color.fromARGB(255, 176, 176, 176),
+          DiscoverModel("Mike", const Color.fromARGB(255, 176, 176, 176),
               "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", const Color.fromARGB(255, 176, 176, 176),
+          DiscoverModel("John", const Color.fromARGB(255, 176, 176, 176),
               "assets/images/Screenshot.png", "20", 'United State', "60"),
         ];
         break;
       default:
          persons = [
-          Discover_Model(
+          DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1598.png",
@@ -278,7 +278,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "100",
           ),
-          Discover_Model(
+          DiscoverModel(
             "Paul",
             const Color.fromARGB(255, 37, 140, 42),
             "assets/images/Rectangle 1597.png",
@@ -286,17 +286,17 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State',
             "80",
           ),
-          Discover_Model("Mike", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          Discover_Model("John", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State', "45"),
-          Discover_Model("Jane", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Jane", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
-          Discover_Model("Paul", const Color.fromARGB(255, 37, 140, 42),
+          DiscoverModel("Paul", const Color.fromARGB(255, 37, 140, 42),
               "assets/images/Rectangle 1597.png", "20", 'United State', "55"),
-          Discover_Model("Mike", const Color.fromARGB(255, 148, 17, 8),
+          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
               "assets/images/Rectangle 1595.png", "20", 'United State', "90"),
-          Discover_Model("John", const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State', "60"),
         ];
     }
