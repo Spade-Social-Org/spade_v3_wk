@@ -62,28 +62,28 @@ import 'post_state.dart';
 //   }
 // }
 
-class PostBloc extends Bloc<PostEvent, PostState> {
-  final posts = ApiService.fetchPosts;
-  final List<Post> loadedPosts = [];
-  int page = 1;
-  final int postsPerPage = 10; 
-
-  PostBloc() : super(PostInitial());
-
-  Stream<PostState> mapEventToState(PostEvent event) async* {
-    if (event is LoadPosts) {
-      try {
-        if (state is PostInitial || event.refresh) {
-          loadedPosts.clear();
-          page = 1;
-        }
-        final newPosts = await ApiService.fetchPosts(page, postsPerPage);
-        loadedPosts.addAll(newPosts);
-        page++;
-        yield PostLoaded(loadedPosts);
-      } catch (e) {
-        yield PostError(e.toString());
-      }
-    }
-  }
-}
+// class PostBloc extends Bloc<PostEvent, PostState> {
+  // final posts = ApiService.fetchPosts();
+  // final List<Post> loadedPosts = [];
+  // int page = 1;
+  // final int postsPerPage = 10;
+  //
+  // PostBloc() : super(PostInitial());
+  //
+  // Stream<PostState> mapEventToState(PostEvent event) async* {
+  //   if (event is LoadPosts) {
+  //     try {
+  //       if (state is PostInitial || event.refresh) {
+  //         loadedPosts.clear();
+  //         page = 1;
+  //       }
+  //       final newPosts = await ApiService.fetchPosts();
+  //       loadedPosts.addAll(newPosts);
+  //       page++;
+  //       yield PostLoaded(loadedPosts);
+  //     } catch (e) {
+  //       yield PostError(e.toString());
+  //     }
+  //   }
+  // }
+// }

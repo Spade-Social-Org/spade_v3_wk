@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:spade_v4/Data/cubit/posts_cubit.dart';
 import 'package:spade_v4/Presentation/Screens/Home/home_screen_ui.dart';
 
 import 'Common/size_config/size_config.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<HeartIconBloc>(create: (_) => HeartIconBloc()),
-          BlocProvider<PostBloc>(create: (context) => PostBloc()),
+          // BlocProvider<PostBloc>(create: (context) => PostBloc()),
+          BlocProvider<PostsCubit>(create: (context) => PostsCubit()..fetchPosts())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

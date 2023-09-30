@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
+import 'package:spade_v4/Data/cubit/posts_cubit.dart';
 import 'package:spade_v4/Presentation/widgets/home_screen_app_bar.dart';
 
 import '../../widgets/post_controller.dart';
@@ -15,9 +17,12 @@ class HomeScreenUi extends StatefulWidget {
 }
 
 class _HomeScreenUiState extends State<HomeScreenUi> {
+  // final postBloc = BlocProvider.of<PostsCubit>(context);
+
   Future<void> _loadResources(bool reload) async {
-    PostBloc().loadedPosts;
+    // PostBloc().loadedPosts;
     StoryBloc().allStorysStream;
+    PostsCubit().fetchPosts();
   }
 
   @override

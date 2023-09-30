@@ -15,7 +15,7 @@ class Post {
     required this.createAt,
   });
 
-  static Post fromJson(Map<String, dynamic> json) {
+  factory Post.fromJson(Map<String, dynamic> json) {
     if (!json.containsKey('id')) {
       throw Exception('Missing field: id');
     }

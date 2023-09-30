@@ -175,12 +175,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spade_v4/Data/Models/posts/post_model.dart';
+import 'package:spade_v4/Data/cubit/posts_cubit.dart';
+import 'package:spade_v4/Data/repositories/posts_repository.dart';
 
-import '../../../Data/data_source/remote_data_sorce/api2.dart';
 import 'add_post_card.dart';
 import 'post_controller.dart';
-import 'post_event.dart';
-import 'post_state.dart';
+// import 'post_event.dart';
+// import 'post_state.dart';
 
 class PostUi extends StatefulWidget {
   const PostUi({super.key});
@@ -190,48 +191,88 @@ class PostUi extends StatefulWidget {
 }
 
 class _PostUiState extends State<PostUi> {
-  final _postBloc = PostBloc();
+  // final _postBloc = PostBloc();
+   ScrollController _scrollController = ScrollController();
+   int _currentpage = 1;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _loadPosts();
-  // }
 
-  // Future<void> _loadPosts() async {
-  //   try {
-  //     final posts = await ApiService.getAllPost();
-  //     _postBloc.addPosts(posts);
-  //   } catch (error) {
-  //     print('Error loading posts: $error');
-  //   }
-  // }
+  @override
+  void initState() {
+    super.initState();
+
+
+    // _loadPosts();
+    // postFuture = repository.fetchPosts();
+  }
+
+
+
+
 
 
 
 
   @override
   Widget build(BuildContext context) {
-    final postBloc = BlocProvider.of<PostBloc>(context);
+    final postBloc = BlocProvider.of<PostsCubit>(context);
+    _scrollController.addListener(() {
+      if (_isScrollAtEnd(_scrollController) && !postBloc.isLoading) {
 
-    return BlocBuilder<PostBloc, PostState>(
+        postBloc.fetchPosts();
+      }
+    });
+
+    return BlocBuilder<PostsCubit, PostState>(
         builder: (context, state) {
-          if (state is PostInitial || state is PostLoading) {
-            return Center(child: CircularProgressIndicator());
+          if (state is PostLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is PostLoaded) {
+            final List<Post> posts = state.posts;
+            // return buildPostListView(posts, postBloc);
+            return SizedBox(
+              height: 650.0,
+              child: ListView.builder(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 40.0),
+                controller: _scrollController,
+                itemCount: posts.length + 1,
+                scrollDirection: Axis.vertical,
+                // shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  if (index < posts.length ) {
+                    final post = posts[index];
+                    return PostCard(posts: post);
+                  }else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  //
+                  // return ListTile(
+                  //   title: Text(post.description),
+                  //   subtitle: Text(post.posterName),
+                  // );
+
+
+                },
+              ),
+            );
+
+          }else if (state is PostError) {
+            return Center(child: Text('Error: ${state.message}'));
+          } else {
+            return Center(child: Text('No data available.'));
           }
-          if (state is PostLoaded) {
-            return buildPostListView(state.posts, postBloc);
-          }
-          if (state is PostError && postBloc.loadedPosts.isEmpty) {
-            return Center(child: Text('Failed to load posts: ${state.error}'));
-          }
-          return Container();
+
         }
     );
   }
 }
-       
 
+
+bool _isScrollAtEnd(ScrollController controller) {
+  return controller.position.pixels >= controller.position.maxScrollExtent - 200; // Adjust the threshold as needed
+}
 
 
 
@@ -271,46 +312,48 @@ class _PostUiState extends State<PostUi> {
 // }
   
 
-  Widget buildPostListView(List<Post> posts, PostBloc postBloc) {
-    return ListView.builder(
-      itemCount: posts.length + 1,
-      itemBuilder: (context, index) {
-        if (index < posts.length) {
-          final post = posts[index];
-          return PostCard(posts: post);
-        } else {
-          return Center(
-            child: TextButton(
-              onPressed: () {
-                postBloc.add(LoadPosts());
-              },
-              child: Text('Load More'),
-            ),
-          );
-        }
-      },
-    );
-
-              
-          // return SizedBox(
-          //   height: 700.0,
-          //   child: ListView.builder(
-          //     scrollDirection: Axis.vertical,
-          //     itemCount:  posts.length + 1,
-          //     // itemCount: posts!.length
-              
-          //     itemBuilder: (context, index) {
-          //       if (index % 11 == 10) {
-          //         return const Center(
-          //           child: CircularProgressIndicator(),
-          //         );
-          //       } else {
-          //         final realIndex = index - (index ~/ 11);
-          //         final Post post = posts[realIndex];
-          //         return PostCard(posts: post);
-          //       }
-          //     },
-          //   ),
-          // );
-  }
+  // Widget buildPostListView(List<Post> posts, PostsCubit postBloc) {
+  //   // return SizedBox(
+  //   //   height: 700.0,
+  //   //   child: ListView.builder(
+  //   //     controller: _scrollController,
+  //   //     itemCount: posts.length,
+  //   //     scrollDirection: Axis.vertical,
+  //   //     // shrinkWrap: true,
+  //   //     itemBuilder: (context, index) {
+  //   //         final post = posts[index];
+  //   //         return PostCard(posts: post);
+  //   //         //
+  //   //         // return ListTile(
+  //   //         //   title: Text(post.description),
+  //   //         //   subtitle: Text(post.posterName),
+  //   //         // );
+  //   //
+  //   //
+  //   //     },
+  //   //   ),
+  //   // );
+  //
+  //
+  //         // return SizedBox(
+  //         //   height: 700.0,
+  //         //   child: ListView.builder(
+  //         //     scrollDirection: Axis.vertical,
+  //         //     itemCount:  posts.length + 1,
+  //         //     // itemCount: posts!.length
+  //
+  //         //     itemBuilder: (context, index) {
+  //         //       if (index % 11 == 10) {
+  //         //         return const Center(
+  //         //           child: CircularProgressIndicator(),
+  //         //         );
+  //         //       } else {
+  //         //         final realIndex = index - (index ~/ 11);
+  //         //         final Post post = posts[realIndex];
+  //         //         return PostCard(posts: post);
+  //         //       }
+  //         //     },
+  //         //   ),
+  //         // );
+  // }
 
