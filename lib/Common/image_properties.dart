@@ -16,6 +16,7 @@ void showSnackBar({
   );
 }
 
+
 Future<File?> pickImageFromGallery(BuildContext context) async {
   File? image;
   try {
