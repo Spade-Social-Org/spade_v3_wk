@@ -40,7 +40,6 @@ class _GoogleMapState extends State<GoogleMapScreen>
   @override
   void initState() {
     super.initState();
-    //connect();
     ///Load map theme
     DefaultAssetBundle.of(context)
         .loadString('assets/maptheme/nighttheme.json')
@@ -136,31 +135,31 @@ class _GoogleMapState extends State<GoogleMapScreen>
         'USER',
         LatLng(position.latitude + markerOffset, position.longitude),
       );
-      addMarker(
+      addMarker2(
         'USER 2',
         LatLng(5.973490, 6.862013),
       );
-      addMarker(
+      addMarker4(
         'USER 3',
         LatLng(5.952930, 6.848727),
-      );
-      addMarker(
-        'USER 4',
-        LatLng(5.9601322, 6.8475589),
-      );
-      addMarker(
+       );
+      // addMarker4(
+      //   'USER 4',
+      //   LatLng(5.9601322, 6.8475589),
+      // );
+      addMarker5(
         'USER 5',
         LatLng(5.972808, 6.837499),
       );
-      addMarker(
-        'USER 6',
-        LatLng(5.9601322, 6.8475589),
-      );
-      addMarker(
+      // addMarker6(
+      //   'USER 6',
+      //   LatLng(5.9601322, 6.8475589),
+      // );
+      addMarker7(
         'USER 7',
         LatLng(5.961376, 6.834071),
       );
-      addMarker(
+      addMarker7(
         'USER 8',
         LatLng(5.993973, 6.862863),
       );
@@ -371,6 +370,96 @@ class _GoogleMapState extends State<GoogleMapScreen>
       markerId: MarkerId(id),
       position: location,
       infoWindow: const InfoWindow(title: 'Mr Josh', snippet: 'Hello friend'),
+      icon: await customMarkerIcon.createMarkerIcon(),
+    );
+    _markers[id] = marker;
+    setState(() {});
+  }
+  addMarker2(String id, LatLng location) async {
+    var customMarkerIcon = CustomMarkerIcon(
+      size: 120,
+      imagePath: 'assets/images/Ellipse 366.png',
+      backgroundColor: Colors.grey.withOpacity(0.5),
+    );
+    var marker = Marker(
+      markerId: MarkerId(id),
+      position: location,
+      infoWindow: const InfoWindow(title: 'Jennifer', snippet: 'Hello friend'),
+      icon: await customMarkerIcon.createMarkerIcon(),
+    );
+    _markers[id] = marker;
+    setState(() {});
+  }
+  addMarker3(String id, LatLng location) async {
+    var customMarkerIcon = CustomMarkerIcon(
+      size: 120,
+      imagePath: 'assets/images/Ellipse 367.png',
+      backgroundColor: Colors.grey.withOpacity(0.5),
+    );
+    var marker = Marker(
+      markerId: MarkerId(id),
+      position: location,
+      infoWindow: const InfoWindow(title: 'Mrs Sandra', snippet: 'Hello friend'),
+      icon: await customMarkerIcon.createMarkerIcon(),
+    );
+    _markers[id] = marker;
+    setState(() {});
+  }
+  addMarker4(String id, LatLng location) async {
+    var customMarkerIcon = CustomMarkerIcon(
+      size: 120,
+      imagePath: 'assets/images/Ellipse 372.png',
+      backgroundColor: Colors.grey.withOpacity(0.5),
+    );
+    var marker = Marker(
+      markerId: MarkerId(id),
+      position: location,
+      infoWindow: const InfoWindow(title: 'Maryjane', snippet: 'Hello friend'),
+      icon: await customMarkerIcon.createMarkerIcon(),
+    );
+    _markers[id] = marker;
+    setState(() {});
+  }
+  addMarker5(String id, LatLng location) async {
+    var customMarkerIcon = CustomMarkerIcon(
+      size: 120,
+      imagePath: 'assets/images/Ellipse 378.png',
+      backgroundColor: Colors.grey.withOpacity(0.5),
+    );
+    var marker = Marker(
+      markerId: MarkerId(id),
+      position: location,
+      infoWindow: const InfoWindow(title: 'Cynthia', snippet: 'Hello friend'),
+      icon: await customMarkerIcon.createMarkerIcon(),
+    );
+    _markers[id] = marker;
+    setState(() {});
+  }
+  addMarker6(String id, LatLng location) async {
+    var customMarkerIcon = CustomMarkerIcon(
+      size: 120,
+      imagePath: 'assets/images/Ellipse 379.png',
+      backgroundColor: Colors.grey.withOpacity(0.5),
+    );
+    var marker = Marker(
+      markerId: MarkerId(id),
+      position: location,
+      infoWindow: const InfoWindow(title: 'Mary', snippet: 'Hello friend'),
+      icon: await customMarkerIcon.createMarkerIcon(),
+    );
+    _markers[id] = marker;
+    setState(() {});
+  }
+  addMarker7(String id, LatLng location) async {
+    var customMarkerIcon = CustomMarkerIcon(
+      size: 120,
+      imagePath: 'assets/images/Ellipse 369.png',
+      backgroundColor: Colors.grey.withOpacity(0.5),
+    );
+    var marker = Marker(
+      markerId: MarkerId(id),
+      position: location,
+      infoWindow: const InfoWindow(title: 'Esther', snippet: 'Hello friend'),
       icon: await customMarkerIcon.createMarkerIcon(),
     );
     _markers[id] = marker;
