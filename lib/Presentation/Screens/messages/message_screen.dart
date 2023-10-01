@@ -17,7 +17,6 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   bool isSelected = false;
   int selectedTab = 0;
-  int currentScreen = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +99,7 @@ class _MessageScreenState extends State<MessageScreen> {
             const SizedBox(height: 25),
             isSelected
                 ? MessageTabs(
+                    selectedTab: selectedTab,
                     onTap: (i) => setState(() => selectedTab = i),
                     indicatorColor: indicatorColor())
                 : const MessageCard(

@@ -5,8 +5,12 @@ import 'message_card.dart';
 class MessageTabs extends StatelessWidget {
   final ValueChanged<int> onTap;
   final Color indicatorColor;
+  final int selectedTab;
   const MessageTabs(
-      {super.key, required this.onTap, required this.indicatorColor});
+      {super.key,
+      required this.onTap,
+      required this.indicatorColor,
+      required this.selectedTab});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +22,39 @@ class MessageTabs extends StatelessWidget {
               onTap: onTap,
               indicatorColor: indicatorColor,
               isScrollable: true,
-              labelColor: indicatorColor,
-              tabs: const [
-                Tab(text: 'Single & Searching'),
-                Tab(text: 'Red Light'),
-                Tab(text: 'Long Term'),
-                Tab(text: 'Friends'),
+              tabs: [
+                Tab(
+                    child: Text(
+                  'Single & Searching',
+                  style: TextStyle(
+                      color: selectedTab == 0
+                          ? const Color(0xff155332)
+                          : Colors.grey),
+                )),
+                Tab(
+                    child: Text(
+                  'Red Light',
+                  style: TextStyle(
+                      color: selectedTab == 1
+                          ? const Color(0xfff3495e)
+                          : Colors.grey),
+                )),
+                Tab(
+                    child: Text(
+                  'Long Term',
+                  style: TextStyle(
+                      color: selectedTab == 2
+                          ? const Color(0xff999999)
+                          : Colors.grey),
+                )),
+                Tab(
+                    child: Text(
+                  'Friends',
+                  style: TextStyle(
+                      color: selectedTab == 3
+                          ? const Color(0xfffed557)
+                          : Colors.grey),
+                )),
               ]),
           const SizedBox(height: 25),
           SizedBox(
