@@ -19,6 +19,7 @@ class _MesssageLikesState extends State<MesssageLikes> {
             child: NestedScrollView(
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       SliverAppBar(
+                        backgroundColor: Colors.white,
                         automaticallyImplyLeading: false,
                         title: const Text(
                           'Likes',
