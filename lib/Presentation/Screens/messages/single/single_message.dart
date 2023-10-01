@@ -1,3 +1,4 @@
+import 'package:spade_v4/Presentation/Screens/messages/single/message_list.dart';
 import 'package:spade_v4/Presentation/Screens/messages/single/message_textfield.dart';
 import 'package:spade_v4/Presentation/Screens/messages/widget/custom_iconbutton.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _SingleMessageState extends State<SingleMessage> {
                 child: Icon(Icons.keyboard_arrow_up)),
           ),
           const Divider(),
-          const Spacer(),
+          const Expanded(child: MessageList()),
           const MessageTextfield(),
           const SizedBox(height: 16),
         ],
