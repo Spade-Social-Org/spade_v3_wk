@@ -27,6 +27,27 @@ List<String> text = [
   "Coffee",
 ];
 
+final List<String> scheduleNotice = [
+  "Available",
+  "Available",
+  "Available",
+  "Unavailable",
+  "Unavailable",
+  "Available",
+  "Unavailable",
+];
+
+final List<String> scheduleTime = [
+  "12:00 PM",
+  "10:30 AM",
+  "12:00 PM",
+  "9:30 Am",
+  "12:00 PM",
+  "1:00 PM",
+  "9:30 Am",
+];
+
+
 List<dynamic> iconsRow = [
   Icons.favorite,
   Icons.directions_run_outlined,
