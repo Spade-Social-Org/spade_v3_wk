@@ -33,16 +33,16 @@ class JHDiscoveryTool3 extends StatelessWidget {
                 ),
               ],
             ),
-            button(
+            Button(
               name: "My unpopuolar opinion is ....",
             ),
-            button(
+            Button(
               name: "Go-to-dish to cook ....",
             ),
-            button(
+            Button(
               name: "Topics to debate ....",
             ),
-            button(name: 'One thing i cannot live without ....')
+            Button(name: 'One thing i cannot live without ....')
           ],
         ),
       ),
@@ -50,9 +50,9 @@ class JHDiscoveryTool3 extends StatelessWidget {
   }
 }
 
-class button extends StatelessWidget {
+class Button extends StatelessWidget {
   final String name;
-  const button({Key? key, required this.name}) : super(key: key);
+  const Button({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

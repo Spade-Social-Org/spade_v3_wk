@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class JHMatchWidget extends StatelessWidget {
-  const JHMatchWidget({
-    super.key,
-  });
+  final String name;
+  final String image;
+  final String age;
+  final Color color;
+
+ const JHMatchWidget({super.key, required this.name, required this.image, required this.age, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,8 @@ class JHMatchWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(
-            color: const Color(0xFF155332),
+            width: 2,
+            color: color,
           ),
           color: Colors.white,
           borderRadius: BorderRadius.circular(20)),
@@ -21,9 +25,9 @@ class JHMatchWidget extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(10.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
@@ -36,8 +40,8 @@ class JHMatchWidget extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Container(
-                                height: 120,
-                                width: 100,
+                                height: 90,
+                                width: 90,
                                 color: Colors.grey,
                                 child: Image.asset(
                                   "assets/images/Image 40.png",
@@ -56,48 +60,48 @@ class JHMatchWidget extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Image.asset("assets/images/cake.png"),
+                            Image.asset("assets/images/cake.png", height: 14,),
                             const SizedBox(
                               width: 15,
                             ),
                             const Text(
                               "26",
-                              style: TextStyle(fontSize: 13),
+                              style: TextStyle(fontSize: 12),
                             )
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           children: [
-                            Image.asset("assets/images/timer.png"),
+                            Image.asset("assets/images/timer.png", height: 14,),
                             const SizedBox(
                               width: 15,
                             ),
                             const Text(
                               "Night",
-                              style: TextStyle(fontSize: 13),
+                              style: TextStyle(fontSize: 12),
                             )
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           children: [
-                            Image.asset("assets/images/mdi_zodiac-leo.png"),
+                            Image.asset("assets/images/mdi_zodiac-leo.png", height: 14,),
                             const SizedBox(
                               width: 15,
                             ),
                             const Text(
                               "Leo",
-                              style: TextStyle(fontSize: 13),
+                              style: TextStyle(fontSize: 12),
                             )
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           children: [
@@ -112,7 +116,7 @@ class JHMatchWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           children: [
@@ -127,7 +131,7 @@ class JHMatchWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           children: [
@@ -142,7 +146,7 @@ class JHMatchWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           children: [
@@ -160,6 +164,8 @@ class JHMatchWidget extends StatelessWidget {
                     ),
                   ],
                 ),
+                //Other
+                SizedBox(width: screenWidth * 0.15,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,23 +175,23 @@ class JHMatchWidget extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            height: 120,
-                            width: 100,
+                            height: 90,
+                            width: 90,
                             color: Colors.red,
                             child: Image.asset(
-                              "assets/images/Rectangle 1595.png",
+                              image,
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const Text(
-                          "Maria",
+                        Text(
+                          name,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -193,14 +199,14 @@ class JHMatchWidget extends StatelessWidget {
                         const SizedBox(
                           width: 15,
                         ),
-                        const Text(
-                          "24",
-                          style: TextStyle(fontSize: 13),
+                        Text(
+                          age,
+                          style: TextStyle(fontSize: 12),
                         )
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -210,12 +216,12 @@ class JHMatchWidget extends StatelessWidget {
                         ),
                         const Text(
                           "Night",
-                          style: TextStyle(fontSize: 13),
+                          style: TextStyle(fontSize: 12),
                         )
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -226,12 +232,12 @@ class JHMatchWidget extends StatelessWidget {
                         ),
                         const Text(
                           "Virgo",
-                          style: TextStyle(fontSize: 13),
+                          style: TextStyle(fontSize: 12),
                         )
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -246,7 +252,7 @@ class JHMatchWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -256,12 +262,12 @@ class JHMatchWidget extends StatelessWidget {
                         ),
                         const Text(
                           "Slim",
-                          style: TextStyle(fontSize: 13),
+                          style: TextStyle(fontSize: 12),
                         )
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -276,7 +282,7 @@ class JHMatchWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -300,7 +306,7 @@ class JHMatchWidget extends StatelessWidget {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 5,
-                itemBuilder: (contex, index) {
+                itemBuilder: (context, index) {
                   return Padding(
                     padding:
                         const EdgeInsets.only(left: 16, right: 16, bottom: 16),
@@ -309,7 +315,7 @@ class JHMatchWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                           color: Colors.white,
                           border: Border.all(color: Colors.grey)),
-                      height: 30,
+                      height: 25,
                       width: double.infinity,
                       child: Row(
                         children: [
@@ -327,7 +333,7 @@ class JHMatchWidget extends StatelessWidget {
                               icon: const Icon(
                                 Icons.favorite_border,
                                 color: Colors.grey,
-                                size: 18,
+                                size: 14,
                               ))
                         ],
                       ),

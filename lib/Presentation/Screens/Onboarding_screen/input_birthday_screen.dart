@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+import'package:flutter/material.dart';
+
 import 'input_identityy_screen.dart';
 
+
 class InputBirthdayScreen extends StatelessWidget {
-  const InputBirthdayScreen({
-    super.key,
-  });
+  const InputBirthdayScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -21,9 +21,9 @@ class InputBirthdayScreen extends StatelessWidget {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {
+                  onTap: (){
                     Navigator.pop(context);
-                  },
+                    },
                   child: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
@@ -40,9 +40,7 @@ class InputBirthdayScreen extends StatelessWidget {
             "When is your birthday ?",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )),
-          const SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
@@ -52,55 +50,52 @@ class InputBirthdayScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     hintText: "DD",
+                    
                   ),
                 ),
               ),
-              SizedBox(
-                width: 30,
-              ),
+              SizedBox(width: 30,),
               SizedBox(
                 width: 70,
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     hintText: "MM",
+                    
                   ),
                 ),
               ),
-              SizedBox(
-                width: 30,
-              ),
-              SizedBox(
+              SizedBox(width: 30,),
+               SizedBox(
                 width: 70,
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     hintText: "YYYY",
+                    
                   ),
                 ),
               ),
             ],
           ),
-          const Spacer(),
+
+         const Spacer(),
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MaterialButton(
+                borderRadius: BorderRadius.circular(20),
+                child: MaterialButton(
                   height: 50,
                   minWidth: double.infinity,
                   color: Colors.black,
-                  child: const Text(
-                    "Next",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  onPressed: () {
+                  child: const Text("Next",style: TextStyle(color: Colors.white,fontSize: 20),),
+                  onPressed: (){
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => MyIdentityScreen())));
+                            builder: ((context) => const MyIdentityScreen())));
                   }),
-            ),
+              ),
           ),
           const SizedBox(
             height: 50,
