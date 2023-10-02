@@ -55,16 +55,20 @@ class _NavigationContainerState extends State<NavigationContainer> {
     }
   }
 
-  void _zoneClick(int index) {
-    if (card_click == index) {
+  void _zoneClick(int index){
+    if(card_click == index){
       setState(() {
         card_click = 0;
+        _showOption = false;
       });
-    } else {
+
+    }else{
       setState(() {
         card_click = index;
+        _showOption = false;
       });
     }
+
   }
 
   @override
