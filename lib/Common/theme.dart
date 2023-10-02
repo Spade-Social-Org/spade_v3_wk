@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomColors {
-  static Color pink = Color(0xFFE91E63);
-  static Color indigoDark = Color(0xFF1a237e);
-  static Color greenPrimary = Color(0xFF00C853);
-  static Color indigoLight = Color(0xFF9fa8da);
-  static Color indigoLigh = Color(0xFF9fa8da);
-  static Color indigoLigt = Color(0xFF9fa8da);
-  static Color indigoLiht = Color(0xFF9fa8da);
+  static Color pink = const Color(0xFFE91E63);
+  static Color indigoDark = const Color(0xFF1a237e);
+  static Color greenPrimary = const Color(0xFF00C853);
+  static Color indigoLight = const Color(0xFF9fa8da);
+  static Color indigoLigh = const Color(0xFF9fa8da);
+  static Color indigoLigt = const Color(0xFF9fa8da);
+  static Color indigoLiht = const Color(0xFF9fa8da);
   static Color black = Colors.black;
 }
 
@@ -22,10 +22,11 @@ class AppTheme {
 }
 
 extension PaddingHelper on Widget {
-  Padding get p16 => Padding(padding: EdgeInsets.all(16), child: this);
-  Padding get p20 => Padding(padding: EdgeInsets.all(20), child: this);
-  Padding get p8 => Padding(padding: EdgeInsets.only(top: 8), child: this);
-  Padding get p4 => Padding(padding: EdgeInsets.all(8), child: this);
+  Padding get p16 => Padding(padding: const EdgeInsets.all(16), child: this);
+  Padding get p20 => Padding(padding: const EdgeInsets.all(20), child: this);
+  Padding get p8 =>
+      Padding(padding: const EdgeInsets.only(top: 8), child: this);
+  Padding get p4 => Padding(padding: const EdgeInsets.all(8), child: this);
 
   /// Set padding according to `value`
   Padding p(double value) =>
@@ -33,27 +34,27 @@ extension PaddingHelper on Widget {
 
   /// Horizontal Padding 16
   Padding get hP4 =>
-      Padding(padding: EdgeInsets.symmetric(horizontal: 4), child: this);
+      Padding(padding: const EdgeInsets.symmetric(horizontal: 4), child: this);
   Padding get hP8 =>
-      Padding(padding: EdgeInsets.symmetric(horizontal: 8), child: this);
+      Padding(padding: const EdgeInsets.symmetric(horizontal: 8), child: this);
   Padding get hP16 =>
-      Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: this);
+      Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: this);
 
   /// Vertical Padding 16
   Padding get vP16 =>
-      Padding(padding: EdgeInsets.symmetric(vertical: 16), child: this);
+      Padding(padding: const EdgeInsets.symmetric(vertical: 16), child: this);
 
   Padding get vP36 =>
-      Padding(padding: EdgeInsets.symmetric(vertical: 36), child: this);
+      Padding(padding: const EdgeInsets.symmetric(vertical: 36), child: this);
   Padding get vP8 =>
-      Padding(padding: EdgeInsets.symmetric(vertical: 8), child: this);
+      Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: this);
   Padding get vP4 =>
-      Padding(padding: EdgeInsets.symmetric(vertical: 8), child: this);
+      Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: this);
 }
 
 /// Other values
 /// --------------------------------------------------------------------
-Duration kAnimationDuration = Duration(milliseconds: 200);
+Duration kAnimationDuration = const Duration(milliseconds: 200);
 
 class FontSizes {
   static double scale = 1.2;

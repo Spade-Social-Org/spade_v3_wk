@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -25,7 +25,7 @@ class LoginPassword extends StatefulWidget {
 class _LoginPasswordState extends State<LoginPassword> {
   bool obscureText = true;
   final pwController = TextEditingController();
-  GlobalKey<FormState> _form = GlobalKey<FormState>();
+  final form = GlobalKey<FormState>();
   final dio = Dio();
 
   Future postData(String password) async {
@@ -36,33 +36,14 @@ class _LoginPasswordState extends State<LoginPassword> {
         "email": widget.email,
         "password": password,
       }).timeout(const Duration(seconds: 60));
-      print(response.statusCode);
-      return true;
+      log(response.data);
+      return response;
     } on TimeoutException {
       return "Service unavailable!";
     } catch (e) {
       return e.toString();
     }
   }
-
-  // Future<void> _showDialogLoader() {
-  //   return showDialog(
-  //     barrierDismissible: false,
-  //     context: context,
-  //     builder: (ctx) => AlertDialog(
-  //       backgroundColor: Colors.white,
-  //       content: Container(
-  //         height: 60,
-  //         alignment: Alignment.center,
-  //         color: Colors.white,
-  //         padding: EdgeInsets.all(10),
-  //         child: CircularProgressIndicator(
-  //           color: Colors.black,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   _loaderOn() {
     showDialog(
@@ -88,34 +69,34 @@ class _LoginPasswordState extends State<LoginPassword> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Form(
-            key: _form,
+            key: form,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(
+                const Center(
                     child: FormTitle(formTitle: "Please enter your password")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormLabel(formLabel: "Password"),
+                    const FormLabel(formLabel: "Password"),
                     SizedBox(
                       height: 8.height(),
                     ),
                     TextFormField(
                       obscureText: obscureText,
                       controller: pwController,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
                       validator: ValidationBuilder()
                           .minLength(5)
@@ -138,11 +119,11 @@ class _LoginPasswordState extends State<LoginPassword> {
                                 color: Colors.grey,
                               )),
                         ),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 20),
                         hintText: "Enter Password",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(fontSize: 14),
+                        errorStyle: const TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -172,7 +153,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Builder(builder: (context) {
@@ -187,7 +168,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onPressed: () async {
-                          if (_form.currentState!.validate()) {
+                          if (form.currentState!.validate()) {
                             _loaderOn();
                             await postData(pwController.text).then((value) {
                               if (value == true) {
@@ -203,8 +184,8 @@ class _LoginPasswordState extends State<LoginPassword> {
                                     .showSnackBar(SnackBar(
                                   backgroundColor: Colors.black,
                                   content: Text(
-                                    value,
-                                    style: TextStyle(color: Colors.white),
+                                    value.data,
+                                    style: const TextStyle(color: Colors.white),
                                   ),
                                   action: SnackBarAction(
                                     label: 'Retry',

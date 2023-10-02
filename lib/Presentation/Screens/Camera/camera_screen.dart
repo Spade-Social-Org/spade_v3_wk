@@ -86,7 +86,6 @@ class _CameraScreenState extends State<CameraScreen> {
                             });
                             if (!mounted) return;
                             navigateTo(
-                              context,
                               Routes.sendingVideoViewRoute,
                               arguments: {
                                 'uId': widget.receiverId,
@@ -162,7 +161,7 @@ class _CameraScreenState extends State<CameraScreen> {
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
     if (!mounted) return;
-    navigateTo(context, Routes.sendingImageViewRoute, arguments: {
+    navigateTo(Routes.sendingImageViewRoute, arguments: {
       'path': file.path,
       'uId': widget.receiverId,
     });

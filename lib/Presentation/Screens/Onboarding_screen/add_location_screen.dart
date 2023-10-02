@@ -44,11 +44,9 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -57,12 +55,11 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                 "Where do you live?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
-              Container(
-                  height: MediaQuery.of(context).size.width*0.4,
+              const SizedBox(height: 35),
+              SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.4,
                   child: Image.asset("assets/images/location2.png")),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -106,14 +103,14 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                   ),
                   TextFormField(
                     controller: controller,
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 20),
                       hintText: "Postal Code",
-                      hintStyle: TextStyle(fontSize: 14),
-                      errorStyle: TextStyle(color: Colors.black),
+                      hintStyle: const TextStyle(fontSize: 14),
+                      errorStyle: const TextStyle(color: Colors.black),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide:
                             const BorderSide(width: 1, color: Colors.grey),
@@ -143,9 +140,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 0,
-              ),
+              const SizedBox(height: 50),
               Builder(builder: (context) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(20),
@@ -176,7 +171,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             backgroundColor: Colors.black,
-                            content: Text(
+                            content: const Text(
                               "Please fill the details",
                               style: TextStyle(color: Colors.white),
                             ),

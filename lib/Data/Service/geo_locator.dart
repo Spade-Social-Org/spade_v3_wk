@@ -7,12 +7,12 @@ const LocationSettings locationSettings = LocationSettings(
 );
 
 class GeoLocatorService {
-  late LocationPermission permission;
+  static late LocationPermission permission;
 
-  Stream<Position> getCurrentLocation =
+  static Stream<Position> getCurrentLocation =
       Geolocator.getPositionStream(locationSettings: locationSettings);
 
-  Future<Position> getInitialLocation() async {
+  static Future<Position> getInitialLocation() async {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
       return Future.error('Location permissions are denied');

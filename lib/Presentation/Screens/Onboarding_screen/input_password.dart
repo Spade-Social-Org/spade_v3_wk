@@ -28,209 +28,210 @@ class _InputPasswordState extends State<InputPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
         backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            )),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Form(
-            key: _form,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Center(child: FormTitle(formTitle: "Please create a password")),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FormLabel(formLabel: "Password"),
-                    SizedBox(
-                      height: 8.height(),
-                    ),
-                    TextFormField(
-                      obscureText: obscureText,
-                      controller: pwController,
-                      style: TextStyle(fontSize: 14),
-                      cursorColor: Colors.black,
-                      validator: ValidationBuilder()
-                          .minLength(5)
-                          .maxLength(50)
-                          .build(),
-                      decoration: InputDecoration(
-                        suffixIcon: Align(
-                          heightFactor: 1.0,
-                          widthFactor: 1.0,
-                          child: IconButton(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              )),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+            child: Form(
+              key: _form,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Center(
+                      child: FormTitle(formTitle: "Please create a password")),
+                  const SizedBox(height: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const FormLabel(formLabel: "Password"),
+                      SizedBox(
+                        height: 8.height(),
+                      ),
+                      TextFormField(
+                        obscureText: obscureText,
+                        controller: pwController,
+                        style: const TextStyle(fontSize: 14),
+                        cursorColor: Colors.black,
+                        validator: ValidationBuilder()
+                            .minLength(5)
+                            .maxLength(50)
+                            .build(),
+                        decoration: InputDecoration(
+                          suffixIcon: Align(
+                            heightFactor: 1.0,
+                            widthFactor: 1.0,
+                            child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    obscureText = !obscureText;
+                                  });
+                                },
+                                icon: Icon(
+                                  obscureText
+                                      ? CupertinoIcons.eye_slash_fill
+                                      : CupertinoIcons.eye_fill,
+                                  color: Colors.grey,
+                                )),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 20),
+                          hintText: "Enter Password",
+                          hintStyle: const TextStyle(fontSize: 14),
+                          errorStyle: const TextStyle(color: Colors.black),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.height(),
+                      ),
+                      const FormLabel(formLabel: "Confirm Password"),
+                      SizedBox(
+                        height: 8.height(),
+                      ),
+                      TextFormField(
+                        obscureText: cnObscureText,
+                        controller: cnPwController,
+                        style: const TextStyle(fontSize: 14),
+                        cursorColor: Colors.black,
+                        validator: ValidationBuilder()
+                            .minLength(5)
+                            .maxLength(50)
+                            .build(),
+                        decoration: InputDecoration(
+                          suffixIcon: Align(
+                            heightFactor: 1.0,
+                            widthFactor: 1.0,
+                            child: IconButton(
                               onPressed: () {
                                 setState(() {
-                                  obscureText = !obscureText;
+                                  cnObscureText = !cnObscureText;
                                 });
                               },
                               icon: Icon(
-                                !obscureText
+                                cnObscureText
                                     ? CupertinoIcons.eye_slash_fill
                                     : CupertinoIcons.eye_fill,
                                 color: Colors.grey,
-                              )),
-                        ),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        hintText: "Enter Password",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15.height(),
-                    ),
-                    FormLabel(formLabel: "Confirm Password"),
-                    SizedBox(
-                      height: 8.height(),
-                    ),
-                    TextFormField(
-                      obscureText: cnObscureText,
-                      controller: cnPwController,
-                      style: TextStyle(fontSize: 14),
-                      cursorColor: Colors.black,
-                      validator: ValidationBuilder()
-                          .minLength(5)
-                          .maxLength(50)
-                          .build(),
-                      decoration: InputDecoration(
-                        suffixIcon: Align(
-                          heightFactor: 1.0,
-                          widthFactor: 1.0,
-                          child: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                cnObscureText = !cnObscureText;
-                              });
-                            },
-                            icon: Icon(
-                              !cnObscureText
-                                  ? CupertinoIcons.eye_slash_fill
-                                  : CupertinoIcons.eye_fill,
-                              color: Colors.grey,
+                              ),
                             ),
                           ),
-                        ),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        hintText: "Confirm Password",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 20),
+                          hintText: "Confirm Password",
+                          hintStyle: const TextStyle(fontSize: 14),
+                          errorStyle: const TextStyle(color: Colors.black),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 90,
-                ),
-                Builder(builder: (context) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: MaterialButton(
-                        height: 50,
-                        minWidth: double.infinity,
-                        color: Colors.black,
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        onPressed: () async {
-                          if (_form.currentState!.validate()) {
-                            if (pwController.text == cnPwController.text) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) =>
-                                          InputPhoneNumberScreen(
-                                              name: widget.name,
-                                              password: pwController.text))));
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                backgroundColor: Colors.black,
-                                content: Text(
-                                  "Password doesn't match",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                action: SnackBarAction(
-                                  label: 'Ok',
-                                  onPressed: () {
-                                    //    Navigator.pop(context);
-                                  },
-                                ),
-                              ));
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 90,
+                  ),
+                  Builder(builder: (context) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: MaterialButton(
+                          height: 50,
+                          minWidth: double.infinity,
+                          color: Colors.black,
+                          child: const Text(
+                            "Next",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () async {
+                            if (_form.currentState!.validate()) {
+                              if (pwController.text == cnPwController.text) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            InputPhoneNumberScreen(
+                                                name: widget.name,
+                                                password: pwController.text))));
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  backgroundColor: Colors.black,
+                                  content: const Text(
+                                    "Password doesn't match",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  action: SnackBarAction(
+                                    label: 'Ok',
+                                    onPressed: () {
+                                      //    Navigator.pop(context);
+                                    },
+                                  ),
+                                ));
+                              }
                             }
-                          }
-                        }),
-                  );
-                }),
-              ],
+                          }),
+                    );
+                  }),
+                ],
+              ),
             ),
           ),
         ),
