@@ -3,9 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../Common/camera_components1/sending_image_video.dart';
-import '../../../Common/camera_components1/video_top_view.dart';
-
+import '../../../Common/camera_components/sending_image_video.dart';
+import '../../../Common/camera_components/video_top_view.dart';
 
 
 class SendingVideoViewPage extends StatefulWidget {
