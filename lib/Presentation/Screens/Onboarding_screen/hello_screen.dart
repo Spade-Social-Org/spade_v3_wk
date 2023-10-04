@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'first_name_screen.dart';
 
 class HelloScreen extends StatelessWidget {
@@ -31,16 +30,15 @@ class HelloScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) =>
-                                    const InputNameScreen())));
+                         Navigator.push(
+                              context,
+                             MaterialPageRoute(
+                                builder: ((context) => const InputNameScreen())));
                         // Navigator.push(
-                        //   context,
+                         //   context,
                         //    MaterialPageRoute(
                         //        builder: ((context) =>
-                        //          const VerificationPage())));
+                          //          const VerificationPage())));
                       }),
                 ),
               ),
