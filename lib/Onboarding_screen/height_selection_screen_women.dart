@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../Onboarding_screen/input_body_build_women_screen.dart';
 
+import 'input_body_build_women_screen.dart';
 
 
 class HeightSelectionWomenScreen extends StatefulWidget {
