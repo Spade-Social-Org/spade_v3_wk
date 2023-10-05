@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../model/messages.dart';
+
 class MessageBubble extends StatelessWidget {
-  final Messages message;
+  final MessageData message;
   const MessageBubble({
     super.key,
     required this.message,
@@ -12,10 +14,11 @@ class MessageBubble extends StatelessWidget {
     return Column(
       children: [
         Row(
-            mainAxisAlignment:
-                message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            mainAxisAlignment: message.userId == 12
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
             children: [
-              message.isMe
+              message.userId == 12
                   ? const SizedBox.shrink()
                   : const CircleAvatar(
                       backgroundImage: AssetImage('assets/images/avatar.png'),
@@ -25,15 +28,15 @@ class MessageBubble extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    color: message.isMe
+                    color: message.userId == 12
                         ? const Color(0xffef0c28)
                         : const Color(0xfff5f5f5),
                     borderRadius: BorderRadius.only(
                       bottomLeft: const Radius.circular(8),
-                      topLeft: message.isMe
+                      topLeft: message.userId == 12
                           ? const Radius.circular(8)
                           : const Radius.circular(0),
-                      topRight: message.isMe
+                      topRight: message.userId == 12
                           ? const Radius.circular(0)
                           : const Radius.circular(8),
                       bottomRight: const Radius.circular(8),
@@ -42,9 +45,11 @@ class MessageBubble extends StatelessWidget {
                   child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Text(
-                        message.message,
+                        message.content!,
                         style: TextStyle(
-                            color: message.isMe ? Colors.white : Colors.black),
+                            color: message.userId == 12
+                                ? Colors.white
+                                : Colors.black),
                       )))
             ])
       ],

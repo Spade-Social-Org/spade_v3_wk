@@ -39,7 +39,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isLogin = false;
+  String isLogin = '';
 
   @override
   void initState() {
@@ -63,14 +63,12 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Spade',
-          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-          // home: Onbording()
-          //initialRoute: Routes.getStarted,
-
+          theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white, useMaterial3: true),
           navigatorKey: kNavigatorKey,
-          // onGenerateRoute: RouteGenerator.onGenerateRoute,
-          //onUnknownRoute: RouteGenerator.unKnownRoute,
-          home: isLogin ? const NavigationContainer() : const LandingScreen()),
+          home: isLogin.isNotEmpty
+              ? const NavigationContainer()
+              : const LandingScreen()),
     );
   }
 }

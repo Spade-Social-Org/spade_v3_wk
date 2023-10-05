@@ -10,8 +10,7 @@ class Onbording extends StatefulWidget {
 
 class _OnbordingState extends State<Onbording> {
   int currentIndex = 0;
-  PageController _controller = PageController(initialPage: 0);
-
+  final controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,13 +18,9 @@ class _OnbordingState extends State<Onbording> {
         children: [
           Expanded(
             child: PageView.builder(
-              controller: _controller,
               itemCount: contents.length,
-              onPageChanged: (int index) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
+              onPageChanged: (int index) =>
+                  setState(() => currentIndex = index),
               itemBuilder: (_, i) {
                 return Padding(
                   padding: const EdgeInsets.all(40),
@@ -78,7 +73,7 @@ class _OnbordingState extends State<Onbording> {
                       ),
                     );
                   }
-                  _controller.nextPage(
+                  controller.nextPage(
                     duration: Duration(milliseconds: 100),
                     curve: Curves.bounceIn,
                   );

@@ -17,19 +17,17 @@ class MessageTextfield extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: SizedBox(
-            child: TextField(
-              decoration: InputDecoration(
-                  hintText: 'Message...',
-                  fillColor: const Color(0xfff5f5f5),
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(50)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(50))),
-            ),
+              child: TextField(
+            decoration: InputDecoration(
+                hintText: 'Message...',
+                fillColor: const Color(0xfff5f5f5),
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(50)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(50))),
           )),
           const SizedBox(width: 8),
           IconButton(
