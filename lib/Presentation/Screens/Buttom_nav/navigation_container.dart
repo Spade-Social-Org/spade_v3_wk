@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
+
 import '../Camera/camera_screen.dart';
 import '../Chats/message_screen.dart';
-import '../Home/home_screen.dart';
+import '../Home/home_screen_ui.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
@@ -55,26 +56,24 @@ class _NavigationContainerState extends State<NavigationContainer> {
     }
   }
 
-  void _zoneClick(int index){
-    if(card_click == index){
+  void _zoneClick(int index) {
+    if (card_click == index) {
       setState(() {
         card_click = 0;
         _showOption = false;
       });
-
-    }else{
+    } else {
       setState(() {
         card_click = index;
         _showOption = false;
       });
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> _appPages = [
-      const HomeScreen(),
+      const HomeScreenUi(),
       const MessageScreen(),
       const DiscoveryScreen(),
       const GoogleMapScreen(),
@@ -275,10 +274,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                           child: GestureDetector(
                             onTap: (() => {
                                   if (_showOption)
-                                    {
-                                      setState(
-                                          () => {_showOption = !_showOption})
-                                    }
+                                    {setState(() => _showOption = !_showOption)}
                                 }),
                             child: Transform.rotate(
                               angle: 0.0,

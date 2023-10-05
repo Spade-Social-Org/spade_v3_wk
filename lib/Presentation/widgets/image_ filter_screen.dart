@@ -1,81 +1,92 @@
-// ignore_for_file: must_be_immutable
-
+//
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
+import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 
 import '../../../Common/managers/asset_manager/asset_manager.dart';
 import '../../../Common/managers/color_filter/color_filter.dart';
 import '../../../Common/managers/color_manager/color_manager.dart';
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
-import '../../widgets/image_editing_screen.dart';
+import 'image_editing_screen.dart';
 
-class SendingImageViewPage extends StatefulWidget {
-  String path;
-  final String receiverId;
+class SendImageScreen2 extends StatefulWidget {
   final File? image;
 
-  SendingImageViewPage({
-    super.key,
-    required this.path,
-    required this.receiverId,
-    this.image,
-  });
+  const SendImageScreen2({super.key, this.image});
 
   @override
-  State<SendingImageViewPage> createState() => _SendingImageViewPageState();
+  State<SendImageScreen2> createState() => _SendImageScreen2State();
 }
 
-class _SendingImageViewPageState extends State<SendingImageViewPage> {
-  final GlobalKey _globalKey = GlobalKey();
-  final List<List<double>> filters = [
-    noFilters,
-    greyScale,
-    // juno,
-    // gaussianBlurMatrix,
-    // lofi,
-    // moon
-  ];
+final GlobalKey _globalKey = GlobalKey();
+final List<List<double>> filters = [
+  noFilters,
+  greyScale,
+  // juno,
+  // gaussianBlurMatrix,
+  // lofi,
+  // moon
+];
 
+// Future<void> _cropImage(BuildContext context) async {
+// CroppedFile  = await ImageCropper().cropImage(
+//       sourcePath: ,
+//       aspectRatioPresets: [
+//         CropAspectRatioPreset.square,
+//         CropAspectRatioPreset.ratio3x2,
+//         CropAspectRatioPreset.original,
+//         CropAspectRatioPreset.ratio4x3,
+//         CropAspectRatioPreset.ratio16x9
+//       ],
+//       uiSettings: [
+//         AndroidUiSettings(
+//             toolbarTitle: 'Cropper',
+//             toolbarColor: Colors.deepOrange,
+//             toolbarWidgetColor: Colors.white,
+//             initAspectRatio: CropAspectRatioPreset.original,
+//             lockAspectRatio: false),
+//         IOSUiSettings(
+//           title: 'Cropper',
+//         ),
+//         WebUiSettings(
+//           context: context,
+//         ),
+//       ],
+//     );
+// }
+
+// Future<void> _cropImage(BuildContext context) async {
+//   File? croppedImage = await ImageCropper().cropImage(
+//     sourcePath: widget.image!.path,
+//     aspectRatioPresets: [
+//       CropAspectRatioPreset.square,
+//       CropAspectRatioPreset.ratio3x2,
+//       CropAspectRatioPreset.original,
+//       CropAspectRatioPreset.ratio4x3,
+//       CropAspectRatioPreset.ratio16x9,
+//     ],
+//     uiSettings: [
+//       AndroidUiSettings(
+//         toolbarTitle: 'Cropper',
+//         toolbarColor: Colors.deepOrange,
+//         toolbarWidgetColor: Colors.white,
+//         initAspectRatio: CropAspectRatioPreset.original,
+//         lockAspectRatio: false,
+//       ),
+//       IOSUiSettings(
+//         title: 'Cropper',
+//       ),
+//       WebUiSettings(
+//         context: context,
+//       ),
+//     ],
+//   );
+// }
+
+class _SendImageScreen2State extends State<SendImageScreen2> {
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   backgroundColor: Colors.black,
-    //   body: SafeArea(
-    //     child: Stack(
-    //       children: [
-    //         Image.file(
-    //           File(widget.path),
-    //           fit: BoxFit.contain,
-    //           width: double.infinity,
-    //           height: double.infinity,
-    //         ),
-    //         Positioned(
-    //           // top: 10,
-    //           child: ImageViewTopRowIcons(
-    //             onCropButtonTaped: () {
-    //               cropImage(widget.path).then((value) {
-    //                 widget.path = value!.path;
-    //                 setState(() {});
-    //               });
-    //             },
-    //           ),
-    //         ),
-    //         Positioned(
-    //           bottom: 5,
-    //           right: 0,
-    //           left: 0,
-    //           child: SendingImageVideoBottomRowWidget(
-    //             onSendButtonTaped: () {
-    //             },
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
-
     return SafeArea(
       child: Scaffold(
         body: RepaintBoundary(
@@ -89,10 +100,8 @@ class _SendingImageViewPageState extends State<SendingImageViewPage> {
                   return ColorFiltered(
                     colorFilter: ColorFilter.matrix(filters[index]),
                     child: Image.file(
-                      File(widget.path),
-                      fit: BoxFit.contain,
-                      width: double.infinity,
-                      height: double.infinity,
+                      widget.image!,
+                      fit: BoxFit.cover,
                     ),
                   );
                 },
