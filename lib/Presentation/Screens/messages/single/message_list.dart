@@ -3,42 +3,36 @@ import "package:collection/collection.dart";
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../provider/message_provider.dart';
+import '../model/messages.dart';
 import '../widget/message_bubble.dart';
 
-final messageFuture =
-    FutureProvider((ref) => ref.watch(messageProvider).getMessages());
-
 class MessageList extends StatelessWidget {
-  const MessageList({super.key});
+  final Map<DateTime?, List<MessageData>> data;
+  const MessageList({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      return ref.watch(messageFuture).when(
-          data: (data) => CustomScrollView(
-              slivers: data.entries
-                  .map(
-                    (messages) => SliverMainAxisGroup(slivers: [
-                      SliverPersistentHeader(
-                        pinned: true,
-                        delegate: HeaderDelegate(
-                            DateFormat.yMMMd().format(messages.key!)),
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.all(8.0),
-                        sliver: SliverList.separated(
-                            itemBuilder: (_, int i) =>
-                                MessageBubble(message: messages.value[i]),
-                            separatorBuilder: (_, __) =>
-                                const SizedBox.shrink(),
-                            itemCount: messages.value.length),
-                      ),
-                    ]),
-                  )
-                  .toList()),
-          error: (e, t) => const SizedBox.shrink(),
-          loading: () => const SizedBox.shrink());
+      return CustomScrollView(
+          slivers: data.entries
+              .map(
+                (messages) => SliverMainAxisGroup(slivers: [
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: HeaderDelegate(
+                        DateFormat.yMMMd().format(messages.key!)),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.all(8.0),
+                    sliver: SliverList.separated(
+                        itemBuilder: (_, int i) =>
+                            MessageBubble(message: messages.value[i]),
+                        separatorBuilder: (_, __) => const SizedBox.shrink(),
+                        itemCount: messages.value.length),
+                  ),
+                ]),
+              )
+              .toList());
     });
   }
 }

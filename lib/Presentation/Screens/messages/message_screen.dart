@@ -21,13 +21,14 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
+      appBar: const PreferredSize(
+        preferredSize: Size(60, 100),
+        child: SafeArea(child: CustomAppbar(title: 'Messages')),
+      ),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-            const CustomAppbar(title: 'Messages'),
             const SizedBox(height: 16),
             const Padding(
               padding: EdgeInsets.only(left: 16, bottom: 16),
@@ -111,7 +112,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     timeSent: '5:40')
           ],
         ),
-      )),
+      ),
     );
   }
 

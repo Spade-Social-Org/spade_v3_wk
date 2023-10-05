@@ -67,6 +67,27 @@ class MessageTabs extends StatelessWidget {
                   message: 'Hey! How are you',
                   indicatorColor: indicatorColor,
                   timeSent: '5:40'),
+              MessageCard(
+                  messageLength: '5',
+                  messageLengthColor: Colors.blueGrey,
+                  sender: 'Maria',
+                  message: 'Hey! How are you',
+                  indicatorColor: indicatorColor,
+                  timeSent: '5:40'),
+              MessageCard(
+                  messageLength: '5',
+                  messageLengthColor: Colors.blueGrey,
+                  sender: 'Maria',
+                  message: 'Hey! How are you',
+                  indicatorColor: indicatorColor,
+                  timeSent: '5:40'),
+              MessageCard(
+                  messageLength: '5',
+                  messageLengthColor: Colors.blueGrey,
+                  sender: 'Maria',
+                  message: 'Hey! How are you',
+                  indicatorColor: indicatorColor,
+                  timeSent: '5:40'),
             ]),
           )
         ],
