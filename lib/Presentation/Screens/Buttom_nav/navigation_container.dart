@@ -6,7 +6,7 @@ import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
 
 import '../Camera/camera_screen.dart';
 import '../Chats/message_screen.dart';
-import '../Home/home_screen.dart';
+import '../Home/home_screen_ui.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 
@@ -73,7 +73,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _appPages = [
-      const HomeScreen(),
+      const HomeScreenUi(),
       const MessageScreen(),
       const DiscoveryScreen(),
       const GoogleMapScreen(),

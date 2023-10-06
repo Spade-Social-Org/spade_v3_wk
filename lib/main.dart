@@ -9,6 +9,8 @@ import 'Common/routes/route_generator.dart';
 import 'Common/size_config/size_config.dart';
 import 'Data/Models/discover_service.dart';
 import 'Data/Service/geo_locator.dart';
+import 'Data/cubit/posts_cubit.dart';
+import 'Presentation/Bloc/heart_bloc/heart_bloc.dart';
 import 'Presentation/Bloc/places_bloc.dart';
 import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
@@ -65,15 +67,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final geoService = Provider.of<GeoLocatorService>(context, listen: false);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Spade',
-        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-        navigatorKey: kNavigatorKey,
-        onGenerateRoute: RouteGenerator.onGenerateRoute,
-        onUnknownRoute: RouteGenerator.unKnownRoute,
-        home: isLogin
-            ? const NavigationContainer()
-            : const LoginOrSignupScreen());
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HeartIconBloc>(create: (_) => HeartIconBloc()),
+          BlocProvider<PostsCubit>(create: (context) => PostsCubit()..fetchPosts())
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Spade',
+          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+          navigatorKey: kNavigatorKey,
+          onGenerateRoute: RouteGenerator.onGenerateRoute,
+          onUnknownRoute: RouteGenerator.unKnownRoute,
+          home: isLogin
+              ? const NavigationContainer()
+              : const LoginOrSignupScreen()),
+    );
   }
 }
