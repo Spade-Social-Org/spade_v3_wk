@@ -38,6 +38,14 @@ class _SendImageScreenState extends State<SendImageScreen> {
 
   @override
   Widget build(BuildContext context) {
+     if (widget.image == null) {
+      // Handle the case where widget.image is null (optional)
+      return Scaffold(
+        body: Center(
+          child: Text('Image is null'),
+        ),
+      );
+    }
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,

@@ -4,13 +4,11 @@ import 'package:like_button/like_button.dart';
 import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
 import 'package:spade_v4/Common/extensions/date_time/date_time.dart';
 
-
 import '../../../Data/Models/posts/post_model.dart';
 import '../Bloc/heart_bloc/heart_bloc.dart';
 import '../Bloc/heart_bloc/heart_bloc_event.dart';
 import '../Bloc/heart_bloc/heart_bloc_state.dart';
 import '../Screens/notworking/notworking.dart';
-
 
 class PostCard extends StatefulWidget {
   const PostCard({Key? key, required this.posts}) : super(key: key);
@@ -169,9 +167,12 @@ class _PostCardState extends State<PostCard> {
                         });
                       },
                       itemBuilder: (context, index) {
-                        return Image.network(
-                          widget.posts.gallery[index],
-                          fit: BoxFit.cover,
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            widget.posts.gallery[index],
+                            fit: BoxFit.cover,
+                          ),
                         );
                       },
                       itemCount: widget.posts.gallery.length,

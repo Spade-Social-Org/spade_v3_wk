@@ -55,7 +55,7 @@ final _storyBloc = StoryBloc();
         } else if (snapshot.data == null || snapshot.data!.isEmpty) {
           return const Center(
             child: Text(
-              'No posts available',
+              'No story available',
               style: TextStyle(color: Colors.white),
             ),
           );
