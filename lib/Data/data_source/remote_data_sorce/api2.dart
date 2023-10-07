@@ -27,7 +27,7 @@ class ApiService {
           "accept": "*/*",
           "Content-Type": "multipart/form-data",
           "Authorization":
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk1NzQ5NjE1fQ.SDWv5C12WfkANKIo7UU_yvlLoAlBH-sY5k2itCyNsCI",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJuYW1lIjoiRmF2b3VyIiwiZW1haWwiOiJsZXdlY2hpZ29kc2Zhdm91ckBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk2Njk0NjIyfQ.meMywVSRn6lxA0IEwcibYXOhgynAeCGvTexiM2JzT58",
         });
     dio.interceptors.add(
       InterceptorsWrapper(

@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HeartIconBloc>(create: (_) => HeartIconBloc()),
-          BlocProvider<PostsCubit>(create: (context) => PostsCubit()..fetchPosts())
+          BlocProvider<PostsCubit>(create: (context) => PostsCubit()..fetchPosts()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

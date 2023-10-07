@@ -32,6 +32,8 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: RefreshIndicator(
+        
+        color: Colors.green,
         onRefresh: () async {
           await _loadResources(true);
         },
