@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
-import 'package:spade_v4/swipe_screen.dart';
 import '../Onboarding_screen/hello_screen.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class LandingScreen extends StatelessWidget {
         Navigator.pop(context);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const SwipeScreen()),
+          MaterialPageRoute(builder: (context) => const NavigationContainer()),
         );
       });
     }
