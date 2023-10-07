@@ -11,48 +11,36 @@ import '../../../Data/data_source/remote_data_sorce/api2.dart';
 
 class SendImageScreen extends StatefulWidget {
   final File? image;
+  String path;
+  final String receiverId;
 
-  const SendImageScreen({super.key, this.image});
+  SendImageScreen({
+    super.key,
+    this.image,
+    required this.receiverId,
+    required this.path,
+  });
 
   @override
   State<SendImageScreen> createState() => _SendImageScreenState();
 }
 
 class _SendImageScreenState extends State<SendImageScreen> {
-  // List<File> selectedImages = [];
-
-  // Future<void> _uploadImages() async {
-  //   if (selectedImages! =) {
-  //     // Handle the case where no images are selected
-  //     return;
-  //   }
-
-  //   // Call the createPostWithImages function to upload the selected images
-  //   ApiService.createPostWithImages(selectedImages);
-
-  //   // Clear the selected images after uploading
-  //   setState(() {
-  //     selectedImages.clear();
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
-     if (widget.image == null) {
-      // Handle the case where widget.image is null (optional)
-      return Scaffold(
-        body: Center(
-          child: Text('Image is null'),
-        ),
-      );
-    }
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
+          // Image.file(
+          //   widget.image!,
+          //   fit: BoxFit.cover,
+          // ),
           Image.file(
-            widget.image!,
+            File(widget.path),
             fit: BoxFit.cover,
+            width: double.infinity,
+            // height: double.infinity,
           ),
           Positioned(
             bottom: 0,

@@ -4,11 +4,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
+import 'package:spade_v4/Common/navigator.dart';
 
 import '../../../Common/managers/asset_manager/asset_manager.dart';
 import '../../../Common/managers/color_filter/color_filter.dart';
 import '../../../Common/managers/color_manager/color_manager.dart';
 import '../../../Common/managers/font_style_manager/font_style_manager.dart.dart';
+import '../../../Common/routes/routes.dart';
 import '../../widgets/image_editing_screen.dart';
 
 class SendingImageViewPage extends StatefulWidget {
@@ -308,13 +310,18 @@ class _SendingImageViewPageState extends State<SendingImageViewPage> {
                             bottom: 15.height()),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    SendImageScreen(image: widget.image),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         SendImageScreen( path: '',),
+                            //   ),
+                            // );
+                            navigateTo(context, Routes.sendImageScreen,
+                                arguments: {
+                                  'path': widget.path,
+                                  'uId': widget.receiverId,
+                                });
                           },
                           child: Container(
                             width: 95.width(),

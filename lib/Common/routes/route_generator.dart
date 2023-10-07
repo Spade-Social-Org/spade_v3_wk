@@ -4,6 +4,7 @@ import '../../Presentation/Screens/Camera/camera_screen.dart';
 import '../../Presentation/Screens/Camera/sending_image_preview.dart';
 import '../../Presentation/Screens/Camera/sending_video.dart';
 import '../../Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
+import '../../Presentation/widgets/image_editing_screen.dart';
 import 'routes.dart';
 
 class RouteGenerator {
@@ -36,6 +37,14 @@ class RouteGenerator {
         final String path = arguments['path'];
         return MaterialPageRoute(
           builder: (_) => SendingVideoViewPage(path: path, receiverId: uId),
+        );
+        case Routes.sendImageScreen:
+        final arguments = settings.arguments as Map<String, dynamic>;
+        //final String name =arguments['name'];
+        final String uId = arguments['uId'];
+        final String path = arguments['path'];
+        return MaterialPageRoute(
+          builder: (_) => SendImageScreen(path: path, receiverId: uId),
         );
       default:
         return null;
