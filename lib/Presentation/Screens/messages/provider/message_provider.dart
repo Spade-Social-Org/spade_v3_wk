@@ -9,6 +9,9 @@ import 'package:spade_v4/Presentation/Screens/messages/widget/custom_snackbar.da
 import '../model/chat_model.dart';
 import '../model/messages.dart';
 
+final messageListProvider =
+    FutureProvider((ref) => ref.watch(messageProvider).getUserChats());
+
 final messageProvider = Provider((ref) => MessageProvider(ref));
 
 class MessageProvider {

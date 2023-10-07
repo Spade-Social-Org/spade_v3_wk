@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spade_v4/Presentation/Screens/messages/provider/message_provider.dart';
 
 import 'group/group_message.dart';
 import 'likes/message_likes.dart';
@@ -20,100 +22,112 @@ class _MessageScreenState extends State<MessageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(60, 100),
-        child: SafeArea(child: CustomAppbar(title: 'Messages')),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 16),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 16),
-              child: Text(
-                'Top 5 picks',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(
-                  5,
-                  (i) => Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/images/avatar.png')),
-                            borderRadius: BorderRadius.circular(100),
-                            border: Border.all(color: Colors.green)),
-                      )),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: SizedBox(
-                    height: 45,
-                    child: TextField(
-                      readOnly: true,
-                      decoration: InputDecoration(
-                          fillColor: const Color(0xfff5f5f5),
-                          filled: true,
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Image.asset('assets/images/search.png'),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(50)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(50))),
-                    ),
-                  )),
-                  const SizedBox(width: 8),
-                  CustomIconButton(
-                      imageValue: 'spade',
-                      onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => MesssageLikes())),
-                      size: 22),
-                  CustomIconButton(
-                      imageValue: 'grid',
-                      onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => GroupMessage())),
-                      size: 20),
-                  CustomIconButton(
-                      imageValue: 'list',
-                      color: indicatorColor(),
-                      onTap: () => setState(() => isSelected = !isSelected),
-                      size: 20)
-                ],
-              ),
-            ),
-            const SizedBox(height: 25),
-            isSelected
-                ? MessageTabs(
-                    selectedTab: selectedTab,
-                    onTap: (i) => setState(() => selectedTab = i),
-                    indicatorColor: indicatorColor())
-                : const MessageCard(
-                    messageLength: '5',
-                    messageLengthColor: Colors.blueGrey,
-                    sender: 'Maria',
-                    message: 'Hey! How are you',
-                    indicatorColor: Color(0xff155332),
-                    timeSent: '5:40')
-          ],
+    return Consumer(builder: (context, ref, _) {
+      return Scaffold(
+        appBar: const PreferredSize(
+          preferredSize: Size(60, 100),
+          child: SafeArea(child: CustomAppbar(title: 'Messages')),
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16),
+              const Padding(
+                padding: EdgeInsets.only(left: 16, bottom: 16),
+                child: Text(
+                  'Top 5 picks',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: List.generate(
+                    5,
+                    (i) => Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      AssetImage('assets/images/avatar.png')),
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(color: Colors.green)),
+                        )),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: SizedBox(
+                      height: 45,
+                      child: TextField(
+                        readOnly: true,
+                        decoration: InputDecoration(
+                            fillColor: const Color(0xfff5f5f5),
+                            filled: true,
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Image.asset('assets/images/search.png'),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(50)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(50))),
+                      ),
+                    )),
+                    const SizedBox(width: 8),
+                    CustomIconButton(
+                        imageValue: 'spade',
+                        onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (ctx) => MesssageLikes())),
+                        size: 22),
+                    CustomIconButton(
+                        imageValue: 'grid',
+                        onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (ctx) => GroupMessage())),
+                        size: 20),
+                    CustomIconButton(
+                        imageValue: 'list',
+                        color: indicatorColor(),
+                        onTap: () => setState(() => isSelected = !isSelected),
+                        size: 20)
+                  ],
+                ),
+              ),
+              const SizedBox(height: 25),
+              isSelected
+                  ? MessageTabs(
+                      selectedTab: selectedTab,
+                      onTap: (i) => setState(() => selectedTab = i),
+                      indicatorColor: indicatorColor())
+                  : ref.watch(messageListProvider).when(
+                      data: (data) => Column(
+                            children: data
+                                .map((e) => const MessageCard(
+                                    messageLength: '5',
+                                    messageLengthColor: Colors.blueGrey,
+                                    sender: 'Maria',
+                                    message: 'Hey! How are you',
+                                    indicatorColor: Color(0xff155332),
+                                    timeSent: '5:40'))
+                                .toList(),
+                          ),
+                      error: (e, t) => const SizedBox.shrink(),
+                      loading: () => Center())
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   Color indicatorColor() {
