@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:provider/provider.dart';
 import 'package:spade_v4/Data/Models/discover.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/widgets/jh_compatibility_widget.dart';
@@ -326,21 +325,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
       statusBarBrightness: Brightness.dark,
     );
 
-    final bottomNavigationProvider = Provider.of<DiscoverService>(context);
-
-    final actIndex = bottomNavigationProvider.selectedIndex;
-    if (actIndex != 'all') {
-      setState(() {
-        myZone = actIndex;
-      });
-      getDisc();
-    } else {
-      setState(() {
-        myZone = actIndex;
-      });
-      getDisc();
-    }
-
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
@@ -571,7 +555,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                               onTap: () {
                                 expandedButton(1);
                                 changeOptionModal("compatibility");
-                                bottomNavigationProvider.gotoNext('default');
                               },
                               child: Container(
                                 height: expandedButtonIndex == 1 ? 50 : 35,
@@ -652,7 +635,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                               onTap: () {
                                 expandedButton(4);
                                 changeOptionModal("match");
-                                bottomNavigationProvider.gotoNext("default");
                               },
                               child: Container(
                                 height: expandedButtonIndex == 4 ? 50 : 35,
