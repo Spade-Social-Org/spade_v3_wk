@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:provider/provider.dart';
 import 'package:spade_v4/Data/Models/discover.dart';
-import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/widgets/jh_compatibility_widget.dart';
 import 'package:spade_v4/Presentation/widgets/jh_match_widget.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -21,7 +19,6 @@ bool toggle = true;
 //   Content(this.name, this.color, this.urlImg, this.age, this.country,
 //       this.percentage);
 // }
-
 
 class DiscoveryScreen extends StatefulWidget {
   const DiscoveryScreen({super.key});
@@ -94,22 +91,18 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
 
   void changeOptionModal(String name) {
     setState(() {
-      if(modalType == name){
+      if (modalType == name) {
         modalType = "";
-      }else{
-
+      } else {
         modalType = name;
       }
-
     });
   }
 
-
-
-  void getDisc(){
-    switch(myZone){
+  void getDisc() {
+    switch (myZone) {
       case 'all':
-         persons = [
+        persons = [
           DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 37, 140, 42),
@@ -126,22 +119,42 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             'United State  🇺🇸',
             "80",
           ),
-          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "50"),
+          DiscoverModel(
+              "Mike",
+              const Color.fromARGB(255, 148, 17, 8),
+              "assets/images/Rectangle 1595.png",
+              "20",
+              'United State  🇺🇸',
+              "50"),
           DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "45"),
-          DiscoverModel("Jane", const Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1598.png", "20", 'United State  🇺🇸', "60"),
-          DiscoverModel("Paul", const Color.fromARGB(255, 37, 140, 42),
-              "assets/images/Rectangle 1597.png", "20", 'United State  🇺🇸', "55"),
-          DiscoverModel("Mike", const Color.fromARGB(255, 148, 17, 8),
-              "assets/images/Rectangle 1595.png", "20", 'United State  🇺🇸', "90"),
+          DiscoverModel(
+              "Jane",
+              const Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1598.png",
+              "20",
+              'United State  🇺🇸',
+              "60"),
+          DiscoverModel(
+              "Paul",
+              const Color.fromARGB(255, 37, 140, 42),
+              "assets/images/Rectangle 1597.png",
+              "20",
+              'United State  🇺🇸',
+              "55"),
+          DiscoverModel(
+              "Mike",
+              const Color.fromARGB(255, 148, 17, 8),
+              "assets/images/Rectangle 1595.png",
+              "20",
+              'United State  🇺🇸',
+              "90"),
           DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State  🇺🇸', "60"),
         ];
         break;
       case 'red':
-         persons = [
+        persons = [
           DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 148, 17, 8),
@@ -192,7 +205,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
           ),
           DiscoverModel("Mike", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Rectangle 1595.png", "20", 'United State', "50"),
-          DiscoverModel("John",const Color.fromARGB(255, 204, 167, 1),
+          DiscoverModel("John", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Screenshot.png", "20", 'United State', "45"),
           DiscoverModel("Jane", const Color.fromARGB(255, 204, 167, 1),
               "assets/images/Rectangle 1598.png", "20", 'United State', "60"),
@@ -205,7 +218,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
         ];
         break;
       case 'green':
-         persons = [
+        persons = [
           DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 37, 140, 42),
@@ -237,7 +250,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
         ];
         break;
       case 'grey':
-         persons = [
+        persons = [
           DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 176, 176, 176),
@@ -269,7 +282,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
         ];
         break;
       default:
-         persons = [
+        persons = [
           DiscoverModel(
             "Jane",
             const Color.fromARGB(255, 37, 140, 42),
@@ -302,40 +315,18 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarBrightness: Brightness.dark,
-    );
-
-   final  bottomNavigationProvider = Provider.of<DiscoverService>(context);
-
-   final actIndex = bottomNavigationProvider.selectedIndex;
-   if(actIndex != 'all'){
-     setState(() {
-       myZone = actIndex;
-     });
-     getDisc();
-
-   }else{
-     setState(() {
-       myZone = actIndex;
-     });
-     getDisc();
-
-   }
 
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(screenHeight * 0.07),
           child: Container(
-            padding: const EdgeInsets.only(top: 5, left: 5), // Set padding to zero
+            padding:
+                const EdgeInsets.only(top: 5, left: 5), // Set padding to zero
             child: AppBar(
               // backgroundColor: Colors.transparent,
               // Set the height of the AppBar
@@ -502,8 +493,12 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                   child: Container(
                     height: screenHeight * 0.54,
                     child: Visibility(
-                      visible:  modalType == "match" ? true : false,
-                      child: JHMatchWidget(name: "${persons[currentCardIndex].name}", image: "${persons[currentCardIndex].urlImg}", age: persons[currentCardIndex].age, color:persons[currentCardIndex].color),
+                      visible: modalType == "match" ? true : false,
+                      child: JHMatchWidget(
+                          name: "${persons[currentCardIndex].name}",
+                          image: "${persons[currentCardIndex].urlImg}",
+                          age: persons[currentCardIndex].age,
+                          color: persons[currentCardIndex].color),
                     ),
                   ),
                 ),
@@ -516,7 +511,8 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                     child: Visibility(
                       // visible: displayCompatibility,
                       visible: modalType == "compatibility" ? true : false,
-                      child:  JHCompatibilityWidget(image: persons[currentCardIndex].urlImg),
+                      child: JHCompatibilityWidget(
+                          image: persons[currentCardIndex].urlImg),
                       // child: JHMatchWidget(name: "${persons[currentCardIndex].name}", image: "${persons[currentCardIndex].urlImg}", age: persons[currentCardIndex].age, color:persons[currentCardIndex].color),
                     ),
                   ),
@@ -554,7 +550,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                               onTap: () {
                                 expandedButton(1);
                                 changeOptionModal("compatibility");
-                                bottomNavigationProvider.gotoNext('default');
                               },
                               child: Container(
                                 height: expandedButtonIndex == 1 ? 50 : 35,
@@ -635,7 +630,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                               onTap: () {
                                 expandedButton(4);
                                 changeOptionModal("match");
-                                bottomNavigationProvider.gotoNext("default");
                               },
                               child: Container(
                                 height: expandedButtonIndex == 4 ? 50 : 35,
@@ -791,8 +785,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
             FloatingActionButtonLocation.centerDocked);
   }
 
-
-
   bool _onSwipe(
     int previousIndex,
     int? currentIndex,
@@ -811,10 +803,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
     int currentIndex,
     CardSwiperDirection direction,
   ) {
-
     return true;
   }
 }
-
-
-

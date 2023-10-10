@@ -1,9 +1,15 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SaveUserToken {
-  static Future saveLoginValue(bool value) async {
+  static Future saveLoginValue(String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('loginKey', value);
+    prefs.setString('token', value);
+  }
+
+  static Future saveUserId(int value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('userId', value);
   }
 
   static Future saveNameValue(String value) async {
@@ -17,10 +23,17 @@ class SaveUserToken {
   }
 }
 
+final userAuthChange = Provider((ref) => GetUserToken.getLoginValue());
+
 class GetUserToken {
-  static Future<bool?> getLoginValue() async {
+  static Future<String?> getLoginValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('loginKey');
+    return prefs.getString('token');
+  }
+
+  static Future getUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt('userId');
   }
 
   static Future<String?> getNameValue() async {

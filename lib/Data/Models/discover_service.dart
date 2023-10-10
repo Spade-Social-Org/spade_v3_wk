@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DiscoverService extends ChangeNotifier{
+final discoverService = ChangeNotifierProvider((ref) => DiscoverService());
+
+class DiscoverService extends ChangeNotifier {
   String _selectedIndex = 'all';
 
   String _cardType = "default";
@@ -22,24 +25,20 @@ class DiscoverService extends ChangeNotifier{
   }
 
   void goBack() {
-    if(_cardType == 'holder'){
+    if (_cardType == 'holder') {
       _cardType = "default";
 
       notifyListeners();
-
-    }else{
-      if( _cardType == 'analysis') {
+    } else {
+      if (_cardType == 'analysis') {
         _cardType = "default";
 
         notifyListeners();
-      } else{
+      } else {
         _cardType = 'holder';
         notifyListeners();
       }
-
-
     }
-
   }
 
   bool _isModalVisible = false;

@@ -1,17 +1,16 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:spade_v4/Data/Service/geo_locator.dart';
 import 'Common/routes/route_generator.dart';
 import 'Common/size_config/size_config.dart';
-import 'Data/Models/discover_service.dart';
-import 'Data/Service/geo_locator.dart';
 import 'Presentation/Bloc/places_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
 import 'package:spade_v4/injection.dart' as di;
-import 'Presentation/Screens/Login_&_sign_up/login_&_sign_up.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'Presentation/Screens/Login_&_sign_up/landing_screen.dart';
 import 'Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
 import 'injection.dart';
 
@@ -19,13 +18,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  GeoLocatorService.getInitialLocation();
   cameras = await availableCameras();
   di.init();
   runApp(
-    MultiProvider(
+    MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => DiscoverService()),
-        Provider<GeoLocatorService>(create: (context) => GeoLocatorService()),
         BlocProvider<PlacesBloc>(
           create: (context) => locator<PlacesBloc>(),
         ),
@@ -35,44 +33,38 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return ProviderScope(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Spade',
+          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+          navigatorKey: kNavigatorKey,
+          onGenerateRoute: RouteGenerator.onGenerateRoute,
+          onUnknownRoute: RouteGenerator.unKnownRoute,
+          home: AuthStateChangeNotifier()),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  bool isLogin = false;
+final userAuthFutureProvider =
+    FutureProvider((ref) => ref.watch(userAuthChange));
+
+class AuthStateChangeNotifier extends ConsumerWidget {
+  const AuthStateChangeNotifier({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    getvalue();
-  }
-
-  getvalue() async {
-    await GetUserToken.getLoginValue().then((value) {
-      if (value != null) {
-        setState(() {
-          isLogin = value;
-        });
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final geoService = Provider.of<GeoLocatorService>(context, listen: false);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Spade',
-        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-        navigatorKey: kNavigatorKey,
-        onGenerateRoute: RouteGenerator.onGenerateRoute,
-        onUnknownRoute: RouteGenerator.unKnownRoute,
-        home: isLogin
-            ? const NavigationContainer()
-            : const LoginOrSignupScreen());
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      body: ref.watch(userAuthFutureProvider).when(
+          data: (data) =>
+              data == null ? LandingScreen() : NavigationContainer(),
+          error: (e, t) => const SizedBox.shrink(),
+          loading: () => const SizedBox.shrink()),
+    );
   }
 }
