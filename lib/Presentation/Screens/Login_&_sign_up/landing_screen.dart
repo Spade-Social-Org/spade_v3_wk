@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
+import '../../widgets/jh_logger.dart';
 import '../Onboarding_screen/hello_screen.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -13,12 +14,15 @@ class LandingScreen extends StatefulWidget {
 class _LandingScreenState extends State<LandingScreen> {
   @override
   void initState() {
-    onInit();
+    initialization();
     super.initState();
   }
 
-  void onInit() => Future.delayed(
-      const Duration(seconds: 1), () => FlutterNativeSplash.remove());
+  void initialization() async {
+    await Future.delayed(const Duration(seconds: 1));
+    logger.d('Let\'s go!! we are here');
+    FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {
