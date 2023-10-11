@@ -19,7 +19,6 @@ class InputEmail extends StatefulWidget {
 class _InputEmailState extends State<InputEmail> {
   final controller = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +31,14 @@ class _InputEmailState extends State<InputEmail> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Form(
@@ -47,26 +46,26 @@ class _InputEmailState extends State<InputEmail> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: FormTitle(formTitle: "Whats your email?")),
+                const Center(child: FormTitle(formTitle: "Whats your email?")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormLabel(formLabel: "Email"),
+                    const FormLabel(formLabel: "Email"),
                     SizedBox(
                       height: 8.height(),
                     ),
                     TextFormField(
                       controller: controller,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
                       validator:
                           ValidationBuilder().email().maxLength(50).build(),
                       decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 20),
                         hintText: "Enter your email",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(fontSize: 14),
+                        errorStyle: const TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -96,7 +95,7 @@ class _InputEmailState extends State<InputEmail> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Builder(builder: (context) {
