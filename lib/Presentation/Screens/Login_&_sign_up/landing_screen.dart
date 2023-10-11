@@ -1,48 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import '../../widgets/jh_logger.dart';
+import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/input_email.dart';
 import '../Onboarding_screen/hello_screen.dart';
 
-class LoginOrSignupScreen extends StatefulWidget {
-  const LoginOrSignupScreen({super.key});
+class LandingScreen extends StatefulWidget {
+  const LandingScreen({super.key});
 
   @override
-  State<LoginOrSignupScreen> createState() => _LoginOrSignupScreenState();
+  State<LandingScreen> createState() => _LandingScreenState();
 }
 
-class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
+class _LandingScreenState extends State<LandingScreen> {
+  @override
   void initState() {
+    onInit();
     super.initState();
-    initialization();
   }
 
-  void initialization() async {
-    await Future.delayed(const Duration(seconds: 1));
-    logger.d('Let\'s go!! we are here');
-    FlutterNativeSplash.remove();
-  }
-
-  // _loaderOn() {
-  //   showDialog(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (BuildContext dialogContext) {
-  //       return Container(
-  //         color: Colors.white,
-  //         child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
-  //       );
-  //     },
-  //   );
-
-  //   Future.delayed(const Duration(seconds: 4), () {
-  //     Navigator.pop(context);
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => const NavigationContainer()),
-  //     );
-  //   });
-  // }
+  void onInit() => Future.delayed(
+      const Duration(seconds: 1), () => FlutterNativeSplash.remove());
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +28,18 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child: Image.asset("assets/images/onboarding1.png")),
-            const SizedBox(
-              height: 100,
+            const Spacer(),
+            Image.asset("assets/images/onboarding1.png", height: 60),
+            const Text(
+              'A different experience...',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+                letterSpacing: 3,
+              ),
             ),
+            const Spacer(),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: MaterialButton(
@@ -75,9 +57,7 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
                             builder: ((context) => const HelloScreen())));
                   }),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             GestureDetector(
               child: Center(
                 child: GestureDetector(
@@ -108,13 +88,11 @@ class _LoginOrSignupScreenState extends State<LoginOrSignupScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             const Text(
-              "By clicking ‘Create acount’ or ‘Log in’, I state that I have read and understood the terms and conditions. ",
-              textAlign: TextAlign.center,
-            )
+                "By clicking ‘Create acount’ or ‘Log in’, I state that I have read and understood the terms and conditions. ",
+                textAlign: TextAlign.center),
+            const SizedBox(height: 50),
           ],
         ),
       ),
