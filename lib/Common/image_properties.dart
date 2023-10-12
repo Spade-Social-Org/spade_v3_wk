@@ -4,18 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:giphy_get/giphy_get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-
-void showSnackBar({
-  required BuildContext context,
-  required String content,
-}) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(content),
-    ),
-  );
-}
-
+import 'package:spade_v4/Presentation/Screens/messages/widget/custom_snackbar.dart';
 
 Future<File?> pickImageFromGallery(BuildContext context) async {
   File? image;
@@ -26,9 +15,8 @@ Future<File?> pickImageFromGallery(BuildContext context) async {
       image = File(pickedImage.path);
     }
   } catch (e) {
-    showSnackBar(
-      context: context,
-      content: e.toString(),
+    customSnackBar(
+      e.toString(),
     );
   }
   return image;
@@ -42,7 +30,7 @@ Future<GiphyGif?> pickGif(BuildContext context) async {
       apiKey: '',
     );
   } catch (e) {
-    showSnackBar(context: context, content: e.toString());
+    customSnackBar(e.toString());
   }
   return gif;
 }

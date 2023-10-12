@@ -16,8 +16,8 @@ import 'injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   GeoLocatorService.getInitialLocation();
   cameras = await availableCameras();
   di.init();

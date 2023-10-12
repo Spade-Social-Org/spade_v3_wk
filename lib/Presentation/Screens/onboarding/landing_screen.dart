@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/login/login_screen.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/spade_splash_screen.dart';
 import 'package:spade_v4/Presentation/widgets/custom_button.dart';
-import 'signup/hello_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -13,11 +13,11 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  @override
-  void initState() {
-    onInit();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   onInit();
+  //   super.initState();
+  // }
 
   void onInit() => Future.delayed(
       const Duration(seconds: 1), () => FlutterNativeSplash.remove());
@@ -45,18 +45,20 @@ class _LandingScreenState extends State<LandingScreen> {
             CustomButton(
               color: Colors.black,
               text: 'Create Account',
-              onPressed: () => push(const HelloScreen()),
+              onPressed: () => showDialog(
+                  context: context,
+                  builder: (ctx) => const SpadeSplashScreen()),
             ),
             const SizedBox(height: 30),
             CustomButton(
-              borderSide: BorderSide(color: Color(0xff9A9A9A)),
+              borderSide: const BorderSide(color: Color(0xff9A9A9A)),
               text: 'Login',
               textColor: Colors.black,
               onPressed: () => push(const LoginScreen()),
             ),
             const SizedBox(height: 20),
             RichText(
-                text: TextSpan(
+                text: const TextSpan(
                     text: 'By clicking',
                     style: TextStyle(color: Colors.black),
                     children: [

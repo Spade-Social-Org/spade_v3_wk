@@ -1,3 +1,5 @@
+import 'response_model.dart';
+
 class LoginModel {
   final String email;
   final String password;
@@ -14,8 +16,8 @@ class LoginModel {
   }
 }
 
-class LoginResponseModel {
-  LoginResponseModel({
+class ResponseModel {
+  ResponseModel({
     required this.statusCode,
     required this.data,
     required this.message,
@@ -23,57 +25,16 @@ class LoginResponseModel {
   });
 
   final String? statusCode;
-  final LoginData? data;
+  final ResponseData? data;
   final String? message;
   final String? devMessage;
 
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel(
+  factory ResponseModel.fromJson(Map<String, dynamic> json) {
+    return ResponseModel(
       statusCode: json["statusCode"],
-      data: json["data"] == null ? null : LoginData.fromJson(json["data"]),
+      data: json["data"] == null ? null : ResponseData.fromJson(json["data"]),
       message: json["message"],
       devMessage: json["devMessage"],
-    );
-  }
-}
-
-class LoginData {
-  LoginData({
-    required this.userInfo,
-    required this.accessToken,
-  });
-
-  final UserInfo? userInfo;
-  final String? accessToken;
-
-  factory LoginData.fromJson(Map<String, dynamic> json) {
-    return LoginData(
-      userInfo:
-          json["userInfo"] == null ? null : UserInfo.fromJson(json["userInfo"]),
-      accessToken: json["accessToken"],
-    );
-  }
-}
-
-class UserInfo {
-  UserInfo({
-    required this.userId,
-    required this.name,
-    required this.email,
-    required this.verified,
-  });
-
-  final int? userId;
-  final String? name;
-  final String? email;
-  final bool? verified;
-
-  factory UserInfo.fromJson(Map<String, dynamic> json) {
-    return UserInfo(
-      userId: json["userId"],
-      name: json["name"],
-      email: json["email"],
-      verified: json["verified"],
     );
   }
 }

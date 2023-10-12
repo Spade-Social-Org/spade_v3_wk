@@ -17,6 +17,9 @@ void customSnackBar(data) =>
             Align(
                 alignment: Alignment.bottomRight,
                 child: TextButton(
+                    style: const ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.black)),
                     onPressed: () =>
                         ScaffoldMessenger.of(kNavigatorKey.currentContext!)
                             .removeCurrentSnackBar(),
