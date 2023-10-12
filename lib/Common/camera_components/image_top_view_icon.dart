@@ -18,7 +18,7 @@ class ImageViewTopRowIcons extends StatelessWidget {
           iconSize: 30,
           color: Colors.white,
           onPressed: () {
-            navigatePop(context);
+            pop();
           },
           icon: const Icon(Icons.clear),
         ),

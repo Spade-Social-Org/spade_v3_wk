@@ -85,7 +85,7 @@ class _CameraScreenState extends State<CameraScreen> {
                               isRecording = false;
                             });
                             if (!mounted) return;
-                            navigateTo(
+                            navigateNamedTo(
                               context,
                               Routes.sendingVideoViewRoute,
                               arguments: {
@@ -162,7 +162,7 @@ class _CameraScreenState extends State<CameraScreen> {
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
     if (!mounted) return;
-    navigateTo(context, Routes.sendingImageViewRoute, arguments: {
+    navigateNamedTo(context, Routes.sendingImageViewRoute, arguments: {
       'path': file.path,
       'uId': widget.receiverId,
     });

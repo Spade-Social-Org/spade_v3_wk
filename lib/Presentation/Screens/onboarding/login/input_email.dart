@@ -1,18 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_password.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
 
-class InputNameScreen extends StatefulWidget {
-  const InputNameScreen({super.key});
+import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/login/login_password.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
+
+class InputEmail extends StatefulWidget {
+  const InputEmail({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<InputNameScreen> createState() => _InputNameScreenState();
+  State<InputEmail> createState() => _InputEmailState();
 }
 
-class _InputNameScreenState extends State<InputNameScreen> {
+class _InputEmailState extends State<InputEmail> {
   final controller = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
 
@@ -27,14 +31,14 @@ class _InputNameScreenState extends State<InputNameScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Form(
@@ -42,28 +46,26 @@ class _InputNameScreenState extends State<InputNameScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: FormTitle(formTitle: "Whats your name?")),
+                const Center(child: FormTitle(formTitle: "Whats your email?")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormLabel(formLabel: "First Name"),
+                    const FormLabel(formLabel: "Email"),
                     SizedBox(
                       height: 8.height(),
                     ),
                     TextFormField(
                       controller: controller,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
-                      validator: ValidationBuilder()
-                          .minLength(3)
-                          .maxLength(50)
-                          .build(),
+                      validator:
+                          ValidationBuilder().email().maxLength(50).build(),
                       decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        hintText: "Enter your first name",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 20),
+                        hintText: "Enter your email",
+                        hintStyle: const TextStyle(fontSize: 14),
+                        errorStyle: const TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -93,8 +95,8 @@ class _InputNameScreenState extends State<InputNameScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 90,
+                const SizedBox(
+                  height: 30,
                 ),
                 Builder(builder: (context) {
                   return ClipRRect(
@@ -112,12 +114,12 @@ class _InputNameScreenState extends State<InputNameScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        InputPassword(name: controller.text))));
+                                    builder: ((context) => LoginPassword(
+                                        email: controller.text))));
                           }
                         }),
                   );
-                }),
+                })
               ],
             ),
           ),

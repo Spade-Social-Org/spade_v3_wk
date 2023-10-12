@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/model/login_model.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/model/login_model.dart';
 
 class AuthRepository {
   static final client = Client();

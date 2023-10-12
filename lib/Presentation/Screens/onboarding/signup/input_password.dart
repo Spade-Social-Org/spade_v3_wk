@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_phone_number_screen.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
+
+import 'input_phone_number_screen.dart';
 
 class InputPassword extends StatefulWidget {
   final String name;

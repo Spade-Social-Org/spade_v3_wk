@@ -1,28 +1,98 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 
 import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/add_location_screen.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
 
-class InputPhoneNumberScreen extends StatefulWidget {
+import 'verification_page.dart';
+
+class InputEmailScreen extends StatefulWidget {
   final String name;
   final String password;
-  const InputPhoneNumberScreen({
+  final String phoneNumber;
+  final String countryValue;
+  final String stateValue;
+  final String cityValue;
+  final String postCode;
+  const InputEmailScreen({
     Key? key,
     required this.name,
     required this.password,
+    required this.phoneNumber,
+    required this.countryValue,
+    required this.stateValue,
+    required this.cityValue,
+    required this.postCode,
   }) : super(key: key);
 
   @override
-  State<InputPhoneNumberScreen> createState() => _InputPhoneNumberScreenState();
+  State<InputEmailScreen> createState() => _InputEmailScreenState();
 }
 
-class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
+class _InputEmailScreenState extends State<InputEmailScreen> {
   final controller = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
+  final dio = Dio();
+
+  Future postData(String email) async {
+    try {
+      var url =
+          'https://spade-backend-v3-production.up.railway.app/api/v1/auth/signup';
+      var response = await dio.post(url, data: {
+        "email": email,
+        "password": widget.password,
+        "name": widget.name,
+        "phone_number": widget.phoneNumber,
+        "country": widget.countryValue,
+        "city": widget.cityValue,
+        "state": widget.stateValue,
+        "postal_code": widget.postCode,
+      }).timeout(const Duration(seconds: 60));
+      print(response.statusCode);
+      return true;
+    } on TimeoutException {
+      return "Service unavailable!";
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  _loaderOn() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return Container(
+          color: Colors.white,
+          child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
+        );
+      },
+    );
+  }
+
+  Future<void> _showDialogLoader() {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: Colors.white,
+        content: Container(
+          height: 60,
+          alignment: Alignment.center,
+          color: Colors.white,
+          padding: EdgeInsets.all(10),
+          child: CircularProgressIndicator(
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +120,11 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: FormTitle(formTitle: "Whats your phone number?")),
+                Center(child: FormTitle(formTitle: "Whats your email?")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormLabel(formLabel: "Mobile Number"),
+                    FormLabel(formLabel: "Email"),
                     SizedBox(
                       height: 8.height(),
                     ),
@@ -62,13 +132,12 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                       controller: controller,
                       style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
-                      keyboardType: TextInputType.number,
                       validator:
-                          ValidationBuilder().phone().maxLength(50).build(),
+                          ValidationBuilder().email().maxLength(50).build(),
                       decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        hintText: "+1-400-200-9000",
+                        hintText: "Enter your email",
                         hintStyle: TextStyle(fontSize: 14),
                         errorStyle: TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
@@ -116,17 +185,36 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                         ),
                         onPressed: () async {
                           if (_form.currentState!.validate()) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) => AddLocationScreen(
-                                        name: widget.name,
-                                        password: widget.password,
-                                        phoneNumber: controller.text))));
+                            if (controller.text.isNotEmpty) {
+                              _loaderOn();
+                              await postData(controller.text).then((value) {
+                                if (value == true) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              const VerificationPage())));
+                                } else {
+                                  Navigator.pop(context);
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    backgroundColor: Colors.black,
+                                    content: Text(
+                                      value,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    action: SnackBarAction(
+                                      label: 'Retry',
+                                      onPressed: () {},
+                                    ),
+                                  ));
+                                }
+                              });
+                            }
                           }
                         }),
                   );
-                }),
+                })
               ],
             ),
           ),

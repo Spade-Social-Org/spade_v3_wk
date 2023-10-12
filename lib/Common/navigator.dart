@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:spade_v4/Common/size_config/size_config.dart';
 
-void navigatePop(
-  BuildContext context,
-) {
-  Navigator.of(context).pop();
-}
+void pop() => Navigator.of(kNavigatorKey.currentContext!).pop();
+Future<T?> push<T>(Widget child) => Navigator.of(kNavigatorKey.currentContext!)
+    .push(MaterialPageRoute(builder: (ctx) => child));
 
 void navigateAndRemove(
   BuildContext context,
@@ -18,16 +17,12 @@ void navigateAndRemove(
   );
 }
 
-Future<dynamic> navigateTo(
+Future<dynamic> navigateNamedTo(
   BuildContext context,
   String routeName, {
   Object? arguments,
-}) {
-  return Navigator.of(context).pushNamed(
-    routeName,
-    arguments: arguments,
-  );
-}
+}) =>
+    Navigator.of(context).pushNamed(routeName, arguments: arguments);
 
 void navigateAndReplace(
   BuildContext context,

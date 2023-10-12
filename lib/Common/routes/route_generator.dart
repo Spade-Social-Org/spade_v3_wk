@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Presentation/Screens/Camera/camera_screen.dart';
 import '../../Presentation/Screens/Camera/sending_image_preview.dart';
 import '../../Presentation/Screens/Camera/sending_video.dart';
-import '../../Presentation/Screens/Login_&_sign_up/landing_screen.dart';
+import '../../Presentation/Screens/onboarding/landing_screen.dart';
 import 'routes.dart';
 
 class RouteGenerator {
