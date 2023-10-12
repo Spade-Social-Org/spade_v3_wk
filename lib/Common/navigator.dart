@@ -5,7 +5,13 @@ final kNavigatorKey = GlobalKey<NavigatorState>();
 void pop() => Navigator.of(kNavigatorKey.currentContext!).pop();
 Future<T?> push<T>(Widget child) => Navigator.of(kNavigatorKey.currentContext!)
     .push(MaterialPageRoute(builder: (ctx) => child));
+Future<void> pushReplacement(Widget child) =>
+    Navigator.of(kNavigatorKey.currentContext!)
+        .pushReplacement(MaterialPageRoute(builder: (context) => child));
 
+Future<void> pushAndRemoveUntil(Widget child) =>
+    Navigator.of(kNavigatorKey.currentContext!).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (ctx) => child), (c) => false);
 void navigateAndRemove(
   BuildContext context,
   String routeName, {
