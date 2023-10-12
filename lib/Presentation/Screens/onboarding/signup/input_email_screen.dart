@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
 
@@ -125,9 +124,7 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     FormLabel(formLabel: "Email"),
-                    SizedBox(
-                      height: 8.height(),
-                    ),
+                    SizedBox(height: 8),
                     TextFormField(
                       controller: controller,
                       style: TextStyle(fontSize: 14),

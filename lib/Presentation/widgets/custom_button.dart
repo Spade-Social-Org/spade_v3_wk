@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
       this.width = double.infinity,
       this.height,
       this.borderSide,
-      this.radius = 50,
+      this.radius = 12,
       this.isLoading = false,
       this.textSize,
       this.textAlign = Alignment.center})

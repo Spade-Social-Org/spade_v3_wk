@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Common/size_config/size_config.dart';
+import 'package:spade_v4/Common/navigator.dart';
 
 void loadingDialog() => showDialog(
       context: kNavigatorKey.currentContext!,

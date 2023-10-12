@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../Common/size_config/size_config.dart';
+import 'package:spade_v4/Common/navigator.dart';
 
 void customSnackBar(data) =>
     ScaffoldMessenger.of(kNavigatorKey.currentContext!).showSnackBar(SnackBar(

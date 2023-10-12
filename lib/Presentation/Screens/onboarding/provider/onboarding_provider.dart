@@ -8,7 +8,7 @@ import '../../../widgets/loading_dialog.dart';
 import '../../messages/widget/custom_snackbar.dart';
 import '../model/login_model.dart';
 import '../repository/auth_repositiory.dart';
-import '../save_user_tokens/save_user_tokens.dart';
+import '../../../../prefs/pref_provider.dart';
 
 final onboardingProvider = Provider((ref) => OnboardingProvider());
 
@@ -18,8 +18,8 @@ class OnboardingProvider {
       loadingDialog();
       final response = await AuthRepository.login(model);
       if (response.statusCode == 'SUCCESS') {
-        SaveUserToken.saveLoginValue(response.data!.accessToken!);
-        SaveUserToken.saveUserId(response.data!.userInfo!.userId!);
+        PrefProvider.saveUserToken(response.data!.accessToken!);
+        PrefProvider.saveUserId(response.data!.userInfo!.userId!);
       } else if (response.statusCode == 'BAD_REQUEST') {
         customSnackBar(response.message);
       } else if (response.statusCode == 'FORBIDDEN') {

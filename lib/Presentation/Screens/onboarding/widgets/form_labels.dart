@@ -9,9 +9,12 @@ class FormLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      formLabel,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: Text(
+        formLabel,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     );
   }
 }
