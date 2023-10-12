@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'Presentation/Screens/Login_&_sign_up/landing_screen.dart';
+import 'Presentation/Screens/onboarding/landing_screen.dart';
 import 'Presentation/widgets/jh_onboarding_content.dart';
 
 class Onboarding extends StatefulWidget {

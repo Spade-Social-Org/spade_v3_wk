@@ -10,8 +10,8 @@ import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
 import 'package:spade_v4/injection.dart' as di;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'Presentation/Screens/Login_&_sign_up/landing_screen.dart';
-import 'Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
+import 'Presentation/Screens/onboarding/save_user_tokens/save_user_tokens.dart';
+import 'Presentation/Screens/onboarding/landing_screen.dart';
 import 'injection.dart';
 
 Future<void> main() async {

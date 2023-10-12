@@ -1,18 +1,14 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_validator/form_validator.dart';
-
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
-import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/repository/auth_repositiory.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/save_user_tokens/save_user_tokens.dart';
-import 'package:spade_v4/Presentation/Screens/messages/widget/custom_snackbar.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/provider/onboarding_provider.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
 
-import 'model/login_model.dart';
+import '../../../../Common/navigator.dart';
+import '../model/login_model.dart';
 
 class LoginPassword extends StatefulWidget {
   final String email;
@@ -29,47 +25,6 @@ class _LoginPasswordState extends State<LoginPassword> {
   bool obscureText = true;
   final passwordCrtl = TextEditingController();
   final form = GlobalKey<FormState>();
-
-  Future<LoginResponseModel> login(LoginModel model) async {
-    try {
-      loadingDialog();
-      final response = await AuthRepository.login(model);
-      if (response.statusCode == 'SUCCESS') {
-        SaveUserToken.saveLoginValue(response.data!.accessToken!);
-        SaveUserToken.saveUserId(response.data!.userInfo!.userId!);
-      } else if (response.statusCode == 'BAD_REQUEST') {
-        customSnackBar(response.message);
-      } else if (response.statusCode == 'FORBIDDEN') {
-        customSnackBar(response.message);
-      }
-      pop();
-      return response;
-    } on TimeoutException {
-      customSnackBar(
-          'Server is taking too long to respond, pls try again later');
-      pop();
-      rethrow;
-    } on SocketException catch (_) {
-      customSnackBar('No internet connection');
-      pop();
-      rethrow;
-    } catch (_) {
-      pop();
-      rethrow;
-    }
-  }
-
-  void pop() => Navigator.of(context).pop();
-  void loadingDialog() => showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext dialogContext) {
-          return Container(
-            color: Colors.white,
-            child: Center(child: Image.asset("assets/images/ShuffleE.gif")),
-          );
-        },
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +58,7 @@ class _LoginPasswordState extends State<LoginPassword> {
                                 formTitle: "Please enter your password")),
                         const SizedBox(height: 100),
                         const FormLabel(formLabel: "Password"),
-                        SizedBox(height: 8.height()),
+                        SizedBox(height: 8),
                         TextFormField(
                           obscureText: obscureText,
                           controller: passwordCrtl,
@@ -168,34 +123,35 @@ class _LoginPasswordState extends State<LoginPassword> {
                   ),
                 ),
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    color: Colors.black,
-                    child: const Text(
-                      "Next",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    onPressed: () async {
-                      if (form.currentState!.validate()) {
-                        FocusScope.of(context).unfocus();
-                        final model = LoginModel(
-                            email: widget.email.trim(),
-                            password: passwordCrtl.text.trim());
-                        await login(model).then((value) {
-                          if (value.statusCode == 'SUCCESS') {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) =>
-                                        const NavigationContainer())));
-                          }
-                        });
-                      }
-                    }),
-              )
+              Consumer(builder: (context, ref, _) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      color: Colors.black,
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () async {
+                        if (form.currentState!.validate()) {
+                          FocusScope.of(context).unfocus();
+                          final model = LoginModel(
+                              email: widget.email.trim(),
+                              password: passwordCrtl.text.trim());
+                          await ref
+                              .read(onboardingProvider)
+                              .login(model)
+                              .then((value) {
+                            if (value.statusCode == 'SUCCESS') {
+                              push(const NavigationContainer());
+                            }
+                          });
+                        }
+                      }),
+                );
+              })
             ],
           ),
         ),

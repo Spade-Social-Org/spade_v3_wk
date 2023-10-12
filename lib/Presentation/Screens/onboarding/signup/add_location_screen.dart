@@ -2,7 +2,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/input_email_screen.dart';
+import 'input_email_screen.dart';
 
 class AddLocationScreen extends StatefulWidget {
   final String name;
@@ -58,7 +58,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
               Container(
-                  height: MediaQuery.of(context).size.width*0.4,
+                  height: MediaQuery.of(context).size.width * 0.4,
                   child: Image.asset("assets/images/location2.png")),
               const SizedBox(
                 height: 20,

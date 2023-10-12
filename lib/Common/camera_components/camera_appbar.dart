@@ -22,7 +22,7 @@ class CameraAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         // iconSize: 30,
         onPressed: () {
-          navigatePop(context);
+          pop();
         },
         icon: const Icon(Icons.clear),
       ),

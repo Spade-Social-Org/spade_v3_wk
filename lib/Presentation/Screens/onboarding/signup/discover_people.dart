@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/discover_image.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/discover_image.dart';
 
 class DiscoverPeople extends StatefulWidget {
   const DiscoverPeople({super.key});
@@ -109,9 +109,9 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                   ),
                 ],
               ),
-    SizedBox(
-                    height: 20,
-                  ), 
+              SizedBox(
+                height: 20,
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: MaterialButton(

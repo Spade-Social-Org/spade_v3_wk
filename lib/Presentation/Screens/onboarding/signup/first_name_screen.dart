@@ -1,22 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:spade_v4/Common/extensions/barrel_extensions.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
 
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
-import 'package:spade_v4/Presentation/Screens/Login_&_sign_up/login_password.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_labels.dart';
-import 'package:spade_v4/Presentation/Screens/Onboarding_screen/onboarding%20widgets/form_title.dart';
+import 'input_password.dart';
 
-class InputEmail extends StatefulWidget {
-  const InputEmail({
-    Key? key,
-  }) : super(key: key);
+class InputNameScreen extends StatefulWidget {
+  const InputNameScreen({super.key});
 
   @override
-  State<InputEmail> createState() => _InputEmailState();
+  State<InputNameScreen> createState() => _InputNameScreenState();
 }
 
-class _InputEmailState extends State<InputEmail> {
+class _InputNameScreenState extends State<InputNameScreen> {
   final controller = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey<FormState>();
 
@@ -31,14 +28,14 @@ class _InputEmailState extends State<InputEmail> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-        child: SizedBox(
+        child: Container(
           height: double.infinity,
           width: double.infinity,
           child: Form(
@@ -46,26 +43,28 @@ class _InputEmailState extends State<InputEmail> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Center(child: FormTitle(formTitle: "Whats your email?")),
+                Center(child: FormTitle(formTitle: "Whats your name?")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const FormLabel(formLabel: "Email"),
+                    FormLabel(formLabel: "First Name"),
                     SizedBox(
                       height: 8.height(),
                     ),
                     TextFormField(
                       controller: controller,
-                      style: const TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
-                      validator:
-                          ValidationBuilder().email().maxLength(50).build(),
+                      validator: ValidationBuilder()
+                          .minLength(3)
+                          .maxLength(50)
+                          .build(),
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 20),
-                        hintText: "Enter your email",
-                        hintStyle: const TextStyle(fontSize: 14),
-                        errorStyle: const TextStyle(color: Colors.black),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        hintText: "Enter your first name",
+                        hintStyle: TextStyle(fontSize: 14),
+                        errorStyle: TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -95,8 +94,8 @@ class _InputEmailState extends State<InputEmail> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 90,
                 ),
                 Builder(builder: (context) {
                   return ClipRRect(
@@ -114,12 +113,12 @@ class _InputEmailState extends State<InputEmail> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) => LoginPassword(
-                                        email: controller.text))));
+                                    builder: ((context) =>
+                                        InputPassword(name: controller.text))));
                           }
                         }),
                   );
-                })
+                }),
               ],
             ),
           ),

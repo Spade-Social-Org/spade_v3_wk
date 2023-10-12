@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import '../Buttom_nav/navigation_container.dart';
+
+import '../../Buttom_nav/navigation_container.dart';
 
 class LookingForBuildWomenScreen extends StatefulWidget {
   const LookingForBuildWomenScreen({super.key});
 
   @override
-  State<LookingForBuildWomenScreen> createState() => _LookingForBuildWomenScreenState();
+  State<LookingForBuildWomenScreen> createState() =>
+      _LookingForBuildWomenScreenState();
 }
 
-class _LookingForBuildWomenScreenState extends State<LookingForBuildWomenScreen> {
-   String? _selectedType;
+class _LookingForBuildWomenScreenState
+    extends State<LookingForBuildWomenScreen> {
+  String? _selectedType;
 
   void _selectType(String type) {
     setState(() {
       _selectedType = type;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +178,8 @@ class _LookingForBuildWomenScreenState extends State<LookingForBuildWomenScreen>
                       children: [
                         SizedBox(
                             height: 80,
-                            child: Image.asset("assets/images/freepik--character-2--inject-316.png")),
+                            child: Image.asset(
+                                "assets/images/freepik--character-2--inject-316.png")),
                         const Text("BBW")
                       ]),
                 ),
@@ -203,7 +206,8 @@ class _LookingForBuildWomenScreenState extends State<LookingForBuildWomenScreen>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const NavigationContainer())));
+                            builder: ((context) =>
+                                const NavigationContainer())));
                   }),
             ),
           ),
