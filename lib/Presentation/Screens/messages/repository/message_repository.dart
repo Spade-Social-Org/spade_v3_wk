@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
-import 'package:spade_v4/Presentation/Screens/onboarding/save_user_tokens/save_user_tokens.dart';
+import 'package:spade_v4/prefs/pref_provider.dart';
 import 'package:spade_v4/Presentation/Screens/messages/model/chat_model.dart';
 import 'package:spade_v4/Presentation/Screens/messages/model/messages.dart';
 
@@ -13,8 +13,8 @@ class MessageRepository {
   final baseUrl = "https://spade-backend-v3-production.up.railway.app/api/v1";
 
   Future<Messages> getUserMessages() async {
-    final token = await GetUserToken.getLoginValue();
-    final id = await GetUserToken.getUserId();
+    final token = await PrefProvider.getUserToken();
+    final id = await PrefProvider.getUserId();
     final response = await _client.get(Uri.parse("$baseUrl/messages/$id"),
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);
@@ -22,7 +22,7 @@ class MessageRepository {
   }
 
   Future<ChatsResponseModel> getUserChats() async {
-    final token = await GetUserToken.getLoginValue();
+    final token = await PrefProvider.getUserToken();
     final response = await _client.get(Uri.parse("$baseUrl/messages"),
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);

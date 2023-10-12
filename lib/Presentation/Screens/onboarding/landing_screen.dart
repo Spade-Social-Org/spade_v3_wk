@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:spade_v4/Common/navigator.dart';
-import 'package:spade_v4/Presentation/Screens/onboarding/login/input_email.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/login/login_screen.dart';
 import 'package:spade_v4/Presentation/widgets/custom_button.dart';
 import 'signup/hello_screen.dart';
 
@@ -45,7 +45,6 @@ class _LandingScreenState extends State<LandingScreen> {
             CustomButton(
               color: Colors.black,
               text: 'Create Account',
-              radius: 12,
               onPressed: () => push(const HelloScreen()),
             ),
             const SizedBox(height: 30),
@@ -53,8 +52,7 @@ class _LandingScreenState extends State<LandingScreen> {
               borderSide: BorderSide(color: Color(0xff9A9A9A)),
               text: 'Login',
               textColor: Colors.black,
-              radius: 12,
-              onPressed: () => push(const InputEmail()),
+              onPressed: () => push(const LoginScreen()),
             ),
             const SizedBox(height: 20),
             RichText(

@@ -9,9 +9,12 @@ class FormTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      formTitle,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        formTitle,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      ),
     );
   }
 }

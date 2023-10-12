@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 
-import 'package:spade_v4/Common/extensions/size_config_extension/size_config_extension.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
 
@@ -38,7 +37,7 @@ class _InputPasswordState extends State<InputPassword> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
@@ -53,18 +52,17 @@ class _InputPasswordState extends State<InputPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: FormTitle(formTitle: "Please create a password")),
+                const Center(
+                    child: FormTitle(formTitle: "Please create a password")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormLabel(formLabel: "Password"),
-                    SizedBox(
-                      height: 8.height(),
-                    ),
+                    const FormLabel(formLabel: "Password"),
+                    const SizedBox(height: 8),
                     TextFormField(
                       obscureText: obscureText,
                       controller: pwController,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
                       validator: ValidationBuilder()
                           .minLength(5)
@@ -87,11 +85,11 @@ class _InputPasswordState extends State<InputPassword> {
                                 color: Colors.grey,
                               )),
                         ),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 20),
                         hintText: "Enter Password",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(fontSize: 14),
+                        errorStyle: const TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -119,17 +117,13 @@ class _InputPasswordState extends State<InputPassword> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 15.height(),
-                    ),
-                    FormLabel(formLabel: "Confirm Password"),
-                    SizedBox(
-                      height: 8.height(),
-                    ),
+                    const SizedBox(height: 15),
+                    const FormLabel(formLabel: "Confirm Password"),
+                    const SizedBox(height: 8),
                     TextFormField(
                       obscureText: cnObscureText,
                       controller: cnPwController,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                       cursorColor: Colors.black,
                       validator: ValidationBuilder()
                           .minLength(5)
@@ -153,11 +147,11 @@ class _InputPasswordState extends State<InputPassword> {
                             ),
                           ),
                         ),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 20),
                         hintText: "Confirm Password",
-                        hintStyle: TextStyle(fontSize: 14),
-                        errorStyle: TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(fontSize: 14),
+                        errorStyle: const TextStyle(color: Colors.black),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide:
                               const BorderSide(width: 1, color: Colors.grey),
@@ -187,7 +181,7 @@ class _InputPasswordState extends State<InputPassword> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 90,
                 ),
                 Builder(builder: (context) {
@@ -215,7 +209,7 @@ class _InputPasswordState extends State<InputPassword> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: Colors.black,
-                                content: Text(
+                                content: const Text(
                                   "Password doesn't match",
                                   style: TextStyle(color: Colors.white),
                                 ),

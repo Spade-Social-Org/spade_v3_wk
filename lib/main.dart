@@ -1,16 +1,16 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Data/Service/geo_locator.dart';
 import 'Common/routes/route_generator.dart';
-import 'Common/size_config/size_config.dart';
 import 'Presentation/Bloc/places_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
 import 'package:spade_v4/injection.dart' as di;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'Presentation/Screens/onboarding/save_user_tokens/save_user_tokens.dart';
+import 'prefs/pref_provider.dart';
 import 'Presentation/Screens/onboarding/landing_screen.dart';
 import 'injection.dart';
 
@@ -28,7 +28,7 @@ Future<void> main() async {
           create: (context) => locator<PlacesBloc>(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -42,11 +42,17 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Spade',
-          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+          theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white,
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.white,
+                surfaceTintColor: Colors.white,
+              ),
+              useMaterial3: true),
           navigatorKey: kNavigatorKey,
           onGenerateRoute: RouteGenerator.onGenerateRoute,
           onUnknownRoute: RouteGenerator.unKnownRoute,
-          home: AuthStateChangeNotifier()),
+          home: const AuthStateChangeNotifier()),
     );
   }
 }
@@ -61,8 +67,9 @@ class AuthStateChangeNotifier extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: ref.watch(userAuthFutureProvider).when(
-          data: (data) =>
-              data == null ? LandingScreen() : NavigationContainer(),
+          data: (data) => data == null
+              ? const LandingScreen()
+              : const NavigationContainer(),
           error: (e, t) => const SizedBox.shrink(),
           loading: () => const SizedBox.shrink()),
     );

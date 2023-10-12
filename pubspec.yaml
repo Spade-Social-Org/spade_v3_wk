@@ -82,6 +82,7 @@ dependencies:
   fluttertoast: ^8.2.2
   flutter_riverpod: ^2.4.3
   hexagon: ^0.2.0
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:

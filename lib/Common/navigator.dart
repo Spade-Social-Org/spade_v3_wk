@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Common/size_config/size_config.dart';
+
+final kNavigatorKey = GlobalKey<NavigatorState>();
 
 void pop() => Navigator.of(kNavigatorKey.currentContext!).pop();
 Future<T?> push<T>(Widget child) => Navigator.of(kNavigatorKey.currentContext!)
