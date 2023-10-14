@@ -80,7 +80,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
     ];
 
     final List<Widget> _appPage = [
-      CameraScreen(receiverId: ''),
+      const CameraScreen(receiverId: ''),
     ];
     SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -125,15 +125,14 @@ class _NavigationContainerState extends State<NavigationContainer> {
                   });
                 },
                 backgroundColor: Colors.black,
-                elevation: 8,
                 selectedItemColor: Colors.white,
                 unselectedItemColor: Colors.grey,
-                selectedLabelStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                selectedLabelStyle:
+                    const TextStyle(fontWeight: FontWeight.bold),
                 items: [
                   BottomNavigationBarItem(
-                    icon: Image.asset("assets/images/spade.png", height: 24),
+                    icon: Image.asset("assets/images/spade-small.png",
+                        height: 24),
                     label: "",
                   ),
                   BottomNavigationBarItem(
@@ -163,11 +162,8 @@ class _NavigationContainerState extends State<NavigationContainer> {
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: Image.asset(
-                      "assets/images/list-colored.png",
-                      width: 24,
-                      height: 24,
-                    ),
+                    icon: Image.asset("assets/images/list-colored.png",
+                        width: 24, height: 24),
                     label: "",
                   ),
                 ],
@@ -183,7 +179,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                       image: DecorationImage(
                           image: AssetImage("assets/images/bottom_nav.png")),
                     ),
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
@@ -269,7 +265,7 @@ class _NavigationContainerState extends State<NavigationContainer> {
                                 child: Container(
                                   height: 15.0,
                                   width: 15.0,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.grey,
                                   ),
