@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:spade_v4/Common/navigator.dart';
-import 'package:spade_v4/Presentation/Screens/onboarding/signup/verify_email.dart';
+import 'package:spade_v4/Presentation/Screens/onboarding/signup/add_location_screen.dart';
 
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
@@ -62,7 +62,7 @@ class _InputEmailScreenState extends State<InputEmailScreen> {
                       text: 'Next',
                       onPressed: () async {
                         if (form.currentState!.validate()) {
-                          push(VerifyEmail(
+                          push(AddLocationScreen(
                               name: widget.name,
                               password: widget.password,
                               email: email.text,

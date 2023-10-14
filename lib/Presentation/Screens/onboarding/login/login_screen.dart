@@ -6,11 +6,12 @@ import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Presentation/Screens/Buttom_nav/navigation_container.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/model/login_model.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/provider/onboarding_provider.dart';
-import 'package:spade_v4/Presentation/Screens/onboarding/signup/first_name_screen.dart';
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dart';
 import 'package:spade_v4/Presentation/widgets/custom_button.dart';
 import 'package:spade_v4/Presentation/widgets/custom_textfield.dart';
 import 'package:spade_v4/prefs/pref_provider.dart';
+
+import '../spade_splash_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -30,7 +31,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+    onInit();
     super.initState();
+  }
+
+  onInit() async {
+    final data = await PrefProvider.getUserLoginDetails();
+    setState(() {
+      if (data != null) {
+        email.text = data[0];
+        password.text = data[1];
+      }
+    });
   }
 
   @override
@@ -62,6 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 8),
                       CustomTextfield(
                           controller: email,
+                          textCapitalization: TextCapitalization.none,
+                          keyboardType: TextInputType.emailAddress,
                           validator: ValidationBuilder()
                               .email('Field is required')
                               .maxLength(50)
@@ -139,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: CustomButton(
                         height: 40,
-                        onPressed: () => push(const FirstNameScreen()),
+                        onPressed: () => push(const SpadeSplashScreen()),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

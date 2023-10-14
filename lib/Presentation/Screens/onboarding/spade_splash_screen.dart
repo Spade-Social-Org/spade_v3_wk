@@ -20,7 +20,7 @@ class _SpadeSplashScreenState extends State<SpadeSplashScreen>
   @override
   void initState() {
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000));
+        vsync: this, duration: const Duration(milliseconds: 1800));
     animation = Tween(begin: 0.0, end: 1.0).animate(controller);
     slideAnimation =
         Tween(begin: const Offset(0.0, 5.0), end: const Offset(0, 0))
@@ -28,7 +28,7 @@ class _SpadeSplashScreenState extends State<SpadeSplashScreen>
     controller.forward();
     Future.delayed(
         const Duration(
-          milliseconds: 4000,
+          milliseconds: 2000,
         ),
         () => pushReplacement(const FirstNameScreen()));
     super.initState();

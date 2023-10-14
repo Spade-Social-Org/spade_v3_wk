@@ -14,21 +14,24 @@ void customSnackBar(data) =>
                   color: Colors.white,
                   fontWeight: FontWeight.w500),
             ),
-            Align(
-                alignment: Alignment.bottomRight,
-                child: TextButton(
-                    style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.black)),
-                    onPressed: () =>
-                        ScaffoldMessenger.of(kNavigatorKey.currentContext!)
-                            .removeCurrentSnackBar(),
-                    child: const Text(
-                      'DISMISS',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600),
-                    )))
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.black)),
+                      onPressed: () =>
+                          ScaffoldMessenger.of(kNavigatorKey.currentContext!)
+                              .removeCurrentSnackBar(),
+                      child: const Text(
+                        'DISMISS',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600),
+                      ))),
+            )
           ],
         )));
