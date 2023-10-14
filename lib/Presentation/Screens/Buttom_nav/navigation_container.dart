@@ -17,10 +17,10 @@ class NavigationContainer extends StatefulWidget {
 }
 
 class _NavigationContainerState extends State<NavigationContainer> {
-  int selectedIndex = 0;
-  int _PageIndex = 0;
+  int selectedIndex = 2;
+  int _PageIndex = 2;
   bool _showOption = false;
-  int card_click = 0;
+  int card_click = 2;
   late PageController _pageController;
 
   @override
@@ -131,13 +131,18 @@ class _NavigationContainerState extends State<NavigationContainer> {
                     const TextStyle(fontWeight: FontWeight.bold),
                 items: [
                   BottomNavigationBarItem(
-                    icon: Image.asset("assets/images/spade-small.png",
+                    icon: Image.asset(
+                        selectedIndex == 0
+                            ? "assets/images/spade-light.png"
+                            : "assets/images/spade-small.png",
                         height: 24),
                     label: "",
                   ),
                   BottomNavigationBarItem(
                     icon: Image.asset(
-                      "assets/images/message.png",
+                      selectedIndex == 1
+                          ? "assets/images/message-light.png"
+                          : "assets/images/message.png",
                       width: 24,
                       height: 24,
                     ),
@@ -146,8 +151,12 @@ class _NavigationContainerState extends State<NavigationContainer> {
                   BottomNavigationBarItem(
                     icon: Image.asset(
                       _showOption
-                          ? 'assets/images/bottom_nav.png'
-                          : "assets/images/flip-card.png",
+                          ? (selectedIndex == 2 || _PageIndex == 2)
+                              ? "assets/images/card-light.png"
+                              : "assets/images/bottom_nav.png"
+                          : (selectedIndex == 2 || _PageIndex == 2)
+                              ? "assets/images/card-light.png"
+                              : "assets/images/flip-card.png",
                       width: 24,
                       height: 24,
                     ),
@@ -162,8 +171,12 @@ class _NavigationContainerState extends State<NavigationContainer> {
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: Image.asset("assets/images/list-colored.png",
-                        width: 24, height: 24),
+                    icon: Image.asset(
+                        selectedIndex == 3
+                            ? "assets/images/globe-light.png"
+                            : "assets/images/list-colored.png",
+                        width: 24,
+                        height: 24),
                     label: "",
                   ),
                 ],
