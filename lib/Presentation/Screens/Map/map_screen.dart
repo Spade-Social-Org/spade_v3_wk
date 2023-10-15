@@ -40,6 +40,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
   @override
   void initState() {
     super.initState();
+
     ///Load map theme
     DefaultAssetBundle.of(context)
         .loadString('assets/maptheme/nighttheme.json')
@@ -142,7 +143,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
       addMarker4(
         'USER 3',
         LatLng(5.952930, 6.848727),
-       );
+      );
       // addMarker4(
       //   'USER 4',
       //   LatLng(5.9601322, 6.8475589),
@@ -326,7 +327,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: isLocationEnabled ? Colors.green : Colors.grey,
-                    width: 5.0,
+                    width: 2.5,
                   ),
                 ),
                 child: CircleAvatar(
@@ -375,6 +376,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     _markers[id] = marker;
     setState(() {});
   }
+
   addMarker2(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 120,
@@ -390,6 +392,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     _markers[id] = marker;
     setState(() {});
   }
+
   addMarker3(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 120,
@@ -399,12 +402,14 @@ class _GoogleMapState extends State<GoogleMapScreen>
     var marker = Marker(
       markerId: MarkerId(id),
       position: location,
-      infoWindow: const InfoWindow(title: 'Mrs Sandra', snippet: 'Hello friend'),
+      infoWindow:
+          const InfoWindow(title: 'Mrs Sandra', snippet: 'Hello friend'),
       icon: await customMarkerIcon.createMarkerIcon(),
     );
     _markers[id] = marker;
     setState(() {});
   }
+
   addMarker4(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 120,
@@ -420,6 +425,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     _markers[id] = marker;
     setState(() {});
   }
+
   addMarker5(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 120,
@@ -435,6 +441,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     _markers[id] = marker;
     setState(() {});
   }
+
   addMarker6(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 120,
@@ -450,6 +457,7 @@ class _GoogleMapState extends State<GoogleMapScreen>
     _markers[id] = marker;
     setState(() {});
   }
+
   addMarker7(String id, LatLng location) async {
     var customMarkerIcon = CustomMarkerIcon(
       size: 120,

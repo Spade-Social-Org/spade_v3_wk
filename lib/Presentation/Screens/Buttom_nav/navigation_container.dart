@@ -151,10 +151,10 @@ class _NavigationContainerState extends State<NavigationContainer> {
                   BottomNavigationBarItem(
                     icon: Image.asset(
                       _showOption
-                          ? (selectedIndex == 2 || _PageIndex == 2)
+                          ? selectedIndex == 2
                               ? "assets/images/card-light.png"
                               : "assets/images/bottom_nav.png"
-                          : (selectedIndex == 2 || _PageIndex == 2)
+                          : selectedIndex == 2
                               ? "assets/images/card-light.png"
                               : "assets/images/flip-card.png",
                       width: 24,
