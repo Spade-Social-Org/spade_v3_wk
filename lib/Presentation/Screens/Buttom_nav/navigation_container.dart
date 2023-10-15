@@ -164,19 +164,17 @@ class _NavigationContainerState extends State<NavigationContainer> {
                   ),
                   BottomNavigationBarItem(
                     icon: Image.asset(
-                      "assets/images/global.png",
+                      selectedIndex == 3
+                          ? "assets/images/global-light.png"
+                          : "assets/images/global.png",
                       width: 24,
                       height: 24,
                     ),
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: Image.asset(
-                        selectedIndex == 3
-                            ? "assets/images/globe-light.png"
-                            : "assets/images/list-colored.png",
-                        width: 24,
-                        height: 24),
+                    icon: Image.asset("assets/images/list-colored.png",
+                        width: 24, height: 24),
                     label: "",
                   ),
                 ],
