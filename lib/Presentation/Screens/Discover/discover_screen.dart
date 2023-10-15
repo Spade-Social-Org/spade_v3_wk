@@ -357,7 +357,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
               actions: [
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: 35,
                       height: 40,
                       // color: Colors.red,
@@ -368,7 +368,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                         },
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: 40,
                       height: 40,
                       // color: Colors.red,
@@ -413,7 +413,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                       horizontalThresholdPercentage,
                       verticalThresholdPercentage,
                     ) =>
-                        Container(
+                        SizedBox(
                             height: screenHeight * 0.60,
                             child: Transform.scale(
                               scale: 0.9,
@@ -490,13 +490,13 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                   top: 30,
                   left: 20,
                   right: 25,
-                  child: Container(
+                  child: SizedBox(
                     height: screenHeight * 0.54,
                     child: Visibility(
                       visible: modalType == "match" ? true : false,
                       child: JHMatchWidget(
-                          name: "${persons[currentCardIndex].name}",
-                          image: "${persons[currentCardIndex].urlImg}",
+                          name: persons[currentCardIndex].name,
+                          image: persons[currentCardIndex].urlImg,
                           age: persons[currentCardIndex].age,
                           color: persons[currentCardIndex].color),
                     ),
@@ -506,7 +506,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                   top: 28,
                   left: 20,
                   right: 25,
-                  child: Container(
+                  child: SizedBox(
                     height: screenHeight * 0.57,
                     child: Visibility(
                       // visible: displayCompatibility,
@@ -665,7 +665,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                                 height: expandedButtonIndex == 5 ? 40 : 35,
                                 width: expandedButtonIndex == 5 ? 40 : 35,
                                 color: persons[currentCardIndex].color,
-                                child: Image.asset("assets/images/3cards.png"),
+                                child: Image.asset("assets/images/n3cards.png"),
                               ),
                             )),
                       ),
