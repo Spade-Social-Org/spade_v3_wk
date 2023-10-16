@@ -58,6 +58,7 @@ dependencies:
   talker_dio_logger: ^2.3.0
   talker_flutter: ^3.5.1
   video_player: ^2.7.1
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -79,6 +80,7 @@ flutter:
     - assets/maptheme/retro.json
     - assets/maptheme/nightthemelabel.json
     - assets/discover/data.json
+    - assets/discover/svgs/
 
 spider:
   generate_tests: true
