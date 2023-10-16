@@ -10,6 +10,8 @@ import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_labels.dar
 import 'package:spade_v4/Presentation/Screens/onboarding/widgets/form_title.dart';
 import 'package:spade_v4/Presentation/widgets/custom_button.dart';
 
+import '../provider/loading_state_provider.dart';
+
 class VerifyEmail extends StatefulWidget {
   final int userId;
   const VerifyEmail({Key? key, required this.userId}) : super(key: key);
@@ -61,35 +63,46 @@ class _VerifyEmailState extends State<VerifyEmail> {
                               fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
                     const SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: CustomButton(
-                          height: 40,
-                          onPressed: () async {
-                            final model = OTPModel(
-                                userId: "${widget.userId}", useEmail: true);
-                            provider.sendOTP(model);
-                          },
-                          child: provider.isLoading
-                              ? const SizedBox(
-                                  height: 25,
-                                  width: 25,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                        strokeWidth: 2.5),
-                                  ))
-                              : const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('Didn\'t receive code?'),
-                                    SizedBox(width: 4),
-                                    Text('Re-send',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                        ))
-                                  ],
-                                )),
-                    ),
+                    Consumer(builder: (context, ref, _) {
+                      return StreamBuilder<bool>(
+                          stream:
+                              ref.watch(loadingStateProvider).isLoadingStream,
+                          initialData: false,
+                          builder: (context, snapshot) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: CustomButton(
+                                  height: 40,
+                                  onPressed: () async {
+                                    final model = OTPModel(
+                                        userId: "${widget.userId}",
+                                        useEmail: true);
+                                    provider.sendOTP(model);
+                                  },
+                                  child: snapshot.data!
+                                      ? const SizedBox(
+                                          height: 25,
+                                          width: 25,
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                                strokeWidth: 2.5),
+                                          ))
+                                      : const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text('Didn\'t receive code?'),
+                                            SizedBox(width: 4),
+                                            Text('Re-send',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                ))
+                                          ],
+                                        )),
+                            );
+                          });
+                    }),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
                     CustomButton(
                         color: Colors.black,

@@ -4,13 +4,15 @@ import 'Presentation/Screens/onboarding/landing_screen.dart';
 import 'Presentation/widgets/jh_onboarding_content.dart';
 
 class Onboarding extends StatefulWidget {
+  const Onboarding({super.key});
+
   @override
   _OnboardingState createState() => _OnboardingState();
 }
 
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
-  PageController _controller = PageController(initialPage: 0);
+  PageController controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class _OnboardingState extends State<Onboarding> {
         children: [
           Expanded(
             child: PageView.builder(
-              controller: _controller,
+              controller: controller,
               itemCount: contents.length,
               onPageChanged: (int index) {
                 setState(() {
@@ -42,7 +44,7 @@ class _OnboardingState extends State<Onboarding> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         contents[i].discription,
                         textAlign: TextAlign.center,
@@ -57,13 +59,11 @@ class _OnboardingState extends State<Onboarding> {
               },
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                contents.length,
-                (index) => buildDot(index, context),
-              ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              contents.length,
+              (index) => buildDot(index, context),
             ),
           ),
           Container(
@@ -80,8 +80,8 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     );
                   }
-                  _controller.nextPage(
-                    duration: Duration(milliseconds: 100),
+                  controller.nextPage(
+                    duration: const Duration(milliseconds: 100),
                     curve: Curves.bounceIn,
                   );
                 },
@@ -106,7 +106,7 @@ class _OnboardingState extends State<Onboarding> {
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
-      margin: EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).primaryColor,
