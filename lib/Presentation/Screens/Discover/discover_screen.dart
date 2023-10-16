@@ -416,7 +416,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
                         SizedBox(
                             height: screenHeight * 0.60,
                             child: Transform.scale(
-                              scale: 0.9,
+                              scale: 0.85,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(25.0),
                                 child: Container(
