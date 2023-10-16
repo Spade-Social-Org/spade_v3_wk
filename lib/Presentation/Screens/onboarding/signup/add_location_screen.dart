@@ -118,7 +118,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                             city: city,
                             state: state,
                             postalCode: postalCode.text.trim());
-                        print(model.toString());
+
                         ref
                             .read(onboardingProvider)
                             .register(model)

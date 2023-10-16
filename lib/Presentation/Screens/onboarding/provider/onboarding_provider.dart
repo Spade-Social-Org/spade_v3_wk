@@ -24,7 +24,8 @@ class OnboardingProvider with ChangeNotifier {
     final response =
         await runcallWithDialog<ResponseModel>(AuthRepository.login(model));
     if (response.statusCode == 'SUCCESS') {
-      customSnackBar(response.data!.userInfo!.email!);
+      PrefProvider.saveUserToken(response.data!.accessToken!);
+      PrefProvider.saveUserId(response.data!.userInfo!.userId!);
     } else if (response.statusCode == 'BAD_REQUEST') {
       customSnackBar(response.message);
     } else if (response.statusCode == 'FORBIDDEN') {
