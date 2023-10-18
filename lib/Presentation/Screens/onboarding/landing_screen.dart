@@ -25,7 +25,7 @@ class _LandingScreenState extends State<LandingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(

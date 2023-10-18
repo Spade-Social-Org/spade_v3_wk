@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final userAuthChange = Provider((ref) => PrefProvider.getUserToken());
+final userIdProvider = FutureProvider((ref) => PrefProvider.getUserId());
 
 class PrefProvider {
   static const _storage = FlutterSecureStorage(
@@ -24,7 +25,7 @@ class PrefProvider {
     await _storage.write(key: userId, value: "$value");
   }
 
-  static Future getUserId() async {
+  static Future<String?> getUserId() async {
     return await _storage.read(key: userId);
   }
 

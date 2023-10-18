@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import "package:collection/collection.dart";
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../model/messages.dart';
@@ -12,28 +11,28 @@ class MessageList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, _) {
-      return CustomScrollView(
-          slivers: data.entries
-              .map(
-                (messages) => SliverMainAxisGroup(slivers: [
-                  SliverPersistentHeader(
-                    pinned: true,
-                    delegate: HeaderDelegate(
-                        DateFormat.yMMMd().format(messages.key!)),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(8.0),
-                    sliver: SliverList.separated(
-                        itemBuilder: (_, int i) =>
-                            MessageBubble(message: messages.value[i]),
-                        separatorBuilder: (_, __) => const SizedBox.shrink(),
-                        itemCount: messages.value.length),
-                  ),
-                ]),
-              )
-              .toList());
-    });
+    return CustomScrollView(
+        slivers: data.entries
+            .map(
+              (messages) => SliverMainAxisGroup(slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate:
+                      HeaderDelegate(DateFormat.yMMMd().format(messages.key!)),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(8.0),
+                  sliver: SliverList.separated(
+                      itemBuilder: (_, int i) =>
+                          MessageBubble(message: messages.value[i]),
+                      separatorBuilder: (_, __) => const SizedBox.shrink(),
+                      itemCount: messages.value.length),
+                ),
+              ]),
+            )
+            .toList()
+            .reversed
+            .toList());
   }
 }
 

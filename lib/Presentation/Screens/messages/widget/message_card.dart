@@ -1,4 +1,3 @@
-import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
 import 'package:flutter/material.dart';
 import 'package:hexagon/hexagon.dart';
 
@@ -9,6 +8,7 @@ class MessageCard extends StatelessWidget {
   final String message;
   final Color indicatorColor;
   final String timeSent;
+  final VoidCallback onTap;
 
   const MessageCard(
       {super.key,
@@ -17,16 +17,16 @@ class MessageCard extends StatelessWidget {
       required this.sender,
       required this.message,
       required this.indicatorColor,
-      required this.timeSent});
+      required this.timeSent,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: MaterialButton(
-        onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => SingleMessage())),
-        padding: EdgeInsets.all(0),
+        onPressed: onTap,
+        padding: const EdgeInsets.all(0),
         child: Column(
           children: [
             Row(
