@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Presentation/Screens/messages/provider/message_provider.dart';
+import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
 
 import 'group/group_message.dart';
 import 'likes/message_likes.dart';
@@ -84,16 +86,17 @@ class _MessageScreenState extends State<MessageScreen> {
                     )),
                     const SizedBox(width: 8),
                     CustomIconButton(
-                        imageValue: 'spade',
+                        imageValue: 'spade-small',
+                        color: Colors.grey,
                         onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (ctx) => MesssageLikes())),
+                                builder: (ctx) => const MesssageLikes())),
                         size: 22),
                     CustomIconButton(
                         imageValue: 'grid',
                         onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (ctx) => GroupMessage())),
+                                builder: (ctx) => const GroupMessage())),
                         size: 20),
                     CustomIconButton(
                         imageValue: 'list',
@@ -110,19 +113,45 @@ class _MessageScreenState extends State<MessageScreen> {
                       onTap: (i) => setState(() => selectedTab = i),
                       indicatorColor: indicatorColor())
                   : ref.watch(messageListProvider).when(
-                      data: (data) => Column(
-                            children: data
-                                .map((e) => const MessageCard(
-                                    messageLength: '5',
-                                    messageLengthColor: Colors.blueGrey,
-                                    sender: 'Maria',
-                                    message: 'Hey! How are you',
-                                    indicatorColor: Color(0xff155332),
-                                    timeSent: '5:40'))
-                                .toList(),
-                          ),
+                      data: (data) => data.isEmpty
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                children: [
+                                  Image.asset('assets/images/empty-message.png',
+                                      height: 200),
+                                  const Text(
+                                    'No Messages',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const Text(
+                                    'No messages here yet. Start a conversation with someone you swiped right on or added.',
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                            )
+                          : Column(
+                              children: data
+                                  .map((e) => MessageCard(
+                                      messageLength: '5',
+                                      messageLengthColor: Colors.blueGrey,
+                                      sender: e.name!,
+                                      message: e.latestMessage!,
+                                      onTap: () => push(SingleMessage(
+                                            userId: e.userId!,
+                                            username: e.name!,
+                                          )),
+                                      indicatorColor: const Color(0xff155332),
+                                      timeSent: '5:40'))
+                                  .toList(),
+                            ),
                       error: (e, t) => const SizedBox.shrink(),
-                      loading: () => Center())
+                      loading: () => const Center())
             ],
           ),
         ),

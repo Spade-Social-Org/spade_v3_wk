@@ -23,7 +23,7 @@ class CustomAppbar extends StatelessWidget {
           ),
           const Spacer(),
           CustomIconButton(
-              imageValue: 'Camera', onTap: () {}, size: 25, color: color),
+              imageValue: 'Camera', onTap: () {}, size: 25, color: Colors.grey),
           CustomIconButton(
               imageValue: 'person-group', onTap: () {}, size: 23, color: color),
           CustomIconButton(

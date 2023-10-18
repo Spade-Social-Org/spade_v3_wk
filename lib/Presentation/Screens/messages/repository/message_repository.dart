@@ -18,14 +18,19 @@ class MessageRepository {
     final response = await _client.get(Uri.parse("$baseUrl/messages/$id"),
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);
+    print(data);
     return Messages.fromJson(data);
   }
 
   Future<ChatsResponseModel> getUserChats() async {
     final token = await PrefProvider.getUserToken();
+    final id = await PrefProvider.getUserId();
+
     final response = await _client.get(Uri.parse("$baseUrl/messages"),
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);
+    print(id);
+    print(data);
     return ChatsResponseModel.fromJson(data);
   }
 }

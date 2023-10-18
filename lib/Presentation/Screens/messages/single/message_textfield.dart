@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MessageTextfield extends StatelessWidget {
-  const MessageTextfield({super.key});
+  final VoidCallback onTap;
+  final TextEditingController controller;
+  const MessageTextfield(
+      {super.key, required this.onTap, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,8 @@ class MessageTextfield extends StatelessWidget {
         children: [
           Expanded(
               child: TextField(
+            controller: controller,
+            textCapitalization: TextCapitalization.sentences,
             decoration: InputDecoration(
                 hintText: 'Message...',
                 fillColor: const Color(0xfff5f5f5),
@@ -31,7 +36,7 @@ class MessageTextfield extends StatelessWidget {
           )),
           const SizedBox(width: 8),
           IconButton(
-              onPressed: () {},
+              onPressed: onTap,
               icon: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Image.asset('assets/images/send.png'),
