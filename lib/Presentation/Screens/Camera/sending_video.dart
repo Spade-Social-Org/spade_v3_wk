@@ -6,7 +6,6 @@ import 'package:video_player/video_player.dart';
 import '../../../Common/camera_components/sending_image_video.dart';
 import '../../../Common/camera_components/video_top_view.dart';
 
-
 class SendingVideoViewPage extends StatefulWidget {
   final String path;
   final String receiverId;
@@ -58,8 +57,9 @@ class _SendingVideoViewPageState extends State<SendingVideoViewPage> {
               right: 0,
               left: 0,
               child: SendingImageVideoBottomRowWidget(
-                onSendButtonTaped: () {
-                },
+                onSendButtonTaped: () {},
+                isFeed: false,
+                onStoryChanged: (v) {},
               ),
             ),
           ],

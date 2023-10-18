@@ -14,13 +14,13 @@ extension WidgetVisibility on Widget {
 
 extension WidgetPadding on Widget {
   @widgetFactory
-  Widget paddingAll(double padding) => Padding(
+  Widget pAll(double padding) => Padding(
         padding: EdgeInsets.all(padding),
         child: this,
       );
 
   @widgetFactory
-  Widget paddingSymmetric({
+  Widget pSymmetric({
     double h = 0,
     double v = 0,
   }) =>
@@ -33,7 +33,7 @@ extension WidgetPadding on Widget {
       );
 
   @widgetFactory
-  Widget paddingOnly({
+  Widget pOnly({
     double l = 0,
     double t = 0,
     double r = 0,

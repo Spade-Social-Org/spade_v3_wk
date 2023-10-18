@@ -61,6 +61,7 @@ class SpiderImageAssets {
   static const String cake = 'assets/images/cake.png';
   static const String calendar = 'assets/images/calendar.png';
   static const String call = 'assets/images/call.svg';
+  static const String cardLight = 'assets/images/card-light.png';
   static const String chartGraphic = 'assets/images/chart-graphic.png';
   static const String clubFill = 'assets/images/club-fill.png';
   static const String diamondFill = 'assets/images/diamond-fill.png';
@@ -87,6 +88,7 @@ class SpiderImageAssets {
   static const String freepikCharacter5Inject316 =
       'assets/images/freepik--character-5--inject-316.png';
   static const String friends = 'assets/images/friends.png';
+  static const String globalLight = 'assets/images/global-light.png';
   static const String global = 'assets/images/global.png';
   static const String grid = 'assets/images/grid.png';
   static const String guide2 = 'assets/images/guide2.png';
@@ -114,6 +116,7 @@ class SpiderImageAssets {
   static const String mdiBellNotificationOutline =
       'assets/images/mdi_bell-notification-outline.png';
   static const String mdiZodiacLeo = 'assets/images/mdi_zodiac-leo.png';
+  static const String messageLight = 'assets/images/message-light.png';
   static const String message = 'assets/images/message.png';
   static const String mixed1 = 'assets/images/mixed 1.png';
   static const String moreVert = 'assets/images/more-vert.png';
@@ -146,6 +149,7 @@ class SpiderImageAssets {
   static const String send = 'assets/images/send.png';
   static const String sometimes = 'assets/images/sometimes.png';
   static const String spadeFilled = 'assets/images/spade-filled.png';
+  static const String spadeLight = 'assets/images/spade-light.png';
   static const String spadeSmall = 'assets/images/spade-small.png';
   static const String spade = 'assets/images/spade.png';
   static const String supporter1 = 'assets/images/supporter 1.png';

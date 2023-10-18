@@ -25,6 +25,7 @@ class SelectImageFromGalleryButton extends StatelessWidget {
         child: Icon(
           Icons.photo,
           size: 30,
+          color: Colors.white,
         ),
       ),
     );

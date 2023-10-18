@@ -23,25 +23,6 @@ class ImageViewTopRowIcons extends StatelessWidget {
           icon: const Icon(Icons.clear),
         ),
         const Spacer(),
-        IconButton(
-          splashRadius: 20,
-          color: Colors.white,
-          icon: const Icon(
-            Icons.title,
-            size: 27,
-          ),
-          onPressed: () {},
-        ),
-        IconButton(
-          splashRadius: 20,
-          color: Colors.white,
-          splashColor: Colors.black38,
-          icon: const Icon(
-            Icons.edit,
-            size: 27,
-          ),
-          onPressed: () {},
-        ),
       ],
     );
   }

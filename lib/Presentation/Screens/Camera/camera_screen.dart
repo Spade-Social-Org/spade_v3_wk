@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-
+import 'package:spade_v4/Common/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
 import '../../../Common/camera_components/camera_appbar.dart';
 import '../../../Common/camera_components/select_image_from_gallery.dart';
 import '../../../Common/navigator.dart';
@@ -8,7 +10,7 @@ import '../../../Common/routes/routes.dart';
 
 late List<CameraDescription> cameras;
 
-class CameraScreen extends StatefulWidget {
+class CameraScreen extends ConsumerStatefulWidget {
   final String receiverId;
   const CameraScreen({
     super.key,
@@ -16,10 +18,10 @@ class CameraScreen extends StatefulWidget {
   });
 
   @override
-  State<CameraScreen> createState() => _CameraScreenState();
+  ConsumerState<CameraScreen> createState() => _CameraScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class _CameraScreenState extends ConsumerState<CameraScreen> {
   late CameraController _cameraController;
   late Future<void> _cameraValue;
   bool isFlashOn = false;
@@ -104,6 +106,7 @@ class _CameraScreenState extends State<CameraScreen> {
                             child: Icon(
                               Icons.flip_camera_ios,
                               size: 30,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -114,11 +117,11 @@ class _CameraScreenState extends State<CameraScreen> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 8, bottom: 8),
+          Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 8),
             child: Text(
               'Hold for video, tap for photo',
-              style: TextStyle(fontSize: 16),
+              style: CustomTextStyle.large16.white,
             ),
           ),
         ],
@@ -136,6 +139,7 @@ class _CameraScreenState extends State<CameraScreen> {
         : const Icon(
             Icons.panorama_fish_eye,
             size: 80,
+            weight: 10,
             color: Colors.white,
           );
   }
@@ -162,10 +166,22 @@ class _CameraScreenState extends State<CameraScreen> {
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
     if (!mounted) return;
-    navigateNamedTo(context, Routes.sendingImageViewRoute, arguments: {
-      'path': file.path,
-      'uId': widget.receiverId,
-    });
+    final finalImage = await navigateNamedTo(
+        context, Routes.sendingImageViewRoute,
+        arguments: {
+          'path': file.path,
+          'uId': widget.receiverId,
+        });
+    if (!mounted) return;
+    ref.read(feedProvider.notifier).createPost(
+      context,
+      isStory: finalImage.$2,
+      filePath: [finalImage.$1],
+    );
+    FeedRepo.pageController.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override

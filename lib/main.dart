@@ -21,13 +21,15 @@ Future<void> main() async {
   cameras = await availableCameras();
   di.init();
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<PlacesBloc>(
-          create: (context) => locator<PlacesBloc>(),
-        ),
-      ],
-      child: const MyApp(),
+    ProviderScope(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<PlacesBloc>(
+            create: (context) => locator<PlacesBloc>(),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -39,19 +41,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Spade',
-          theme: ThemeData(
-              scaffoldBackgroundColor: Colors.white,
-              appBarTheme: const AppBarTheme(
-                backgroundColor: Colors.white,
-                surfaceTintColor: Colors.white,
-              ),
-              useMaterial3: true),
-          navigatorKey: kNavigatorKey,
-          onGenerateRoute: RouteGenerator.onGenerateRoute,
-          onUnknownRoute: RouteGenerator.unKnownRoute,
-          home: const AuthStateChangeNotifier()),
+        debugShowCheckedModeBanner: false,
+        title: 'Spade',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
+          ),
+          useMaterial3: true,
+        ),
+        navigatorKey: kNavigatorKey,
+        onGenerateRoute: RouteGenerator.onGenerateRoute,
+        onUnknownRoute: RouteGenerator.unKnownRoute,
+        home: const AuthStateChangeNotifier(),
+      ),
     );
   }
 }
