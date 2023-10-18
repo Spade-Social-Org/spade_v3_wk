@@ -9,21 +9,22 @@ import '../provider/message_provider.dart';
 final messageFutureProvider =
     FutureProvider((ref) => ref.watch(messageProvider).getMessages());
 
-class SingleMessage extends StatefulWidget {
+class SingleMessage extends ConsumerStatefulWidget {
   final int userId;
   final String username;
   const SingleMessage(
       {super.key, required this.userId, required this.username});
 
   @override
-  State<SingleMessage> createState() => _SingleMessageState();
+  ConsumerState<SingleMessage> createState() => _SingleMessageState();
 }
 
-class _SingleMessageState extends State<SingleMessage> {
+class _SingleMessageState extends ConsumerState<SingleMessage> {
   final controller = TextEditingController();
+  final scrollCtrl = ScrollController();
   @override
   void initState() {
-    SocketProvider().initializeSocket();
+    ref.read(socketProvider.notifier).initializeSocket();
     super.initState();
   }
 
@@ -93,14 +94,21 @@ class _SingleMessageState extends State<SingleMessage> {
                                 child: Icon(Icons.keyboard_arrow_up)),
                           ),
                           const Divider(),
-                          Expanded(child: MessageList(data: data)),
+                          Expanded(
+                            child: MessageList(
+                                data: data, scrollController: scrollCtrl),
+                          ),
                           const SizedBox(height: 8),
                           MessageTextfield(
                               onTap: () {
-                                SocketProvider().sendMessage(
+                                ref.read(socketProvider.notifier).sendMessage(
                                     text: controller.text.trim(),
                                     receiverId: widget.userId.toString());
+                                setState(() => controller.text = '');
                                 ref.invalidate(messageFutureProvider);
+                                scrollCtrl.animateTo(0.0,
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.easeIn);
                               },
                               controller: controller),
                           const SizedBox(height: 12),

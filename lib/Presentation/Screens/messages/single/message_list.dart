@@ -7,11 +7,16 @@ import '../widget/message_bubble.dart';
 
 class MessageList extends StatelessWidget {
   final Map<DateTime?, List<MessageData>> data;
-  const MessageList({super.key, required this.data});
+  final ScrollController scrollController;
+  const MessageList(
+      {super.key, required this.data, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+        controller: scrollController,
+        shrinkWrap: true,
+        reverse: true,
         slivers: data.entries
             .map(
               (messages) => SliverMainAxisGroup(slivers: [
@@ -30,8 +35,6 @@ class MessageList extends StatelessWidget {
                 ),
               ]),
             )
-            .toList()
-            .reversed
             .toList());
   }
 }

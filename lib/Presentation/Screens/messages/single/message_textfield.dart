@@ -22,6 +22,7 @@ class MessageTextfield extends StatelessWidget {
           Expanded(
               child: TextField(
             controller: controller,
+            textCapitalization: TextCapitalization.sentences,
             decoration: InputDecoration(
                 hintText: 'Message...',
                 fillColor: const Color(0xfff5f5f5),
