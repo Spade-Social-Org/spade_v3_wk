@@ -14,7 +14,7 @@ class _GlobalScreenState extends State<GlobalScreen> {
       backgroundColor: Colors.black,
       body: Center(
           child: Container(
-              child: Image.asset('assets/images/13315296_5206506 1.png'))),
+              child: Image.asset('assets/images/n13315296_5206506 1.png'))),
     );
   }
 }

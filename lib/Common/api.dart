@@ -1,5 +1,10 @@
 const baseUrl = "https://spade-backend-v3-production.up.railway.app/api/v1/";
 
+class AppEndpoints {
+  static const baseUrl =
+      "https://spade-backend-v3-production.up.railway.app/api/v1/";
+}
+
 const Map<String, String> customHeader = {
   'content-type': 'application/json; charset=UTF-8',
 };
