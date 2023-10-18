@@ -152,7 +152,7 @@ class FeedRepo {
   String? filePath;
   double? uploadProgress;
   void Function()? onRetryPost;
-  static final PageController pageController = PageController();
+  static final PageController pageController = PageController(initialPage: 1);
 
   FeedRepo({
     this.storyModel,
