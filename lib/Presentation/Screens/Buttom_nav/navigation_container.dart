@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
+import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
 import '../Camera/camera_screen.dart';
-import '../Home/home_screen.dart';
+import '../Home/presentation/home_screen.dart';
 import '../Map/map_screen.dart';
 import '../More_screen/more_screen.dart';
 import '../messages/message_screen.dart';
@@ -21,12 +22,11 @@ class _NavigationContainerState extends State<NavigationContainer> {
   int _PageIndex = 2;
   bool _showOption = false;
   int card_click = 2;
-  late PageController _pageController;
+  PageController get _pageController => FeedRepo.pageController;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: selectedIndex);
   }
 
   @override
@@ -79,8 +79,10 @@ class _NavigationContainerState extends State<NavigationContainer> {
       const MoreScreen(),
     ];
 
-    final List<Widget> _appPage = [
-      const CameraScreen(receiverId: ''),
+    final List<Widget> appPage = [
+      const CameraScreen(
+        receiverId: '',
+      ),
     ];
     SystemUiOverlayStyle customStatusBarStyle = const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -94,11 +96,11 @@ class _NavigationContainerState extends State<NavigationContainer> {
         return Scaffold(
           body: selectedIndex == 0 || selectedIndex == 0
               ? PageView(
-                  controller: _pageController,
+                  controller: FeedRepo.pageController,
                   onPageChanged: _onPageChanged,
                   children: [
+                    appPage[0],
                     pages[0],
-                    _appPage[0],
                   ],
                 )
               : pages[selectedIndex],
