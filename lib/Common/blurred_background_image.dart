@@ -35,8 +35,12 @@ class BlurBackgroundImage extends StatelessWidget {
           fadeInDuration: const Duration(milliseconds: 500),
           fadeOutDuration: const Duration(milliseconds: 500),
           fit: BoxFit.contain,
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator()),
+          placeholder: (context, url) => Container(
+            color: Colors.black,
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
           errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),

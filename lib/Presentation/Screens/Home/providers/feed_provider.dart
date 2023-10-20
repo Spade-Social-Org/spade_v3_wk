@@ -72,6 +72,52 @@ class FeedProvider extends StateNotifier<FeedRepo> {
     }
   }
 
+  Future<bool> likePost({
+    required bool action,
+    required int id,
+    required bool isStory,
+  }) async {
+    final res = await state.likePost(
+      action: action,
+      id: id,
+    );
+
+    if (res.valid) {
+      (isStory ? state.storyModel : state.feedModel)
+          ?.data
+          ?.firstWhereOrNull(
+            (element) => element.id == id,
+          )!
+          .likedPost = action ? 'true' : 'false';
+      return action;
+    } else {
+      return !action;
+    }
+  }
+
+  Future<bool> bookmarkPost({
+    required bool action,
+    required int id,
+    bool isStory = false,
+  }) async {
+    final res = await state.bookmarkPost(
+      action: action,
+      id: id,
+    );
+
+    if (res.valid) {
+      (isStory ? state.storyModel : state.feedModel)
+          ?.data
+          ?.firstWhereOrNull(
+            (element) => element.id == id,
+          )!
+          .bookmarked = action ? 'true' : 'false';
+      return action;
+    } else {
+      return !action;
+    }
+  }
+
   Future<void> fetchPosts({
     bool refreshToNew = true,
   }) async {
@@ -216,6 +262,62 @@ class FeedRepo {
         onSendProgress: (int sent, int total) {
           onProgress(sent / total);
         },
+      ),
+    );
+
+    final num statusCode = response.statusCode ?? 000;
+
+    if (statusCode >= 200 && statusCode <= 300) {
+      return ResponseModel(
+        valid: true,
+        statusCode: statusCode,
+        message: response.data['message'],
+        data: response.data,
+      );
+    }
+
+    return ResponseModel(
+      error: ErrorModel.fromJson(response.data),
+      statusCode: statusCode,
+      message: response.data['message'],
+    );
+  }
+
+  Future<ResponseModel> likePost({
+    required bool action,
+    required int id,
+  }) async {
+    Response response = await _apiService.runCall(
+      _apiService.dio.patch(
+        '${AppEndpoints.baseUrl}/api/v1/posts/like/$id/${action ? 'like' : 'unlike'}',
+      ),
+    );
+
+    final num statusCode = response.statusCode ?? 000;
+
+    if (statusCode >= 200 && statusCode <= 300) {
+      return ResponseModel(
+        valid: true,
+        statusCode: statusCode,
+        message: response.data['message'],
+        data: response.data,
+      );
+    }
+
+    return ResponseModel(
+      error: ErrorModel.fromJson(response.data),
+      statusCode: statusCode,
+      message: response.data['message'],
+    );
+  }
+
+  Future<ResponseModel> bookmarkPost({
+    required bool action,
+    required int id,
+  }) async {
+    Response response = await _apiService.runCall(
+      _apiService.dio.patch(
+        '${AppEndpoints.baseUrl}/api/v1/posts/bookmark/$id/${action ? 'save' : 'remove'}',
       ),
     );
 

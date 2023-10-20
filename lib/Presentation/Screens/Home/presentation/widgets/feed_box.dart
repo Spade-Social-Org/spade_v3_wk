@@ -7,11 +7,12 @@ import 'package:spade_v4/Presentation/Screens/Home/models/feed_model.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/profile_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
+import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spade_v4/resources/resources.dart';
 
-class FeedBox extends ConsumerWidget {
+class FeedBox extends ConsumerStatefulWidget {
   final Feed feed;
   final bool isLoad;
   const FeedBox({
@@ -21,13 +22,27 @@ class FeedBox extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<FeedBox> createState() => _FeedBoxState();
+}
+
+class _FeedBoxState extends ConsumerState<FeedBox> {
+  late bool isLiked;
+  late bool isSaved;
+  @override
+  void initState() {
+    isLiked = bool.tryParse(widget.feed.likedPost ?? '') ?? false;
+    isSaved = bool.tryParse(widget.feed.bookmarked ?? '') ?? false;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            if (isLoad)
+            if (widget.isLoad)
               Container(
                 width: 50.84,
                 height: 46,
@@ -41,7 +56,7 @@ class FeedBox extends ConsumerWidget {
               )
             else
               OvalProfileImage(
-                imageUrl: feed.posterImage ?? AppConstants.defaultImage,
+                imageUrl: widget.feed.posterImage ?? AppConstants.defaultImage,
               ),
             17.spacingW,
             Expanded(
@@ -50,7 +65,7 @@ class FeedBox extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    feed.posterName ?? '',
+                    widget.feed.posterName ?? '',
                     style: CustomTextStyle.large16.white.w600,
                   ),
                 ],
@@ -63,9 +78,9 @@ class FeedBox extends ConsumerWidget {
           ],
         ),
         6.spacingH,
-        Gallery(feed: feed),
+        Gallery(feed: widget.feed),
         8.spacingH,
-        if (isLoad)
+        if (widget.isLoad)
           Row(
             children: [
               const Icon(Icons.more_vert),
@@ -78,26 +93,73 @@ class FeedBox extends ConsumerWidget {
         else
           Row(
             children: [
-              SvgPicture.asset(
-                SpiderSvgAssets.heart,
+              InkWell(
+                onTap: () async {
+                  setState(() {
+                    isLiked = !isLiked;
+                  });
+
+                  final newLike =
+                      await ref.read(feedProvider.notifier).likePost(
+                            action: isLiked,
+                            id: widget.feed.id!,
+                            isStory: false,
+                          );
+
+                  setState(() {
+                    isLiked = newLike;
+                  });
+                },
+                child: SvgPicture.asset(
+                  isLiked
+                      ? SpiderSvgAssets.heart
+                      : SpiderSvgAssets.heartOutlined,
+                  width: 17.68,
+                  height: 16,
+                ),
               ),
               12.spacingW,
               SvgPicture.asset(
                 SpiderSvgAssets.message,
               ),
               const Spacer(),
-              SvgPicture.asset(
-                SpiderSvgAssets.bookmark,
+              InkWell(
+                onTap: () async {
+                  setState(() {
+                    isSaved = !isSaved;
+                  });
+
+                  final newLike =
+                      await ref.read(feedProvider.notifier).bookmarkPost(
+                            action: isSaved,
+                            id: widget.feed.id!,
+                            isStory: false,
+                          );
+
+                  setState(() {
+                    isSaved = newLike;
+                  });
+                },
+                child: Icon(
+                  isSaved
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_outline_rounded,
+                  color: isSaved ? Colors.white : const Color(0xff8A8A8A),
+                  size: 20,
+                ),
               ),
             ],
           ),
         10.spacingH,
-        Text(feed.description ?? '', style: CustomTextStyle.small12.white),
+        Text(widget.feed.description ?? '',
+            style: CustomTextStyle.small12.white),
         10.spacingH,
-        Text(timeago.format(feed.createdAt ?? DateTime.now()),
-            style: CustomTextStyle.extraSmall11
-                .withColor(const Color(0xffB8B6B6))
-                .withSize(10.2)),
+        Text(
+          timeago.format(widget.feed.createdAt ?? DateTime.now()),
+          style: CustomTextStyle.extraSmall11
+              .withColor(const Color(0xffB8B6B6))
+              .withSize(10.2),
+        ),
       ],
     );
   }

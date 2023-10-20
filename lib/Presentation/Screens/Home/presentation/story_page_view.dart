@@ -170,10 +170,7 @@ class _StoryPageViewState extends ConsumerState<StoryPageView>
                             style: CustomTextStyle.small12.white,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(SpiderSvgAssets.heartOutlined),
-                        ),
+                        FeedButton(stories[index]),
                         IconButton(
                           onPressed: () {},
                           icon: SvgPicture.asset(SpiderSvgAssets.locationArrow),
@@ -186,6 +183,50 @@ class _StoryPageViewState extends ConsumerState<StoryPageView>
             ),
           );
         }),
+      ),
+    );
+  }
+}
+
+class FeedButton extends ConsumerStatefulWidget {
+  final Feed feed;
+  const FeedButton(this.feed, {super.key});
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _FeedButtonState();
+}
+
+class _FeedButtonState extends ConsumerState<FeedButton> {
+  late bool isLiked;
+
+  @override
+  void initState() {
+    isLiked = bool.tryParse(widget.feed.likedPost ?? '') ?? false;
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () async {
+        setState(() {
+          isLiked = !isLiked;
+        });
+
+        final newLike = await ref.read(feedProvider.notifier).likePost(
+              action: isLiked,
+              id: widget.feed.id!,
+              isStory: false,
+            );
+
+        setState(() {
+          isLiked = newLike;
+        });
+      },
+      icon: SvgPicture.asset(
+        isLiked ? SpiderSvgAssets.heart : SpiderSvgAssets.heartOutlined,
+        width: 17.68,
+        height: 16,
       ),
     );
   }

@@ -74,7 +74,9 @@ class HomeScreen extends ConsumerWidget {
                               ),
                               8.spacingH,
                               LinearProgressIndicator(
-                                value: feed.uploadProgress,
+                                value: (feed.uploadProgress ?? 0) <= 0
+                                    ? null
+                                    : feed.uploadProgress,
                                 backgroundColor: const Color(0xff232323),
                                 color: const Color(0xff818181),
                                 minHeight: 5,
