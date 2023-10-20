@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/theme.dart';
@@ -173,9 +175,10 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
           'uId': widget.receiverId,
         });
     if (!mounted) return;
+    log(finalImage.toString());
     ref.read(feedProvider.notifier).createPost(
       context,
-      isStory: finalImage.$2,
+      isStory: !finalImage.$2,
       filePath: [finalImage.$1],
     );
     FeedRepo.pageController.nextPage(
