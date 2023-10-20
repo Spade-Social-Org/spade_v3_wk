@@ -1,4 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 
 FeedModel feedModelFromJson(String str) => FeedModel.fromJson(json.decode(str));
 
@@ -56,6 +59,9 @@ class Feed {
   DateTime? createdAt;
   String? posterName;
   String? posterImage;
+  String? numberOfLikes;
+  String? bookmarked;
+  String? likedPost;
 
   Feed({
     this.gallery,
@@ -64,6 +70,9 @@ class Feed {
     this.createdAt,
     this.posterName,
     this.posterImage,
+    this.numberOfLikes,
+    this.bookmarked,
+    this.likedPost,
   });
 
   Feed copyWith({
@@ -73,6 +82,9 @@ class Feed {
     DateTime? createdAt,
     String? posterName,
     String? posterImage,
+    String? numberOfLikes,
+    String? bookmarked,
+    String? likedPost,
   }) =>
       Feed(
         gallery: gallery ?? this.gallery,
@@ -81,6 +93,9 @@ class Feed {
         createdAt: createdAt ?? this.createdAt,
         posterName: posterName ?? this.posterName,
         posterImage: posterImage ?? this.posterImage,
+        numberOfLikes: numberOfLikes ?? this.numberOfLikes,
+        bookmarked: bookmarked ?? this.bookmarked,
+        likedPost: likedPost ?? this.likedPost,
       );
 
   factory Feed.fromJson(Map<String, dynamic> json) => Feed(
@@ -94,6 +109,9 @@ class Feed {
             : DateTime.parse(json["created_at"]),
         posterName: json["poster_name"],
         posterImage: json["poster_image"],
+        numberOfLikes: json["number_of_likes"],
+        bookmarked: json["bookmarked"],
+        likedPost: json["liked_post"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -104,7 +122,38 @@ class Feed {
         "created_at": createdAt?.toIso8601String(),
         "poster_name": posterName,
         "poster_image": posterImage,
+        "number_of_likes": numberOfLikes,
+        "bookmarked": bookmarked,
+        "liked_post": likedPost,
       };
+
+  @override
+  bool operator ==(covariant Feed other) {
+    if (identical(this, other)) return true;
+
+    return listEquals(other.gallery, gallery) &&
+        other.description == description &&
+        other.id == id &&
+        other.createdAt == createdAt &&
+        other.posterName == posterName &&
+        other.posterImage == posterImage &&
+        other.numberOfLikes == numberOfLikes &&
+        other.bookmarked == bookmarked &&
+        other.likedPost == likedPost;
+  }
+
+  @override
+  int get hashCode {
+    return gallery.hashCode ^
+        description.hashCode ^
+        id.hashCode ^
+        createdAt.hashCode ^
+        posterName.hashCode ^
+        posterImage.hashCode ^
+        numberOfLikes.hashCode ^
+        bookmarked.hashCode ^
+        likedPost.hashCode;
+  }
 }
 
 class Meta {

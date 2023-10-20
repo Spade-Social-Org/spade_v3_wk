@@ -16,7 +16,7 @@ class ResponseModel<T> {
 }
 
 class ErrorModel {
-  String? errorCode;
+  int? errorCode;
   String? message;
   dynamic errorField;
   String? token;
@@ -31,7 +31,7 @@ class ErrorModel {
   factory ErrorModel.fromJson(dynamic data) {
     if (data is String) {
       return ErrorModel(
-          errorCode: '', message: data, errorField: '', token: '');
+          errorCode: 000, message: data, errorField: '', token: '');
     }
     return ErrorModel(
         errorCode: data['errorCode'] ?? '',
