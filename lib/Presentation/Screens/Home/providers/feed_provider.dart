@@ -39,7 +39,7 @@ class FeedProvider extends StateNotifier<FeedRepo> {
     final res = await state.createPost(
       description: description,
       filePath: filePath,
-      isStory: false,
+      isStory: isStory,
       onProgress: (double progress) {
         state = state.copyWith(
           uploadProgress: progress,
