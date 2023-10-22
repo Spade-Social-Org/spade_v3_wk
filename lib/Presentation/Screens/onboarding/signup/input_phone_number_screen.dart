@@ -48,6 +48,7 @@ class _InputPhoneNumberScreenState extends State<InputPhoneNumberScreen> {
                   const SizedBox(height: 5),
                   CustomTextfield(
                     controller: controller,
+                    autoFocus: true,
                     keyboardType: TextInputType.number,
                     hintText: "+1-400-200-9000",
                     validator:
