@@ -60,6 +60,7 @@ void main() {
     expect(File(SpiderImageAssets.cake).existsSync(), isTrue);
     expect(File(SpiderImageAssets.calendar).existsSync(), isTrue);
     expect(File(SpiderImageAssets.call).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.cardLight).existsSync(), isTrue);
     expect(File(SpiderImageAssets.chartGraphic).existsSync(), isTrue);
     expect(File(SpiderImageAssets.clubFill).existsSync(), isTrue);
     expect(File(SpiderImageAssets.diamondFill).existsSync(), isTrue);
@@ -86,6 +87,7 @@ void main() {
     expect(File(SpiderImageAssets.freepikCharacter5Inject316).existsSync(),
         isTrue);
     expect(File(SpiderImageAssets.friends).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.globalLight).existsSync(), isTrue);
     expect(File(SpiderImageAssets.global).existsSync(), isTrue);
     expect(File(SpiderImageAssets.grid).existsSync(), isTrue);
     expect(File(SpiderImageAssets.guide2).existsSync(), isTrue);
@@ -112,6 +114,7 @@ void main() {
     expect(File(SpiderImageAssets.mdiBellNotificationOutline).existsSync(),
         isTrue);
     expect(File(SpiderImageAssets.mdiZodiacLeo).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.messageLight).existsSync(), isTrue);
     expect(File(SpiderImageAssets.message).existsSync(), isTrue);
     expect(File(SpiderImageAssets.mixed1).existsSync(), isTrue);
     expect(File(SpiderImageAssets.moreVert).existsSync(), isTrue);
@@ -142,6 +145,7 @@ void main() {
     expect(File(SpiderImageAssets.send).existsSync(), isTrue);
     expect(File(SpiderImageAssets.sometimes).existsSync(), isTrue);
     expect(File(SpiderImageAssets.spadeFilled).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.spadeLight).existsSync(), isTrue);
     expect(File(SpiderImageAssets.spadeSmall).existsSync(), isTrue);
     expect(File(SpiderImageAssets.spade).existsSync(), isTrue);
     expect(File(SpiderImageAssets.supporter1).existsSync(), isTrue);
