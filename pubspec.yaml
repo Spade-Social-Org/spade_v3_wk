@@ -59,6 +59,7 @@ dependencies:
   talker_flutter: ^3.5.1
   video_player: ^2.7.1
   google_fonts: ^6.1.0
+  flip_card: ^0.7.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

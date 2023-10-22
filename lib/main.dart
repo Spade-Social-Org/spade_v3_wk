@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
             navigatorKey: kNavigatorKey,
             onGenerateRoute: RouteGenerator.onGenerateRoute,
             onUnknownRoute: RouteGenerator.unKnownRoute,
-            //home: const AuthStateChangeNotifier()),
+            //home: const AuthStateChangeNotifier()));
             home: const DiscoveryScreen()));
   }
 }
