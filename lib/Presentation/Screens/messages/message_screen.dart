@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Presentation/Screens/messages/provider/message_provider.dart';
+import 'package:spade_v4/Presentation/Screens/messages/repository/message_repository.dart';
 import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
 
 import 'group/group_message.dart';
 import 'likes/message_likes.dart';
-import 'widget/custom_appbar.dart';
 import 'widget/custom_iconbutton.dart';
 import 'widget/message_card.dart';
 import 'widget/message_tabs.dart';
@@ -24,11 +24,27 @@ class _MessageScreenState extends State<MessageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MessageRepository().getUserMatches();
     return Consumer(builder: (context, ref, _) {
       return Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size(60, 100),
-          child: SafeArea(child: CustomAppbar(title: 'Messages')),
+        appBar: AppBar(
+          title: const Text(
+            'Messages',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          actions: [
+            CustomIconButton(
+                imageValue: 'Camera',
+                onTap: () {},
+                size: 25,
+                color: Colors.grey),
+            CustomIconButton(
+                imageValue: 'person-group', onTap: () {}, size: 23),
+            CustomIconButton(imageValue: 'more-vert', onTap: () {}, size: 25)
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -100,7 +116,7 @@ class _MessageScreenState extends State<MessageScreen> {
                         size: 20),
                     CustomIconButton(
                         imageValue: 'list',
-                        color: indicatorColor(),
+                        color: isSelected ? indicatorColor() : Colors.grey,
                         onTap: () => setState(() => isSelected = !isSelected),
                         size: 20)
                   ],
@@ -112,7 +128,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       selectedTab: selectedTab,
                       onTap: (i) => setState(() => selectedTab = i),
                       indicatorColor: indicatorColor())
-                  : ref.watch(messageListProvider).when(
+                  : ref.watch(chatListFutureProvider).when(
                       data: (data) => data.isEmpty
                           ? Padding(
                               padding:
@@ -151,7 +167,9 @@ class _MessageScreenState extends State<MessageScreen> {
                                   .toList(),
                             ),
                       error: (e, t) => const SizedBox.shrink(),
-                      loading: () => const Center())
+                      loading: () => const Center(
+                            child: CircularProgressIndicator(),
+                          ))
             ],
           ),
         ),

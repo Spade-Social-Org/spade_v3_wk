@@ -1,15 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:spade_v4/Presentation/Screens/messages/provider/message_provider.dart';
+import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
 
 import 'package:spade_v4/prefs/pref_provider.dart';
 
 import '../../../../Common/api.dart';
+import '../model/messages.dart';
 
 final socketProvider = StateNotifierProvider<SocketProvider, SocketModel>(
-    (ref) => SocketProvider());
+    (ref) => SocketProvider(ref));
 
 class SocketProvider extends StateNotifier<SocketModel> {
-  SocketProvider() : super(SocketModel());
+  final Ref ref;
+  SocketProvider(this.ref) : super(SocketModel());
+  StreamSocket streamSocket = StreamSocket();
 
   Future<void> initializeSocket() async {
     final token = await PrefProvider.getUserToken();
@@ -22,6 +29,9 @@ class SocketProvider extends StateNotifier<SocketModel> {
     });
     socket.on('message.private', (data) {
       print(data);
+      streamSocket.addResponse;
+      ref.invalidate(messageFutureProvider);
+      ref.invalidate(chatListFutureProvider);
     });
     state = state.copyWith(socket: socket);
   }
@@ -42,5 +52,17 @@ class SocketModel {
     return SocketModel(
       socket: socket ?? this.socket,
     );
+  }
+}
+
+class StreamSocket {
+  final _socketResponse = StreamController<Messages>();
+
+  void Function(Messages) get addResponse => _socketResponse.sink.add;
+
+  Stream<Messages> get getResponse => _socketResponse.stream;
+
+  void dispose() {
+    _socketResponse.close();
   }
 }

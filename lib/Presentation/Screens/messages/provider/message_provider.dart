@@ -1,16 +1,17 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Presentation/Screens/messages/repository/message_repository.dart';
-import 'package:spade_v4/Presentation/Screens/messages/widget/custom_snackbar.dart';
 
 import '../model/chat_model.dart';
 import '../model/messages.dart';
+import '../model/user_matches_response_model.dart';
 
-final messageListProvider =
+final chatListFutureProvider =
     FutureProvider((ref) => ref.watch(messageProvider).getUserChats());
+
+final userMatchesFutureProvider =
+    FutureProvider((ref) => ref.watch(messageProvider).getUserMatches());
 
 final messageProvider = Provider((ref) => MessageProvider(ref));
 
@@ -19,33 +20,16 @@ class MessageProvider {
 
   MessageProvider(this.ref);
 
-  Future<Map<DateTime?, List<MessageData>>> getMessages() async {
-    try {
-      final response = await ref.watch(messageRepository).getUserMessages();
-      var groupByDate = groupBy(response.data, (obj) => obj.createdAt);
-
-      return groupByDate;
-    } on SocketException catch (_) {
-      customSnackBar('No internet connection');
-      rethrow;
-    } catch (e) {
-      print(e);
-      customSnackBar('Something went wrong');
-      rethrow;
-    }
+  Future<List<MessageData>> getMessages() async {
+    return await ref.watch(messageRepository).getUserMessages();
   }
 
   Future<List<ChatsData>> getUserChats() async {
-    try {
-      final response = await ref.watch(messageRepository).getUserChats();
-      return response.data;
-    } on SocketException catch (_) {
-      customSnackBar('No internet connection');
-      rethrow;
-    } catch (e) {
-      print(e);
-      customSnackBar('Something went wrong');
-      rethrow;
-    }
+    final response = await ref.watch(messageRepository).getUserChats();
+    return response.data;
+  }
+
+  Future<List<UserMatchesResponseData>> getUserMatches() async {
+    return await ref.watch(messageRepository).getUserMatches();
   }
 }

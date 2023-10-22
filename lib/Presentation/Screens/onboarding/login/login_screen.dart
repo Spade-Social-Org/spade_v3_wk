@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 PrefProvider.saveUserLoginDetails(
                                     [email.text.trim(), password.text.trim()]);
                               }
-                              push(const NavigationContainer());
+                              pushAndRemoveUntil(const NavigationContainer());
                             }
                           });
                         }

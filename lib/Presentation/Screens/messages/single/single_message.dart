@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Presentation/Screens/messages/provider/socket_provider.dart';
 import 'package:spade_v4/Presentation/Screens/messages/single/message_list.dart';
@@ -22,11 +23,6 @@ class SingleMessage extends ConsumerStatefulWidget {
 class _SingleMessageState extends ConsumerState<SingleMessage> {
   final controller = TextEditingController();
   final scrollCtrl = ScrollController();
-  @override
-  void initState() {
-    ref.read(socketProvider.notifier).initializeSocket();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,86 +30,98 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
       return Scaffold(
           body: SafeArea(
               child: ref.watch(messageFutureProvider).when(
-                  data: (data) => Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            child: Row(
-                              children: [
-                                const CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage:
-                                      AssetImage('assets/images/avatar.png'),
-                                ),
-                                const SizedBox(width: 16),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.baseline,
-                                      textBaseline: TextBaseline.alphabetic,
-                                      children: [
-                                        Text(
-                                          widget.username,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        const Icon(Icons.circle,
-                                            color: Color(0xff155332), size: 8)
-                                      ],
-                                    ),
-                                    const Text('Online')
-                                  ],
-                                ),
-                                const Spacer(),
-                                CustomIconButton(
-                                    imageValue: 'video',
-                                    onTap: () {},
-                                    size: 20),
-                                CustomIconButton(
-                                    imageValue: 'call', onTap: () {}, size: 20),
-                                CustomIconButton(
-                                    imageValue: 'calendar',
-                                    onTap: () {},
-                                    size: 20),
-                                CustomIconButton(
-                                    imageValue: 'more-vert',
-                                    onTap: () {},
-                                    size: 20),
-                              ],
-                            ),
+                  data: (data) {
+                    final messages = groupBy(data, (key) => key.createdAt);
+                    return Column(
+                      children: [
+                        const SizedBox(height: 16),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          child: Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 20,
+                                backgroundImage:
+                                    AssetImage('assets/images/avatar.png'),
+                              ),
+                              const SizedBox(width: 8),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.baseline,
+                                    textBaseline: TextBaseline.alphabetic,
+                                    children: [
+                                      Text(
+                                        widget.username,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      const Icon(Icons.circle,
+                                          color: Color(0xff155332), size: 8)
+                                    ],
+                                  ),
+                                  const Text('Online')
+                                ],
+                              ),
+                              const Spacer(),
+                              CustomIconButton(
+                                  imageValue: 'video', onTap: () {}, size: 20),
+                              CustomIconButton(
+                                  imageValue: 'call', onTap: () {}, size: 20),
+                              CustomIconButton(
+                                  imageValue: 'calendar',
+                                  color: Colors.grey,
+                                  onTap: () {},
+                                  size: 20),
+                              CustomIconButton(
+                                  imageValue: 'more-vert',
+                                  onTap: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            backgroundColor: Colors.red,
+                                            padding: EdgeInsets.all(0),
+                                            content: SizedBox(
+                                                height: 25,
+                                                child:
+                                                    Text('You are offline'))));
+                                  },
+                                  size: 20),
+                            ],
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 25),
-                            child: Align(
-                                alignment: Alignment.topRight,
-                                child: Icon(Icons.keyboard_arrow_up)),
-                          ),
-                          const Divider(),
-                          Expanded(
-                            child: MessageList(
-                                data: data, scrollController: scrollCtrl),
-                          ),
-                          const SizedBox(height: 8),
-                          MessageTextfield(
-                              onTap: () {
-                                ref.read(socketProvider.notifier).sendMessage(
-                                    text: controller.text.trim(),
-                                    receiverId: widget.userId.toString());
-                                setState(() => controller.text = '');
-                                ref.invalidate(messageFutureProvider);
-                                scrollCtrl.animateTo(0.0,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
-                              },
-                              controller: controller),
-                          const SizedBox(height: 12),
-                        ],
-                      ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 25),
+                          child: Align(
+                              alignment: Alignment.topRight,
+                              child: Icon(Icons.keyboard_arrow_up)),
+                        ),
+                        const Divider(),
+                        Expanded(
+                          child: MessageList(
+                              data: messages, scrollController: scrollCtrl),
+                        ),
+                        const SizedBox(height: 8),
+                        MessageTextfield(
+                            onTap: () {
+                              ref.read(socketProvider.notifier).sendMessage(
+                                  text: controller.text.trim(),
+                                  receiverId: widget.userId.toString());
+                              setState(() => controller.text = '');
+                              ref.invalidate(messageFutureProvider);
+                              scrollCtrl.animateTo(0.0,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeIn);
+                            },
+                            onChanged: (value) => setState(() {}),
+                            controller: controller),
+                        const SizedBox(height: 12),
+                      ],
+                    );
+                  },
                   error: (e, t) => const SizedBox.shrink(),
                   loading: () => const Center(
                         child: CircularProgressIndicator(),
