@@ -11,6 +11,56 @@ import 'package:spade_v4/Common/api_handler/api_handler_models.dart';
 import 'package:spade_v4/Common/utils/string_exception.dart';
 import 'package:spade_v4/Presentation/Screens/Home/models/feed_model.dart';
 import 'package:spade_v4/Presentation/Screens/messages/widget/custom_snackbar.dart';
+import 'package:spade_v4/prefs/pref_provider.dart';
+
+final userStoryProvider = StateProvider<List<Feed>?>((ref) {
+  final stories = ref.watch(feedProvider).storyModel;
+  final user = ref.watch(userIdProvider);
+  if (stories == null) return null;
+  final newStories = stories.data
+      ?.where((element) => element.posterId == int.tryParse(user.value ?? ''))
+      .toList();
+  return newStories;
+});
+
+final storyProvider = StateProvider<FeedModel?>((ref) {
+  final stories = ref.watch(feedProvider).storyModel;
+  final user = ref.watch(userIdProvider);
+  if (stories == null) return null;
+  final newStories = groupBy<Feed, String>(
+          stories.data ?? [], (p0) => '${p0.posterName}${p0.posterImage}')
+      .map(
+        (key, value) => MapEntry(
+          key,
+          value.fold(
+            Feed(
+              posterName: value.first.posterName,
+              posterImage: value.first.posterImage,
+              createdAt: value.first.createdAt,
+              posterId: value.first.posterId,
+              bookmarked: value.first.bookmarked,
+              description: value.first.description,
+              id: value.first.id,
+              likedPost: value.first.likedPost,
+              gallery: [],
+              numberOfLikes: value.first.numberOfLikes,
+            ),
+            (value, element) => value.copyWith(
+              gallery: [
+                ...value.gallery ?? [],
+                ...element.gallery ?? [],
+              ],
+            ),
+          ),
+        ),
+      )
+      .values
+      .where((element) => element.posterId != int.tryParse(user.value ?? ''))
+      .toList();
+  return stories.copyWith(
+    data: newStories,
+  );
+});
 
 final feedProvider = StateNotifierProvider<FeedProvider, FeedRepo>((ref) {
   return FeedProvider(ref);
@@ -29,6 +79,7 @@ class FeedProvider extends StateNotifier<FeedRepo> {
     required bool isStory,
     required List<String> filePath,
     String? description,
+    bool isVideo = false,
   }) async {
     state = state..onRetryPost = null;
     state = state.copyWith(
@@ -40,6 +91,7 @@ class FeedProvider extends StateNotifier<FeedRepo> {
       description: description,
       filePath: filePath,
       isStory: isStory,
+      isVideo: isVideo,
       onProgress: (double progress) {
         state = state.copyWith(
           uploadProgress: progress,
@@ -68,7 +120,7 @@ class FeedProvider extends StateNotifier<FeedRepo> {
 
       state = state.copyWith();
       customSnackBar(res.error!.message!);
-      throw StringException(res.error!.message!);
+      //throw StringException(res.error!.message!);
     }
   }
 
@@ -237,6 +289,7 @@ class FeedRepo {
   Future<ResponseModel> createPost({
     required bool isStory,
     required List<String> filePath,
+    bool isVideo = false,
     required Function(double) onProgress,
     String? description,
   }) async {
@@ -248,7 +301,8 @@ class FeedRepo {
       final file = await MultipartFile.fromFile(
         i,
         filename: i.split('/').last,
-        contentType: MediaType('image', 'jpg'),
+        contentType:
+            isVideo ? MediaType('video', 'mp4') : MediaType('image', 'jpg'),
       );
       data.files.add(
         MapEntry('files', file),
@@ -377,10 +431,7 @@ final testMap = {
   "data": [
     {
       "gallery": [
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png",
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png",
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png",
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png",
+        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png"
       ],
       "description": "wefwdcweverr",
       "id": 227,

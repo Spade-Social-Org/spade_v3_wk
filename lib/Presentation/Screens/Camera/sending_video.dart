@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:spade_v4/Common/routes/app_routes.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../Common/camera_components/sending_image_video.dart';
@@ -33,6 +34,8 @@ class _SendingVideoViewPageState extends State<SendingVideoViewPage> {
       });
   }
 
+  bool isFeed = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,9 +60,16 @@ class _SendingVideoViewPageState extends State<SendingVideoViewPage> {
               right: 0,
               left: 0,
               child: SendingImageVideoBottomRowWidget(
-                onSendButtonTaped: () {},
-                isFeed: false,
-                onStoryChanged: (v) {},
+                onSendButtonTaped: () {
+                  final returnData = (widget.path, isFeed);
+                  pop(context, returnData);
+                },
+                isFeed: isFeed,
+                onStoryChanged: (v) {
+                  setState(() {
+                    isFeed = v;
+                  });
+                },
               ),
             ),
           ],
