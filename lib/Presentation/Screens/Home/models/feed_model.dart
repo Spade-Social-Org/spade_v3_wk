@@ -62,7 +62,6 @@ class Feed {
   String? numberOfLikes;
   String? bookmarked;
   String? likedPost;
-  int? posterId;
 
   Feed({
     this.gallery,
@@ -71,7 +70,6 @@ class Feed {
     this.createdAt,
     this.posterName,
     this.posterImage,
-    this.posterId,
     this.numberOfLikes,
     this.bookmarked,
     this.likedPost,
@@ -87,21 +85,18 @@ class Feed {
     String? numberOfLikes,
     String? bookmarked,
     String? likedPost,
-    int? posterId,
-  }) {
-    return Feed(
-      gallery: gallery ?? this.gallery,
-      description: description ?? this.description,
-      id: id ?? this.id,
-      createdAt: createdAt ?? this.createdAt,
-      posterName: posterName ?? this.posterName,
-      posterImage: posterImage ?? this.posterImage,
-      numberOfLikes: numberOfLikes ?? this.numberOfLikes,
-      bookmarked: bookmarked ?? this.bookmarked,
-      likedPost: likedPost ?? this.likedPost,
-      posterId: posterId ?? this.posterId,
-    );
-  }
+  }) =>
+      Feed(
+        gallery: gallery ?? this.gallery,
+        description: description ?? this.description,
+        id: id ?? this.id,
+        createdAt: createdAt ?? this.createdAt,
+        posterName: posterName ?? this.posterName,
+        posterImage: posterImage ?? this.posterImage,
+        numberOfLikes: numberOfLikes ?? this.numberOfLikes,
+        bookmarked: bookmarked ?? this.bookmarked,
+        likedPost: likedPost ?? this.likedPost,
+      );
 
   factory Feed.fromJson(Map<String, dynamic> json) => Feed(
         gallery: json["gallery"] == null
@@ -114,7 +109,6 @@ class Feed {
             : DateTime.parse(json["created_at"]),
         posterName: json["poster_name"],
         posterImage: json["poster_image"],
-        posterId: json["poster_id"],
         numberOfLikes: json["number_of_likes"],
         bookmarked: json["bookmarked"],
         likedPost: json["liked_post"],
@@ -127,7 +121,6 @@ class Feed {
         "id": id,
         "created_at": createdAt?.toIso8601String(),
         "poster_name": posterName,
-        "poster_id": posterId,
         "poster_image": posterImage,
         "number_of_likes": numberOfLikes,
         "bookmarked": bookmarked,

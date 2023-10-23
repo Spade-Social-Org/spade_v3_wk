@@ -6,7 +6,6 @@ import 'package:spade_v4/Common/routes/app_routes.dart';
 import 'package:spade_v4/Common/utils/utils.dart';
 import 'package:spade_v4/Presentation/Screens/Home/models/feed_model.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/story_page_view.dart';
-import 'package:spade_v4/Presentation/Screens/Home/presentation/user_story_page.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/profile_image.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/story_box.dart';
 
@@ -37,9 +36,8 @@ class _FeedBodyState extends ConsumerState<StoryRow> {
 
   @override
   Widget build(BuildContext context) {
-    var stories = ref.watch(storyProvider);
     final feeds = ref.watch(feedProvider);
-    if (stories == null) {
+    if (feeds.storyModel == null) {
       return SizedBox(
         height: 61,
         child: ListView.builder(
@@ -70,25 +68,17 @@ class _FeedBodyState extends ConsumerState<StoryRow> {
     return SizedBox(
       height: 61,
       child: ListView.builder(
-        itemCount: (stories.data?.length ?? 0) + 2,
+        itemCount: (feeds.storyModel?.data?.length ?? 0) + 2,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return InkWell(
               onTap: () {
-                final userStory = ref.read(userStoryProvider);
-                if (userStory?.isEmpty ?? true) {
-                  FeedRepo.pageController.previousPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                } else {
-                  pushTo(
-                    context,
-                    const UserStoryPageView(),
-                  );
-                }
+                FeedRepo.pageController.previousPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
               },
               child: Column(
                 children: [
@@ -130,7 +120,7 @@ class _FeedBodyState extends ConsumerState<StoryRow> {
                 ],
               ).pOnly(r: 15),
             );
-          } else if (index == ((stories.data?.length ?? 0) + 1)) {
+          } else if (index == ((feeds.storyModel?.data?.length ?? 0) + 1)) {
             if (feeds.storyLoading) {
               return Skeletonizer(
                 enabled: true,
@@ -160,7 +150,7 @@ class _FeedBodyState extends ConsumerState<StoryRow> {
                 );
               },
               child: StoryBox(
-                feed: stories.data![index - 1],
+                feed: feeds.storyModel!.data![index - 1],
               ).pOnly(r: 15),
             );
           }

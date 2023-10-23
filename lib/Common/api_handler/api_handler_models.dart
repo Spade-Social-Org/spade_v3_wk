@@ -16,7 +16,7 @@ class ResponseModel<T> {
 }
 
 class ErrorModel {
-  dynamic errorCode;
+  int? errorCode;
   String? message;
   dynamic errorField;
   String? token;
@@ -34,7 +34,7 @@ class ErrorModel {
           errorCode: 000, message: data, errorField: '', token: '');
     }
     return ErrorModel(
-        errorCode: data['errorCode'] ?? 000,
+        errorCode: data['errorCode'] ?? '',
         message: data['message'] ?? '',
         errorField: data['errorField'] ?? '',
         token: data['token'] ?? '');

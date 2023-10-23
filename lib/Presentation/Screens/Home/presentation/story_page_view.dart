@@ -22,7 +22,7 @@ class StoryPageView extends ConsumerStatefulWidget {
 class _StoryPageViewState extends ConsumerState<StoryPageView>
     with WidgetsBindingObserver {
   late final PageController _pageController;
-  //final bool _isKeyboardOpen = false;
+  final bool _isKeyboardOpen = false;
   final _storyController = StoryController();
 
   final _textController = TextEditingController();
@@ -56,7 +56,7 @@ class _StoryPageViewState extends ConsumerState<StoryPageView>
 
   @override
   Widget build(BuildContext context) {
-    final stories = ref.watch(feedProvider).storyModel?.data ?? [];
+    final stories = ref.watch(feedProvider).feedModel?.data ?? [];
     return Scaffold(
       body: PageView.builder(
         controller: _pageController,
@@ -201,6 +201,7 @@ class _FeedButtonState extends ConsumerState<FeedButton> {
   @override
   void initState() {
     isLiked = bool.tryParse(widget.feed.likedPost ?? '') ?? false;
+
     super.initState();
   }
 
