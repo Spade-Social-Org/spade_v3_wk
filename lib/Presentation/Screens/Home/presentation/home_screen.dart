@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/camera.dart';
 import 'package:spade_v4/Common/theme.dart';
 import 'package:spade_v4/Common/utils/utils.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/feed_body.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/story_row.dart';
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
@@ -51,14 +52,39 @@ class HomeScreen extends ConsumerWidget {
                     ),
                     child: Row(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.file(
-                            File(feed.filePath!),
-                            fit: BoxFit.cover,
-                            height: 50,
+                        if (feed.filePath!.split('.').last != 'jpg')
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: FutureBuilder(
+                              future: VideoThumbnail.thumbnailData(
+                                video: feed.filePath!,
+                                imageFormat: ImageFormat.JPEG,
+                                maxHeight: 50,
+                                quality: 25,
+                              ),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                if (snapshot.data == null) {
+                                  return const CircularProgressIndicator
+                                      .adaptive();
+                                }
+                                return Image.memory(
+                                  snapshot.data,
+                                  fit: BoxFit.cover,
+                                  height: 50,
+                                );
+                              },
+                            ),
+                          )
+                        else
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Image.file(
+                              File(feed.filePath!),
+                              fit: BoxFit.cover,
+                              height: 50,
+                            ),
                           ),
-                        ),
                         16.spacingW,
                         Expanded(
                           child: Column(
