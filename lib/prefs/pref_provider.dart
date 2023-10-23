@@ -1,18 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spade_v4/Data/Models/user_model.dart';
 
 final userAuthChange = Provider((ref) => PrefProvider.getUserToken());
 final userIdProvider = FutureProvider((ref) => PrefProvider.getUserId());
-final userProvider = FutureProvider((ref) => PrefProvider.getUserModel());
 
 class PrefProvider {
   static const _storage = FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true));
 
   static String userId = 'userId';
-  static String user = 'user';
   static String token = 'token';
   static String loginData = 'loginData';
 
@@ -26,16 +23,6 @@ class PrefProvider {
 
   static Future saveUserId(int value) async {
     await _storage.write(key: userId, value: "$value");
-  }
-
-  static Future saveUserModel(User userModel) async {
-    await _storage.write(key: user, value: userModel.toJson());
-  }
-
-  static Future<User?> getUserModel() async {
-    final userModel = await _storage.read(key: user);
-    if (userModel == null) return null;
-    return User.fromJson(userModel);
   }
 
   static Future<String?> getUserId() async {

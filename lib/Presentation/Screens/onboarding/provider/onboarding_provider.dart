@@ -26,7 +26,6 @@ class OnboardingProvider with ChangeNotifier {
     if (response.statusCode == 'SUCCESS') {
       PrefProvider.saveUserToken(response.data!.accessToken!);
       PrefProvider.saveUserId(response.data!.userInfo!.userId!);
-      //PrefProvider.saveUserModel(response.data!.userInfo!.userId!);
     } else if (response.statusCode == 'BAD_REQUEST') {
       customSnackBar(response.message);
     } else if (response.statusCode == 'FORBIDDEN') {
