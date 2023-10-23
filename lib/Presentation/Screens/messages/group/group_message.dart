@@ -18,17 +18,26 @@ class _GroupMessageState extends State<GroupMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff010C33),
+      appBar: AppBar(
+        title: const Text(
+          'Messages',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          CustomIconButton(
+              imageValue: 'Camera', onTap: () {}, size: 25, color: Colors.grey),
+          CustomIconButton(imageValue: 'person-group', onTap: () {}, size: 23),
+          CustomIconButton(imageValue: 'more-vert', onTap: () {}, size: 25)
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              const CustomAppbar(
-                title: 'Groups',
-                color: Colors.white,
-              ),
               const SizedBox(height: 20),
               const Padding(
                 padding: EdgeInsets.only(left: 16, bottom: 16),

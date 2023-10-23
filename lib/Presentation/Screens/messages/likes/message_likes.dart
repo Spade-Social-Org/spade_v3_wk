@@ -30,7 +30,10 @@ class _MesssageLikesState extends State<MesssageLikes> {
                         ),
                         actions: [
                           CustomIconButton(
-                              imageValue: 'camera', onTap: () {}, size: 25),
+                              color: Colors.grey,
+                              imageValue: 'Camera',
+                              onTap: () {},
+                              size: 25),
                           CustomIconButton(
                               imageValue: 'person-group',
                               onTap: () {},

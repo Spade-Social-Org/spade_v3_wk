@@ -86,7 +86,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                                           width: 25,
                                           child: Center(
                                             child: CircularProgressIndicator(
-                                                strokeWidth: 2.5),
+                                                strokeWidth: 3),
                                           ))
                                       : const Row(
                                           mainAxisAlignment:
@@ -111,7 +111,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                           if (form.currentState!.validate()) {
                             provider.verifyOTP(otp.text.trim()).then((value) {
                               if (value.statusCode == 'SUCCESS') {
-                                push(const NavigationContainer());
+                                pushAndRemoveUntil(const NavigationContainer());
                               }
                             });
                           }
