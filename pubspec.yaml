@@ -70,6 +70,10 @@ dependencies:
   timeago: ^3.5.0
   video_player: ^2.7.1
   video_thumbnail: ^0.5.3
+  connectivity_plus: ^4.0.0
+  google_fonts: ^6.1.0
+  flip_card: ^0.7.0
+  modal_bottom_sheet: ^3.0.0-pre
 
 dev_dependencies:
   custom_lint: ^0.5.3
@@ -94,6 +98,7 @@ flutter:
     - assets/maptheme/retro.json
     - assets/maptheme/nightthemelabel.json
     - assets/discover/data.json
+    - assets/discover/svgs/
 
 spider:
   generate_tests: true
