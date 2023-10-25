@@ -1,14 +1,15 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Data/Service/geo_locator.dart';
+import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
+import 'package:spade_v4/injection.dart' as di;
+
 import 'Common/routes/route_generator.dart';
 import 'Presentation/Bloc/places_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
-import 'package:spade_v4/injection.dart' as di;
-import 'auth_state_change_notifier.dart';
 import 'injection.dart';
 
 Future<void> main() async {
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
         navigatorKey: kNavigatorKey,
         onGenerateRoute: RouteGenerator.onGenerateRoute,
         onUnknownRoute: RouteGenerator.unKnownRoute,
-        home: const AuthStateChangeNotifier(),
+        // home: const AuthStateChangeNotifier(),
+        home: const DiscoveryScreen(),
       ),
     );
   }
