@@ -513,7 +513,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
         ),
       ),
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 40),
+        margin: const EdgeInsets.only(bottom: 0),
         child: Stack(
           alignment: AlignmentDirectional.center,
           fit: StackFit.loose,

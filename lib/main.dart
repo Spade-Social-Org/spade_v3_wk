@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Data/Service/geo_locator.dart';
-import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
+import 'package:spade_v4/auth_state_change_notifier.dart';
 import 'package:spade_v4/injection.dart' as di;
 
 import 'Common/routes/route_generator.dart';
@@ -53,8 +53,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: kNavigatorKey,
         onGenerateRoute: RouteGenerator.onGenerateRoute,
         onUnknownRoute: RouteGenerator.unKnownRoute,
-        // home: const AuthStateChangeNotifier(),
-        home: const DiscoveryScreen(),
+        home: const AuthStateChangeNotifier(),
       ),
     );
   }
