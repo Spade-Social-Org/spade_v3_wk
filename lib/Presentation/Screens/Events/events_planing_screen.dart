@@ -55,7 +55,7 @@ class EventPlaningScreen extends StatelessWidget {
 
                         title: Row(
                           children: [
-                            CircleAvatar(radius: 5,),SizedBox(width: 5,),
+                            const CircleAvatar(radius: 5,),const SizedBox(width: 5,),
                             Text(Event.time),
                           ],
                         ),

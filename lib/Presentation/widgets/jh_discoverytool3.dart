@@ -97,46 +97,46 @@ class card2 extends StatelessWidget {
           name,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             Icon(Icons.cake),
             Text('24'),
           ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(Icons.nightlight_outlined),
-            const Text('Night'),
+            Icon(Icons.nightlight_outlined),
+            Text('Night'),
           ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // Image.asset('asset/logo/icon-park-outline_virgo.png'),
-            const Text('virgo'),
+            Text('virgo'),
           ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(Icons.line_weight),
-            const Text('51'),
+            Icon(Icons.line_weight),
+            Text('51'),
           ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(Icons.location_on_outlined),
-            const Text('4.3ml'),
+            Icon(Icons.location_on_outlined),
+            Text('4.3ml'),
           ],
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(Icons.location_on),
-            const Text('Slim'),
+            Icon(Icons.location_on),
+            Text('Slim'),
           ],
         ),
         const Row(

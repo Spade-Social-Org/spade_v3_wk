@@ -39,19 +39,19 @@ class _DiscoverImageState extends State<DiscoverImage> {
               widget.image,
               height: 80,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               widget.imageTile,
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               widget.imageDesc,
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
               textAlign: TextAlign.center,
             ),
             Switch(

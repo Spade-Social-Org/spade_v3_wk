@@ -23,18 +23,18 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
-        title: Text(
+        title: const Text(
           "Discover people with similar interests!",
           style: TextStyle(fontSize: 18, color: Colors.black),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Column(
@@ -47,7 +47,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       DiscoverImage(
-                        color: Color.fromARGB(255, 9, 65, 11),
+                        color: const Color.fromARGB(255, 9, 65, 11),
                         image: 'assets/images/Group 949.png',
                         imageDesc:
                             'Single and searching for a casual relationship',
@@ -60,7 +60,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                         },
                       ),
                       DiscoverImage(
-                        color: Color.fromARGB(255, 146, 2, 2),
+                        color: const Color.fromARGB(255, 146, 2, 2),
                         image: 'assets/images/Online dating-cuate 1.png',
                         imageDesc: 'Find friends with benefits or hookups',
                         imageTile: 'Red Light District',
@@ -73,14 +73,14 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       DiscoverImage(
-                        color: Color.fromARGB(255, 29, 29, 29),
+                        color: const Color.fromARGB(255, 29, 29, 29),
                         image: 'assets/images/Couple-cuate (1) 1.png',
                         imageDesc:
                             'look for a long term or serious relationship',
@@ -93,7 +93,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                         },
                       ),
                       DiscoverImage(
-                        color: Color.fromARGB(255, 255, 208, 0),
+                        color: const Color.fromARGB(255, 255, 208, 0),
                         image: 'assets/images/Group discussion-cuate 1.png',
                         imageDesc:
                             'Explore friends and connect with new people',
@@ -109,7 +109,7 @@ class _DiscoverPeopleState extends State<DiscoverPeople> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ClipRRect(

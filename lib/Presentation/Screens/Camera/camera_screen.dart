@@ -8,7 +8,6 @@ import 'package:spade_v4/Common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
 import '../../../Common/camera_components/camera_appbar.dart';
-import '../../../Common/camera_components/select_image_from_gallery.dart';
 import '../../../Common/navigator.dart';
 import '../../../Common/routes/routes.dart';
 

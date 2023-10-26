@@ -151,7 +151,7 @@ class _LookingForBuildWomenScreenState
                               "assets/images/freepik--character-5--inject-316.png",
                               fit: BoxFit.fill,
                             )),
-                        Text("Curvy")
+                        const Text("Curvy")
                       ]),
                 ),
               ),

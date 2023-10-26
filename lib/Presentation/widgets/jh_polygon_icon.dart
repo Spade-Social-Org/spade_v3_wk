@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class JHPolygonIcon extends StatelessWidget {
+  const JHPolygonIcon({super.key});
+
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(30, 30), // Adjust the size of the icon as needed
+      size: const Size(30, 30), // Adjust the size of the icon as needed
       painter: _PolygonPainter(),
     );
   }
@@ -19,8 +21,8 @@ class _PolygonPainter extends CustomPainter {
     final double centerY = size.height / 2;
     final double radius = size.width / 2.4;
 
-    final int sides = 6; // Number of sides of the polygon
-    final double angle = (2 * 3.1416) / sides;
+    const int sides = 6; // Number of sides of the polygon
+    const double angle = (2 * 3.1416) / sides;
 
     final path = Path();
     path.moveTo(centerX + radius * cos(0), centerY + radius * sin(0));

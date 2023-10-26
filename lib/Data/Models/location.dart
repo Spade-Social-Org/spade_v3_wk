@@ -5,7 +5,7 @@ class Locations extends Equatable {
   final String address;
   final String urlImage;
 
-  Locations( {required this.name, required this.address, required this.urlImage});
+  const Locations( {required this.name, required this.address, required this.urlImage});
 
   @override
   List<Object?> get props => [name, address,urlImage];

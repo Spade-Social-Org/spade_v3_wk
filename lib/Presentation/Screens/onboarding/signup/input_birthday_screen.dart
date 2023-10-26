@@ -41,9 +41,9 @@ class InputBirthdayScreen extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )),
           const SizedBox(height: 40,),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               SizedBox(
                 width: 70,
                 child: TextField(

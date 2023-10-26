@@ -1,15 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:spade_v4/Common/camera.dart';
 import 'package:spade_v4/Common/theme.dart';
 import 'package:spade_v4/Common/utils/utils.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/feed_body.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/story_row.dart';
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
-import 'package:spade_v4/Presentation/widgets/custom_button.dart';
-import 'package:spade_v4/Presentation/widgets/jh_discoverytool3.dart';
 import 'package:spade_v4/resources/resources.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
