@@ -23,7 +23,6 @@ class SingleMessage extends ConsumerStatefulWidget {
 class _SingleMessageState extends ConsumerState<SingleMessage> {
   final controller = TextEditingController();
   final scrollCtrl = ScrollController();
-
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
