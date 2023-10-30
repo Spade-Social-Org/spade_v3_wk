@@ -4,7 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'input_birthday_screen.dart';
 
 class AddReligionScreen extends StatelessWidget {
-  AddReligionScreen({super.key, Key? key});
+ 
 
   final List<String> religions = [
     "Islam",
