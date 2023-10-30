@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spade_v4/Common/constants.dart';
 import 'package:spade_v4/Common/routes/app_routes.dart';
-import 'package:spade_v4/Common/theme.dart';
 import 'package:spade_v4/Common/utils/utils.dart';
 import 'package:spade_v4/Presentation/Screens/Home/models/feed_model.dart';
 import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/profile_image.dart';

@@ -25,7 +25,7 @@ class JHCompatibilityWidget extends StatelessWidget {
         ),
       ),
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           // Set the height to 90% of the screen height
           height: modalHeight * 0.85,
 
@@ -68,7 +68,7 @@ class JHCompatibilityWidget extends StatelessWidget {
         ),
       ),
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           // Set the height to 90% of the screen height
           height: modalHeight * 0.85,
 
@@ -111,7 +111,7 @@ class JHCompatibilityWidget extends StatelessWidget {
         ),
       ),
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           // Set the height to 90% of the screen height
           height: modalHeight * 0.85,
 
@@ -154,7 +154,7 @@ class JHCompatibilityWidget extends StatelessWidget {
         ),
       ),
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           // Set the height to 90% of the screen height
           height: modalHeight * 0.85,
 
@@ -352,7 +352,7 @@ class JHCompatibilityWidget extends StatelessWidget {
                               const SizedBox(
                                 height: 3,
                               ),
-                              Container(
+                              SizedBox(
                                   width: screenWidth * 0.5,
                                   child: const Text(
                                     textAlign: TextAlign.left,
@@ -385,7 +385,7 @@ class JHCompatibilityWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(12.0), // Border radius
-                        color: const Color(0xFFFD2E6EB), // Background color
+                        color: const Color(0xfffd2e6eb), // Background color
                         boxShadow: const [
                           BoxShadow(
                             color:
@@ -424,7 +424,7 @@ class JHCompatibilityWidget extends StatelessWidget {
                               const SizedBox(
                                 height: 3,
                               ),
-                              Container(
+                              SizedBox(
                                   width: screenWidth * 0.5,
                                   child: const Text(
                                     textAlign: TextAlign.left,
@@ -572,11 +572,11 @@ class JHCompatibilityWidget extends StatelessWidget {
                               color:
                                   const Color.fromRGBO(119, 119, 119, 0.20),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment:
                                   MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
+                                Text(
                                   'Personality',
                                   style: TextStyle(
                                     color: Colors.black, // Text color
@@ -592,12 +592,12 @@ class JHCompatibilityWidget extends StatelessWidget {
                                 ), // First Text widget
                                 CustomLinearProgressIndicator(
                                   progress: 0.9,
-                                  color1: const Color.fromRGBO(
+                                  color1: Color.fromRGBO(
                                       119, 119, 119, 0.20),
-                                  color2: const Color.fromRGBO(
+                                  color2: Color.fromRGBO(
                                       119, 119, 119, 1),
                                 ),
-                                const Text(
+                                Text(
                                   ' 90%',
                                   style: TextStyle(
                                     color: Colors.black, // Text color
@@ -654,12 +654,12 @@ class JHCompatibilityWidget extends StatelessWidget {
                                 SizedBox(
                                   width: screenWidth < 400 ? 18 : 30,
                                 ), // First Text widget
-                                CustomLinearProgressIndicator(
+                                const CustomLinearProgressIndicator(
                                   progress: 0.5,
-                                  color1: const Color.fromRGBO(
+                                  color1: Color.fromRGBO(
                                       72, 72, 72, 0.20),
                                   color2:
-                                      const Color.fromRGBO(21, 83, 50, 1),
+                                      Color.fromRGBO(21, 83, 50, 1),
                                 ),
                                 SizedBox(
                                   width: screenWidth < 400 ? 30 : 45,
@@ -722,12 +722,12 @@ class JHCompatibilityWidget extends StatelessWidget {
                                 SizedBox(
                                   width: screenWidth < 400 ? 55 : 75,
                                 ), // First Text widget
-                                CustomLinearProgressIndicator(
+                                const CustomLinearProgressIndicator(
                                   progress: 0.35,
-                                  color1: const Color.fromRGBO(
+                                  color1: Color.fromRGBO(
                                       72, 72, 72, 0.20),
                                   color2:
-                                      const Color.fromRGBO(255, 199, 39, 1),
+                                      Color.fromRGBO(255, 199, 39, 1),
                                 ),
                                 SizedBox(
                                   width: screenWidth < 400 ? 25 : 45,
@@ -789,12 +789,12 @@ class JHCompatibilityWidget extends StatelessWidget {
                                 SizedBox(
                                   width: screenWidth < 400 ? 40 : 55,
                                 ), // First Text widget
-                                CustomLinearProgressIndicator(
+                                const CustomLinearProgressIndicator(
                                   progress: 0.7,
-                                  color1: const Color.fromRGBO(
+                                  color1: Color.fromRGBO(
                                       72, 72, 72, 0.20),
                                   color2:
-                                      const Color.fromRGBO(161, 39, 24, 1),
+                                      Color.fromRGBO(161, 39, 24, 1),
                                 ),
                                 SizedBox(
                                   width: screenWidth < 400 ? 27 : 45,
@@ -1053,8 +1053,8 @@ class CustomLinearProgressIndicator extends StatefulWidget {
   final Color color1;
   final Color color2;
 
-  CustomLinearProgressIndicator(
-      {required this.progress, required this.color1, required this.color2});
+  const CustomLinearProgressIndicator(
+      {super.key, required this.progress, required this.color1, required this.color2});
 
   @override
   _CustomLinearProgressIndicatorState createState() =>

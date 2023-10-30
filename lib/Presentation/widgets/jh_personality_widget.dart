@@ -25,9 +25,9 @@ class PersonalityWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
 
-            Column(
+            const Column(
               children: [
-                const Text('Personality Analysis',
+                Text('Personality Analysis',
                   style: TextStyle(
                     color: Color(0xFF1E1E1E),
                     fontFamily: 'Poppins',
@@ -37,16 +37,16 @@ class PersonalityWidget extends StatelessWidget {
                     height: 2.0,
                   ),
                 ),
-                const SizedBox(height: 25,),
+                SizedBox(height: 25,),
                 CustomCircularProgressBar(
                   width: 120.0, // Width of the circular progress bar
                   height: 120.0, // Height of the circular progress bar
                   progress: 0.7, // Progress value between 0.0 and 1.0
                   strokeWidth: 25.0, // Width of the progress bar line
-                  color: const Color.fromRGBO(119, 119, 119, 1), value: 70, // Color of the progress bar
+                  color: Color.fromRGBO(119, 119, 119, 1), value: 70, // Color of the progress bar
                 ),
-                const SizedBox(height: 20,),
-                const Text(
+                SizedBox(height: 20,),
+                Text(
                     'Understanding your compatibility in terms of personality traits is essential for building a strong emotional connection',
                   style: TextStyle(
                     color: Colors.black, // Text color
@@ -60,8 +60,8 @@ class PersonalityWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
 
                 ),
-                const SizedBox(height: 20,),
-                const Text(
+                SizedBox(height: 20,),
+                Text(
                   "Here's a breakdown of how your personalities align:",
                   style: TextStyle(
                     color: Colors.black, // Text color
@@ -95,18 +95,18 @@ class PersonalityWidget extends StatelessWidget {
 
 
       ),),
-                child: Column(
+                child: const Column(
                   children: [
-                    const SizedBox(height: 12,),
+                    SizedBox(height: 12,),
                     Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 290,
-                            child:  const Column(
+                            child:  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -139,26 +139,26 @@ class PersonalityWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '90%',
-                            backgroundColor: const Color.fromRGBO(78, 78,78, 1),
+                            backgroundColor: Color.fromRGBO(78, 78,78, 1),
                           ),
                         ],
                       ),
                     ),
-                    const Divider( // This creates a horizontal line
+                    Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
                       endIndent: 10, // End indent (space after the line)
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 290,
-                            child:  const Column(
+                            child:  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -191,26 +191,26 @@ class PersonalityWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '75%',
-                            backgroundColor: const Color.fromRGBO(78, 78,78, 1),
+                            backgroundColor: Color.fromRGBO(78, 78,78, 1),
                           ),
                         ],
                       ),
                     ),
-                    const Divider( // This creates a horizontal line
+                    Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
                       endIndent: 10, // End indent (space after the line)
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 290,
-                            child:  const Column(
+                            child:  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -243,26 +243,26 @@ class PersonalityWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '35%',
-                            backgroundColor: const Color.fromRGBO(78, 78,78, 1),
+                            backgroundColor: Color.fromRGBO(78, 78,78, 1),
                           ),
                         ],
                       ),
                     ),
-                    const Divider( // This creates a horizontal line
+                    Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
                       endIndent: 10, // End indent (space after the line)
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.all(10),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 290,
-                            child:  const Column(
+                            child:  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -295,12 +295,12 @@ class PersonalityWidget extends StatelessWidget {
                           ),
                           RoundedContainer(
                             text: '75%',
-                            backgroundColor: const Color.fromRGBO(78, 78,78, 1),
+                            backgroundColor: Color.fromRGBO(78, 78,78, 1),
                           ),
                         ],
                       ),
                     ),
-                    const Divider( // This creates a horizontal line
+                    Divider( // This creates a horizontal line
                       color: Color.fromRGBO(138, 138, 138, 0.20), // Line color
                       thickness: 2, // Line thickness
                       indent: 10, // Indent (space before the line)
@@ -328,7 +328,7 @@ class CustomCircularProgressBar extends StatefulWidget {
   final Color color;
   final int value;
 
-  CustomCircularProgressBar({
+  const CustomCircularProgressBar({super.key, 
     required this.width,
     required this.height,
     required this.progress,
@@ -448,7 +448,7 @@ class RoundedContainer extends StatelessWidget {
   final String text;
   final Color backgroundColor;
 
-  RoundedContainer({
+  const RoundedContainer({super.key, 
     required this.text,
     required this.backgroundColor,
   });
