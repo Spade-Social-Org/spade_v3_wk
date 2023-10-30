@@ -15,7 +15,7 @@ class FetchPlacesEvent extends PlacesEvent {
   final LatLng location;
   final String? nextPageToken;
 
-  FetchPlacesEvent(this.placeType, this.location, this.nextPageToken);
+  const FetchPlacesEvent(this.placeType, this.location, this.nextPageToken);
 
   @override
   List<Object?> get props => [placeType, location, nextPageToken];
@@ -33,7 +33,7 @@ class PlacesLoadingState extends PlacesState {
 class PlacesLoadedState extends PlacesState {
   final List<Place> places;
 
-  PlacesLoadedState(this.places);
+  const PlacesLoadedState(this.places);
 
   @override
   List<Object?> get props => [places];
@@ -42,7 +42,7 @@ class PlacesLoadedState extends PlacesState {
 class PlacesErrorState extends PlacesState {
   final String message;
 
-  PlacesErrorState(this.message);
+  const PlacesErrorState(this.message);
 
   @override
   List<Object?> get props => [message];
@@ -61,7 +61,7 @@ class PlacesBloc extends Bloc<PlacesEvent, PlacesState> {
         emit(PlacesLoadedState(placesResult.places));
       } catch (e) {
         logger.e('Failed to fetch places: $e');
-        emit(PlacesErrorState('Failed to fetch places.'));
+        emit(const PlacesErrorState('Failed to fetch places.'));
       }
     });
   }

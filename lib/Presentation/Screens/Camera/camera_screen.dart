@@ -1,5 +1,9 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:spade_v4/Common/image_properties.dart';
 import 'package:spade_v4/Common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photofilters/photofilters.dart';
@@ -9,7 +13,6 @@ import 'package:image/image.dart' as imageLib;
 
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
 import '../../../Common/camera_components/camera_appbar.dart';
-import '../../../Common/camera_components/select_image_from_gallery.dart';
 import '../../../Common/navigator.dart';
 import '../../../Common/routes/routes.dart';
 
@@ -73,8 +76,43 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SelectImageFromGalleryButton(
-                            receiverId: widget.receiverId),
+                        GestureDetector(
+                          onTap: () async {
+                            File? image = await pickImageFromGallery(context);
+                            //if (!mounted) return;
+                            if (image != null) {
+                              // ignore: use_build_context_synchronously
+                              final finalImage = await navigateNamedTo(
+                                context,
+                                Routes.sendingImageViewRoute,
+                                arguments: {
+                                  'path': image.path,
+                                  'uId': widget.receiverId,
+                                },
+                              );
+                              if (!mounted) return;
+                              log(finalImage.toString());
+                              ref.read(feedProvider.notifier).createPost(
+                                context,
+                                isStory: !finalImage.$2,
+                                filePath: [finalImage.$1],
+                              );
+                              FeedRepo.pageController.nextPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                              );
+                            }
+                          },
+                          child: const CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Colors.black38,
+                            child: Icon(
+                              Icons.photo,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                         GestureDetector(
                           onTap: () {
                             if (!isRecording) takePhoto(context);
@@ -92,13 +130,25 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
                               isRecording = false;
                             });
                             if (!mounted) return;
-                            navigateNamedTo(
+                            final finalImage = await navigateNamedTo(
                               context,
                               Routes.sendingVideoViewRoute,
                               arguments: {
                                 'uId': widget.receiverId,
                                 'path': videoPath.path,
                               },
+                            );
+                            if (!mounted) return;
+                            log(finalImage.toString());
+                            ref.read(feedProvider.notifier).createPost(
+                              context,
+                              isStory: !finalImage.$2,
+                              isVideo: true,
+                              filePath: [finalImage.$1],
+                            );
+                            FeedRepo.pageController.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
                             );
                           },
                           child: cameraIcon(),
@@ -198,9 +248,10 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
           'uId': widget.receiverId,
         });
     if (!mounted) return;
+    log(finalImage.toString());
     ref.read(feedProvider.notifier).createPost(
       context,
-      isStory: finalImage.$2,
+      isStory: !finalImage.$2,
       filePath: [finalImage.$1],
     );
     FeedRepo.pageController.nextPage(

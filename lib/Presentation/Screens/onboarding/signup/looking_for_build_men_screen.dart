@@ -83,7 +83,7 @@ class _LookingForBuildMenScreenState extends State<LookingForBuildMenScreen> {
                               "assets/images/freepik--character-3--inject-310.png",
                               fit: BoxFit.fill,
                             )),
-                        Text("Slim")
+                        const Text("Slim")
                       ]),
                 ),
               ),
@@ -150,7 +150,7 @@ class _LookingForBuildMenScreenState extends State<LookingForBuildMenScreen> {
                               "assets/images/freepik--character-1--inject-310.png",
                               fit: BoxFit.fill,
                             )),
-                        Text("Husky")
+                        const Text("Husky")
                       ]),
                 ),
               ),

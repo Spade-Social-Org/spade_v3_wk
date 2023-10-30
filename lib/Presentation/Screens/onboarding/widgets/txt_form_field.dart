@@ -19,11 +19,11 @@ class _TxtFormFieldState extends State<TxtFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      style: TextStyle(fontSize: 16),
+      style: const TextStyle(fontSize: 16),
       cursorColor: Colors.black,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: TextStyle(fontSize: 16),
+        hintStyle: const TextStyle(fontSize: 16),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(width: 1, color: Colors.grey),
           borderRadius: BorderRadius.circular(10),

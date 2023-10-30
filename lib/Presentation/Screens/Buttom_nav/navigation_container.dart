@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Data/Models/discover_service.dart';
 import 'package:spade_v4/Presentation/Screens/Discover/discover_screen.dart';
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
+
 import '../Camera/camera_screen.dart';
 import '../Home/presentation/home_screen.dart';
 import '../Map/map_screen.dart';
@@ -23,51 +24,6 @@ class _NavigationContainerState extends State<NavigationContainer> {
   bool _showOption = false;
   int card_click = 2;
   PageController get _pageController => FeedRepo.pageController;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onIconTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-      _PageIndex = index;
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    });
-  }
-
-  void _onPageChanged(int index) {
-    if (_PageIndex != index) {
-      setState(() {
-        _PageIndex = index;
-      });
-    }
-  }
-
-  void _zoneClick(int index) {
-    if (card_click == index) {
-      setState(() {
-        card_click = 0;
-        _showOption = false;
-      });
-    } else {
-      setState(() {
-        card_click = index;
-        _showOption = false;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -294,5 +250,50 @@ class _NavigationContainerState extends State<NavigationContainer> {
         );
       }),
     );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _onIconTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+      _PageIndex = index;
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void _onPageChanged(int index) {
+    if (_PageIndex != index) {
+      setState(() {
+        _PageIndex = index;
+      });
+    }
+  }
+
+  void _zoneClick(int index) {
+    if (card_click == index) {
+      setState(() {
+        card_click = 0;
+        _showOption = false;
+      });
+    } else {
+      setState(() {
+        card_click = index;
+        _showOption = false;
+      });
+    }
   }
 }

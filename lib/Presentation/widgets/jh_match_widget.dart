@@ -186,7 +186,7 @@ class JHMatchWidget extends StatelessWidget {
                         ),
                         Text(
                           name,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -201,7 +201,7 @@ class JHMatchWidget extends StatelessWidget {
                         ),
                         Text(
                           age,
-                          style: TextStyle(fontSize: 12),
+                          style: const TextStyle(fontSize: 12),
                         )
                       ],
                     ),

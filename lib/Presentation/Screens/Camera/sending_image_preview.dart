@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -55,6 +56,7 @@ class _SendingImageViewPageState extends State<SendingImageViewPage> {
               left: 0,
               child: SendingImageVideoBottomRowWidget(
                 onStoryChanged: (v) {
+                  log('isFeed: $v');
                   setState(() {
                     isFeed = v;
                   });
