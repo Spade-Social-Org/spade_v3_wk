@@ -74,6 +74,7 @@ dependencies:
   google_fonts: ^6.1.0
   flip_card: ^0.7.0
   modal_bottom_sheet: ^3.0.0-pre
+  photofilters: ^3.0.1
 
 dev_dependencies:
   custom_lint: ^0.5.3
