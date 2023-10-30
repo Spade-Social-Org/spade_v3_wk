@@ -70,6 +70,7 @@ dependencies:
   timeago: ^3.5.0
   video_player: ^2.7.1
   connectivity_plus:
+  photofilters: ^3.0.1
 
 dev_dependencies:
   custom_lint: ^0.5.3
