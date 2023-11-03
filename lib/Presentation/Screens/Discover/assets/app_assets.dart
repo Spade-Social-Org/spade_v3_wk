@@ -25,4 +25,7 @@ class DiscoveryImage {
   static const String proba = "assets/images/proba.png";
   static const String love = "assets/images/love.png";
   static const String compare = "assets/images/compare.png";
+
+  //json
+  static const String animation = "assets/discover/animation.json";
 }

@@ -1,10 +1,8 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:spade_v4/Common/api.dart';
 import 'package:spade_v4/Common/api_handler/api_client_config.dart';
 import 'package:spade_v4/Common/api_handler/api_handler_models.dart';
@@ -13,14 +11,8 @@ import 'package:spade_v4/Presentation/Screens/Home/models/feed_model.dart';
 import 'package:spade_v4/Presentation/Screens/messages/widget/custom_snackbar.dart';
 import 'package:spade_v4/prefs/pref_provider.dart';
 
-final userStoryProvider = StateProvider<List<Feed>?>((ref) {
-  final stories = ref.watch(feedProvider).storyModel;
-  final user = ref.watch(userIdProvider);
-  if (stories == null) return null;
-  final newStories = stories.data
-      ?.where((element) => element.posterId == int.tryParse(user.value ?? ''))
-      .toList();
-  return newStories;
+final feedProvider = StateNotifierProvider<FeedProvider, FeedRepo>((ref) {
+  return FeedProvider(ref);
 });
 
 final storyProvider = StateProvider<FeedModel?>((ref) {
@@ -62,8 +54,62 @@ final storyProvider = StateProvider<FeedModel?>((ref) {
   );
 });
 
-final feedProvider = StateNotifierProvider<FeedProvider, FeedRepo>((ref) {
-  return FeedProvider(ref);
+final testMap = {
+  "statusCode": "SUCCESS",
+  "message": "",
+  "data": [
+    {
+      "gallery": [
+        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png"
+      ],
+      "description": "wefwdcweverr",
+      "id": 227,
+      "created_at": "2023-10-15T12:01:55.078Z",
+      "poster_name": "Abimbola Idunnuoluwa",
+    },
+    {
+      "gallery": [
+        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png"
+      ],
+      "description": "wefwdcweverr",
+      "id": 227,
+      "created_at": "2023-10-15T12:01:55.078Z",
+      "poster_name": "Abimbola Idunnuoluwa",
+    },
+    {
+      "gallery": [
+        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371299/gw6h91blsqgzfpqgzgbu.png"
+      ],
+      "description": "wefwdcweverr",
+      "id": 226,
+      "created_at": "2023-10-15T12:01:38.472Z",
+      "poster_name": "Abimbola Idunnuoluwa",
+    }
+  ],
+  "meta": {
+    "total": 2,
+    "perPage": 15,
+    "currentPage": 1,
+    "totalPages": 1,
+    "first":
+        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1",
+    "last":
+        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1",
+    "prev":
+        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1",
+    "next":
+        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1"
+  }
+};
+
+final userStoryProvider = StateProvider<List<Feed>?>((ref) {
+  final stories = ref.watch(feedProvider).storyModel;
+  final user = ref.watch(userIdProvider);
+  if (stories == null) return null;
+  final newStories = stories.data
+      ?.where((element) => element.posterId == int.tryParse(user.value ?? ''))
+      .toList();
+  return newStories;
 });
 
 class FeedProvider extends StateNotifier<FeedRepo> {
@@ -72,6 +118,29 @@ class FeedProvider extends StateNotifier<FeedRepo> {
   FeedProvider(this.ref) : super(FeedRepo()) {
     fetchPosts();
     fetchStories();
+  }
+
+  Future<bool> bookmarkPost({
+    required bool action,
+    required int id,
+    bool isStory = false,
+  }) async {
+    final res = await state.bookmarkPost(
+      action: action,
+      id: id,
+    );
+
+    if (res.valid) {
+      (isStory ? state.storyModel : state.feedModel)
+          ?.data
+          ?.firstWhereOrNull(
+            (element) => element.id == id,
+          )!
+          .bookmarked = action ? 'true' : 'false';
+      return action;
+    } else {
+      return !action;
+    }
   }
 
   Future<void> createPost(
@@ -121,52 +190,6 @@ class FeedProvider extends StateNotifier<FeedRepo> {
       state = state.copyWith();
       customSnackBar(res.error!.message!);
       //throw StringException(res.error!.message!);
-    }
-  }
-
-  Future<bool> likePost({
-    required bool action,
-    required int id,
-    required bool isStory,
-  }) async {
-    final res = await state.likePost(
-      action: action,
-      id: id,
-    );
-
-    if (res.valid) {
-      (isStory ? state.storyModel : state.feedModel)
-          ?.data
-          ?.firstWhereOrNull(
-            (element) => element.id == id,
-          )!
-          .likedPost = action ? 'true' : 'false';
-      return action;
-    } else {
-      return !action;
-    }
-  }
-
-  Future<bool> bookmarkPost({
-    required bool action,
-    required int id,
-    bool isStory = false,
-  }) async {
-    final res = await state.bookmarkPost(
-      action: action,
-      id: id,
-    );
-
-    if (res.valid) {
-      (isStory ? state.storyModel : state.feedModel)
-          ?.data
-          ?.firstWhereOrNull(
-            (element) => element.id == id,
-          )!
-          .bookmarked = action ? 'true' : 'false';
-      return action;
-    } else {
-      return !action;
     }
   }
 
@@ -240,9 +263,33 @@ class FeedProvider extends StateNotifier<FeedRepo> {
       );
     }
   }
+
+  Future<bool> likePost({
+    required bool action,
+    required int id,
+    required bool isStory,
+  }) async {
+    final res = await state.likePost(
+      action: action,
+      id: id,
+    );
+
+    if (res.valid) {
+      (isStory ? state.storyModel : state.feedModel)
+          ?.data
+          ?.firstWhereOrNull(
+            (element) => element.id == id,
+          )!
+          .likedPost = action ? 'true' : 'false';
+      return action;
+    } else {
+      return !action;
+    }
+  }
 }
 
 class FeedRepo {
+  static final PageController pageController = PageController(initialPage: 1);
   FeedModel? storyModel;
   bool storyLoading;
   FeedModel? feedModel;
@@ -250,7 +297,10 @@ class FeedRepo {
   String? filePath;
   double? uploadProgress;
   void Function()? onRetryPost;
-  static final PageController pageController = PageController(initialPage: 1);
+
+  final BackendService _apiService = BackendService(
+    Dio(),
+  );
 
   FeedRepo({
     this.storyModel,
@@ -261,6 +311,34 @@ class FeedRepo {
     this.onRetryPost,
     this.uploadProgress,
   });
+
+  Future<ResponseModel> bookmarkPost({
+    required bool action,
+    required int id,
+  }) async {
+    Response response = await _apiService.runCall(
+      _apiService.dio.patch(
+        '${AppEndpoints.baseUrl}/api/v1/posts/bookmark/$id/${action ? 'save' : 'remove'}',
+      ),
+    );
+
+    final num statusCode = response.statusCode ?? 000;
+
+    if (statusCode >= 200 && statusCode <= 300) {
+      return ResponseModel(
+        valid: true,
+        statusCode: statusCode,
+        message: response.data['message'],
+        data: response.data,
+      );
+    }
+
+    return ResponseModel(
+      error: ErrorModel.fromJson(response.data),
+      statusCode: statusCode,
+      message: response.data['message'],
+    );
+  }
 
   FeedRepo copyWith({
     FeedModel? storyModel,
@@ -281,10 +359,6 @@ class FeedRepo {
       onRetryPost: onRetryPost ?? this.onRetryPost,
     );
   }
-
-  final BackendService _apiService = BackendService(
-    Dio(),
-  );
 
   Future<ResponseModel> createPost({
     required bool isStory,
@@ -337,62 +411,6 @@ class FeedRepo {
     );
   }
 
-  Future<ResponseModel> likePost({
-    required bool action,
-    required int id,
-  }) async {
-    Response response = await _apiService.runCall(
-      _apiService.dio.patch(
-        '${AppEndpoints.baseUrl}/api/v1/posts/like/$id/${action ? 'like' : 'unlike'}',
-      ),
-    );
-
-    final num statusCode = response.statusCode ?? 000;
-
-    if (statusCode >= 200 && statusCode <= 300) {
-      return ResponseModel(
-        valid: true,
-        statusCode: statusCode,
-        message: response.data['message'],
-        data: response.data,
-      );
-    }
-
-    return ResponseModel(
-      error: ErrorModel.fromJson(response.data),
-      statusCode: statusCode,
-      message: response.data['message'],
-    );
-  }
-
-  Future<ResponseModel> bookmarkPost({
-    required bool action,
-    required int id,
-  }) async {
-    Response response = await _apiService.runCall(
-      _apiService.dio.patch(
-        '${AppEndpoints.baseUrl}/api/v1/posts/bookmark/$id/${action ? 'save' : 'remove'}',
-      ),
-    );
-
-    final num statusCode = response.statusCode ?? 000;
-
-    if (statusCode >= 200 && statusCode <= 300) {
-      return ResponseModel(
-        valid: true,
-        statusCode: statusCode,
-        message: response.data['message'],
-        data: response.data,
-      );
-    }
-
-    return ResponseModel(
-      error: ErrorModel.fromJson(response.data),
-      statusCode: statusCode,
-      message: response.data['message'],
-    );
-  }
-
   Future<ResponseModel<FeedModel>> getFeed({
     String? url,
     bool isStory = false,
@@ -423,52 +441,32 @@ class FeedRepo {
       message: response.data['message'],
     );
   }
-}
 
-final testMap = {
-  "statusCode": "SUCCESS",
-  "message": "",
-  "data": [
-    {
-      "gallery": [
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png"
-      ],
-      "description": "wefwdcweverr",
-      "id": 227,
-      "created_at": "2023-10-15T12:01:55.078Z",
-      "poster_name": "Abimbola Idunnuoluwa",
-    },
-    {
-      "gallery": [
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371315/pjjyh7pa7ep15x3ojgpj.png"
-      ],
-      "description": "wefwdcweverr",
-      "id": 227,
-      "created_at": "2023-10-15T12:01:55.078Z",
-      "poster_name": "Abimbola Idunnuoluwa",
-    },
-    {
-      "gallery": [
-        "https://res.cloudinary.com/doxvfxn3n/image/upload/v1697371299/gw6h91blsqgzfpqgzgbu.png"
-      ],
-      "description": "wefwdcweverr",
-      "id": 226,
-      "created_at": "2023-10-15T12:01:38.472Z",
-      "poster_name": "Abimbola Idunnuoluwa",
+  Future<ResponseModel> likePost({
+    required bool action,
+    required int id,
+  }) async {
+    Response response = await _apiService.runCall(
+      _apiService.dio.patch(
+        '${AppEndpoints.baseUrl}/api/v1/posts/like/$id/${action ? 'like' : 'unlike'}',
+      ),
+    );
+
+    final num statusCode = response.statusCode ?? 000;
+
+    if (statusCode >= 200 && statusCode <= 300) {
+      return ResponseModel(
+        valid: true,
+        statusCode: statusCode,
+        message: response.data['message'],
+        data: response.data,
+      );
     }
-  ],
-  "meta": {
-    "total": 2,
-    "perPage": 15,
-    "currentPage": 1,
-    "totalPages": 1,
-    "first":
-        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1",
-    "last":
-        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1",
-    "prev":
-        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1",
-    "next":
-        "https://spade-backend-v3-production.up.railway.app/api/v1/post/user/feeds?pageSize=15&page=1"
+
+    return ResponseModel(
+      error: ErrorModel.fromJson(response.data),
+      statusCode: statusCode,
+      message: response.data['message'],
+    );
   }
-};
+}
