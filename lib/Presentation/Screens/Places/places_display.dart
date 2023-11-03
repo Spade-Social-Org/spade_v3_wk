@@ -11,6 +11,6 @@ class PlacesDisplay extends StatefulWidget {
 class _PlacesDisplayState extends State<PlacesDisplay> {
   @override
   Widget build(BuildContext context) {
-    return  Placeholder();
+    return  const Placeholder();
   }
 }

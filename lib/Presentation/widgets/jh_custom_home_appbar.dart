@@ -6,7 +6,7 @@ class JHCustomHomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      leading: Text(""),
+      leading: const Text(""),
       elevation: 0,
       backgroundColor: Colors.black,
       pinned: true,

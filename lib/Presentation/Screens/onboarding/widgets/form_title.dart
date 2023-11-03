@@ -13,7 +13,7 @@ class FormTitle extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         formTitle,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
     );
   }

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Presentation/Screens/messages/provider/message_provider.dart';
-import 'package:spade_v4/Presentation/Screens/messages/repository/message_repository.dart';
 import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
-
 import 'group/group_message.dart';
 import 'likes/message_likes.dart';
 import 'widget/custom_iconbutton.dart';
@@ -21,10 +19,9 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   bool isSelected = false;
   int selectedTab = 0;
-
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    MessageRepository().getUserMatches();
     return Consumer(builder: (context, ref, _) {
       return Scaffold(
         appBar: AppBar(

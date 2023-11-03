@@ -11,9 +11,9 @@ class _FriendsScreenState extends State<FriendsScreen> {
   @override
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
-    return Padding(
+    return const Padding(
       padding: EdgeInsets.only(left: 25, bottom: 20),
-      child: Container(
+      child: SizedBox(
         height: 30,
         width: 200,
       ),

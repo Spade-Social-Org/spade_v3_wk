@@ -6,9 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:spade_v4/Common/image_properties.dart';
 import 'package:spade_v4/Common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:photofilters/photofilters.dart';
+import 'dart:io';
+import 'package:path/path.dart';
+import 'package:image/image.dart' as imageLib;
+
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
 import '../../../Common/camera_components/camera_appbar.dart';
-import '../../../Common/camera_components/select_image_from_gallery.dart';
 import '../../../Common/navigator.dart';
 import '../../../Common/routes/routes.dart';
 
@@ -217,10 +221,30 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
     if (!mounted) return;
+    final fileName = basename(file.path);
+    var image = imageLib.decodeImage(File(file.path).readAsBytesSync());
+    if (image == null) return;
+    image = imageLib.copyRotate(image, 90);
+    //if (image == null) return;
+    Map? imagefile = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PhotoFilterSelector(
+          title: const Text("Photo Filter Example"),
+          image: image!,
+          filters: presetFiltersList,
+          filename: fileName,
+          loader: const Center(child: CircularProgressIndicator()),
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+    if (!(imagefile != null && imagefile.containsKey('image_filtered'))) return;
+    if (!mounted) return;
     final finalImage = await navigateNamedTo(
         context, Routes.sendingImageViewRoute,
         arguments: {
-          'path': file.path,
+          'path': imagefile['image_filtered'].path,
           'uId': widget.receiverId,
         });
     if (!mounted) return;

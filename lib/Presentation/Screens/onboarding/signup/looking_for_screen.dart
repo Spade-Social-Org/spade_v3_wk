@@ -25,23 +25,23 @@ class _WhatLookingForScreenState extends State<WhatLookingForScreen> {
     if (_selectedType == 'Man') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LookingForBuildMenScreen()),
+        MaterialPageRoute(builder: (context) => const LookingForBuildMenScreen()),
       );
     } else if (_selectedType == 'Woman') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LookingForBuildWomenScreen()),
+        MaterialPageRoute(builder: (context) => const LookingForBuildWomenScreen()),
       );
     } else if (_selectedType == 'Friends') {
      
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LookingForBuildMenScreen()),
+        MaterialPageRoute(builder: (context) => const LookingForBuildMenScreen()),
       );
     } else if (_selectedType == 'Other') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LookingForBuildMenScreen()),
+        MaterialPageRoute(builder: (context) => const LookingForBuildMenScreen()),
       );
     }
   }
@@ -110,7 +110,7 @@ class _WhatLookingForScreenState extends State<WhatLookingForScreen> {
                               "assets/images/man.png",
                               fit: BoxFit.fill,
                             )),
-                        Text("Man")
+                        const Text("Man")
                       ]),
                 ),
               ),
@@ -141,7 +141,7 @@ class _WhatLookingForScreenState extends State<WhatLookingForScreen> {
                               "assets/images/woman.png",
                               fit: BoxFit.fill,
                             )),
-                        Text("Woman")
+                        const Text("Woman")
                       ]),
                 ),
               ),
@@ -177,7 +177,7 @@ class _WhatLookingForScreenState extends State<WhatLookingForScreen> {
                               "assets/images/friends.png",
                               fit: BoxFit.fill,
                             )),
-                        Text("Friends")
+                        const Text("Friends")
                       ]),
                 ),
               ),

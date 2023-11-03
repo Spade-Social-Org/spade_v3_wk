@@ -27,7 +27,7 @@ class MessageLikesTab extends StatelessWidget {
                       const SizedBox(height: 8),
                       Expanded(
                           child: TabBarView(
-                              children: [JokersList(data: data), AcesGrid()])),
+                              children: [JokersList(data: data), const AcesGrid()])),
                       const SizedBox(height: 16),
                     ],
                   )),

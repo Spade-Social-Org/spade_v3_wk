@@ -16,9 +16,9 @@ class QProgess extends StatelessWidget {
       children: [
         Text(
           "Question $index/25",
-          style: TextStyle(fontSize: 11),
+          style: const TextStyle(fontSize: 11),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Container(

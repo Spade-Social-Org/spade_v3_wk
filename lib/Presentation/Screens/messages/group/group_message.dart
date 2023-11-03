@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widget/custom_appbar.dart';
 import '../widget/custom_iconbutton.dart';
 import '../widget/grouped_avatar.dart';
 
