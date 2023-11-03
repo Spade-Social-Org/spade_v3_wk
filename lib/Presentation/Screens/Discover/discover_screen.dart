@@ -711,7 +711,7 @@ class _WidgetState extends ConsumerState<DiscoveryScreen>
                                 ToastResp.toastMsgSuccess(
                                     resp: "You like ${state.name} profile 🤗");
                                 Future.delayed(
-                                    const Duration(milliseconds: 800), () {
+                                    const Duration(milliseconds: 1000), () {
                                   setState(() {
                                     isIliked = false;
                                     expandedButton(0);
@@ -736,7 +736,7 @@ class _WidgetState extends ConsumerState<DiscoveryScreen>
                                 child: isIliked
                                     ? Lottie.asset(
                                         DiscoveryImage.animation,
-                                        height: 50,
+                                        height: 60,
                                         repeat: true,
                                         fit: BoxFit.cover,
                                       )
