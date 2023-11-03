@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Common/constants.dart';
+import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Common/theme.dart';
 import 'package:spade_v4/Common/utils/utils.dart';
 import 'package:spade_v4/Presentation/Screens/Home/models/feed_model.dart';
@@ -8,6 +9,7 @@ import 'package:spade_v4/Presentation/Screens/Home/presentation/widgets/profile_
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:spade_v4/Presentation/Screens/Home/providers/feed_provider.dart';
+import 'package:spade_v4/Presentation/Screens/messages/single/single_message.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spade_v4/resources/resources.dart';
@@ -95,20 +97,14 @@ class _FeedBoxState extends ConsumerState<FeedBox> {
             children: [
               InkWell(
                 onTap: () async {
-                  setState(() {
-                    isLiked = !isLiked;
-                  });
-
+                  setState(() => isLiked = !isLiked);
                   final newLike =
                       await ref.read(feedProvider.notifier).likePost(
                             action: isLiked,
                             id: widget.feed.id!,
                             isStory: false,
                           );
-
-                  setState(() {
-                    isLiked = newLike;
-                  });
+                  setState(() => isLiked = newLike);
                 },
                 child: SvgPicture.asset(
                   isLiked
@@ -119,26 +115,25 @@ class _FeedBoxState extends ConsumerState<FeedBox> {
                 ),
               ),
               12.spacingW,
-              SvgPicture.asset(
-                SpiderSvgAssets.message,
+              IconButton(
+                onPressed: () => push(SingleMessage(
+                    userId: widget.feed.posterId!,
+                    username: widget.feed.posterName!)),
+                icon: SvgPicture.asset(
+                  SpiderSvgAssets.message,
+                ),
               ),
               const Spacer(),
               InkWell(
                 onTap: () async {
-                  setState(() {
-                    isSaved = !isSaved;
-                  });
-
+                  setState(() => isSaved = !isSaved);
                   final newLike =
                       await ref.read(feedProvider.notifier).bookmarkPost(
                             action: isSaved,
                             id: widget.feed.id!,
                             isStory: false,
                           );
-
-                  setState(() {
-                    isSaved = newLike;
-                  });
+                  setState(() => isSaved = newLike);
                 },
                 child: Icon(
                   isSaved
