@@ -23,6 +23,16 @@ class SingleMessage extends ConsumerStatefulWidget {
 class _SingleMessageState extends ConsumerState<SingleMessage> {
   final controller = TextEditingController();
   final scrollCtrl = ScrollController();
+
+  void submit() {
+    ref.read(socketProvider.notifier).sendMessage(
+        text: controller.text.trim(), receiverId: widget.userId.toString());
+    setState(() => controller.text = '');
+    ref.invalidate(messageFutureProvider);
+    scrollCtrl.animateTo(0.0,
+        duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
@@ -105,16 +115,8 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
                         ),
                         const SizedBox(height: 8),
                         MessageTextfield(
-                            onTap: () {
-                              ref.read(socketProvider.notifier).sendMessage(
-                                  text: controller.text.trim(),
-                                  receiverId: widget.userId.toString());
-                              setState(() => controller.text = '');
-                              ref.invalidate(messageFutureProvider);
-                              scrollCtrl.animateTo(0.0,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeIn);
-                            },
+                            onSubmitted: (_) => submit(),
+                            onTap: () => submit(),
                             onChanged: (value) => setState(() {}),
                             controller: controller),
                         const SizedBox(height: 12),

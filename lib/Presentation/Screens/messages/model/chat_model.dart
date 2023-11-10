@@ -11,9 +11,9 @@ class ChatsResponseModel {
   final String? message;
   final String? devMessage;
 
-  factory ChatsResponseModel.fromJson(Map<String, dynamic> json) {
+  factory ChatsResponseModel.fromJson(Map<String, dynamic>? json) {
     return ChatsResponseModel(
-      statusCode: json["statusCode"],
+      statusCode: json!["statusCode"],
       data: json["data"] == null
           ? []
           : List<ChatsData>.from(
