@@ -11,9 +11,9 @@ class Messages {
   final String? message;
   final String? devMessage;
 
-  factory Messages.fromJson(Map<String, dynamic> json) {
+  factory Messages.fromJson(Map<String, dynamic>? json) {
     return Messages(
-      statusCode: json["statusCode"],
+      statusCode: json!["statusCode"],
       data: json["data"] == null
           ? []
           : List<MessageData>.from(

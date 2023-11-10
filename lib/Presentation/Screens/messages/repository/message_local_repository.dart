@@ -13,6 +13,6 @@ class MessageLocalRepository {
 
   static Future<List<MessageData>> getUserMessages() async {
     final data = box.read<Map<String, dynamic>>('messages');
-    return Messages.fromJson(data!).data;
+    return Messages.fromJson(data).data;
   }
 }

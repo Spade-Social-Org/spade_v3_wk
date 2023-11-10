@@ -123,7 +123,7 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
                       ],
                     );
                   },
-                  error: (e, t) => const SizedBox.shrink(),
+                  error: (e, t) => Text(e.toString()),
                   loading: () => const Center(
                         child: CircularProgressIndicator(),
                       ))));
