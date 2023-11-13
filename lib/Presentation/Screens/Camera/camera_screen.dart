@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:photofilters/photofilters.dart' as photofilters;
 import 'package:spade_v4/Common/image_properties.dart';
 import 'package:spade_v4/Common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:photofilters/photofilters.dart';
+import 'filter_screen.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:image/image.dart' as imageLib;
@@ -232,10 +233,9 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
         builder: (context) => PhotoFilterSelector(
           title: const Text("Photo Filter Example"),
           image: image!,
-          filters: presetFiltersList,
+          filters: photofilters.presetFiltersList,
           filename: fileName,
           loader: const Center(child: CircularProgressIndicator()),
-          fit: BoxFit.contain,
         ),
       ),
     );
