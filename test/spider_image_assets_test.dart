@@ -21,6 +21,8 @@ void main() {
     expect(File(SpiderImageAssets.ellipse379).existsSync(), isTrue);
     expect(File(SpiderImageAssets.group949).existsSync(), isTrue);
     expect(File(SpiderImageAssets.groupDiscussionCuate1).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.hotel1).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.hotel2).existsSync(), isTrue);
     expect(File(SpiderImageAssets.image40).existsSync(), isTrue);
     expect(File(SpiderImageAssets.inLoveAmico1).existsSync(), isTrue);
     expect(File(SpiderImageAssets.inLovePana1).existsSync(), isTrue);
@@ -63,7 +65,11 @@ void main() {
     expect(File(SpiderImageAssets.cardLight).existsSync(), isTrue);
     expect(File(SpiderImageAssets.chartGraphic).existsSync(), isTrue);
     expect(File(SpiderImageAssets.clubFill).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.club1).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.club2).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.club3).existsSync(), isTrue);
     expect(File(SpiderImageAssets.diamondFill).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.emptyMessage).existsSync(), isTrue);
     expect(File(SpiderImageAssets.evening).existsSync(), isTrue);
     expect(File(SpiderImageAssets.flipCard).existsSync(), isTrue);
     expect(File(SpiderImageAssets.freepikCharacter1Inject310).existsSync(),
@@ -119,6 +125,9 @@ void main() {
     expect(File(SpiderImageAssets.mixed1).existsSync(), isTrue);
     expect(File(SpiderImageAssets.moreVert).existsSync(), isTrue);
     expect(File(SpiderImageAssets.morning).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.movie1).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.museum1).existsSync(), isTrue);
+    expect(File(SpiderImageAssets.museum2).existsSync(), isTrue);
     expect(File(SpiderImageAssets.n1331529652065061).existsSync(), isTrue);
     expect(File(SpiderImageAssets.n3cards).existsSync(), isTrue);
     expect(File(SpiderImageAssets.n50501).existsSync(), isTrue);
@@ -139,6 +148,7 @@ void main() {
     expect(File(SpiderImageAssets.redNdYell).existsSync(), isTrue);
     expect(File(SpiderImageAssets.redAndYellowCardsSvgrepoCom1).existsSync(),
         isTrue);
+    expect(File(SpiderImageAssets.restaurant).existsSync(), isTrue);
     expect(File(SpiderImageAssets.rightpan).existsSync(), isTrue);
     expect(File(SpiderImageAssets.ruler).existsSync(), isTrue);
     expect(File(SpiderImageAssets.search).existsSync(), isTrue);

@@ -20,6 +20,8 @@ class SpiderImageAssets {
   static const String group949 = 'assets/images/Group 949.png';
   static const String groupDiscussionCuate1 =
       'assets/images/Group discussion-cuate 1.png';
+  static const String hotel1 = 'assets/images/Hotel 1.png';
+  static const String hotel2 = 'assets/images/Hotel 2.png';
   static const String image40 = 'assets/images/Image 40.png';
   static const String inLoveAmico1 = 'assets/images/In love-amico 1.png';
   static const String inLovePana1 = 'assets/images/In love-pana 1.png';
@@ -64,7 +66,11 @@ class SpiderImageAssets {
   static const String cardLight = 'assets/images/card-light.png';
   static const String chartGraphic = 'assets/images/chart-graphic.png';
   static const String clubFill = 'assets/images/club-fill.png';
+  static const String club1 = 'assets/images/club1.png';
+  static const String club2 = 'assets/images/club2.png';
+  static const String club3 = 'assets/images/club3.png';
   static const String diamondFill = 'assets/images/diamond-fill.png';
+  static const String emptyMessage = 'assets/images/empty-message.png';
   static const String evening = 'assets/images/evening.png';
   static const String flipCard = 'assets/images/flip-card.png';
   static const String freepikCharacter1Inject310 =
@@ -121,6 +127,9 @@ class SpiderImageAssets {
   static const String mixed1 = 'assets/images/mixed 1.png';
   static const String moreVert = 'assets/images/more-vert.png';
   static const String morning = 'assets/images/morning.png';
+  static const String movie1 = 'assets/images/movie1.png';
+  static const String museum1 = 'assets/images/museum1.png';
+  static const String museum2 = 'assets/images/museum2.png';
   static const String n1331529652065061 =
       'assets/images/n13315296_5206506 1.png';
   static const String n3cards = 'assets/images/n3cards.png';
@@ -143,6 +152,7 @@ class SpiderImageAssets {
   static const String redNdYell = 'assets/images/red nd yell.png';
   static const String redAndYellowCardsSvgrepoCom1 =
       'assets/images/red-and-yellow-cards-svgrepo-com 1.png';
+  static const String restaurant = 'assets/images/restaurant.png';
   static const String rightpan = 'assets/images/rightpan.png';
   static const String ruler = 'assets/images/ruler.png';
   static const String search = 'assets/images/search.png';
