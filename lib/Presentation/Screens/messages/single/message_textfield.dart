@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class MessageTextfield extends StatelessWidget {
   final VoidCallback onTap;
   final TextEditingController controller;
+  final ValueChanged<String>? onSubmitted;
   final ValueChanged<String>? onChanged;
   const MessageTextfield(
       {super.key,
       required this.onTap,
       required this.controller,
-      required this.onChanged});
+      required this.onChanged,
+      this.onSubmitted});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,9 @@ class MessageTextfield extends StatelessWidget {
               child: TextField(
             controller: controller,
             onChanged: onChanged,
+            textInputAction: TextInputAction.send,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            onSubmitted: onSubmitted,
             textCapitalization: TextCapitalization.sentences,
             decoration: InputDecoration(
                 hintText: 'Message...',

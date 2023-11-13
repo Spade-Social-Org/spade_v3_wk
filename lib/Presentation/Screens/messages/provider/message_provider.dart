@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spade_v4/Presentation/Screens/messages/repository/message_repository.dart';
@@ -6,6 +7,7 @@ import 'package:spade_v4/Presentation/Screens/messages/repository/message_reposi
 import '../model/chat_model.dart';
 import '../model/messages.dart';
 import '../model/user_matches_response_model.dart';
+import '../repository/message_local_repository.dart';
 
 final chatListFutureProvider =
     FutureProvider((ref) => ref.watch(messageProvider).getUserChats());
@@ -21,12 +23,19 @@ class MessageProvider {
   MessageProvider(this.ref);
 
   Future<List<MessageData>> getMessages() async {
-    return await ref.watch(messageRepository).getUserMessages();
+    try {
+      return await ref.watch(messageRepository).getUserMessages();
+    } on SocketException catch (_) {
+      return await MessageLocalRepository.getUserMessages();
+    }
   }
 
   Future<List<ChatsData>> getUserChats() async {
-    final response = await ref.watch(messageRepository).getUserChats();
-    return response.data;
+    try {
+      return await ref.watch(messageRepository).getUserChats();
+    } on SocketException catch (_) {
+      return await MessageLocalRepository.getUserChats();
+    }
   }
 
   Future<List<UserMatchesResponseData>> getUserMatches() async {

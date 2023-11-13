@@ -16,7 +16,6 @@ class MessageBubble extends StatelessWidget {
     return Consumer(builder: (context, ref, _) {
       final userId = ref.watch(userIdProvider).asData;
       if (userId == null) return const SizedBox.shrink();
-      print(message.userId);
       return Column(
         children: [
           Row(
@@ -62,28 +61,4 @@ class MessageBubble extends StatelessWidget {
       );
     });
   }
-}
-
-final messageList = <Messages>[
-  Messages(1, '2020-06-16T10:31:12.000Z', 'Hello dear', false),
-  Messages(1, '2020-07-16T10:30:35.000Z', 'Good morning from here', true),
-  Messages(1, '2020-07-14T09:41:18.000Z', 'How are doing?', true),
-  Messages(1, '2020-06-15T09:41:18.000Z', 'Am fine dear', false),
-  Messages(1, '2020-06-16T10:31:12.000Z', 'Hello dear', false),
-  Messages(1, '2020-06-16T10:29:35.000Z', 'Good morning dear', true),
-  Messages(1, '2020-06-15T09:41:18.000Z', 'How are doing?', true),
-  Messages(1, '2020-06-15T09:41:18.000Z', 'Am fine dear', false),
-  Messages(1, '2020-06-16T10:31:12.000Z', 'Hello dear', false),
-  Messages(1, '2020-06-16T10:29:35.000Z', 'Good morning dear', true),
-  Messages(1, '2020-06-15T09:41:18.000Z', 'How are doing?', true),
-  Messages(1, '2023-08-15T09:41:18.000Z', 'Am fine dear', false),
-];
-
-class Messages {
-  final int id;
-  final String time;
-  final String message;
-  final bool isMe;
-
-  Messages(this.id, this.time, this.message, this.isMe);
 }

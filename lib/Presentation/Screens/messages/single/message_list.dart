@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import "package:collection/collection.dart";
 import 'package:intl/intl.dart';
 
 import '../model/messages.dart';
@@ -69,8 +68,6 @@ class HeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       false;
 }
-
-var groupByDate = groupBy(messageList, (obj) => obj.time);
 
 extension DateHelper on DateTime {
   String formatDate() {

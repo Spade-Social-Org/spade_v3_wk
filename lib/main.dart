@@ -6,7 +6,7 @@ import 'package:spade_v4/Common/navigator.dart';
 import 'package:spade_v4/Data/Service/geo_locator.dart';
 import 'package:spade_v4/auth_state_change_notifier.dart';
 import 'package:spade_v4/injection.dart' as di;
-
+import 'package:get_storage/get_storage.dart';
 import 'Common/routes/route_generator.dart';
 import 'Presentation/Bloc/places_bloc.dart';
 import 'Presentation/Screens/Camera/camera_screen.dart';
@@ -14,7 +14,7 @@ import 'injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await GetStorage.init();
   GeoLocatorService.getInitialLocation();
   cameras = await availableCameras();
   di.init();

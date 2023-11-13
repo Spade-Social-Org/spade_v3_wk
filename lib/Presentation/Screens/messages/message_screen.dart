@@ -164,9 +164,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                   .toList(),
                             ),
                       error: (e, t) => const SizedBox.shrink(),
-                      loading: () => const Center(
-                            child: CircularProgressIndicator(),
-                          ))
+                      loading: () => const SizedBox.shrink()),
             ],
           ),
         ),

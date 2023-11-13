@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:spade_v4/prefs/pref_provider.dart';
@@ -14,6 +15,7 @@ final messageRepository = Provider((ref) => MessageRepository());
 class MessageRepository {
   final _client = Client();
   final baseUrl = "https://spade-backend-v3-production.up.railway.app/api/v1";
+  final box = GetStorage();
 
   Future<List<MessageData>> getUserMessages() async {
     final token = await PrefProvider.getUserToken();
@@ -21,15 +23,17 @@ class MessageRepository {
     final response = await _client.get(Uri.parse("$baseUrl/messages/$id"),
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);
+    box.write('messages', data);
     return Messages.fromJson(data).data;
   }
 
-  Future<ChatsResponseModel> getUserChats() async {
+  Future<List<ChatsData>> getUserChats() async {
     final token = await PrefProvider.getUserToken();
     final response = await _client.get(Uri.parse("$baseUrl/messages"),
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);
-    return ChatsResponseModel.fromJson(data);
+    box.write('chats', data);
+    return ChatsResponseModel.fromJson(data).data;
   }
 
   Future<List<UserMatchesResponseData>> getUserMatches() async {
