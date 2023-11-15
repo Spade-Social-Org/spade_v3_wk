@@ -6,9 +6,13 @@ import '../model/messages.dart';
 
 class MessageBubble extends StatelessWidget {
   final MessageData message;
+  final VoidCallback onPressed;
+  final String replyingText;
   const MessageBubble({
     super.key,
     required this.message,
+    required this.onPressed,
+    required this.replyingText,
   });
 
   @override
@@ -29,25 +33,48 @@ class MessageBubble extends StatelessWidget {
                         backgroundImage: AssetImage('assets/images/avatar.png'),
                       ),
                 const SizedBox(width: 8),
-                Container(
-                    padding: const EdgeInsets.all(8),
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      color: message.userId == int.parse(userId.value!)
-                          ? const Color(0xffef0c28)
-                          : const Color(0xfff5f5f5),
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: const Radius.circular(8),
-                        topLeft: message.userId == int.parse(userId.value!)
-                            ? const Radius.circular(8)
-                            : const Radius.circular(0),
-                        topRight: message.userId == int.parse(userId.value!)
-                            ? const Radius.circular(0)
-                            : const Radius.circular(8),
-                        bottomRight: const Radius.circular(8),
-                      ),
+                MaterialButton(
+                  elevation: 0, highlightElevation: 0,
+                  onLongPress: onPressed, onPressed: () {},
+                  padding: const EdgeInsets.all(8),
+                  // margin: const EdgeInsets.symmetric(vertical: 10),
+                  color: message.userId == int.parse(userId.value!)
+                      ? const Color(0xffef0c28)
+                      : const Color(0xfff5f5f5),
+                  shape: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: const Radius.circular(8),
+                      topLeft: message.userId == int.parse(userId.value!)
+                          ? const Radius.circular(8)
+                          : const Radius.circular(0),
+                      topRight: message.userId == int.parse(userId.value!)
+                          ? const Radius.circular(0)
+                          : const Radius.circular(8),
+                      bottomRight: const Radius.circular(8),
                     ),
-                    child: Padding(
+                  ),
+                  child: Column(
+                    crossAxisAlignment:
+                        message.userId == int.parse(userId.value!)
+                            ? CrossAxisAlignment.end
+                            : CrossAxisAlignment.start,
+                    children: [
+                      replyingText.isEmpty
+                          ? const SizedBox.shrink()
+                          : Container(
+                              decoration: BoxDecoration(
+                                  color:
+                                      message.userId == int.parse(userId.value!)
+                                          ? Colors.red.shade200
+                                          : Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(replyingText),
+                              ),
+                            ),
+                      Padding(
                         padding: const EdgeInsets.all(5),
                         child: Text(
                           message.content!,
@@ -55,7 +82,11 @@ class MessageBubble extends StatelessWidget {
                               color: message.userId == int.parse(userId.value!)
                                   ? Colors.white
                                   : Colors.black),
-                        )))
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ])
         ],
       );
