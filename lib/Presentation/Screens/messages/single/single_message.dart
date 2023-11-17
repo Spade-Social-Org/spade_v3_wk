@@ -23,6 +23,7 @@ class SingleMessage extends ConsumerStatefulWidget {
 class _SingleMessageState extends ConsumerState<SingleMessage> {
   final controller = TextEditingController();
   final scrollCtrl = ScrollController();
+  final String replyingText = '';
 
   void submit() {
     ref.read(socketProvider.notifier).sendMessage(
@@ -111,10 +112,14 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
                         const Divider(),
                         Expanded(
                           child: MessageList(
-                              data: messages, scrollController: scrollCtrl),
+                              onPressed: () {},
+                              replyingText: replyingText,
+                              data: messages,
+                              scrollController: scrollCtrl),
                         ),
                         const SizedBox(height: 8),
                         MessageTextfield(
+                            replyingText: replyingText,
                             onSubmitted: (_) => submit(),
                             onTap: () => submit(),
                             onChanged: (value) => setState(() {}),
@@ -123,10 +128,8 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
                       ],
                     );
                   },
-                  error: (e, t) => Text(e.toString()),
-                  loading: () => const Center(
-                        child: CircularProgressIndicator(),
-                      ))));
+                  error: (e, t) => const SizedBox.shrink(),
+                  loading: () => const SizedBox.shrink())));
     });
   }
 }

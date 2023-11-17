@@ -7,8 +7,14 @@ import '../widget/message_bubble.dart';
 class MessageList extends StatelessWidget {
   final Map<DateTime?, List<MessageData>> data;
   final ScrollController scrollController;
+  final VoidCallback onPressed;
+  final String replyingText;
   const MessageList(
-      {super.key, required this.data, required this.scrollController});
+      {super.key,
+      required this.data,
+      required this.scrollController,
+      required this.onPressed,
+      required this.replyingText});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +33,10 @@ class MessageList extends StatelessWidget {
                 SliverPadding(
                   padding: const EdgeInsets.all(8.0),
                   sliver: SliverList.separated(
-                      itemBuilder: (_, int i) =>
-                          MessageBubble(message: messages.value[i]),
+                      itemBuilder: (_, int i) => MessageBubble(
+                          replyingText: replyingText,
+                          message: messages.value[i],
+                          onPressed: onPressed),
                       separatorBuilder: (_, __) => const SizedBox.shrink(),
                       itemCount: messages.value.length),
                 ),

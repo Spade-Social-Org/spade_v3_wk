@@ -33,6 +33,7 @@ class MessageRepository {
         headers: {"Authorization": "Bearer $token"});
     final data = jsonDecode(response.body);
     box.write('chats', data);
+    print(data);
     return ChatsResponseModel.fromJson(data).data;
   }
 
