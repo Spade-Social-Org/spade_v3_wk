@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 
 class MessageTextfield extends StatelessWidget {
   final VoidCallback onTap;
+  final VoidCallback clearChat;
   final TextEditingController controller;
   final ValueChanged<String>? onSubmitted;
   final ValueChanged<String>? onChanged;
-  final String replyingText;
+  final String message;
+  final String username;
   const MessageTextfield(
       {super.key,
       required this.onTap,
       required this.controller,
       required this.onChanged,
       this.onSubmitted,
-      required this.replyingText});
+      required this.message,
+      required this.username,
+      required this.clearChat});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +26,12 @@ class MessageTextfield extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
           color: const Color(0xfff5f5f5),
-          borderRadius: replyingText.isEmpty
+          borderRadius: message.isEmpty
               ? BorderRadius.circular(50)
               : BorderRadius.circular(8)),
       child: Column(
         children: [
-          replyingText.isEmpty
+          message.isEmpty
               ? const SizedBox.shrink()
               : Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
@@ -43,13 +47,13 @@ class MessageTextfield extends StatelessWidget {
                         Align(
                             alignment: Alignment.topRight,
                             child: InkWell(
-                                onTap: () {},
+                                onTap: clearChat,
                                 child: const Icon(Icons.clear, size: 15))),
-                        const Text(
-                          'Victor',
-                          style: TextStyle(fontWeight: FontWeight.w600),
+                        Text(
+                          username,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
-                        const Text('replyingText'),
+                        Text(message),
                       ],
                     ),
                   ),
@@ -98,26 +102,3 @@ class MessageTextfield extends StatelessWidget {
     );
   }
 }
-/*
-
- IconButton(
-                  onPressed: onTap,
-                  icon: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Image.asset(
-                      'assets/images/send.png',
-                      color:
-                          controller.text.isEmpty ? Colors.grey : Colors.black,
-                    ),
-                  )),
-
-
- alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: const Color(0xfff5f5f5),
-        borderRadius: BorderRadius.circular(50),
-      ),
-
-*/

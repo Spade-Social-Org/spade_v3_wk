@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:spade_v4/Presentation/Screens/messages/provider/socket_provider.dart';
-import 'package:spade_v4/Presentation/Screens/messages/single/message_list.dart';
 import 'package:spade_v4/Presentation/Screens/messages/single/message_textfield.dart';
 import 'package:spade_v4/Presentation/Screens/messages/widget/custom_iconbutton.dart';
 import 'package:flutter/material.dart';
 import '../provider/message_provider.dart';
+import '../widget/message_bubble.dart';
 
 final messageFutureProvider =
     FutureProvider((ref) => ref.watch(messageProvider).getMessages());
@@ -23,7 +24,7 @@ class SingleMessage extends ConsumerStatefulWidget {
 class _SingleMessageState extends ConsumerState<SingleMessage> {
   final controller = TextEditingController();
   final scrollCtrl = ScrollController();
-  final String replyingText = '';
+  String replyingText = '';
 
   void submit() {
     ref.read(socketProvider.notifier).sendMessage(
@@ -34,6 +35,7 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
         duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
   }
 
+  void sedn() {}
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
@@ -111,17 +113,48 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
                         ),
                         const Divider(),
                         Expanded(
-                          child: MessageList(
-                              onPressed: () {},
-                              replyingText: replyingText,
-                              data: messages,
-                              scrollController: scrollCtrl),
+                          child: CustomScrollView(
+                              controller: scrollCtrl,
+                              shrinkWrap: true,
+                              reverse: true,
+                              slivers: messages.entries
+                                  .map(
+                                    (messages) => SliverMainAxisGroup(slivers: [
+                                      SliverPersistentHeader(
+                                        pinned: true,
+                                        delegate: HeaderDelegate(
+                                            DateFormat.yMMMd()
+                                                .format(messages.key!)),
+                                      ),
+                                      SliverPadding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        sliver: SliverList.separated(
+                                            itemBuilder: (_, int i) =>
+                                                MessageBubble(
+                                                  replyingText: '',
+                                                  message: messages.value[i],
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      replyingText = messages
+                                                          .value[i].content!;
+                                                    });
+                                                  },
+                                                ),
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox.shrink(),
+                                            itemCount: messages.value.length),
+                                      ),
+                                    ]),
+                                  )
+                                  .toList()),
                         ),
                         const SizedBox(height: 8),
                         MessageTextfield(
-                            replyingText: replyingText,
+                            message: replyingText,
+                            username: widget.username,
                             onSubmitted: (_) => submit(),
                             onTap: () => submit(),
+                            clearChat: () => setState(() => replyingText = ''),
                             onChanged: (value) => setState(() {}),
                             controller: controller),
                         const SizedBox(height: 12),
@@ -132,4 +165,35 @@ class _SingleMessageState extends ConsumerState<SingleMessage> {
                   loading: () => const SizedBox.shrink())));
     });
   }
+}
+
+class HeaderDelegate extends SliverPersistentHeaderDelegate {
+  const HeaderDelegate(this.title);
+  final String title;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 100),
+      child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          height: 30,
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(title),
+          )),
+    );
+  }
+
+  @override
+  double get maxExtent => minExtent;
+
+  @override
+  double get minExtent => 30;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }
